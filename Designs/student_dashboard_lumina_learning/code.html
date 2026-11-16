@@ -1,0 +1,435 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Lumina Learning | Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Hanken+Grotesk:wght@600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "streak-orange": "#EF4444",
+                    "on-secondary-fixed-variant": "#004395",
+                    "secondary-container": "#2170e4",
+                    "on-primary-fixed": "#131b2e",
+                    "primary-container": "#131b2e",
+                    "border-subtle": "#E2E8F0",
+                    "tertiary-container": "#002113",
+                    "on-background": "#0b1c30",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-tertiary-fixed": "#002113",
+                    "on-primary-container": "#7c839b",
+                    "on-secondary-container": "#fefcff",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-error": "#ffffff",
+                    "surface-bg": "#F8FAFC",
+                    "on-error-container": "#93000a",
+                    "background": "#f8f9ff",
+                    "tertiary": "#000000",
+                    "surface-container-highest": "#d3e4fe",
+                    "editor-bg": "#1E1E1E",
+                    "surface-tint": "#565e74",
+                    "on-surface-variant": "#45464d",
+                    "tertiary-fixed": "#6ffbbe",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "inverse-primary": "#bec6e0",
+                    "primary-fixed-dim": "#bec6e0",
+                    "primary-fixed": "#dae2fd",
+                    "surface-container-high": "#dce9ff",
+                    "primary": "#000000",
+                    "outline": "#76777d",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#c6c6cd",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#009668",
+                    "surface-container": "#e5eeff",
+                    "inverse-surface": "#213145",
+                    "surface": "#f8f9ff",
+                    "on-secondary-fixed": "#001a42",
+                    "on-tertiary": "#ffffff",
+                    "surface-card": "#FFFFFF",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#cbdbf5",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface-bright": "#f8f9ff",
+                    "on-surface": "#0b1c30",
+                    "xp-gold": "#F59E0B",
+                    "secondary": "#0058be"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "section-gap": "64px",
+                    "base": "4px",
+                    "container-max": "1440px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "code-sm": ["JetBrains Mono"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .tonal-stroke {
+            border: 1px solid #E2E8F0;
+        }
+        .card-hover:hover {
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-surface-bg text-on-surface font-body-md selection:bg-secondary-fixed">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-lowest border-r border-border-subtle flex flex-col py-10 z-50">
+<div class="px-8 mb-10"><h1 class="font-display-lg text-2xl font-extrabold text-on-surface tracking-tight">Lumina</h1><p class="font-label-md text-secondary font-bold uppercase tracking-widest text-[10px] mt-1">Learning System</p></div>
+<nav class="flex-1 px-4 space-y-3"><!-- Dashboard (ACTIVE) -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary font-bold border-l-4 border-secondary bg-secondary-container/10 transition-all duration-200 rounded-r-lg" href="#"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">dashboard</span><span class="">Dashboard</span></a>
+<!-- My Courses -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-body-md hover:bg-surface-container-low transition-all duration-200 rounded-lg group" href="#"><span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary transition-colors">school</span><span class="">My Courses</span></a>
+<!-- Learning Path -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-body-md hover:bg-surface-container-low transition-all duration-200 rounded-lg group" href="#"><span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary transition-colors">alt_route</span><span class="">Learning Path</span></a>
+<!-- Achievements -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-body-md hover:bg-surface-container-low transition-all duration-200 rounded-lg group" href="#"><span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary transition-colors">emoji_events</span><span class="">Achievements</span></a>
+<!-- Settings -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-body-md hover:bg-surface-container-low transition-all duration-200 rounded-lg group" href="#"><span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary transition-colors">settings</span><span class="">Settings</span></a></nav>
+<div class="px-4 mt-auto space-y-4"><div class="mx-4 p-5 bg-white rounded-2xl border border-border-subtle shadow-sm hover:shadow-md transition-shadow duration-300"><div class="flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-xp-gold">stars</span><p class="font-label-md text-on-surface">Pro Member</p></div><p class="text-[11px] text-on-surface-variant mb-4">Unlock advanced architecture tracks and expert certifications.</p><button class="w-full py-2.5 bg-secondary text-on-secondary font-bold rounded-xl text-xs hover:opacity-90 transition-opacity">Upgrade Now</button></div>
+<a class="flex items-center gap-3 px-8 py-4 text-on-surface-variant font-body-md hover:text-secondary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help Center
+            </a></div>
+</aside>
+<!-- Main Workspace -->
+<main class="md:ml-[280px] min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-margin-desktop h-16 w-full bg-surface border-b border-border-subtle shadow-sm">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Scholastic AI</h1>
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-border-subtle rounded-lg text-body-sm focus:border-secondary focus:ring-0 w-64 transition-all" placeholder="Search courses, lessons..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full border border-secondary-fixed">
+<span class="material-symbols-outlined text-streak-orange text-lg" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-code-sm text-code-sm font-bold text-on-surface">7</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full border border-secondary-fixed">
+<span class="material-symbols-outlined text-xp-gold text-lg" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-code-sm text-code-sm font-bold text-on-surface">2,450 XP</span>
+</div>
+<div class="h-8 w-[1px] bg-border-subtle mx-2"></div>
+<button class="relative p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer active:scale-95 duration-200">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-3 ml-2">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-label-md text-on-surface leading-none">Alex Rivera</p>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Level 14 Student</p>
+</div>
+<img alt="Student Profile" class="w-10 h-10 rounded-full border-2 border-secondary-fixed cursor-pointer" data-alt="A professional close-up headshot of a young adult student with a warm, confident expression. The background is a blurred high-tech learning environment with soft blue and white accent lighting, maintaining a clean and professional corporate aesthetic. The student is dressed in smart-casual attire, reflecting an institutional and high-trust academic persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVFJC76K2JlDj3oVSapjQ3jHfzWFQBx99i5tVN5aL9F_bOboOJPzzPGC2OrBBIom1JCEAEf9j1WjcI0Jqo-drEv9Hv4rq8EH_OTNrpf7nWVQfHzLUGJdRN1hFusyPhUd6LuAuUITwH1_8Q0OGP09BrfW_EGb9O6qbajrO-GqqTO3eYSXNFbsCWccbxgsUPD-0afDRKPeyLuzaHvyMjyWmMvVELDsc20i_qCh7SaRB3plhl_FGdEMWb-rdKLA0tWTz6NB_HXzWwoo8">
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="px-margin-desktop py-10 max-w-container-max mx-auto">
+<!-- Hero: Continue Learning -->
+<section class="mb-section-gap">
+<div class="relative overflow-hidden rounded-xl bg-on-primary-fixed p-8 lg:p-12 text-white shadow-lg flex flex-col lg:flex-row items-center gap-12 group">
+<div class="relative z-10 flex-1">
+<div class="flex items-center gap-2 mb-4">
+<span class="px-3 py-1 bg-secondary text-white text-[10px] font-bold uppercase tracking-widest rounded-full">In Progress</span>
+<span class="text-secondary-fixed text-sm font-label-md">Module 4 of 12</span>
+</div>
+<h2 class="font-display-lg text-display-lg mb-4 leading-tight">Advanced Systems Architecture</h2>
+<p class="text-on-primary-container font-body-lg mb-8 max-w-2xl">Master the complexities of distributed computing and high-availability design with Quantum Systems Research instructors.</p>
+<div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+<button class="flex items-center gap-2 px-8 py-3.5 bg-secondary hover:bg-secondary-container text-white rounded-lg font-bold transition-all active:scale-95">
+<span class="material-symbols-outlined">play_arrow</span>
+                                Resume Lesson
+                            </button>
+<div class="flex-1 w-full max-w-xs">
+<div class="flex justify-between text-xs mb-2 text-on-primary-container">
+<span class="">Course Progress</span>
+<span class="">35%</span>
+</div>
+<div class="h-2.5 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full w-[35%] transition-all duration-1000 ease-out"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative w-full lg:w-1/3 aspect-video lg:aspect-square rounded-xl overflow-hidden tonal-stroke shadow-2xl">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A high-tech digital representation of complex systems architecture. Glowing neon blue lines connect abstract geometric nodes against a deep midnight-blue background. The visual style is reminiscent of professional developer tools with a clean, grid-based overlay, emphasizing precision and technical authority. Soft volumetric lighting creates a sense of depth and modern sophistication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChVzKVohWDlZho-EkvNMDrgugCd5EgRlGiJ7cds9dx9zbWciQvpTeJxQaWQ_McY7WAAHsT-FJo4Qo89lkzoqgx-ggGEgky5I7BQd2UVP7Eb3aeGlgBUAmPykp3l2KxQuWj5dyr2ppPumxgkqYm-O18oKweVxcNIHI2RrSO0hrK7Eg61rA6bFSJfPs0dm02WGiMBdPl0HeR_CqGSiDEHgMtCm-Rptju5V_abPJJbEi9pQTvsF7MkKjhM477FLEy8eolxzN3np_lv78">
+</div>
+</div>
+</section>
+<!-- Grid Layout -->
+<div class="bento-grid">
+<!-- Enrolled Courses -->
+<div class="col-span-12 lg:col-span-8">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md">My Active Courses</h3>
+<button class="text-secondary font-label-md text-label-md hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Course Card 1 -->
+<div class="bg-surface-card rounded-xl p-5 tonal-stroke card-hover transition-all group" style="border-color: rgb(226, 232, 240);">
+<div class="h-32 w-full rounded-lg mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist architectural blueprint of a modern skyscraper, rendered in clean white and professional blue tones. The image features thin, precise technical lines and mathematical annotations, signifying a rigorous academic focus. The lighting is bright and airy, consistent with a modern light-mode UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPQnBlNLgQB_JfbLEyiOx3xKIYxfHvyl7segqXP2GXhzY6NQfuYZVlIQ9o7W3wOgxjlsra7eOzEtWB2bXf_cFN2fjC8tiHxSkK5ogA5p_jP3Y9crguHh8ymUhhGE9PlNof2V1koxJA3cNSvsiByrdMBwojd9rLupeUmeogGWrjDYXwgrZ-V-8_sHJC-2iieahWneBN9qo2ZR412b0PontpaMq8Lks1u7wo8jCXhgwcZx3WMzZ0Vuyrkk9f2OtIFWM0GBmhnRihn9s">
+</div>
+<h4 class="font-headline-sm text-lg font-bold mb-1">Principles of Structural Design</h4>
+<p class="text-sm text-on-surface-variant mb-6">Instructor: Dr. Helena Vance</p>
+<div class="space-y-3">
+<div class="flex justify-between text-xs font-bold">
+<span class="text-on-surface-variant">68% Complete</span>
+<span class="text-secondary">4 Lessons Left</span>
+</div>
+<div class="h-2 w-full bg-surface-container-low rounded-full">
+<div class="h-full bg-secondary rounded-full w-[68%]"></div>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="bg-surface-card rounded-xl p-5 tonal-stroke card-hover transition-all group" style="border-color: rgb(226, 232, 240);">
+<div class="h-32 w-full rounded-lg mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A vibrant digital illustration of a neural network with nodes glowing in a soft, primary blue. The background is a clean, off-white surface with subtle dot-grid patterns. The overall composition is balanced and professional, utilizing thin strokes and soft shadows to create a deep but modern appearance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtSdlEFGhdTUgRCAWOe9PrEZguc6gzjHIO0vfSlJFkjaKpgQS1mpQIaeuGfTQipWwgqT3tFAI1MRJxUf8g378VNxFkdj8K2uxINHe8rUoCGXXc-ww19qmZ--JOnEteCsT03EAtb5z07z11fpT8-7NkJvtpmrI6UgyAmL-BciVD_g7U6IIYlFWqX2J3Lru-cM9m7Dl2z5aetve1N8xWvsDtoKyBL4aQ6kYf5RFsim-L4xDRbGTXNHhIdktKE5X1gABDKz1oDNJcU4I">
+</div>
+<h4 class="font-headline-sm text-lg font-bold mb-1">Introduction to Neural Nets</h4>
+<p class="text-sm text-on-surface-variant mb-6">Instructor: Prof. Marcus Thorne</p>
+<div class="space-y-3">
+<div class="flex justify-between text-xs font-bold">
+<span class="text-on-surface-variant">12% Complete</span>
+<span class="text-secondary">18 Lessons Left</span>
+</div>
+<div class="h-2 w-full bg-surface-container-low rounded-full">
+<div class="h-full bg-secondary rounded-full w-[12%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats & XP -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<h3 class="font-headline-md text-headline-md mb-6">Performance</h3>
+<!-- Level Card -->
+<div class="bg-surface-card rounded-xl p-6 tonal-stroke flex items-center justify-between">
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Your Rank</p>
+<h4 class="font-headline-md text-headline-md text-primary">Master Elite</h4>
+<p class="text-sm text-secondary font-bold">Top 5% this month</p>
+</div>
+<div class="w-16 h-16 rounded-full border-4 border-secondary flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-secondary">14</span>
+</div>
+</div>
+<!-- Streak Widget -->
+<div class="bg-surface-card rounded-xl p-6 tonal-stroke">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-streak-orange/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-streak-orange" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md">Learning Streak</h4>
+<p class="font-headline-md text-headline-md leading-tight">7 Days</p>
+</div>
+</div>
+<div class="flex justify-between gap-1">
+<div class="flex-1 h-12 bg-secondary rounded flex items-center justify-center text-white font-bold text-xs">M</div>
+<div class="flex-1 h-12 bg-secondary rounded flex items-center justify-center text-white font-bold text-xs">T</div>
+<div class="flex-1 h-12 bg-secondary rounded flex items-center justify-center text-white font-bold text-xs">W</div>
+<div class="flex-1 h-12 bg-secondary rounded flex items-center justify-center text-white font-bold text-xs">T</div>
+<div class="flex-1 h-12 bg-secondary rounded flex items-center justify-center text-white font-bold text-xs">F</div>
+<div class="flex-1 h-12 bg-secondary rounded flex items-center justify-center text-white font-bold text-xs">S</div>
+<div class="flex-1 h-12 bg-secondary-fixed rounded flex items-center justify-center text-on-secondary-fixed-variant font-bold text-xs">S</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Sessions -->
+<div class="col-span-12 lg:col-span-4">
+<h3 class="font-headline-md text-headline-md mb-6">Live Sessions</h3>
+<div class="space-y-4">
+<div class="p-4 rounded-xl bg-surface-card tonal-stroke flex gap-4 card-hover transition-all">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex flex-col items-center justify-center border border-border-subtle shrink-0">
+<span class="text-[10px] font-bold text-secondary uppercase">OCT</span>
+<span class="text-lg font-bold text-on-surface">14</span>
+</div>
+<div class="flex-1">
+<h5 class="font-bold text-sm mb-0.5">Architecture QA</h5>
+<p class="text-xs text-on-surface-variant mb-2">Starts in 45 mins</p>
+<button class="w-full py-2 bg-secondary text-white rounded-lg text-xs font-bold hover:brightness-110">Join Now</button>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-card tonal-stroke flex gap-4 opacity-75">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex flex-col items-center justify-center border border-border-subtle shrink-0">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">OCT</span>
+<span class="text-lg font-bold text-on-surface">16</span>
+</div>
+<div class="flex-1">
+<h5 class="font-bold text-sm mb-0.5">Advanced Python Lab</h5>
+<p class="text-xs text-on-surface-variant mb-2">02:00 PM - 03:30 PM</p>
+<button class="w-full py-2 border border-border-subtle text-on-surface-variant rounded-lg text-xs font-bold hover:bg-surface-container-low">Set Reminder</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Notifications & Activity -->
+<div class="col-span-12 lg:col-span-4">
+<h3 class="font-headline-md text-headline-md mb-6">Recent Activity</h3>
+<div class="bg-surface-card rounded-xl tonal-stroke divide-y divide-border-subtle">
+<div class="p-4 flex gap-4 items-start">
+<div class="w-2 h-2 mt-1.5 rounded-full bg-secondary shrink-0"></div>
+<div>
+<p class="text-sm font-bold">Grade Released</p>
+<p class="text-xs text-on-surface-variant">Your assignment for 'Distributed Systems' has been graded. Score: 98/100.</p>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wide mt-2 block">2 hours ago</span>
+</div>
+</div>
+<div class="p-4 flex gap-4 items-start">
+<div class="w-2 h-2 mt-1.5 rounded-full bg-secondary shrink-0"></div>
+<div>
+<p class="text-sm font-bold">Community Mention</p>
+<p class="text-xs text-on-surface-variant">Sarah Chen tagged you in a discussion about 'Microservices Patterns'.</p>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wide mt-2 block">5 hours ago</span>
+</div>
+</div>
+<div class="p-4 flex gap-4 items-start">
+<div class="w-2 h-2 mt-1.5 rounded-full bg-border-subtle shrink-0"></div>
+<div>
+<p class="text-sm font-bold">New Course Available</p>
+<p class="text-xs text-on-surface-variant">Quantum Systems Research just added 'Edge Computing Architectures'.</p>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wide mt-2 block">Yesterday</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Certificates -->
+<div class="col-span-12 lg:col-span-4">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md">Certificates</h3>
+<span class="text-xs font-bold bg-surface-container-high px-2 py-1 rounded">3 Total</span>
+</div>
+<div class="space-y-4">
+<div class="p-4 rounded-xl bg-surface-card tonal-stroke group">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-lg bg-xp-gold/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-xp-gold" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div class="overflow-hidden">
+<h5 class="font-bold text-sm truncate">Foundation of Quantum Systems</h5>
+<p class="text-xs text-on-surface-variant">Earned Sept 2023</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-2 bg-surface-container-low text-secondary rounded-lg text-xs font-bold hover:bg-secondary hover:text-white transition-all">Download</button>
+<button class="p-2 border border-border-subtle rounded-lg text-on-surface-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 h-16 bg-surface border-t border-border-subtle flex items-center justify-around z-50 md:hidden">
+<button class="flex flex-col items-center gap-1 text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">school</span>
+<span class="text-[10px] font-bold">Courses</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="text-[10px] font-bold">Awards</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</nav>
+<script>
+        // Micro-interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simple progress bar animation on scroll/load
+            const progressBars = document.querySelectorAll('.h-full.bg-secondary');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+
+            // Card hover ripple-like subtle effect
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.borderColor = 'var(--secondary)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.borderColor = '#E2E8F0';
+                });
+            });
+        });
+    </script>
+
+
+</body></html>

@@ -21,3 +21,11 @@ services:
       - /usr/src/app/node_modules
     ports:
       - "5000:5000"
+    depends_on:
+      - piston
+
+  piston:
+    image: ghcr.io/engineer-man/piston
+    ports:
+      - "2000:2000"
+    restart: unless-stopped

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tenant Billing &amp; Subscription | Admin Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#002113",
+                    "surface-tint": "#565e74",
+                    "on-surface-variant": "#45464d",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "surface-container-high": "#dce9ff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "primary-fixed-dim": "#bec6e0",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f8f9ff",
+                    "on-primary-fixed": "#131b2e",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "xp-gold": "#F59E0B",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#dae2fd",
+                    "outline": "#76777d",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#c6c6cd",
+                    "on-secondary-fixed-variant": "#004395",
+                    "surface-bg": "#F8FAFC",
+                    "surface-container": "#e5eeff",
+                    "surface-container-lowest": "#ffffff",
+                    "editor-bg": "#1E1E1E",
+                    "tertiary": "#000000",
+                    "surface-variant": "#d3e4fe",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f8f9ff",
+                    "surface-card": "#FFFFFF",
+                    "inverse-surface": "#213145",
+                    "on-tertiary-fixed": "#002113",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#131b2e",
+                    "primary": "#000000",
+                    "background": "#f8f9ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#bec6e0",
+                    "on-tertiary-container": "#009668",
+                    "secondary-container": "#2170e4",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "secondary": "#0058be",
+                    "on-secondary-fixed": "#001a42",
+                    "streak-orange": "#EF4444",
+                    "on-secondary-container": "#fefcff",
+                    "surface-dim": "#cbdbf5",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-primary-container": "#7c839b",
+                    "on-background": "#0b1c30",
+                    "border-subtle": "#E2E8F0",
+                    "surface-container-highest": "#d3e4fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "container-max": "1440px",
+                    "section-gap": "64px"
+            },
+            "fontFamily": {
+                    "code-sm": ["JetBrains Mono"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f8f9ff; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-layer {
+            background-color: #FFFFFF;
+            border: 1px solid #E2E8F0;
+        }
+        .card-hover-effect {
+            transition: all 0.2s ease-in-out;
+        }
+        .card-hover-effect:hover {
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-lowest dark:bg-surface-container-low border-r border-border-subtle dark:border-outline-variant flex flex-col py-6 px-4 z-50">
+<div class="mb-10 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-surface-bright leading-none">Admin Portal</h1>
+<p class="text-label-md font-label-md text-on-surface-variant mt-1">Modern Scholastic</p>
+</div>
+</div>
+<nav class="space-y-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant hover:text-on-surface dark:hover:text-surface-bright hover:bg-surface-container-low dark:hover:bg-surface-container transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-150">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant hover:text-on-surface dark:hover:text-surface-bright hover:bg-surface-container-low dark:hover:bg-surface-container transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-150">school</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant hover:text-on-surface dark:hover:text-surface-bright hover:bg-surface-container-low dark:hover:bg-surface-container transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-150">group</span>
+<span class="font-label-md text-label-md">User Management</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant hover:text-on-surface dark:hover:text-surface-bright hover:bg-surface-container-low dark:hover:bg-surface-container transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-150">monitoring</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant hover:text-on-surface dark:hover:text-surface-bright hover:bg-surface-container-low dark:hover:bg-surface-container transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-150">palette</span>
+<span class="font-label-md text-label-md">Branding</span>
+</a>
+<!-- Active Navigation: Billing -->
+<a class="flex items-center gap-3 px-3 py-2.5 text-secondary dark:text-secondary-fixed border-l-4 border-secondary dark:border-secondary-fixed bg-surface-container dark:bg-surface-container-high font-semibold transition-colors duration-200" href="#">
+<span class="material-symbols-outlined translate-x-1 duration-150" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-label-md text-label-md">Billing</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-outline-variant hover:text-on-surface dark:hover:text-surface-bright hover:bg-surface-container-low dark:hover:bg-surface-container transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-150">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-4 rounded-xl bg-surface-container text-on-surface-variant relative overflow-hidden">
+<div class="relative z-10">
+<p class="font-label-md text-[10px] uppercase tracking-wider mb-2">Current Storage</p>
+<p class="font-headline-md text-[18px] font-bold text-on-surface mb-3">42.0% Used</p>
+<div class="w-full bg-outline-variant/30 h-1.5 rounded-full mb-4">
+<div class="bg-secondary h-full rounded-full" style="width: 42%"></div>
+</div>
+<button class="w-full py-2 bg-secondary text-white text-label-md rounded-lg font-semibold hover:bg-secondary/90 transition-all">Upgrade Pro</button>
+</div>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-secondary/5 rounded-full"></div>
+</div>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface-container-lowest dark:bg-surface-container-low border-b border-border-subtle dark:border-outline-variant flex justify-between items-center px-gutter z-40">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-sm focus:ring-2 focus:ring-secondary/20 placeholder:text-outline transition-all" placeholder="Search billing, invoices, or metrics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-container rounded-full p-2 transition-all active:scale-95 duration-100">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-container rounded-full p-2 transition-all active:scale-95 duration-100">
+<span class="material-symbols-outlined text-on-surface-variant">help</span>
+</button>
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-container rounded-full p-2 transition-all active:scale-95 duration-100">
+<span class="material-symbols-outlined text-on-surface-variant">apps</span>
+</button>
+<div class="h-8 w-[1px] bg-border-subtle mx-2"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right">
+<p class="font-label-md text-label-md text-on-surface leading-tight">Alex Rivera</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Super Admin</p>
+</div>
+<img alt="Administrator Profile" class="w-9 h-9 rounded-full object-cover ring-2 ring-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYvr5GHvMylO9kEnSdKR9IbariQaLOKuEKMCmmiDRkzjZZZIFkEuSC707r_3b2goi5HE7CHjLXh8LrSixMMGbZBzYInyJxqU70y6OG_PMjn5E5Q6YkaITuFG_rmlCt1rR3CabbBWWM9rcBUlyYDnFN7dgc1ntYngPqHGmRPfPXm3kD9i686PTgkmNsdKgidSEBTM9qRRi7xOK0kEwZRwXjUjMA2LXv2pbDo8HUZ2s4ewofxjFWMPoPN0KEDjttNHdLfK8h6MSj3AY"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] pt-16 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-gutter space-y-gutter">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Billing &amp; Subscription</h2>
+<p class="font-body-md text-on-surface-variant">Manage your institutional plan, track resource usage, and view payment history.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-border-subtle rounded-lg bg-surface-container-lowest text-on-surface font-semibold text-body-sm hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Summary
+                    </button>
+<button class="flex items-center gap-2 px-5 py-2 bg-secondary text-white rounded-lg font-semibold text-body-sm hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">upgrade</span>
+                        Upgrade Plan
+                    </button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Section 1: Subscription Overview (Bento Large) -->
+<section class="col-span-12 lg:col-span-8 tonal-layer p-6 rounded-xl relative overflow-hidden flex flex-col justify-between">
+<div class="flex justify-between items-start z-10">
+<div class="space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full">
+<span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+<span class="font-label-md text-[11px] uppercase font-bold tracking-widest">Active Plan</span>
+</div>
+<h3 class="font-display-lg text-display-lg text-on-surface leading-tight">Enterprise Scholar</h3>
+<div class="flex gap-8">
+<div>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Next Renewal</p>
+<p class="font-headline-md text-[20px] font-bold">Oct 12, 2024</p>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Billing Cycle</p>
+<p class="font-headline-md text-[20px] font-bold">Annually ($12,400/yr)</p>
+</div>
+</div>
+</div>
+<div class="text-right">
+<button class="text-secondary font-semibold hover:underline flex items-center gap-1 justify-end">
+                                Change Plan
+                                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="mt-12 flex items-center gap-6 z-10">
+<div class="flex -space-x-3 overflow-hidden">
+<img alt="Team member" class="inline-block h-10 w-10 rounded-full ring-2 ring-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvSzWqOqb8DAe0BhZMNrMjV9wOBUtcsAyIXDigcQFenlKI5waAmcSNuumAAH_nZepMUEV8UWWPvIZ8U3euxxZDvJOTsefGVbQ8EsR4K_Nc8o_skjn-r6fLpRGr0t2JnjEST1bUCvHmrjW73ZaF1MyCkAb3FB1f3LQXzbOIUbGsiNVOI0psz29fMaOb7XG13dqddB4RTHoqACTIfAvpteoiWDRofgcjCR5rRqljuuV-pVcZe4WdDzogyYDJMmVYjsClz3aarQZgiiQ"/>
+<img alt="Team member" class="inline-block h-10 w-10 rounded-full ring-2 ring-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm7IR26bDSbu_A7Gii5PuKaySkV8N7oUI2WvevIb-8fGg9Vnl5RXKVncrjGuCn1k_pivpwCNw4x3eK3jWbnHo7rsqJy1n2BtGpG8A1btC1IqBVR1wOVfYx9BitCfdEVSrAqkG2vn4I3njZqfPTC88UcAtgIOMG2_O6_b60ZszHFRkLwbziesCk4yJteCA-TrGLT5lzsQauuJLhr6u0wQ25aCbMro4klZAdlsLgVAZXGVq1o0VUEuOKHE-A914LVTRN08sRrmLOeLg"/>
+<img alt="Team member" class="inline-block h-10 w-10 rounded-full ring-2 ring-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzn8cYOFL33A5Cyqc9FgN9WsU8KKzqF8FX5ZQZZLLAH-tBJc8xDyPOjH1rop-3caHJMpM-i4-_mk3i37BH7SjbAWCmZu2lMb4icY-2vSwwf8O6-VQjU3HGY9RaKUMlpe-6fZmIre_eB37KEG-7g036DEj0Xh5uPEcYPstVpUXiM4CCvUUmLRB28acZLJwNpzA8EaJd3ZO9EuURCAt0LOAjf4rRlle1khZiHy0sZR8COHuHd-a02aM0zAhLiLPzzwLkRGoF7G0YmLM"/>
+<div class="inline-block h-10 w-10 rounded-full ring-2 ring-white bg-surface-container flex items-center justify-center text-label-md font-bold">+12</div>
+</div>
+<p class="text-body-sm text-on-surface-variant">Your team is utilizing <span class="font-bold text-on-surface">15 admin seats</span> on this plan.</p>
+</div>
+<!-- Subtle background decoration -->
+<div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-secondary/5 to-transparent pointer-events-none"></div>
+<span class="material-symbols-outlined absolute -right-8 -bottom-8 text-[200px] text-secondary opacity-[0.03] rotate-12 pointer-events-none">verified</span>
+</section>
+<!-- Section 4: Payment Method (Bento Small) -->
+<section class="col-span-12 lg:col-span-4 tonal-layer p-6 rounded-xl flex flex-col justify-between card-hover-effect">
+<div>
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-md text-[18px] text-on-surface">Payment Method</h4>
+<button class="text-secondary text-label-md font-semibold hover:underline">Edit</button>
+</div>
+<div class="bg-gradient-to-br from-inverse-surface to-on-surface p-5 rounded-xl text-white shadow-lg relative overflow-hidden h-40 flex flex-col justify-between">
+<div class="flex justify-between items-start relative z-10">
+<span class="material-symbols-outlined text-[32px]">credit_card</span>
+<span class="font-headline-md italic opacity-80 text-[20px]">VISA</span>
+</div>
+<div class="relative z-10">
+<p class="font-code-sm text-sm tracking-[0.2em] mb-1">•••• •••• •••• 4242</p>
+<div class="flex justify-between items-end">
+<p class="text-[10px] uppercase opacity-70 tracking-widest">Modern Scholastic Inc.</p>
+<p class="text-[10px] uppercase opacity-70">12/28</p>
+</div>
+</div>
+<div class="absolute -right-4 top-1/2 -translate-y-1/2 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-3 text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-on-tertiary-container">verified_user</span>
+                        Secure recurring billing enabled.
+                    </div>
+</section>
+<!-- Section 2: Usage Metrics -->
+<section class="col-span-12 tonal-layer p-6 rounded-xl">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-8">Platform Usage Against Limits</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Metric 1 -->
+<div class="space-y-3">
+<div class="flex justify-between text-label-md">
+<span class="text-on-surface-variant uppercase tracking-wider">Enrolled Students</span>
+<span class="font-bold text-on-surface">12,450 / 15,000</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-1000" style="width: 83%"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant">83% of student quota used</p>
+</div>
+<!-- Metric 2 -->
+<div class="space-y-3">
+<div class="flex justify-between text-label-md">
+<span class="text-on-surface-variant uppercase tracking-wider">Active Courses</span>
+<span class="font-bold text-on-surface">342 / 500</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-1000" style="width: 68%"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant">68% of course limit reached</p>
+</div>
+<!-- Metric 3 -->
+<div class="space-y-3">
+<div class="flex justify-between text-label-md">
+<span class="text-on-surface-variant uppercase tracking-wider">Cloud Storage</span>
+<span class="font-bold text-on-surface">420GB / 1TB</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-1000" style="width: 42%"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant">42% of 1TB capacity used</p>
+</div>
+<!-- Metric 4 -->
+<div class="space-y-3">
+<div class="flex justify-between text-label-md">
+<span class="text-on-surface-variant uppercase tracking-wider">Live Minutes</span>
+<span class="font-bold text-on-surface">9,200 / 10k</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full transition-all duration-1000" style="width: 92%"></div>
+</div>
+<p class="text-[11px] text-error font-semibold">Critical: 92% of minutes consumed</p>
+</div>
+</div>
+</section>
+<!-- Section 3: Invoices & Billing History -->
+<section class="col-span-12 tonal-layer rounded-xl overflow-hidden">
+<div class="p-6 border-b border-border-subtle flex justify-between items-center">
+<h4 class="font-headline-md text-[18px] text-on-surface">Billing History</h4>
+<div class="flex items-center gap-2">
+<span class="text-body-sm text-on-surface-variant">Filter by:</span>
+<select class="bg-surface-container-low border-none rounded-lg text-body-sm px-3 py-1.5 focus:ring-1 focus:ring-secondary">
+<option>Last 6 Months</option>
+<option>Last Year</option>
+<option>All Time</option>
+</select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low/50">
+<tr>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-[11px]">Date</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-[11px]">Invoice ID</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-[11px]">Amount</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-[11px]">Status</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-[11px] text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-6 py-4 text-body-sm text-on-surface">Sep 12, 2023</td>
+<td class="px-6 py-4 text-body-sm font-code-sm">#INV-2023-009</td>
+<td class="px-6 py-4 text-body-sm font-semibold">$12,400.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-on-tertiary-container/10 text-on-tertiary-container text-[11px] font-bold uppercase tracking-wider">Paid</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:bg-secondary/10 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-6 py-4 text-body-sm text-on-surface">Aug 12, 2023</td>
+<td class="px-6 py-4 text-body-sm font-code-sm">#INV-2023-008</td>
+<td class="px-6 py-4 text-body-sm font-semibold">$1,200.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-on-tertiary-container/10 text-on-tertiary-container text-[11px] font-bold uppercase tracking-wider">Paid</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:bg-secondary/10 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-6 py-4 text-body-sm text-on-surface">Jul 12, 2023</td>
+<td class="px-6 py-4 text-body-sm font-code-sm">#INV-2023-007</td>
+<td class="px-6 py-4 text-body-sm font-semibold">$1,200.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-on-tertiary-container/10 text-on-tertiary-container text-[11px] font-bold uppercase tracking-wider">Paid</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:bg-secondary/10 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-6 py-4 text-body-sm text-on-surface">Jun 12, 2023</td>
+<td class="px-6 py-4 text-body-sm font-code-sm">#INV-2023-006</td>
+<td class="px-6 py-4 text-body-sm font-semibold">$1,200.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-on-tertiary-container/10 text-on-tertiary-container text-[11px] font-bold uppercase tracking-wider">Paid</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:bg-secondary/10 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container-low/30 text-center">
+<button class="text-secondary font-semibold text-body-sm hover:underline">View All Transactions</button>
+</div>
+</section>
+<!-- Footer / Support Card -->
+<section class="col-span-12 p-8 rounded-xl bg-surface-container flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-secondary">support_agent</span>
+</div>
+<div>
+<p class="font-headline-md text-[18px]">Need assistance with billing?</p>
+<p class="text-body-sm text-on-surface-variant">Our account managers are available for personalized Enterprise support.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 bg-white border border-border-subtle rounded-lg font-semibold text-body-sm hover:bg-surface-container-low transition-all">Contact Sales</button>
+<button class="px-6 py-2.5 bg-secondary text-white rounded-lg font-semibold text-body-sm hover:opacity-90 transition-all">Chat with Support</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interaction for Progress Bar Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.bg-secondary, .bg-error');
+            bars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 200);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumina Learning - Exam Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .pulse-red {
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { color: inherit; }
+            50% { color: #ba1a1a; } /* error color */
+            100% { color: inherit; }
+        }
+        
+        /* Custom scrollbar for editor */
+        .editor-scroll::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .editor-scroll::-webkit-scrollbar-track {
+            background: #1E1E1E;
+        }
+        .editor-scroll::-webkit-scrollbar-thumb {
+            background: #45464d;
+            border-radius: 4px;
+        }
+        .editor-scroll::-webkit-scrollbar-thumb:hover {
+            background: #76777d;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#002113",
+                        "border-subtle": "#E2E8F0",
+                        "editor-bg": "#1E1E1E",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface-variant": "#45464d",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "streak-orange": "#EF4444",
+                        "background": "#f8f9ff",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-variant": "#d3e4fe",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary": "#ffffff",
+                        "secondary": "#0058be",
+                        "primary": "#000000",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bec6e0",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-secondary-fixed": "#001a42",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#009668",
+                        "surface-container-low": "#eff4ff",
+                        "on-primary-fixed": "#131b2e",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-secondary-container": "#fefcff",
+                        "surface-card": "#FFFFFF",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-tint": "#565e74",
+                        "outline": "#76777d",
+                        "on-surface": "#0b1c30",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-primary-container": "#7c839b",
+                        "error": "#ba1a1a",
+                        "tertiary": "#000000",
+                        "inverse-surface": "#213145",
+                        "surface-bg": "#F8FAFC",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-error-container": "#93000a",
+                        "xp-gold": "#F59E0B",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-background": "#0b1c30",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "secondary-container": "#2170e4",
+                        "surface-container-high": "#dce9ff",
+                        "primary-fixed": "#dae2fd",
+                        "primary-container": "#131b2e",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-container": "#e5eeff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "exam": "16px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "section-gap": "64px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "code-sm": ["JetBrains Mono"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "code-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface-bg text-on-surface font-body-md antialiased h-screen overflow-hidden flex flex-col">
+<!-- TopAppBar from JSON -->
+<header class="bg-surface border-b border-border-subtle flex justify-between items-center w-full px-margin-desktop h-16 z-50 flex-shrink-0">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary">Exam Console</span>
+<span class="text-on-surface-variant text-body-sm hidden md:inline-block pl-4 border-l border-border-subtle">Full Stack Certification Exam</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 font-code-sm text-code-sm pulse-red">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">timer</span>
+<span>45:00</span>
+</div>
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors p-2 rounded-full hidden md:block">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="flex items-center gap-3">
+<button class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors px-4 py-2 rounded-lg border border-border-subtle">
+                    Review All
+                </button>
+<button class="font-label-md text-label-md bg-secondary text-on-secondary hover:opacity-90 transition-opacity px-4 py-2 rounded-lg shadow-sm">
+                    Finish Exam
+                </button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar from JSON -->
+<aside class="bg-surface-container-low border-r border-border-subtle flex flex-col h-full py-6 px-4 w-72 flex-shrink-0 overflow-y-auto hidden md:flex">
+<div class="mb-6 px-2">
+<h2 class="font-headline-md text-headline-md text-primary mb-1">Section 1: Core Logic</h2>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">60% Complete</span>
+</div>
+<!-- Progress bar -->
+<div class="w-full bg-border-subtle h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 60%;"></div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Tab 1: Completed -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined text-tertiary-container text-sm">task_alt</span>
+<span class="font-label-md text-label-md">Problem 1</span>
+</a>
+<!-- Tab 2: Current (Active) -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary border-l-4 border-secondary bg-surface-container-high transition-transform scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-sm">code</span>
+<span class="font-label-md text-label-md font-bold">Problem 2</span>
+</a>
+<!-- Tab 3: Flagged -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined text-xp-gold text-sm" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+<span class="font-label-md text-label-md">Problem 3</span>
+</a>
+<!-- Tab 4: Unattempted -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined text-sm">code</span>
+<span class="font-label-md text-label-md">Problem 4</span>
+</a>
+<!-- Tab 5: Unattempted -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined text-sm">task_alt</span>
+<span class="font-label-md text-label-md">Problem 5</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-border-subtle flex flex-col gap-3">
+<button class="flex items-center justify-center gap-2 font-label-md text-label-md text-on-surface-variant border border-border-subtle rounded-lg py-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">flag</span>
+                    Flag for Review
+                </button>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-all mt-2" href="#">
+<span class="material-symbols-outlined text-sm">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col overflow-y-auto bg-surface-bg relative pb-20">
+<div class="max-w-container-max mx-auto w-full p-margin-mobile md:p-margin-desktop flex-1 flex flex-col gap-6">
+<!-- Section 1: MCQ -->
+<section class="bg-surface-card rounded-exam border border-border-subtle p-6 md:p-8 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Question 1 of 20</span>
+<span class="bg-surface-container px-3 py-1 rounded-full font-label-md text-label-md text-secondary">Multiple Choice</span>
+</div>
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-8">
+                        What is the primary purpose of a Reducer in Redux?
+                    </h3>
+<div class="space-y-4">
+<!-- Option A -->
+<label class="flex items-center p-4 border border-border-subtle rounded-lg cursor-pointer hover:bg-surface-container-lowest hover:border-secondary transition-colors group">
+<input class="form-radio text-secondary focus:ring-secondary h-5 w-5 border-outline-variant" name="q1" type="radio"/>
+<span class="ml-4 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">To trigger asynchronous side effects within the application.</span>
+</label>
+<!-- Option B (Selected) -->
+<label class="flex items-center p-4 border-2 border-secondary bg-surface-container-low rounded-lg cursor-pointer">
+<input checked="" class="form-radio text-secondary focus:ring-secondary h-5 w-5 border-outline-variant" name="q1" type="radio"/>
+<span class="ml-4 font-body-md text-body-md text-on-surface">To specify how the application's state changes in response to actions sent to the store.</span>
+</label>
+<!-- Option C -->
+<label class="flex items-center p-4 border border-border-subtle rounded-lg cursor-pointer hover:bg-surface-container-lowest hover:border-secondary transition-colors group">
+<input class="form-radio text-secondary focus:ring-secondary h-5 w-5 border-outline-variant" name="q1" type="radio"/>
+<span class="ml-4 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">To connect React components directly to the Redux store.</span>
+</label>
+<!-- Option D -->
+<label class="flex items-center p-4 border border-border-subtle rounded-lg cursor-pointer hover:bg-surface-container-lowest hover:border-secondary transition-colors group">
+<input class="form-radio text-secondary focus:ring-secondary h-5 w-5 border-outline-variant" name="q1" type="radio"/>
+<span class="ml-4 font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">To define the initial routing structure of a single-page application.</span>
+</label>
+</div>
+<div class="mt-8 flex justify-end">
+<button class="font-label-md text-label-md bg-secondary text-on-secondary hover:opacity-90 transition-opacity px-6 py-2.5 rounded-lg shadow-sm">
+                            Save &amp; Next
+                        </button>
+</div>
+</section>
+<!-- Section 2: Coding Challenge (Split Pane) -->
+<section class="bg-surface-card rounded-exam border border-border-subtle flex flex-col md:flex-row shadow-sm flex-1 min-h-[500px]">
+<!-- Left Pane: Problem Statement -->
+<div class="w-full md:w-5/12 p-6 md:p-8 border-b md:border-b-0 md:border-r border-border-subtle flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Question 2 of 20</span>
+<span class="bg-surface-container px-3 py-1 rounded-full font-label-md text-label-md text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">code</span>
+                                Coding
+                            </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Reverse a Linked List</h3>
+<div class="prose prose-sm max-w-none font-body-sm text-body-sm text-on-surface-variant space-y-4 flex-1">
+<p>Given the <code>head</code> of a singly linked list, reverse the list, and return <em>the reversed list</em>.</p>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Example 1:</h4>
+<div class="bg-surface-container-low p-3 rounded border border-border-subtle font-code-sm text-code-sm text-on-surface">
+<strong>Input:</strong> head = [1,2,3,4,5]<br/>
+<strong>Output:</strong> [5,4,3,2,1]
+                                </div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Constraints:</h4>
+<ul class="list-disc pl-5 space-y-1">
+<li>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
+<li><code>-5000 &lt;= Node.val &lt;= 5000</code></li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right Pane: Code Editor -->
+<div class="w-full md:w-7/12 flex flex-col bg-editor-bg rounded-b-exam md:rounded-bl-none md:rounded-r-exam overflow-hidden">
+<!-- Editor Toolbar -->
+<div class="bg-[#2D2D2D] border-b border-[#404040] px-4 py-2 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#A3A3A3] text-sm">javascript</span>
+<span class="font-code-sm text-code-sm text-[#D4D4D4]">solution.js</span>
+</div>
+<div class="flex gap-2">
+<button class="text-[#A3A3A3] hover:text-white transition-colors" title="Reset Code">
+<span class="material-symbols-outlined text-sm">refresh</span>
+</button>
+<button class="text-[#A3A3A3] hover:text-white transition-colors" title="Settings">
+<span class="material-symbols-outlined text-sm">settings</span>
+</button>
+</div>
+</div>
+<!-- The actual editor area (mocked) -->
+<div class="flex-1 flex overflow-hidden relative">
+<!-- Line numbers -->
+<div class="w-12 bg-[#1E1E1E] text-[#858585] font-code-sm text-code-sm text-right pr-4 py-4 select-none border-r border-[#404040]">
+                                1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11
+                            </div>
+<!-- Code content -->
+<div class="flex-1 p-4 font-code-sm text-code-sm overflow-auto editor-scroll text-[#D4D4D4] whitespace-pre">
+<span class="text-[#569CD6]">/**</span>
+<span class="text-[#569CD6]"> * Definition for singly-linked list.</span>
+<span class="text-[#569CD6]"> * function ListNode(val, next) {</span>
+<span class="text-[#569CD6]"> *     this.val = (val===undefined ? 0 : val)</span>
+<span class="text-[#569CD6]"> *     this.next = (next===undefined ? null : next)</span>
+<span class="text-[#569CD6]"> * }</span>
+<span class="text-[#569CD6]"> */</span>
+<span class="text-[#569CD6]">/**</span>
+<span class="text-[#569CD6]"> * <span class="text-[#C586C0]">@param</span> {ListNode} head</span>
+<span class="text-[#569CD6]"> * <span class="text-[#C586C0]">@return</span> {ListNode}</span>
+<span class="text-[#569CD6]"> */</span>
+<span class="text-[#569CD6]">var</span> reverseList = <span class="text-[#569CD6]">function</span>(head) {
+    <span class="text-[#6A9955]">// Write your solution here</span>
+    
+    
+};
+</div>
+</div>
+<!-- Editor Footer / Actions -->
+<div class="bg-[#2D2D2D] border-t border-[#404040] p-4 flex justify-between items-center">
+<div class="flex items-center gap-2 text-[#A3A3A3] font-code-sm text-code-sm">
+<span class="material-symbols-outlined text-sm">terminal</span>
+                                Console Ready
+                            </div>
+<button class="font-label-md text-label-md bg-[#0058be] text-white hover:bg-[#2170e4] transition-colors px-4 py-2 rounded shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+                                Run Tests
+                            </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Footer from JSON (modified for absolute positioning within the main area or fixed at bottom) -->
+<footer class="bg-surface-bg border-t border-border-subtle flex justify-between items-center px-margin-desktop py-4 fixed bottom-0 right-0 w-full md:w-[calc(100%-280px)] z-40 h-16">
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-4">
+<span>© 2024 Modern Scholastic Assessment Pro</span>
+<div class="hidden md:flex gap-4">
+<a class="hover:text-secondary transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="hover:text-secondary transition-opacity duration-200" href="#">Exam Rules</a>
+<a class="hover:text-secondary transition-opacity duration-200" href="#">System Check</a>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="font-label-md text-label-md text-on-surface-variant border border-border-subtle hover:bg-surface-container-low transition-colors px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                Previous
+            </button>
+<button class="font-label-md text-label-md bg-secondary text-on-secondary hover:opacity-90 transition-opacity px-4 py-2 rounded-lg shadow-sm flex items-center gap-2">
+                Next
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</footer>
+</body></html>

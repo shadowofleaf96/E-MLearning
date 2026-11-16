@@ -1,0 +1,305 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Pricing - Lumina Learning</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline": "#76777d",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#002113",
+                        "streak-orange": "#EF4444",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-surface-variant": "#45464d",
+                        "on-surface": "#0b1c30",
+                        "on-background": "#0b1c30",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "tertiary-container": "#002113",
+                        "secondary-container": "#2170e4",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bg": "#F8FAFC",
+                        "surface-container": "#e5eeff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-container": "#7c839b",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#009668",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#fefcff",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "editor-bg": "#1E1E1E",
+                        "border-subtle": "#E2E8F0",
+                        "surface-container-lowest": "#ffffff",
+                        "xp-gold": "#F59E0B",
+                        "inverse-primary": "#bec6e0",
+                        "surface-dim": "#cbdbf5",
+                        "on-secondary-fixed": "#001a42",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#000000",
+                        "surface-tint": "#565e74",
+                        "background": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#131b2e",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dae2fd",
+                        "primary-fixed-dim": "#bec6e0",
+                        "inverse-surface": "#213145",
+                        "secondary": "#0058be",
+                        "surface-card": "#FFFFFF",
+                        "surface-container-low": "#eff4ff",
+                        "primary": "#000000",
+                        "primary-container": "#131b2e",
+                        "surface-variant": "#d3e4fe"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-desktop": "40px",
+                        "section-gap": "64px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "label-md": ["12px", { lineHeight: "16px", fontWeight: "600" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "code-sm": ["13px", { lineHeight: "20px", fontWeight: "400" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .pricing-gradient { background: linear-gradient(135deg, #f8f9ff 0%, #e5eeff 100%); }
+        .enterprise-gradient { background: linear-gradient(135deg, #0b1c30 0%, #131b2e 100%); }
+    </style>
+</head>
+<body class="bg-surface-bg text-on-surface font-body-md antialiased flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<nav class="bg-surface-container-lowest dark:bg-surface-dim border-b border-border-subtle dark:border-outline-variant sticky top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto h-[72px]">
+<div class="flex items-center gap-6">
+<span class="text-headline-md font-headline-md text-on-surface dark:text-on-surface-variant font-bold tracking-tight">Lumina Learning</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant dark:text-outline font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 cursor-pointer active:opacity-80" href="#">Courses</a>
+<a class="text-on-surface-variant dark:text-outline font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 cursor-pointer active:opacity-80" href="#">Paths</a>
+<a class="text-on-surface-variant dark:text-outline font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 cursor-pointer active:opacity-80" href="#">Mentors</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-bold border-b-2 border-secondary pb-1 font-body-md text-body-md cursor-pointer active:opacity-80" href="#">Enterprise</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors cursor-pointer active:opacity-80">Sign In</button>
+<button class="bg-secondary text-on-secondary px-4 py-2 rounded-lg font-body-md text-body-md hover:bg-opacity-90 transition-opacity cursor-pointer active:opacity-80">Get Started</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-section-gap">
+<!-- Hero Section -->
+<section class="text-center mb-16 md:mb-24">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-6">Invest in Your Growth</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">Choose the plan that fits your learning journey. Whether you're an individual upskilling or an institution scaling education.</p>
+<!-- Billing Toggle -->
+<div class="flex items-center justify-center gap-4">
+<span class="font-label-md text-label-md text-secondary" id="monthly-label">Monthly</span>
+<button aria-checked="false" class="relative inline-flex h-6 w-11 items-center rounded-full bg-surface-variant transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2" id="billing-toggle" role="switch">
+<span class="sr-only">Toggle billing period</span>
+<span class="inline-block h-4 w-4 transform rounded-full bg-secondary transition-transform translate-x-1" id="toggle-knob"></span>
+</button>
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2" id="yearly-label">
+                    Annually
+                    <span class="bg-surface-container-high text-secondary px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">Save 20%</span>
+</span>
+</div>
+</section>
+<!-- Individual Plans (Bento Grid Style) -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-24 max-w-4xl mx-auto">
+<!-- Starter Plan -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-8 flex flex-col hover:shadow-lg transition-shadow duration-300 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-surface-container-lowest to-surface-container opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
+<div class="relative z-10 flex flex-col h-full">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Starter</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Perfect for exploring new skills.</p>
+<div class="mb-8">
+<span class="font-display-lg text-display-lg text-on-surface">$0</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/forever</span>
+</div>
+<ul class="space-y-4 mb-8 flex-grow">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Access to 50+ basic courses</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Community forum access</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Basic coding challenges</span>
+</li>
+</ul>
+<button class="w-full bg-surface-container-high text-secondary font-body-md text-body-md py-3 rounded-lg border border-transparent hover:border-secondary transition-colors font-semibold">Start Free</button>
+</div>
+</div>
+<!-- Professional Plan -->
+<div class="bg-surface-container-lowest border-2 border-secondary rounded-xl p-8 flex flex-col shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-secondary text-on-secondary px-4 py-1 rounded-bl-lg font-label-md text-label-md">Most Popular</div>
+<div class="relative z-10 flex flex-col h-full">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Professional</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Accelerate your career growth.</p>
+<div class="mb-8 flex items-end gap-1">
+<span class="font-display-lg text-display-lg text-on-surface price-display" data-monthly="29" data-yearly="24">$29</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant pb-2">/mo</span>
+</div>
+<ul class="space-y-4 mb-8 flex-grow">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Unlimited access to all courses</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Advanced projects &amp; code reviews</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Verified Certificates</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">1-on-1 Mentor matching</span>
+</li>
+</ul>
+<button class="w-full bg-secondary text-on-secondary font-body-md text-body-md py-3 rounded-lg hover:opacity-90 transition-opacity font-semibold shadow-sm">Upgrade to Pro</button>
+</div>
+</div>
+</section>
+<!-- Enterprise / Tenant Plan -->
+<section class="enterprise-gradient rounded-2xl p-8 md:p-12 mb-24 text-on-primary flex flex-col md:flex-row gap-12 items-center relative overflow-hidden">
+<!-- Decorative background pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+<div class="md:w-1/2 relative z-10">
+<span class="inline-block border border-tertiary-fixed text-tertiary-fixed px-3 py-1 rounded-full font-label-md text-label-md mb-6 uppercase tracking-wider">For Organizations</span>
+<h2 class="font-headline-lg md:text-display-lg font-bold mb-4">Lumina Enterprise</h2>
+<p class="font-body-lg text-body-lg text-surface-dim mb-8">Build your own branded learning ecosystem. We provide the infrastructure, you provide the vision.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+<div class="flex flex-col">
+<span class="material-symbols-outlined text-tertiary-fixed mb-2 text-2xl" style="font-variation-settings: 'FILL' 1;">dashboard_customize</span>
+<h4 class="font-headline-md text-headline-md text-on-primary text-lg mb-1">White-labeling</h4>
+<p class="font-body-sm text-body-sm text-surface-dim">Custom domains, logos, and brand colors.</p>
+</div>
+<div class="flex flex-col">
+<span class="material-symbols-outlined text-tertiary-fixed mb-2 text-2xl" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<h4 class="font-headline-md text-headline-md text-on-primary text-lg mb-1">Advanced Analytics</h4>
+<p class="font-body-sm text-body-sm text-surface-dim">Deep insights into cohort performance.</p>
+</div>
+<div class="flex flex-col">
+<span class="material-symbols-outlined text-tertiary-fixed mb-2 text-2xl" style="font-variation-settings: 'FILL' 1;">integration_instructions</span>
+<h4 class="font-headline-md text-headline-md text-on-primary text-lg mb-1">LMS Integration</h4>
+<p class="font-body-sm text-body-sm text-surface-dim">Seamless API connects with existing tools.</p>
+</div>
+<div class="flex flex-col">
+<span class="material-symbols-outlined text-tertiary-fixed mb-2 text-2xl" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+<h4 class="font-headline-md text-headline-md text-on-primary text-lg mb-1">Dedicated Success</h4>
+<p class="font-body-sm text-body-sm text-surface-dim">Priority support and onboarding manager.</p>
+</div>
+</div>
+<button class="bg-on-primary text-primary-container px-6 py-3 rounded-lg font-body-md text-body-md font-semibold hover:bg-surface-dim transition-colors flex items-center gap-2">
+                    Contact Sales
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="md:w-1/2 relative z-10 w-full aspect-video rounded-xl overflow-hidden border border-on-primary-fixed-variant shadow-2xl">
+<img alt="Team reviewing analytics dashboard" class="w-full h-full object-cover" data-alt="A modern, high-key corporate setting showing a diverse team of professionals analyzing a bright, data-dense digital dashboard on a large screen. The scene is illuminated with soft, natural lighting creating a clean, airy aesthetic. The color palette features deep slate blues and crisp whites, conveying a sense of premium developer tools and professional structure. The mood is collaborative and focused, emphasizing productivity and advanced analytics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx9fErn7N949MtQ0Zvm36GyXBuGi3Eu-KGaKjhf8aFNbtpH_70casGjU9ZkbG0gitMOz8EoYcFzBHsgw5jCvseCy0E5G0-XfWdKFpzrp3LhzdxYR2FGKS0y3_NK_Ge7tPTvN7hP39NH6R-ea4sE23Dbeb_VPmTXh_QVyRqnhihAA9DmLLN5ebFDvq5WJb4VVavpilIsNjfxLWBtWornQ_bdNto-YsqPFrUzpNWpBEo9NwUwEVVgjEU3mV_si1qz9SibTG_Orv2_bo">
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-bg dark:bg-surface-dim border-t border-border-subtle dark:border-outline-variant py-section-gap px-margin-mobile md:px-margin-desktop mt-auto">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="text-headline-md font-headline-md text-on-surface font-bold tracking-tight mb-4 md:mb-0">
+                Lumina Learning
+            </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed underline transition-all cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed underline transition-all cursor-pointer" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed underline transition-all cursor-pointer" href="#">Cookie Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-secondary dark:hover:text-secondary-fixed underline transition-all cursor-pointer" href="#">Accessibility</a>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline mt-4 md:mt-0 text-center md:text-right">
+                © 2024 Lumina Learning. All rights reserved.
+            </div>
+</div>
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('billing-toggle');
+            const toggleKnob = document.getElementById('toggle-knob');
+            const monthlyLabel = document.getElementById('monthly-label');
+            const yearlyLabel = document.getElementById('yearly-label');
+            const priceDisplays = document.querySelectorAll('.price-display');
+            let isAnnual = false;
+
+            toggleBtn.addEventListener('click', () => {
+                isAnnual = !isAnnual;
+                
+                if(isAnnual) {
+                    toggleKnob.classList.replace('translate-x-1', 'translate-x-6');
+                    monthlyLabel.classList.replace('text-secondary', 'text-on-surface-variant');
+                    yearlyLabel.classList.replace('text-on-surface-variant', 'text-secondary');
+                } else {
+                    toggleKnob.classList.replace('translate-x-6', 'translate-x-1');
+                    monthlyLabel.classList.replace('text-on-surface-variant', 'text-secondary');
+                    yearlyLabel.classList.replace('text-secondary', 'text-on-surface-variant');
+                }
+
+                priceDisplays.forEach(display => {
+                    const price = isAnnual ? display.dataset.yearly : display.dataset.monthly;
+                    
+                    // Simple fade animation
+                    display.style.opacity = 0;
+                    setTimeout(() => {
+                        display.textContent = `$${price}`;
+                        display.style.opacity = 1;
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body></html>

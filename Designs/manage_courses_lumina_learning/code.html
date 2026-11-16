@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manage Courses | Lumina Learning Instructor Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800;900&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#3f465c",
+                      "surface-bg": "#F8FAFC",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#eff4ff",
+                      "primary": "#000000",
+                      "on-tertiary-container": "#009668",
+                      "surface-container-highest": "#d3e4fe",
+                      "border-subtle": "#E2E8F0",
+                      "editor-bg": "#1E1E1E",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed": "#002113",
+                      "on-primary-container": "#7c839b",
+                      "xp-gold": "#F59E0B",
+                      "streak-orange": "#EF4444",
+                      "primary-fixed-dim": "#bec6e0",
+                      "surface-card": "#FFFFFF",
+                      "surface-variant": "#d3e4fe",
+                      "on-surface-variant": "#45464d",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary-fixed": "#001a42",
+                      "surface-tint": "#565e74",
+                      "outline-variant": "#c6c6cd",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#004395",
+                      "on-background": "#0b1c30",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#2170e4",
+                      "on-primary-fixed": "#131b2e",
+                      "surface-container-high": "#dce9ff",
+                      "outline": "#76777d",
+                      "background": "#f8f9ff",
+                      "secondary": "#0058be",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed": "#6ffbbe",
+                      "tertiary-container": "#002113",
+                      "inverse-surface": "#213145",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "on-primary": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-secondary-container": "#fefcff",
+                      "inverse-primary": "#bec6e0",
+                      "tertiary": "#000000",
+                      "on-surface": "#0b1c30",
+                      "surface": "#f8f9ff",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "surface-container": "#e5eeff",
+                      "on-secondary": "#ffffff",
+                      "primary-container": "#131b2e",
+                      "surface-dim": "#cbdbf5",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "secondary-fixed": "#d8e2ff",
+                      "primary-fixed": "#dae2fd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1440px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "section-gap": "64px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Hanken Grotesk"],
+                      "label-md": ["Inter"],
+                      "display-lg": ["Hanken Grotesk"],
+                      "headline-lg": ["Hanken Grotesk"],
+                      "body-lg": ["Inter"],
+                      "code-sm": ["JetBrains Mono"],
+                      "body-md": ["Inter"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .nav-item-active {
+            font-weight: 700;
+            border-left-width: 4px;
+            border-left-color: #0058be;
+            padding-left: 1rem;
+            color: #0058be;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E2E8F0;
+            border-radius: 10px;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0058be;
+        }
+        .toggle-checkbox:checked + .toggle-label:after {
+            left: calc(100% - 2px);
+            transform: translateX(-100%);
+        }
+    </style>
+</head>
+<body class="bg-surface-bg font-body-md text-on-surface">
+<!-- SideNavBar (Authority: JSON & Style Guidance) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface-card border-r border-border-subtle flex flex-col py-base z-50">
+<div class="px-6 py-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Lumina Learning</h1>
+<p class="font-body-sm text-outline">Instructor Portal</p>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4 overflow-y-auto custom-scrollbar">
+<!-- Course Builder is Active for 'Manage Courses' context -->
+<a class="flex items-center gap-3 py-3 pl-5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 py-3 nav-item-active bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">architecture</span>
+<span class="font-body-md">Course Builder</span>
+</a>
+<a class="flex items-center gap-3 py-3 pl-5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md">Student Analytics</span>
+</a>
+<a class="flex items-center gap-3 py-3 pl-5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">video_call</span>
+<span class="font-body-md">Live Sessions</span>
+</a>
+<a class="flex items-center gap-3 py-3 pl-5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md">Earnings</span>
+</a>
+<a class="flex items-center gap-3 py-3 pl-5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full bg-secondary text-on-secondary font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-secondary-container transition-all">
+<span class="material-symbols-outlined">bolt</span>
+                Go Live
+            </button>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface-bg border-b border-border-subtle flex justify-between items-center px-gutter z-40">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-card border border-border-subtle rounded-lg py-2 pl-10 pr-4 focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none text-body-sm" placeholder="Search courses, modules, or students..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-outline">
+<button class="hover:text-secondary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-secondary transition-colors"><span class="material-symbols-outlined">help</span></button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-border-subtle cursor-pointer">
+<img class="h-full w-full object-cover" data-alt="A professional headshot of a mature instructor with a friendly expression, wearing a casual blazer, set against a blurred academic library background. The lighting is soft and warm, conveying a sense of expertise and approachability in a modern light-mode educational environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2j-BC-kOmSxCJhWSQybsKhkt489mg2mVUMGwyIqLAPbsCngoiwyIDB18GfyjmTIJHhomwHZaswE8UzI5wwYtlinxwDHJu2PeA6-00ps3JiIUqYgllessdS3pZCHwek2pGtH5PpSUtRwdnYsUqo_Wtw-d1OmNe6f7Y-7K00XygfxRL2_aH3H9Wk21mP3Us-M3BCJ7TFEwRyH337vxwwADHvWwuSwYA1qjHb8aFgW9mdujinjlOMpWy2CAZcsynBhcGhLlJZBa_07I"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[280px] pt-16 min-h-screen">
+<div class="p-margin-desktop max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Manage Courses</h2>
+<p class="text-on-surface-variant font-body-md mt-1">Design, refine, and deploy your curriculum to students worldwide.</p>
+</div>
+<button class="bg-secondary text-on-secondary px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-sm hover:translate-y-[-2px] transition-all">
+<span class="material-symbols-outlined">add</span>
+                    Create New Course
+                </button>
+</div>
+<!-- Statistics Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-card border border-border-subtle p-6 rounded-xl flex items-center gap-4 group hover:border-secondary transition-colors">
+<div class="h-12 w-12 rounded-lg bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<p class="text-label-md text-outline uppercase tracking-wider">Total Courses</p>
+<h4 class="font-headline-md text-headline-md text-primary">12</h4>
+</div>
+</div>
+<div class="bg-surface-card border border-border-subtle p-6 rounded-xl flex items-center gap-4 group hover:border-secondary transition-colors">
+<div class="h-12 w-12 rounded-lg bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div>
+<p class="text-label-md text-outline uppercase tracking-wider">Active Students</p>
+<h4 class="font-headline-md text-headline-md text-primary">1,284</h4>
+</div>
+</div>
+<div class="bg-surface-card border border-border-subtle p-6 rounded-xl flex items-center gap-4 group hover:border-secondary transition-colors">
+<div class="h-12 w-12 rounded-lg bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<p class="text-label-md text-outline uppercase tracking-wider">Avg. Rating</p>
+<h4 class="font-headline-md text-headline-md text-primary">4.8</h4>
+</div>
+</div>
+<div class="bg-surface-card border border-border-subtle p-6 rounded-xl flex items-center gap-4 group hover:border-secondary transition-colors">
+<div class="h-12 w-12 rounded-lg bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="text-label-md text-outline uppercase tracking-wider">Course Revenue</p>
+<h4 class="font-headline-md text-headline-md text-primary">$12,450</h4>
+</div>
+</div>
+</div>
+<!-- Search and Filters Bar -->
+<div class="bg-surface-card border border-border-subtle rounded-xl p-4 mb-6 flex flex-wrap items-center gap-4 shadow-sm">
+<div class="relative flex-1 min-w-[300px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-bg border border-border-subtle rounded-lg py-2.5 pl-10 pr-4 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none text-body-sm" placeholder="Filter by course title..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative">
+<select class="appearance-none bg-surface-bg border border-border-subtle rounded-lg py-2.5 pl-4 pr-10 text-body-sm font-semibold text-on-surface-variant focus:ring-1 focus:ring-secondary outline-none cursor-pointer">
+<option>Status: All</option>
+<option>Published</option>
+<option>Draft</option>
+<option>Private</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-bg border border-border-subtle rounded-lg py-2.5 pl-4 pr-10 text-body-sm font-semibold text-on-surface-variant focus:ring-1 focus:ring-secondary outline-none cursor-pointer">
+<option>Category: All</option>
+<option>Engineering</option>
+<option>Design</option>
+<option>Business</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+<button class="bg-surface-container-high hover:bg-surface-container text-secondary font-bold px-4 py-2.5 rounded-lg text-body-sm transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+                        More Filters
+                    </button>
+</div>
+</div>
+<!-- Course Table List -->
+<div class="bg-surface-card border border-border-subtle rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-border-subtle">
+<tr>
+<th class="px-6 py-4 text-label-md text-outline font-bold uppercase tracking-wider">Course Name</th>
+<th class="px-6 py-4 text-label-md text-outline font-bold uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-label-md text-outline font-bold uppercase tracking-wider">Enrolled</th>
+<th class="px-6 py-4 text-label-md text-outline font-bold uppercase tracking-wider">Last Updated</th>
+<th class="px-6 py-4 text-label-md text-outline font-bold uppercase tracking-wider">Visibility</th>
+<th class="px-6 py-4 text-label-md text-outline font-bold uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<!-- Course Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="h-14 w-24 rounded-lg bg-surface-container overflow-hidden border border-border-subtle flex-shrink-0">
+<img class="h-full w-full object-cover" data-alt="A clean top-down view of a modern workstation featuring a laptop with lines of code, a sleek coffee cup, and a minimal notebook on a white desk. The overall aesthetic is professional, organized, and technical, using a palette of cool grays, deep blues, and crisp whites to represent advanced web development." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5c07XLQXhnDBjbaWnYb0Gt88ZRVnZaILSaYfXKawSHtbG_MkdluftsakT3ba7YwMLIY4sfv_fOo5IqrUSWyowsXD2Kl4viZ5HayWNHYBvzKy_QBRhCRsPP_Hn_Vofn4MT0UHM8_KvksDolzZCvnW9VcIFTbow_Ff2H66UB7ihB6O-s0PVS6QnTA4IQRfSRViMq_78ngGIwUFQh4d-uWOGwwlQJZJpXjOSkPR5GdCpzt91uEWBwGSLc1mnAUxMEHeg4syPSl0AO4k"/>
+</div>
+<div>
+<h5 class="font-bold text-primary group-hover:text-secondary transition-colors">Advanced React Frameworks</h5>
+<p class="text-body-sm text-outline">Level: Advanced • 12 Modules</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-on-tertiary-container/10 text-on-tertiary-container font-bold text-body-sm">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span>
+                                    Published
+                                </span>
+</td>
+<td class="px-6 py-5 font-body-md text-primary">
+                                482 Students
+                            </td>
+<td class="px-6 py-5 text-body-sm text-outline">
+                                Oct 24, 2023
+                            </td>
+<td class="px-6 py-5">
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-border-subtle appearance-none cursor-pointer focus:outline-none transition-all duration-300 left-0" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-high cursor-pointer transition-all duration-300 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:w-[20px] after:h-[20px] after:rounded-full after:bg-white after:transition-all after:duration-300" for="toggle1"></label>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all" title="Edit Content">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all" title="Preview Student View">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all" title="View Detailed Analytics">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Course Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="h-14 w-24 rounded-lg bg-surface-container overflow-hidden border border-border-subtle flex-shrink-0">
+<img class="h-full w-full object-cover" data-alt="A sophisticated data visualization dashboard shown on a high-resolution tablet screen, held by a professional in a modern studio environment. The visuals include vibrant bar charts and smooth line graphs in shades of blue and emerald green, embodying a high-trust, data-driven financial analysis vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASrW19sSD3NfJ_OFjOp6oDQXugk0X-XiE1RpizpISN5lR0fRO69l6fJyWsbGYY9qAfxXWato8E5Ad8ho5zYGuDe83DPaQPtT18OPRgvkHVioebUmXI5OLZHR3ywqTNrOJDqaD_zT2kFlRz-TaSg0bMdPb4Wc7Tn2qd2HfZDQcAO5hIC4PoCnwBU4Qm0D0BSUywzNMhCo_4Umx060zXWFJUSeXM1cdcEU7rWEbadDWmUcVSD6Hfq3aA6grtzAwD2DFdIB2DCMRkX38"/>
+</div>
+<div>
+<h5 class="font-bold text-primary">Mastering SQL for Data Analysis</h5>
+<p class="text-body-sm text-outline">Level: Intermediate • 8 Modules</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-xp-gold/10 text-xp-gold font-bold text-body-sm">
+<span class="w-2 h-2 rounded-full bg-xp-gold"></span>
+                                    Draft
+                                </span>
+</td>
+<td class="px-6 py-5 font-body-md text-primary">
+                                0 Students
+                            </td>
+<td class="px-6 py-5 text-body-sm text-outline">
+                                Oct 28, 2023
+                            </td>
+<td class="px-6 py-5">
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-border-subtle appearance-none cursor-pointer focus:outline-none transition-all duration-300 left-0" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-high cursor-pointer transition-all duration-300 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:w-[20px] after:h-[20px] after:rounded-full after:bg-white after:transition-all after:duration-300" for="toggle2"></label>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Course Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="h-14 w-24 rounded-lg bg-surface-container overflow-hidden border border-border-subtle flex-shrink-0">
+<img class="h-full w-full object-cover" data-alt="A close-up of a designer's hand using a high-precision stylus on a professional graphics tablet. The screen displays a complex mobile app UI kit with a focus on geometric balance and soft shadows. The lighting is focused and cinematic, highlighting the professional craftsmanship of modern digital product design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDDyn0IAKQwNwAXw2RqJQF0R7Mq7r4FQETF54Y6U_ZYsSEj_qf17jKHW5DVhLw7Vxfd_2cv-dXL5aiPE2KGkdcVmTWqe-SfBGIJJBHbnlKtZ49aGNix0j-TAkdbWRhaEeg26-Gy7S-qIJ1xRpcKanMwhKeKdkyWJLMA1ORXn5vLyuvSOOQt1EtUTZAY7i0w4srRcGMmX8cUzZBgkAz0d3vDRqRU1oct47_2GF3Ijui_KG9Vgz9bnKnnpgJYiGAkZes-0yFQtNd2G8"/>
+</div>
+<div>
+<h5 class="font-bold text-primary">UI/UX Design Systems 101</h5>
+<p class="text-body-sm text-outline">Level: Beginner • 15 Modules</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-on-tertiary-container/10 text-on-tertiary-container font-bold text-body-sm">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span>
+                                    Published
+                                </span>
+</td>
+<td class="px-6 py-5 font-body-md text-primary">
+                                802 Students
+                            </td>
+<td class="px-6 py-5 text-body-sm text-outline">
+                                Sep 12, 2023
+                            </td>
+<td class="px-6 py-5">
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-border-subtle appearance-none cursor-pointer focus:outline-none transition-all duration-300 left-0" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-high cursor-pointer transition-all duration-300 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:w-[20px] after:h-[20px] after:rounded-full after:bg-white after:transition-all after:duration-300" for="toggle3"></label>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Course Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="h-14 w-24 rounded-lg bg-surface-container overflow-hidden border border-border-subtle flex-shrink-0">
+<img class="h-full w-full object-cover" data-alt="A stylized digital representation of cybersecurity with glowing binary code falling like rain in the background and a metallic shield icon in the foreground. The lighting is dramatic with intense cyan and dark navy tones, evoking a sense of high-security and professional expertise in digital defense systems." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC0owyxnIc5_nWw9MFB-u0YEwyWTFbw99H69sYuo7fhxn_yWSyHN8N58luv3dOIzTp_WY4N1pVXfRdAA18_a81k3EQzPsppxkHahLLm9mhKALugWZZ61cINjwX6oXDoOqijTL9wt-Ns5pe1Ck-Km_Uwq21aDmtA-ZGZJYHWvr8JkLS5C9ScfyFAO8TEDhvVTFia9oHF6vXThDuMqvNEj-dolP5hswdhXhygbz7qTjfpTmeZ9ucUAIq4XMiXSbYHyUbQGMf49MHq0o"/>
+</div>
+<div>
+<h5 class="font-bold text-primary">Cybersecurity Fundamentals</h5>
+<p class="text-body-sm text-outline">Level: Beginner • 10 Modules</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-on-tertiary-container/10 text-on-tertiary-container font-bold text-body-sm">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span>
+                                    Published
+                                </span>
+</td>
+<td class="px-6 py-5 font-body-md text-primary">
+                                1,284 Students
+                            </td>
+<td class="px-6 py-5 text-body-sm text-outline">
+                                Nov 01, 2023
+                            </td>
+<td class="px-6 py-5">
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-border-subtle appearance-none cursor-pointer focus:outline-none transition-all duration-300 left-0" id="toggle4" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-high cursor-pointer transition-all duration-300 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:w-[20px] after:h-[20px] after:rounded-full after:bg-white after:transition-all after:duration-300" for="toggle4"></label>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 text-outline hover:text-secondary hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-low flex justify-between items-center border-t border-border-subtle">
+<p class="text-body-sm text-outline">Showing 1 to 4 of 12 courses</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded border border-border-subtle bg-white text-outline hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="px-3 py-1 rounded border border-secondary bg-secondary text-on-secondary font-bold">1</button>
+<button class="px-3 py-1 rounded border border-border-subtle bg-white text-on-surface hover:bg-surface-container transition-colors">2</button>
+<button class="px-3 py-1 rounded border border-border-subtle bg-white text-on-surface hover:bg-surface-container transition-colors">3</button>
+<button class="px-3 py-1 rounded border border-border-subtle bg-white text-outline hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Promotion / Tip Card -->
+<div class="mt-10 p-8 rounded-2xl bg-gradient-to-r from-secondary-container to-secondary text-on-secondary-container flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden relative group">
+<div class="relative z-10 max-w-xl text-white">
+<h3 class="font-headline-md text-headline-md mb-2">Maximize Student Engagement</h3>
+<p class="opacity-90 font-body-md">Instructors who update their curriculum once every quarter see a 24% increase in student completion rates. Check your analytics to see where students drop off.</p>
+</div>
+<div class="relative z-10 flex gap-4">
+<button class="px-6 py-3 rounded-xl bg-white text-secondary font-bold shadow-lg hover:scale-105 transition-transform">Get Improvement Tips</button>
+<button class="px-6 py-3 rounded-xl bg-secondary-container text-white border border-white/20 font-bold hover:bg-secondary transition-colors">Schedule Review</button>
+</div>
+<!-- Abstract visual element -->
+<div class="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-125 transition-all duration-700"></div>
+<div class="absolute -left-10 -top-10 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:scale-150 transition-all duration-500"></div>
+</div>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for toggle feedback
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const row = this.closest('tr');
+                const statusBadge = row.querySelector('.status-badge-container'); // In a real app we'd target specific elements
+                console.log('Visibility toggled for course. New state:', this.checked);
+            });
+        });
+
+        // Search highlight simulation
+        const searchInput = document.querySelector('input[placeholder="Filter by course title..."]');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const title = row.querySelector('h5').innerText.toLowerCase();
+                if (title.includes(term)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body></html>

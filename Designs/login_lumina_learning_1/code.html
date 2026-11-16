@@ -1,0 +1,204 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Login - Quantum Systems Research | Lumina Learning</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bg": "#F8FAFC",
+                        "background": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-surface": "#0b1c30",
+                        "surface-card": "#FFFFFF",
+                        "on-secondary-fixed": "#001a42",
+                        "streak-orange": "#EF4444",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-surface-variant": "#45464d",
+                        "on-primary-fixed": "#131b2e",
+                        "tertiary": "#000000",
+                        "border-subtle": "#E2E8F0",
+                        "editor-bg": "#1E1E1E",
+                        "xp-gold": "#F59E0B",
+                        "on-tertiary-container": "#009668",
+                        "on-background": "#0b1c30",
+                        "surface-container-low": "#eff4ff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "outline-variant": "#c6c6cd",
+                        "surface": "#f8f9ff",
+                        "outline": "#76777d",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container": "#e5eeff",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#131b2e",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-high": "#dce9ff",
+                        "primary-fixed": "#dae2fd",
+                        "primary": "#000000",
+                        "secondary": "#0058be",
+                        "on-tertiary-fixed": "#002113",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#565e74",
+                        "on-secondary-fixed-variant": "#004395",
+                        "inverse-primary": "#bec6e0",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#2170e4",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#213145",
+                        "tertiary-container": "#002113",
+                        "secondary-fixed": "#d8e2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "container-max": "1440px",
+                        "section-gap": "64px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "code-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface-bg min-h-screen flex flex-col font-body-md text-on-surface antialiased">
+<!-- Suppressed TopNavBar for Linear/Transactional Flow -->
+<main class="flex-grow flex items-center justify-center p-margin-mobile md:p-margin-desktop">
+<div class="w-full max-w-md">
+<!-- Brand Context -->
+<div class="text-center mb-8 flex flex-col items-center">
+<div class="w-16 h-16 bg-surface-card border border-border-subtle rounded-lg flex items-center justify-center mb-4 shadow-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="science" style="font-size: 32px;">science</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Sign In</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Quantum Systems Research Portal</p>
+</div>
+<!-- Login Card -->
+<div class="bg-surface-card border border-border-subtle rounded-xl shadow-sm overflow-hidden">
+<div class="p-8">
+<form action="#" class="space-y-6" method="POST">
+<!-- Email Input -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="mail">mail</span>
+</div>
+<input autocomplete="email" class="block w-full pl-10 pr-3 py-2 border border-border-subtle rounded-lg bg-surface-bg text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-secondary focus:border-secondary transition-colors placeholder-on-surface-variant" id="email" name="email" placeholder="scholar@quantum.edu" required="" type="email">
+</div>
+</div>
+<!-- Password Input -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="lock">lock</span>
+</div>
+<input autocomplete="current-password" class="block w-full pl-10 pr-10 py-2 border border-border-subtle rounded-lg bg-surface-bg text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-secondary focus:border-secondary transition-colors placeholder-on-surface-variant" id="password" name="password" placeholder="••••••••" required="" type="password">
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+<button aria-label="Toggle password visibility" class="text-on-surface-variant hover:text-secondary focus:outline-none transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Options Row -->
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<input class="h-4 w-4 text-secondary focus:ring-secondary border-border-subtle rounded bg-surface-bg" id="remember-me" name="remember-me" type="checkbox">
+<label class="ml-2 block font-body-sm text-body-sm text-on-surface-variant" for="remember-me">
+                                    Remember me
+                                </label>
+</div>
+<div class="font-body-sm text-body-sm">
+<a class="font-label-md text-label-md text-secondary hover:text-secondary-container transition-colors" href="#">
+                                    Forgot password?
+                                </a>
+</div>
+</div>
+<!-- Submit Button -->
+<div>
+<button class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm font-label-md text-label-md text-on-secondary bg-secondary hover:bg-secondary-container focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary transition-colors" type="submit">
+                                Sign In
+                            </button>
+</div>
+</form>
+</div>
+<!-- Secondary Action -->
+<div class="bg-surface-bg border-t border-border-subtle px-8 py-4 text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Don't have an account? 
+                        <a class="font-label-md text-label-md text-secondary hover:text-secondary-container transition-colors ml-1" href="#">Request access</a>
+</p>
+</div>
+</div>
+<!-- Trust/Info Footer specific to tenant -->
+<div class="mt-8 text-center flex items-center justify-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="verified_user" style="font-size: 16px;">verified_user</span>
+                Secure Institutional Login
+            </div>
+</div>
+</main>
+<!-- Global Footer Component from JSON -->
+<footer class="w-full py-8 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-bg border-t border-border-subtle">
+<div class="font-headline-md text-headline-md text-on-surface">Lumina Learning</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Lumina Learning. All rights reserved.</div>
+<nav class="flex gap-4">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary underline transition-all" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary underline transition-all" href="#">Help Center</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary underline transition-all" href="#">Cookie Settings</a>
+</nav>
+</footer>
+</body></html>

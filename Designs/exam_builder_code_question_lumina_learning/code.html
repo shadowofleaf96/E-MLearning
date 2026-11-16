@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Exam Builder - EduStudio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-surface": "#0b1c30",
+                        "surface-variant": "#d3e4fe",
+                        "surface-tint": "#565e74",
+                        "outline": "#76777d",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-background": "#0b1c30",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#002113",
+                        "secondary-container": "#2170e4",
+                        "streak-orange": "#EF4444",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed": "#001a42",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e5eeff",
+                        "surface-bg": "#F8FAFC",
+                        "on-secondary-fixed-variant": "#004395",
+                        "secondary-fixed": "#d8e2ff",
+                        "background": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#bec6e0",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#fefcff",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "editor-bg": "#1E1E1E",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "secondary": "#0058be",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "primary-container": "#131b2e",
+                        "on-tertiary-container": "#009668",
+                        "tertiary-fixed": "#6ffbbe",
+                        "primary": "#000000",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "surface-bright": "#f8f9ff",
+                        "outline-variant": "#c6c6cd",
+                        "tertiary-container": "#002113",
+                        "surface-card": "#FFFFFF",
+                        "on-primary-fixed": "#131b2e",
+                        "border-subtle": "#E2E8F0",
+                        "primary-fixed": "#dae2fd",
+                        "tertiary": "#000000",
+                        "xp-gold": "#F59E0B"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "container-max": "1440px",
+                        "section-gap": "64px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "code-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="h-full bg-surface-bg text-on-surface font-body-md text-body-md overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-6 fixed left-0 top-0 w-[280px] bg-surface-container-low border-r border-border-subtle z-20">
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-on-primary font-headline-md text-headline-md font-extrabold">E</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-extrabold text-secondary">EduStudio</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Instructor Portal</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-1 px-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary border-l-4 border-secondary bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="architecture" data-weight="fill">architecture</span>
+<span class="font-label-md text-label-md">Course Builder</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Student Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="live_tv">live_tv</span>
+<span class="font-label-md text-label-md">Live Sessions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Earnings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Log Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 md:ml-[280px] flex flex-col h-full bg-surface-bg relative">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-margin-desktop w-full h-16 bg-surface-container-lowest border-b border-border-subtle z-10 shrink-0">
+<div class="flex-1 flex items-center gap-4">
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<a class="hover:text-secondary transition-colors" href="#">My Courses</a>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<a class="hover:text-secondary transition-colors" href="#">React Fundamentals</a>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface font-semibold">Exam Builder</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 mr-4">
+<button class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors border border-border-subtle">Preview Exam</button>
+<button class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors border border-border-subtle">Save Draft</button>
+<button class="px-4 py-2 rounded-lg font-label-md text-label-md bg-secondary text-on-primary hover:bg-opacity-90 transition-opacity">Update Exam</button>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Exam Workspace -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Question List Sidebar -->
+<aside class="w-[320px] bg-surface-container-lowest border-r border-border-subtle flex flex-col shrink-0">
+<div class="p-6 border-b border-border-subtle">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Final Assessment</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">React Fundamentals</p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-2">
+<!-- Question Item 1 -->
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-surface-bg border border-border-subtle hover:border-outline-variant transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline cursor-grab opacity-50 group-hover:opacity-100" data-icon="drag_indicator">drag_indicator</span>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-md text-label-md text-on-surface truncate">Q1: Component State</span>
+<span class="font-label-md text-label-md text-on-surface-variant shrink-0">10 pts</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-surface-variant text-on-surface-variant">Multiple Choice</span>
+</div>
+</div>
+<!-- Question Item 2 (Active) -->
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-surface-container-low border border-secondary shadow-[0_4px_12px_rgba(15,23,42,0.05)] cursor-pointer relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
+<span class="material-symbols-outlined text-outline cursor-grab opacity-50 group-hover:opacity-100" data-icon="drag_indicator">drag_indicator</span>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-md text-label-md text-secondary truncate">Q2: Custom Hook</span>
+<span class="font-label-md text-label-md text-secondary shrink-0">25 pts</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-secondary-fixed text-on-secondary-fixed">Code Challenge</span>
+</div>
+</div>
+<!-- Question Item 3 -->
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-surface-bg border border-border-subtle hover:border-outline-variant transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline cursor-grab opacity-50 group-hover:opacity-100" data-icon="drag_indicator">drag_indicator</span>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-label-md text-label-md text-on-surface truncate">Q3: Context API</span>
+<span class="font-label-md text-label-md text-on-surface-variant shrink-0">15 pts</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-surface-variant text-on-surface-variant">Multiple Choice</span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-border-subtle bg-surface-container-lowest">
+<button class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg border border-dashed border-outline-variant text-on-surface-variant hover:text-secondary hover:border-secondary hover:bg-surface-container-low transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                        Add New Question
+                    </button>
+</div>
+</aside>
+<!-- Edit Question Area -->
+<div class="flex-1 overflow-y-auto bg-surface-bg">
+<div class="max-w-4xl mx-auto p-section-gap">
+<!-- Editor Header -->
+<div class="flex flex-col gap-6 mb-8">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Edit Question 2</h3>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="q-type">Type:</label>
+<select class="form-select rounded-lg border-border-subtle font-body-sm text-body-sm focus:ring-secondary focus:border-secondary py-1.5 pl-3 pr-8" id="q-type">
+<option>Multiple Choice</option>
+<option selected="">Coding Challenge</option>
+<option>Short Answer</option>
+</select>
+</div>
+<div class="flex items-center gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="q-points">Points:</label>
+<input class="form-input rounded-lg border-border-subtle font-body-sm text-body-sm focus:ring-secondary focus:border-secondary py-1.5 w-20 text-center" id="q-points" type="number" value="25"/>
+</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-error transition-colors p-2 rounded-lg hover:bg-error-container">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<!-- Problem Description -->
+<div class="bg-surface-card rounded-xl border border-border-subtle p-6 mb-6 shadow-sm">
+<h4 class="font-label-md text-label-md text-on-surface mb-4 uppercase tracking-wider">Problem Description</h4>
+<div class="border border-border-subtle rounded-lg overflow-hidden flex flex-col">
+<!-- Toolbar -->
+<div class="bg-surface-container-low border-b border-border-subtle p-2 flex gap-1">
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant"><span class="material-symbols-outlined text-[18px]" data-icon="format_bold">format_bold</span></button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant"><span class="material-symbols-outlined text-[18px]" data-icon="format_italic">format_italic</span></button>
+<div class="w-px h-6 bg-border-subtle mx-1 self-center"></div>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant"><span class="material-symbols-outlined text-[18px]" data-icon="format_list_bulleted">format_list_bulleted</span></button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant"><span class="material-symbols-outlined text-[18px]" data-icon="format_list_numbered">format_list_numbered</span></button>
+<div class="w-px h-6 bg-border-subtle mx-1 self-center"></div>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant"><span class="material-symbols-outlined text-[18px]" data-icon="code">code</span></button>
+</div>
+<!-- Editor Area -->
+<div class="p-4 min-h-[120px] font-body-sm text-body-sm text-on-surface focus:outline-none" contenteditable="true">
+<p class="mb-2">Create a custom React hook named <code>useDebounce</code>.</p>
+<p class="mb-2">This hook should take two arguments:</p>
+<ol class="list-decimal list-inside mb-4 pl-2">
+<li><code>value</code>: The value to be debounced.</li>
+<li><code>delay</code>: The delay in milliseconds.</li>
+</ol>
+<p>The hook should return the debounced value, updating only after the specified delay has passed without the value changing.</p>
+</div>
+</div>
+</div>
+<!-- Code Editors -->
+<div class="bg-surface-card rounded-xl border border-border-subtle overflow-hidden mb-6 shadow-sm">
+<!-- Tabs -->
+<div class="flex border-b border-border-subtle bg-surface-container-lowest">
+<button class="px-6 py-3 font-label-md text-label-md text-secondary border-b-2 border-secondary bg-surface-container-low transition-colors">
+                                Starter Code
+                            </button>
+<button class="px-6 py-3 font-label-md text-label-md text-on-surface-variant hover:text-secondary hover:bg-surface-container-low transition-colors">
+                                Solution Code
+                            </button>
+</div>
+<!-- Editor Content -->
+<div class="bg-editor-bg text-on-primary p-4 font-code-sm text-code-sm min-h-[200px] overflow-x-auto relative">
+<div class="absolute top-2 right-4 text-outline font-label-md text-label-md">javascript</div>
+<pre><code>import { useState, useEffect } from 'react';
+
+export function useDebounce(value, delay) {
+  // Your code here
+  
+}
+</code></pre>
+</div>
+</div>
+<!-- Test Cases -->
+<div class="bg-surface-card rounded-xl border border-border-subtle p-6 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Test Cases</h4>
+<button class="flex items-center gap-1 text-secondary hover:text-on-secondary-fixed-variant transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
+                                Add Test Case
+                            </button>
+</div>
+<div class="space-y-4">
+<!-- Case 1 -->
+<div class="border border-border-subtle rounded-lg p-4 bg-surface-bg relative">
+<div class="absolute top-4 right-4 flex gap-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="form-checkbox rounded text-secondary focus:ring-secondary border-outline-variant h-4 w-4" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface-variant">Hidden</span>
+</label>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-2">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Input (Args)</label>
+<textarea class="form-textarea w-full rounded-md border-border-subtle font-code-sm text-code-sm focus:ring-secondary focus:border-secondary h-20 bg-surface-container-lowest" spellcheck="false">"test", 500</textarea>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Expected Output</label>
+<textarea class="form-textarea w-full rounded-md border-border-subtle font-code-sm text-code-sm focus:ring-secondary focus:border-secondary h-20 bg-surface-container-lowest" spellcheck="false">"test" (after 500ms)</textarea>
+</div>
+</div>
+</div>
+<!-- Case 2 -->
+<div class="border border-border-subtle rounded-lg p-4 bg-surface-bg relative">
+<div class="absolute top-4 right-4 flex gap-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="form-checkbox rounded text-secondary focus:ring-secondary border-outline-variant h-4 w-4" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface-variant">Hidden</span>
+</label>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-2">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Input (Args)</label>
+<textarea class="form-textarea w-full rounded-md border-border-subtle font-code-sm text-code-sm focus:ring-secondary focus:border-secondary h-20 bg-surface-container-lowest" spellcheck="false">"", 1000</textarea>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Expected Output</label>
+<textarea class="form-textarea w-full rounded-md border-border-subtle font-code-sm text-code-sm focus:ring-secondary focus:border-secondary h-20 bg-surface-container-lowest" spellcheck="false">"" (after 1000ms)</textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Lumina Learning - Register</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#dce9ff",
+                        "primary": "#000000",
+                        "tertiary-fixed": "#6ffbbe",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-tint": "#565e74",
+                        "on-surface-variant": "#45464d",
+                        "primary-fixed-dim": "#bec6e0",
+                        "inverse-primary": "#bec6e0",
+                        "primary-fixed": "#dae2fd",
+                        "background": "#f8f9ff",
+                        "tertiary": "#000000",
+                        "surface-container-highest": "#d3e4fe",
+                        "editor-bg": "#1E1E1E",
+                        "on-error": "#ffffff",
+                        "surface-bg": "#F8FAFC",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-fixed": "#002113",
+                        "on-primary-container": "#7c839b",
+                        "primary-container": "#131b2e",
+                        "tertiary-container": "#002113",
+                        "border-subtle": "#E2E8F0",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "streak-orange": "#EF4444",
+                        "on-secondary-fixed-variant": "#004395",
+                        "secondary-container": "#2170e4",
+                        "on-primary-fixed": "#131b2e",
+                        "on-surface": "#0b1c30",
+                        "xp-gold": "#F59E0B",
+                        "secondary": "#0058be",
+                        "error": "#ba1a1a",
+                        "surface-card": "#FFFFFF",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed": "#001a42",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "inverse-surface": "#213145",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#009668",
+                        "on-primary": "#ffffff",
+                        "outline": "#76777d",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c6c6cd"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "base": "4px",
+                        "section-gap": "64px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "container-max": "1440px"
+                    },
+                    fontFamily: {
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "label-md": ["12px", { lineHeight: "16px", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "code-sm": ["13px", { lineHeight: "20px", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface-bg text-on-surface antialiased flex flex-col min-h-screen">
+<!-- TopNavBar (Transactional - Suppressed Nav Items, keeping Brand) -->
+<header class="bg-surface-bg dark:bg-surface-bg flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 docked full-width top-0 border-b border-border-subtle dark:border-outline-variant flat no shadows z-50 fixed">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined filled-icon text-secondary" style="font-size: 28px;">school</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface tracking-tight">Lumina Learning</span>
+</div>
+<div>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed hover:text-secondary dark:hover:text-secondary-fixed transition-colors hover:underline" href="#">Contact Support</a>
+</div>
+</header>
+<!-- Main Content: Split Screen -->
+<main class="flex-grow flex flex-col md:flex-row mt-[72px]">
+<!-- Left Side: Visual / Brand Context -->
+<section class="hidden md:flex md:w-5/12 lg:w-1/2 relative bg-primary-container text-on-primary overflow-hidden flex-col justify-between p-12">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="Modern office architecture" class="w-full h-full object-cover opacity-30 mix-blend-overlay" data-alt="A sophisticated, high-end modern office interior featuring sleek glass partitions and clean architectural lines. The lighting is bright and cool, reflecting a professional, corporate developer environment. The color palette emphasizes deep navy blues, crisp whites, and subtle metallic accents, conveying trust, precision, and institutional credibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDzF1YkQFAISO9cCFIBH4qYDjB-aJS6KFkCpaATL0rWM6bU9HuhjYTCQgXBr92OR2j9DTCjIrwQ59alyDUX0TI9LROuFbX-3Hvs7zuVYeRQAsZTdOIo7vNWE2D8erD7VDtVyXbT7-rX2wAPKt3AYGQDMu7LkMLnwXF28a32hCgoENEwKk1I6Yo9vpO7dpz97_GboAO4NvQ2ARo2AMIsEoEAc5MJUop-mX6jAQTQvq_ym52lhM_c1-zYvzQDa-qBAuwgPPMtcMx5f0">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/90 to-primary-container/50"></div>
+</div>
+<!-- Content -->
+<div class="relative z-10">
+<div class="mb-16">
+<span class="material-symbols-outlined text-4xl text-tertiary-fixed mb-6">architecture</span>
+<h1 class="font-display-lg text-display-lg text-white mb-6 leading-tight">
+                        Advance your<br>structural<br>knowledge.
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-primary-fixed-variant max-w-md">
+                        Join Lumina Learning to access industry-leading curriculums and precision training environments.
+                    </p>
+</div>
+</div>
+<!-- Stats/Credibility -->
+<div class="relative z-10 flex gap-12 border-t border-on-primary-fixed-variant/30 pt-8 mt-auto">
+<div>
+<div class="font-code-sm text-code-sm text-tertiary-fixed mb-1">Modules</div>
+<div class="font-headline-lg text-headline-lg text-white">450+</div>
+</div>
+<div>
+<div class="font-code-sm text-code-sm text-tertiary-fixed mb-1">Uptime</div>
+<div class="font-headline-lg text-headline-lg text-white">99.9%</div>
+</div>
+</div>
+</section>
+<!-- Right Side: Registration Form -->
+<section class="w-full md:w-7/12 lg:w-1/2 flex items-center justify-center p-margin-mobile md:p-12 lg:p-24 bg-surface-card relative">
+<div class="w-full max-w-[480px]">
+<div class="mb-10 text-center md:text-left">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Create Account</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Already have an account? <a class="text-secondary font-semibold hover:underline transition-all" href="#">Log in here</a>
+</p>
+</div>
+<form class="space-y-6">
+<!-- Name Row -->
+<div class="flex flex-col sm:flex-row gap-4">
+<div class="flex-1 space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="firstName">First Name</label>
+<input class="w-full h-12 px-4 rounded font-body-md text-body-md bg-transparent border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all placeholder:text-outline" id="firstName" name="firstName" placeholder="Jane" required="" type="text">
+</div>
+<div class="flex-1 space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="lastName">Last Name</label>
+<input class="w-full h-12 px-4 rounded font-body-md text-body-md bg-transparent border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all placeholder:text-outline" id="lastName" name="lastName" placeholder="Doe" required="" type="text">
+</div>
+</div>
+<!-- Email -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="email">Work Email</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">mail</span>
+</div>
+<input class="w-full h-12 pl-12 pr-4 rounded font-body-md text-body-md bg-transparent border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all placeholder:text-outline" id="email" name="email" placeholder="jane.doe@company.com" required="" type="email">
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant flex justify-between" for="password">
+                            Password
+                            <span class="text-outline font-normal">Min. 12 characters</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">lock</span>
+</div>
+<input class="w-full h-12 pl-12 pr-12 rounded font-body-md text-body-md bg-transparent border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all placeholder:text-outline" id="password" minlength="12" name="password" placeholder="••••••••••••" required="" type="password">
+<button class="absolute inset-y-0 right-0 pr-4 flex items-center text-outline hover:text-on-surface-variant transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Locked Institution Selector -->
+<div class="space-y-2 pt-2 border-t border-border-subtle mt-6">
+<label class="font-label-md text-label-md text-on-surface-variant">Host Institution</label>
+<div class="flex items-center gap-3 p-4 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
+<span class="material-symbols-outlined text-secondary">corporate_fare</span>
+<span class="font-body-md text-body-md font-semibold flex-grow">Quantum Systems Research</span>
+<span class="material-symbols-outlined text-outline" title="Locked by invitation link">lock</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">Institution is locked based on your invitation link.</p>
+</div>
+<!-- Submit -->
+<div class="pt-6">
+<button class="w-full h-12 flex items-center justify-center gap-2 bg-secondary text-white rounded-lg font-label-md text-label-md hover:bg-secondary-container transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-secondary shadow-sm hover:shadow-md" type="submit">
+                            Create Account
+                            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-bg dark:bg-surface-bg w-full py-8 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4 border-t border-border-subtle dark:border-outline-variant flat no shadows mt-auto">
+<div class="font-headline-md text-headline-md text-on-surface flex items-center gap-2 opacity-50 grayscale">
+<span class="material-symbols-outlined filled-icon">school</span>
+<span class="text-sm font-semibold">Lumina Learning</span>
+</div>
+<nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:underline transition-all" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:underline transition-all" href="#">Help Center</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:underline transition-all" href="#">Cookie Settings</a>
+</nav>
+<div class="font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant text-center md:text-right">
+            © 2024 Lumina Learning. All rights reserved.
+        </div>
+</footer>
+</body></html>

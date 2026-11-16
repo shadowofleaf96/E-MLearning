@@ -28,5 +28,8 @@ dist
 *.sln
 *.sw?
 *.env
+*.env.*
 *.env.development
 *.env.production
+*.pem
+ca.pem

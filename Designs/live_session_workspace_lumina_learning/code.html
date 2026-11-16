@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Session | Lumina Learning</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#dae2fd",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "editor-bg": "#1E1E1E",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-container": "#e5eeff",
+                        "border-subtle": "#E2E8F0",
+                        "surface-dim": "#cbdbf5",
+                        "surface-card": "#FFFFFF",
+                        "surface": "#f8f9ff",
+                        "inverse-primary": "#bec6e0",
+                        "on-primary-container": "#7c839b",
+                        "surface-container-low": "#eff4ff",
+                        "outline": "#76777d",
+                        "tertiary-container": "#002113",
+                        "streak-orange": "#EF4444",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "inverse-surface": "#213145",
+                        "secondary-container": "#2170e4",
+                        "primary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed": "#6ffbbe",
+                        "secondary-fixed": "#d8e2ff",
+                        "outline-variant": "#c6c6cd",
+                        "surface-bg": "#F8FAFC",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-container": "#fefcff",
+                        "tertiary": "#000000",
+                        "on-surface": "#0b1c30",
+                        "primary": "#000000",
+                        "surface-tint": "#565e74",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-surface-variant": "#45464d",
+                        "on-background": "#0b1c30",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#009668",
+                        "background": "#f8f9ff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-lowest": "#ffffff",
+                        "xp-gold": "#F59E0B",
+                        "error": "#ba1a1a",
+                        "primary-container": "#131b2e",
+                        "on-secondary-fixed": "#001a42",
+                        "error-container": "#ffdad6",
+                        "secondary": "#0058be"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "section-gap": "64px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "base": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "code-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .video-gradient-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 40%);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E2E8F0;
+            border-radius: 10px;
+        }
+        .active-tab-indicator {
+            position: relative;
+        }
+        .active-tab-indicator::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #0058be;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+<nav class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-border-subtle dark:border-outline-variant shadow-sm dark:shadow-none flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface dark:text-inverse-on-surface">Lumina Learning</span>
+<div class="hidden md:flex gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors cursor-pointer active:opacity-80" href="#">My Courses</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors cursor-pointer active:opacity-80" href="#">Library</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed border-b-2 border-secondary dark:border-secondary-fixed pb-1 cursor-pointer active:opacity-80" href="#">Live Sessions</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors cursor-pointer active:opacity-80" href="#">Resources</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-low px-3 py-1.5 rounded-full gap-2 border border-border-subtle">
+<span class="material-symbols-outlined text-streak-orange" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">12 Day Streak</span>
+</div>
+<span class="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim cursor-pointer active:opacity-80">notifications</span>
+<span class="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim cursor-pointer active:opacity-80">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border-subtle">
+<img alt="User Profile" data-alt="A professional headshot of a female user with a friendly expression, captured in a brightly lit modern office setting. The photo has a clean, high-key lighting style that aligns with a premium corporate educational platform. Soft blue and white tones dominate the background to maintain consistency with the Lumina Learning brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEx7LcXJ2bunb72T-QmE52bag3ZkoBCXtNvTcNc2QG_X4aRxaYR9yeQREBPGZHHBQ-DhN-E4w4ct53sJ9bOZacv8I_aHhWKtQ0a_jckoiM7youySL7FDtU0zhGujjxj305T6nxgitpQkapl-Q0q6A_xX8XOr8oRgYFBQ7wUq9Fy0u-cTF8MqLjVFd68fE3lvSOtJ1XYwgvfPDbatI4bdHNfZMtr3-durCIHB-sMSxnoMOp6iRA0wtG_e93vNSpk7Xr_oAnXfb5JdQ"/>
+</div>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="flex flex-1 overflow-hidden h-[calc(100vh-64px)] bg-[#0f172a]">
+<!-- Left Side: Video Content Area -->
+<section class="flex-1 flex flex-col relative p-gutter">
+<!-- Session Header -->
+<header class="flex justify-between items-center mb-6 text-white">
+<div>
+<h1 class="font-headline-md text-headline-md">Advanced UI Patterns: Design Systems at Scale</h1>
+<div class="flex items-center gap-3 mt-1">
+<span class="font-body-sm text-body-sm text-slate-400">Instructor: Sarah Chen</span>
+<div class="flex items-center gap-1.5 bg-secondary/20 text-secondary-fixed border border-secondary/30 px-2.5 py-0.5 rounded-full">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="font-label-md text-label-md">Live • 124 Participating</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg transition-all border border-slate-700">
+<span class="material-symbols-outlined text-[20px]">rtt</span>
+<span class="font-label-md text-label-md">Recording</span>
+</button>
+<div class="flex -space-x-3">
+<img alt="Participant" class="w-8 h-8 rounded-full border-2 border-slate-900" data-alt="Close up portrait of a male student wearing glasses in a professional studio setting. Soft daylight from a window illuminates the scene, creating a clean and trustworthy look suitable for a high-end educational platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaKfv6TmPawEP4V9AMBHEmS9ccIMgQtnizCGlt2og6DjXKgBMYyTAYhQjngrGllw9OU20CpWGWKZnIN1cbtk_of0NtsV3bK9iaatMuVH1rwJ3G3H8CjsqQIH_kHicHz5pVF1mYkhEcaUVeg0QlAy--hLhOH-Bb7GAfYeNoYSpFTn3sNNPxCaCeNN-jCh68ffT-DeGh_lmfS0R79P0ot4hNOBom9lYAftciuf4TZ_OwaROIYQsqrkOdwvofRn7K7xiNUKFaiOPeyeY"/>
+<img alt="Participant" class="w-8 h-8 rounded-full border-2 border-slate-900" data-alt="Minimalist portrait of a professional man in a navy sweater against a neutral grey background. The lighting is balanced and crisp, evoking a sense of modern corporate reliability and focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJnq8MpoBg5aX8XM8iwr8PCQ480QFXJdSuFNJKU4aQkSVEoyREC3Gs9ttG0MXYngDlPFXPsmct1VAQm8W41d2tPbjyiQMxblbhRZP9a3i_S5vkyZWKooqrWDWDx9bAklojCFkNOmaKt3Ery8qFQmSqVl-D7o9kLZZkRPSonoGONBipXYkouB6QMcaNHsIkfe4FOlgBOTxLzUFSI723NNydN8xMRn0-wpKNvHortD6UKgLxEA-_71NUZAdfCTczqsEohKgvriHnTmo"/>
+<div class="w-8 h-8 rounded-full border-2 border-slate-900 bg-slate-700 flex items-center justify-center text-[10px] font-bold">+121</div>
+</div>
+</div>
+</header>
+<!-- Main Video Stage -->
+<div class="flex-1 min-h-0 relative rounded-xl overflow-hidden bg-black group shadow-2xl">
+<img alt="Shared Screen" class="w-full h-full object-cover opacity-90" data-alt="A high-resolution screen share showing a complex Figma design system workspace with colorful UI components, typography scales, and layout grids. The aesthetic is clean, technical, and professional, bathed in the soft glow of a designer's monitor in a dim, focused studio environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcnPFS9w1V7qs18FIRTl_uHWdfd4Dplq-FVg19ZO5vVDoqNLpFN_FnrGlenmjePNfsUhnUMyMOThNiTuJ5HHHJHxao1x0vA-5ENPhfjQ_Uhh8wHmDD52gVsdbUTnubTRWvam3OC0uXXr-8izPCn348I-WQW7wgd9jwRDpt2CMbwaqPbZJOsL9Pw56lzgJ2tM1op361c4sCFxMXqLmmpvMwkX9YCR83MG-85WHejz0ZKCrPl9bqbxYQKXO2uTA5Rvzy1cacT0t0hfQ"/>
+<div class="absolute inset-0 video-gradient-overlay pointer-events-none"></div>
+<!-- Floating Instructor View -->
+<div class="absolute top-4 right-4 w-48 aspect-video rounded-lg overflow-hidden border-2 border-slate-700/50 shadow-lg">
+<img alt="Instructor" class="w-full h-full object-cover" data-alt="A professional woman speaking confidently during a video call, wearing a smart casual blazer. She is in a well-lit home office with book-filled shelves in the background, creating an atmosphere of expertise and academic trust. The lighting is warm and natural." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqZrt09dF90GPeTVUXoQhCiOZGpCzxRa-g0bwIOprBrCnHfd_dUQ6GfwtXanaumgcIy8IjkpVCNUGYrQEaD3ixq7mAvbQfAn-GjidRlDHxHDvmqysL6D3BrYZeJI2NtZ53YUtxR-M03RbHdKuXCLmZVR2GHUCuHold_gh1xG8A-LmatnbSxbZ-GpFzFTqiXWtvAaT7ce2EXFZKd3eVNaTvjlSgsXqRx5Gp0DoqCCeZwFrClsXObA62FKpf32jDy7D_FMUiijmBuYo"/>
+<div class="absolute bottom-2 left-2 px-2 py-0.5 bg-black/60 rounded text-[10px] text-white font-medium uppercase tracking-wider">Instructor (Live)</div>
+</div>
+<!-- Active Speaker Label -->
+<div class="absolute bottom-6 left-6 flex items-center gap-3">
+<div class="bg-secondary px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-lg">
+<span class="material-symbols-outlined text-white text-[18px]">present_to_all</span>
+<span class="font-label-md text-label-md text-white">Sarah Chen's Screen</span>
+</div>
+</div>
+</div>
+<!-- Participant Grid (Bottom) -->
+<div class="mt-gutter flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+<div class="flex-shrink-0 w-44 aspect-video rounded-xl bg-slate-800 relative overflow-hidden border border-slate-700">
+<img alt="Participant" class="w-full h-full object-cover" data-alt="Portrait of a male student looking into a webcam in a modern apartment setting. The lighting is cool and professional, with a blurred background showing a clean workspace. The overall aesthetic is focused and academic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoyby0D4S2cQS53lV_E0-cK7099Nc-_hDCQrWp9XB0DkpRp2Xnb8ISlrL0TIU0m0hkW202uozBDpVCMo97jpkASbefowxGCKzhIihQt350xorD0cmb7_upObLwploVvCfpdJS4bT5gcD3h9yrBtakOloB8NciFEf_58bfV_D1ZoSqkFjOx045YnKj794Lapfqv28gwhZ6JO8GJMf5jE2MjxTueTsDLMtAp_O-WwMYIjsdG3sH3Ij4ywDXzyXkjLbmvLiJsfheCODQ"/>
+<div class="absolute bottom-1.5 left-1.5 text-[10px] text-white px-1.5 py-0.5 bg-black/40 rounded">Alex Rivera</div>
+</div>
+<div class="flex-shrink-0 w-44 aspect-video rounded-xl bg-slate-800 relative overflow-hidden border border-slate-700">
+<img alt="Participant" class="w-full h-full object-cover" data-alt="A focused female student in a brightly lit library environment, using a laptop. The lighting is crisp and even, highlighting her engaged expression. The scene is professional and reflects a high-utility learning environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg9doN4fkHT2f_PAMr97YtFBXdHv5Dqka6pajfyz5yDXX0wdsA6Ie4AGjghwodKXkqSGDGhJED9ariubJX-ID7VENnjSpu93LUbeHzd81Qi5bE1u-j4RSopLNglD5wal0X4nsPqSHnhNIpnD4zPJ7HA6LDM2QEWQhFb5pe7z5zn8GlKIXxn3nFt66kWFO-mNtW5tf4NGAYkcQouAG368Dd-ywZu5PLN9dy8teIYVe1RoVrR86O-diAz8oe3Ks9aPpOi0q8xL1up8c"/>
+<div class="absolute bottom-1.5 left-1.5 text-[10px] text-white px-1.5 py-0.5 bg-black/40 rounded">Jamie L.</div>
+</div>
+<div class="flex-shrink-0 w-44 aspect-video rounded-xl bg-slate-800 relative overflow-hidden border border-slate-700 flex flex-col items-center justify-center">
+<div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-slate-400 font-bold">MK</div>
+<div class="absolute bottom-1.5 left-1.5 text-[10px] text-white px-1.5 py-0.5 bg-black/40 rounded">Marcus K.</div>
+<span class="absolute top-1.5 right-1.5 material-symbols-outlined text-[16px] text-slate-500">mic_off</span>
+</div>
+<div class="flex-shrink-0 w-44 aspect-video rounded-xl bg-slate-800 relative overflow-hidden border border-slate-700">
+<img alt="Participant" class="w-full h-full object-cover" data-alt="Candid shot of a young professional woman attending a virtual lecture from a minimalist studio. High-key lighting highlights her concentration and the high-tech atmosphere of the space. Her workspace is clean and organized, echoing the precision-focused UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnf8LygJqbCYg-1dmQPprFPmUjLORPQjVdebHCkZjNxP8XUPzU08uLH4xBKvCh3WcSID0tbmm0Ll4mWcix59Nr5rgW-CCPX8HZPtIpTxac6i1brK2T95oZisjVnWg6SQgbClhHag9_3OivlAdy5Tf8qP0xNGsNeTN1auftAcBYZxQbxOWJZDQOYUexXTLu0K807K_RSXKhx1FjRVZwucXztkV-Ru-8koCdmucd7gUltlwUU-P0UAKPx6Tx-Y46uUyEMPbFZlCEsMk"/>
+<div class="absolute bottom-1.5 left-1.5 text-[10px] text-white px-1.5 py-0.5 bg-black/40 rounded">Elena Sato</div>
+</div>
+<div class="flex-shrink-0 w-44 aspect-video rounded-xl bg-slate-900/50 border-2 border-dashed border-slate-700 flex items-center justify-center text-slate-500 group hover:border-slate-500 cursor-pointer transition-colors">
+<span class="font-label-md text-label-md">View all (118)</span>
+</div>
+</div>
+<!-- Interaction Toolbar -->
+<div class="mt-auto flex justify-center py-4">
+<div class="flex items-center gap-4 bg-slate-900/80 backdrop-blur-xl border border-slate-700 px-6 py-3 rounded-2xl shadow-2xl">
+<button class="w-12 h-12 rounded-xl bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition-all active:scale-90" title="Mute Microphone">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="w-12 h-12 rounded-xl bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition-all active:scale-90" title="Turn Video Off">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<div class="w-[1px] h-8 bg-slate-700 mx-1"></div>
+<button class="w-12 h-12 rounded-xl bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition-all active:scale-90" title="Share Screen">
+<span class="material-symbols-outlined">screen_share</span>
+</button>
+<button class="w-12 h-12 rounded-xl bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition-all active:scale-90" title="Raise Hand">
+<span class="material-symbols-outlined">front_hand</span>
+</button>
+<button class="w-12 h-12 rounded-xl bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition-all active:scale-90" title="Reactions">
+<span class="material-symbols-outlined">mood</span>
+</button>
+<div class="w-[1px] h-8 bg-slate-700 mx-1"></div>
+<button class="px-6 h-12 rounded-xl bg-error hover:bg-red-700 text-white flex items-center gap-2 transition-all active:scale-95 font-label-md text-label-md" onclick="window.location.reload()">
+<span class="material-symbols-outlined text-[20px]">call_end</span>
+                        Leave Session
+                    </button>
+</div>
+</div>
+</section>
+<!-- Right Side: Sidebar Tabs -->
+<aside class="w-[380px] bg-white border-l border-border-subtle flex flex-col">
+<!-- Sidebar Tabs Header -->
+<div class="flex border-b border-border-subtle">
+<button class="flex-1 py-4 font-label-md text-label-md text-secondary active-tab-indicator flex items-center justify-center gap-2 transition-colors" id="tab-chat" onclick="switchTab('chat')">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+                    Chat
+                </button>
+<button class="flex-1 py-4 font-label-md text-label-md text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-2 transition-colors" id="tab-participants" onclick="switchTab('participants')">
+<span class="material-symbols-outlined text-[20px]">group</span>
+                    People
+                </button>
+<button class="flex-1 py-4 font-label-md text-label-md text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-2 transition-colors" id="tab-resources" onclick="switchTab('resources')">
+<span class="material-symbols-outlined text-[20px]">folder_open</span>
+                    Files
+                </button>
+</div>
+<!-- Chat Panel -->
+<div class="flex-1 flex flex-col p-4 overflow-hidden" id="panel-chat">
+<div class="flex-1 overflow-y-auto space-y-4 pr-2">
+<div class="flex gap-3">
+<img alt="Jamie L." class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9sQ9cV-yrewQp1B2MHpsqOU4hCvkFGvGpvdsBh54JvO9rOBDFO5M-ukE_TITzEkvw1dWAStd23gy4ycCg84ON1mycvFoG7Mr29db5Rbt4G7ctawSc_PCumdsvjcgM9yColJpllZ_oHA-_c6aKq3OKadPDSpG4DwOq6IyGgPHEefm6PPO_mpQrPRvUmBElGK2vhBOOj102R5sm6oZVTmQjNWfV-wvxwQAhiz4dx7WTmo6rRSjgjderBfo2VGg0neH-DweEz_mWmO4"/>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Jamie L.</span>
+<span class="text-[10px] text-on-surface-variant">2:14 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 bg-surface-container px-3 py-2 rounded-xl rounded-tl-none">Should we consider the accessibility tokens early in the design system build or as an audit later?</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-white text-[10px] font-bold">SC</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-secondary">Sarah Chen (Instructor)</span>
+<span class="text-[10px] text-on-surface-variant">2:15 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 bg-secondary-fixed-dim/20 px-3 py-2 rounded-xl rounded-tl-none border border-secondary/10">Great question, Jamie. Always early! We'll cover the 'A11y-First' token strategy in the next module.</p>
+</div>
+</div>
+<div class="flex gap-3">
+<img alt="Alex Rivera" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmfBt4nPDrWZydbDNtEfSiWHLfkHTcK8DXQKwbESWc8TZTxrI-yI7GtwRaxCDIGwRDN1XkEeotq4HVKnDxYg7pa3y31KuaeJxf9h1PTpLJhD2TxULzIjea0x-CM-jkmYOue_uJeTeuJUVjloWZMpJOwD2Xr7OyeYPVeivkPwkumqFqkpZeqpTgZZyHL3u6CwZ2HD3rgvRRu6XnKaMU3lNgDM9kf7IxAXETTUQBEY9_91eHnRvI1-pMkkLM0c21pwgKkIhsW_Pe00Q"/>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Alex Rivera</span>
+<span class="text-[10px] text-on-surface-variant">2:18 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 bg-surface-container px-3 py-2 rounded-xl rounded-tl-none">Thanks Sarah! The Figma file is really helpful for following along.</p>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="mt-4 pt-4 border-t border-border-subtle">
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 pl-4 pr-12 focus:ring-2 focus:ring-secondary/20 font-body-sm text-body-sm" placeholder="Type a message..." type="text"/>
+<button class="absolute right-2 text-secondary p-1.5 rounded-lg hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Participants Panel (Hidden) -->
+<div class="hidden flex-1 p-4 overflow-y-auto space-y-4" id="panel-participants">
+<div class="flex items-center justify-between p-2 hover:bg-surface-container rounded-lg transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white text-xs font-bold">SC</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Sarah Chen</p>
+<p class="text-[10px] text-secondary font-semibold uppercase">Host • Instructor</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300">mic</span>
+</div>
+<!-- More participants... -->
+<div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pt-4 pb-2">Students (123)</div>
+<div class="flex items-center justify-between p-2 hover:bg-surface-container rounded-lg transition-all">
+<div class="flex items-center gap-3">
+<img alt="Alex" class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANHpenRDyb5F5R9ThxXO9L7XVrBqgM4kO69gLurcKeW3A3x9Jh8zdOjlFlCxuSQg-d8_JExow5ZQvzkueKxlTGNxoeF2LRG3S0SkpMnr1vlLcGoc0F5ZPnJVG_UWagQXSyX6gLlnoEkpuNRCL2Pbx5VEGhhgnmy183watCB1cZAWqwX5ce5sVIPRg0Pi-Vw-ryAgSKuVeNT5u05IbjxdhhEyOZUp-PCbjtXgXVz34HJ2hhLX1BMLfibeWGezmgHnbmag07dbEs8BA"/>
+<p class="font-label-md text-label-md text-on-surface">Alex Rivera</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">mic</span>
+</div>
+<div class="flex items-center justify-between p-2 hover:bg-surface-container rounded-lg transition-all">
+<div class="flex items-center gap-3">
+<img alt="Jamie" class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQEEKsBxx-YS9mv02dg0_hPcaHA1d12i8Bi70vpG2PxCYpJo5cNIicf8ccrbEFqGvZVn_BbR1DAHFMWrfljPs8gsidCM2U048iaEvlQlDJ_-8t6x4UWxnANcbIpmLyE1S9uKWQtxBD1PFUH1D4u7XJPc_zGX3x_H8QXddAlNGvbtdbW51P_FLG9GCnWTmURmEgp2kVqyWxNNy0vWwznI2Q8nslbTM79hCvI-yyoSecgI5vBQPoNnYoiWJ5HucuSkP94elaWk-2Wl0"/>
+<p class="font-label-md text-label-md text-on-surface">Jamie L.</p>
+</div>
+<span class="material-symbols-outlined text-streak-orange">mic_off</span>
+</div>
+</div>
+<!-- Resources Panel (Hidden) -->
+<div class="hidden flex-1 p-4 space-y-4" id="panel-resources">
+<div class="p-4 border border-border-subtle rounded-xl hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-secondary transition-colors">Design_Systems_Checklist.pdf</h4>
+<p class="text-[10px] text-on-surface-variant">2.4 MB • Updated today</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">download</span>
+</div>
+</div>
+<div class="p-4 border border-border-subtle rounded-xl hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined">link</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-secondary transition-colors">Shared Figma Workspace</h4>
+<p class="text-[10px] text-on-surface-variant">External Link • figma.com</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary">open_in_new</span>
+</div>
+</div>
+<div class="mt-6">
+<h5 class="font-label-md text-label-md text-on-surface font-bold mb-3">Live Collaborative Notes</h5>
+<div class="bg-surface-container-low p-4 rounded-xl border border-border-subtle italic text-on-surface-variant font-body-sm text-body-sm">
+                        Students are currently documenting the key takeaways for the "A11y-First" section. Join the doc to contribute.
+                    </div>
+<button class="w-full mt-3 py-2 bg-secondary text-white rounded-lg font-label-md text-label-md hover:bg-blue-700 transition-colors">
+                        Join Shared Notes
+                    </button>
+</div>
+</div>
+</aside>
+</main>
+<script>
+        function switchTab(tabName) {
+            // Panels
+            const chatPanel = document.getElementById('panel-chat');
+            const participantsPanel = document.getElementById('panel-participants');
+            const resourcesPanel = document.getElementById('panel-resources');
+            
+            // Buttons
+            const chatBtn = document.getElementById('tab-chat');
+            const participantsBtn = document.getElementById('tab-participants');
+            const resourcesBtn = document.getElementById('tab-resources');
+
+            // Reset classes
+            [chatPanel, participantsPanel, resourcesPanel].forEach(p => p.classList.add('hidden'));
+            [chatBtn, participantsBtn, resourcesBtn].forEach(b => {
+                b.classList.remove('text-secondary', 'active-tab-indicator');
+                b.classList.add('text-on-surface-variant');
+            });
+
+            // Show active
+            if (tabName === 'chat') {
+                chatPanel.classList.remove('hidden');
+                chatBtn.classList.add('text-secondary', 'active-tab-indicator');
+                chatBtn.classList.remove('text-on-surface-variant');
+            } else if (tabName === 'participants') {
+                participantsPanel.classList.remove('hidden');
+                participantsBtn.classList.add('text-secondary', 'active-tab-indicator');
+                participantsBtn.classList.remove('text-on-surface-variant');
+            } else if (tabName === 'resources') {
+                resourcesPanel.classList.remove('hidden');
+                resourcesBtn.classList.add('text-secondary', 'active-tab-indicator');
+                resourcesBtn.classList.remove('text-on-surface-variant');
+            }
+        }
+
+        // Lightweight atmosphere: Micro-interaction for controls
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('scale-95');
+                setTimeout(() => this.classList.remove('scale-95'), 150);
+            });
+        });
+    </script>
+</body></html>

@@ -12,14 +12,15 @@ const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
   const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role');
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const role = localStorage.getItem('role') || sessionStorage.getItem('role');
 
     if (!token || !role || !allowedRoles.includes(role)) {
       if (pathname.includes('/admin')) {
         router.push('/admin/login');
       } else {
-        router.push('/login');
+        router.push('/student/login');
       }
     } else {
       setAuthorized(true);

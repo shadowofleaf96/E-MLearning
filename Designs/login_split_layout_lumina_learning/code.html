@@ -1,0 +1,242 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Login - Lumina Learning</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<!-- Tailwind CSS Setup -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-high": "#dce9ff",
+                        "editor-bg": "#1E1E1E",
+                        "primary-container": "#131b2e",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed": "#d8e2ff",
+                        "border-subtle": "#E2E8F0",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "xp-gold": "#F59E0B",
+                        "secondary": "#0058be",
+                        "on-error": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-container": "#009668",
+                        "background": "#f8f9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-surface-variant": "#45464d",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "tertiary-container": "#002113",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-card": "#FFFFFF",
+                        "on-surface": "#0b1c30",
+                        "inverse-primary": "#bec6e0",
+                        "on-primary-fixed": "#131b2e",
+                        "on-primary-container": "#7c839b",
+                        "on-error-container": "#93000a",
+                        "outline": "#76777d",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-surface": "#213145",
+                        "surface-bg": "#F8FAFC",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary": "#000000",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-tint": "#565e74",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-low": "#eff4ff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-secondary-fixed": "#001a42",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "outline-variant": "#c6c6cd",
+                        "primary": "#0f172a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#2170e4",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "primary-fixed-dim": "#bec6e0",
+                        "primary-fixed": "#dae2fd",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "streak-orange": "#EF4444"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "64px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "container-max": "1440px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-md": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400&display=swap');
+    </style>
+</head>
+<body class="bg-surface-bg text-on-surface min-h-screen flex flex-col font-body-md selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Split Screen Auth Canvas -->
+<main class="flex-grow flex w-full">
+<!-- Left Side: Dark Hero / Context (hidden on mobile) -->
+<div class="hidden lg:flex lg:w-1/2 relative bg-primary flex-col justify-between p-12 overflow-hidden">
+<!-- Background Image -->
+<img alt="Students studying together" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQFra_SPwQwCX_Xh5hHtSALFfNYVnyCTPw5TIiOM0HD4_Vj6k8B12xkbuKj2S9eW_jdHoRLNCsuTpVNYLdNP3mdZpuOAplXdD23bdRyfSzxMZ5SN_mb-GZ4K7OOOmG4yo8rEWxYsG2p0t3_XWHFJCFGiE2JgFgp_5W-fgRjhK3woxYdd6WRah4OQN3BotGrRk5qfSRZlJBm3yC8RRxSKvTVi0hDqAaJjVcKuF2AhDnY8Ql2ikWrwULZw2GT49BbPB6QOQxxatGBdk">
+<div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-primary/40 pointer-events-none"></div>
+<!-- Header -->
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-16">
+<span class="material-symbols-outlined text-white fill text-3xl">menu_book</span>
+<span class="font-headline-md text-headline-md font-bold text-white">Lumina Learning</span>
+</div>
+<div class="max-w-md">
+<h1 class="font-display-lg text-display-lg text-white mb-6">Welcome back to your center of excellence.</h1>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim">
+                        Sign in to access your premium modules, pick up where you left off, and track your progress across the Quantum Systems Research Portal.
+                    </p>
+</div>
+</div>
+<!-- Stats/Trust -->
+<div class="relative z-10 flex gap-8">
+<div>
+<div class="font-headline-md text-headline-md text-white mb-1">450+</div>
+<div class="font-body-sm text-body-sm text-primary-fixed-dim">Premium Modules</div>
+</div>
+<div class="w-px bg-primary-fixed-dim/30"></div>
+<div>
+<div class="font-headline-md text-headline-md text-white mb-1">99.9%</div>
+<div class="font-body-sm text-body-sm text-primary-fixed-dim">System Uptime</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Login Form -->
+<div class="w-full lg:w-1/2 flex flex-col justify-between bg-surface-bg p-8 sm:p-12 md:p-16">
+<div class="w-full max-w-sm mx-auto flex-grow flex flex-col justify-center">
+<!-- Mobile Logo (visible only on small screens) -->
+<div class="flex lg:hidden items-center gap-2 mb-12">
+<span class="material-symbols-outlined text-primary fill text-2xl">menu_book</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Lumina Learning</span>
+</div>
+<!-- Form Header -->
+<div class="mb-10">
+<div class="w-12 h-12 bg-surface-container-low rounded-lg flex items-center justify-center mb-6 border border-border-subtle">
+<span class="material-symbols-outlined text-primary text-[28px] fill">science</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Sign In</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Quantum Systems Research Portal</p>
+</div>
+<!-- Login Form -->
+<form action="#" class="space-y-5" method="POST">
+<!-- Email Field -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 bg-surface border border-border-subtle rounded-lg text-on-surface placeholder-outline-variant focus:ring-2 focus:ring-primary focus:border-primary transition-colors font-body-md text-body-md" id="email" name="email" placeholder="Enter your email" required="" type="email">
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<a class="font-label-md text-label-md text-primary hover:underline transition-all" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">lock</span>
+</div>
+<input class="block w-full pl-10 pr-10 py-2.5 bg-surface border border-border-subtle rounded-lg text-on-surface placeholder-outline-variant focus:ring-2 focus:ring-primary focus:border-primary transition-colors font-body-md text-body-md" id="password" name="password" placeholder="Enter your password" required="" type="password">
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline-variant hover:text-on-surface transition-colors" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="visibility-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center pt-2">
+<input class="h-4 w-4 text-primary border-border-subtle rounded focus:ring-primary cursor-pointer bg-surface" id="remember-me" name="remember-me" type="checkbox">
+<label class="ml-2 block font-body-sm text-body-sm text-on-surface-variant cursor-pointer" for="remember-me">
+                            Remember me
+                        </label>
+</div>
+<!-- Submit Button -->
+<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm font-label-md text-label-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors mt-6" type="submit">
+                        Sign In
+                    </button>
+</form>
+<!-- Request Access -->
+<div class="mt-8 text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Don't have an account? 
+                        <a class="font-label-md text-label-md text-primary hover:underline transition-all ml-1" href="#">Request access</a>
+</p>
+</div>
+</div>
+<!-- Simplified Auth Footer -->
+<footer class="w-full pt-8 mt-auto flex justify-center gap-6 font-body-sm text-body-sm text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+</footer>
+</div>
+</main>
+<!-- Scripts -->
+<script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const visibilityIcon = document.getElementById('visibility-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                visibilityIcon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                visibilityIcon.textContent = 'visibility';
+            }
+        }
+    </script>
+</body></html>

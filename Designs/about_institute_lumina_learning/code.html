@@ -1,0 +1,392 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Quantum Systems Research | Lumina Learning</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#131b2e",
+                        "on-primary-fixed": "#131b2e",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-bg": "#F8FAFC",
+                        "on-background": "#0b1c30",
+                        "surface-container": "#e5eeff",
+                        "on-secondary-fixed-variant": "#004395",
+                        "surface-card": "#FFFFFF",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#eff4ff",
+                        "outline": "#76777d",
+                        "background": "#f8f9ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-secondary-fixed": "#001a42",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "xp-gold": "#F59E0B",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c6c6cd",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary": "#000000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "streak-orange": "#EF4444",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "secondary": "#0058be",
+                        "border-subtle": "#E2E8F0",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "surface-variant": "#d3e4fe",
+                        "tertiary": "#000000",
+                        "on-tertiary-fixed": "#002113",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-tint": "#565e74",
+                        "inverse-primary": "#bec6e0",
+                        "secondary-container": "#2170e4",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-container": "#009668",
+                        "surface": "#f8f9ff",
+                        "inverse-surface": "#213145",
+                        "editor-bg": "#1E1E1E",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#002113",
+                        "on-primary-container": "#7c839b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "margin-desktop": "40px",
+                        "base": "4px",
+                        "section-gap": "64px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Ambient shadow for interactive cards */
+        .card-hover:hover {
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+            transform: translateY(-2px);
+        }
+        .card-hover {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-surface-bg text-on-background font-body-md antialiased">
+<!-- Shared TopNavBar -->
+<header class="bg-surface-container-lowest border-b border-border-subtle sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16">
+<!-- Brand -->
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-secondary flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined icon-fill">school</span>
+</div>
+<span class="text-headline-md font-headline-md font-bold text-on-background">Lumina Learning</span>
+</div>
+<!-- Nav Links -->
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors duration-200" href="#">Explore</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors duration-200" href="#">Pricing</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-secondary transition-colors duration-200" href="#">Enterprise</a>
+<a class="text-secondary font-body-md text-body-md font-bold border-b-2 border-secondary pb-1 hover:text-secondary transition-colors duration-200" href="#">About</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<a class="hidden md:block text-on-background font-body-md text-body-md hover:text-secondary transition-colors duration-200" href="#">Sign In</a>
+<a class="bg-secondary text-on-secondary px-4 py-2 rounded-lg font-body-md text-body-md hover:bg-secondary-container transition-colors duration-200" href="#">Get Started</a>
+</div>
+</div>
+</header>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="bg-surface-card border-b border-border-subtle pt-12 pb-16 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 text-on-surface-variant mb-8">
+<a class="font-body-sm text-body-sm hover:text-secondary" href="#">Home</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="font-body-sm text-body-sm hover:text-secondary" href="#">Institutes</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-body-sm text-body-sm text-on-background">Quantum Systems Research</span>
+</nav>
+<div class="max-w-3xl">
+<h1 class="font-display-lg text-display-lg text-on-background mb-6">Quantum Systems Research</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Pioneering the future of computational sciences through rigorous academic inquiry, advanced algorithm design, and applied technological innovation.</p>
+<div class="flex gap-4">
+<button class="bg-secondary text-on-secondary px-6 py-3 rounded-lg font-body-md text-body-md hover:bg-secondary-container transition-colors duration-200 flex items-center gap-2">
+                            View Courses
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="bg-surface-container text-on-background px-6 py-3 rounded-lg font-body-md text-body-md border border-border-subtle hover:bg-surface-container-high transition-colors duration-200">
+                            Research Papers
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Banner -->
+<section class="border-b border-border-subtle bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-border-subtle">
+<div class="flex flex-col px-4 text-center">
+<span class="font-display-lg text-headline-lg md:text-display-lg text-secondary">24k+</span>
+<span class="font-label-md text-label-md text-on-surface-variant mt-2">Active Students</span>
+</div>
+<div class="flex flex-col px-4 text-center">
+<span class="font-display-lg text-headline-lg md:text-display-lg text-secondary">15</span>
+<span class="font-label-md text-label-md text-on-surface-variant mt-2">Years of Excellence</span>
+</div>
+<div class="flex flex-col px-4 text-center">
+<span class="font-display-lg text-headline-lg md:text-display-lg text-secondary">120</span>
+<span class="font-label-md text-label-md text-on-surface-variant mt-2">Advanced Courses</span>
+</div>
+<div class="flex flex-col px-4 text-center">
+<span class="font-display-lg text-headline-lg md:text-display-lg text-secondary">98%</span>
+<span class="font-label-md text-label-md text-on-surface-variant mt-2">Placement Rate</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission & Vision Bento Grid -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Main Mission Card -->
+<div class="lg:col-span-2 bg-surface-card rounded-xl border border-border-subtle p-8 md:p-12 card-hover flex flex-col justify-center relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-surface-container rounded-full blur-3xl opacity-50 -mr-20 -mt-20 pointer-events-none"></div>
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">explore</span>
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Our Mission</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        To demystify complex systems and empower the next generation of engineers, data scientists, and theorists. We believe that rigorous foundational knowledge, paired with hands-on application in modern environments, is the key to unlocking technological breakthroughs.
+                    </p>
+</div>
+<!-- Vision & History Stack -->
+<div class="flex flex-col gap-gutter">
+<div class="bg-surface-card rounded-xl border border-border-subtle p-8 card-hover flex-1">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary">visibility</span>
+<h3 class="font-headline-md text-headline-md text-on-background">Vision</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Establishing a global standard for computational literacy, where abstract theory seamlessly translates into scalable, real-world solutions.
+                        </p>
+</div>
+<div class="bg-surface-container-low rounded-xl border border-border-subtle p-8 card-hover flex-1">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-on-background">history_edu</span>
+<h3 class="font-headline-md text-headline-md text-on-background">History</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                            Founded in 2009 by a collective of researchers, QSR has evolved from a boutique theoretical workshop into a leading provider of enterprise-grade technical education.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Faculty Section -->
+<section class="bg-surface-container-lowest border-y border-border-subtle py-section-gap px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-2">Lead Faculty</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Learn directly from industry pioneers and published researchers.</p>
+</div>
+<button class="hidden md:flex text-secondary font-label-md text-label-md items-center gap-1 hover:underline">
+                        View All Instructors
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Faculty Card 1 -->
+<div class="bg-surface-card border border-border-subtle rounded-xl overflow-hidden card-hover">
+<div class="aspect-square bg-surface-container w-full relative">
+<img alt="Faculty member portrait" class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged male academic with a neat beard, wearing a sharp navy blazer over a crisp white shirt. The background is a brightly lit, modern minimalist office with subtle glass partitions. The lighting is soft and natural, emphasizing a trustworthy, highly competent, and corporate-scholarly aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgPlVqCMppgLvGycAjL8huAAsx3yvgYDT3b4IXaJIkmzw1lIYELW5XHhxcAyvP57qiApSAiyLalnEMtdOSUZYNHnPuF0jCNCxgRUvI2OCxPqoCil4xi8GeR_6e5sgwcW839wa_2DF7FpPAolnzZk_b-34voIvIViVjiAUhLutTg8sXx_vWSHOBI-tXSxxia__faiL6RosUhdG4AUEoQ30LHiW2n1Uu6NOY6cCdSElzZegpol1mGN4gK51wxESq54ecFmVDIweTI1Q">
+</div>
+<div class="p-6">
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Dr. Aris Thorne</h3>
+<p class="font-label-md text-label-md text-secondary mb-4">Head of Distributed Systems</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Former lead architect at major cloud providers, specializing in high-throughput microservice architectures.</p>
+</div>
+</div>
+<!-- Faculty Card 2 -->
+<div class="bg-surface-card border border-border-subtle rounded-xl overflow-hidden card-hover">
+<div class="aspect-square bg-surface-container w-full relative">
+<img alt="Faculty member portrait" class="w-full h-full object-cover" data-alt="A professional headshot of a mature female academic with glasses, wearing a tailored grey blazer. The background is a brightly lit, modern minimalist office with subtle glass partitions. The lighting is soft and natural, emphasizing a trustworthy, highly competent, and corporate-scholarly aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo-IQLPaVfp-5bp-Ha2kCTCt1IuLbjK_SEIbVAslVYqRGXRDd0mP9UhKheqEpQybzmveJDHW7gpBCliPNR2E11xL_PahA_22d-hpTA-45l6svBVYaXfXgfcM0W8w1TR7tGsbFB74GGYplnnVUreoldNoD-ewy-Vi4sBAPQUW8PpZoritdT-ygllSgMFYxYRn4K0AFeGG4xR24xi-nnfOohFQZOfq6zDphwC-Ixg7ru_bmcqdxZMENmSxXK6wo8z0pZJDmS4vXIJcI">
+</div>
+<div class="p-6">
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Dr. Elena Rostova</h3>
+<p class="font-label-md text-label-md text-secondary mb-4">Director of Machine Learning</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Published author on deep learning optimization. Focuses on pragmatic AI implementation for enterprise.</p>
+</div>
+</div>
+<!-- Faculty Card 3 -->
+<div class="bg-surface-card border border-border-subtle rounded-xl overflow-hidden card-hover">
+<div class="aspect-square bg-surface-container w-full relative">
+<img alt="Faculty member portrait" class="w-full h-full object-cover" data-alt="A professional headshot of a younger male academic, wearing a smart casual light blue button-down shirt. The background is a brightly lit, modern minimalist office with subtle glass partitions. The lighting is soft and natural, emphasizing a trustworthy, highly competent, and corporate-scholarly aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4jPWbGd6jQ6_VMAXL_91M1bLPIUp80HMTOlkfnY48xCsY1HAi0t-5qNXuhctGvogsw4JtTpVR7FdHCEE3-pnD_Z6gX-R_Sw0LXLNWMz1rwAHestVRqjmIsVuH19cxcz0WZFbs0osvpFAl83otresULr6zjz_-L81-z1xAwg_010P8_Btr6HcXKOWYpvvCy1s8cdCxtj1PfB--OFG5KpaZwspoE8yCrWz6xrFdNQUBNHnMQQivmqEzS6GWo3oe3wNyreQeG37o5n0">
+</div>
+<div class="p-6">
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Marcus Chen</h3>
+<p class="font-label-md text-label-md text-secondary mb-4">Lead Instructor, Cryptography</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Security consultant and open-source contributor. Teaches modern cryptographic protocols and secure coding.</p>
+</div>
+</div>
+<!-- Faculty Card 4 -->
+<div class="bg-surface-card border border-border-subtle rounded-xl overflow-hidden card-hover">
+<div class="aspect-square bg-surface-container w-full relative">
+<img alt="Faculty member portrait" class="w-full h-full object-cover" data-alt="A professional headshot of a young female academic, wearing a minimalist black turtleneck. The background is a brightly lit, modern minimalist office with subtle glass partitions. The lighting is soft and natural, emphasizing a trustworthy, highly competent, and corporate-scholarly aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlK9D0UPa87E8AeYHRmooGNBaiWHoc1zeeOjyFkBkpwCvqZ7-4e34LtfkHwVFK0_QbmQwlLohRtdzCELw5kr0pMS04PGeEDGa0uNhUws-_9uI7PlBbh8G_UePp-4DXK0nhdMLAIr6UguplDzv0iydOBBZdPgtSHCu67YV3ZafosR0riGY05-I8EXfYDzmMoG_rd3d0p-dnydrsePTCTqGJZhVtXHCoO_f7827qfp51j9MRPKhyjhlrRWpPcpU-boeSycKF-t6ubQI">
+</div>
+<div class="p-6">
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Sarah Jenkins</h3>
+<p class="font-label-md text-label-md text-secondary mb-4">Senior Data Scientist</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Expert in statistical modeling and data visualization. Bridges the gap between complex data and business strategy.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+<!-- Contact Info & Map -->
+<div class="flex flex-col gap-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Get in Touch</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Have questions about our curriculum or enterprise training programs? Our admissions team is here to help.</p>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<h4 class="font-headline-md text-[18px] text-on-background">Campus Headquarters</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">400 Innovation Drive, Tech Park<br>San Francisco, CA 94105</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<h4 class="font-headline-md text-[18px] text-on-background">General Inquiries</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">admissions@quantumsystems.edu</p>
+</div>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="w-full h-64 bg-surface-dim rounded-xl border border-border-subtle overflow-hidden relative" data-location="San Francisco Innovation District">
+<div class="absolute inset-0 flex items-center justify-center text-on-surface-variant font-label-md flex-col gap-2">
+<span class="material-symbols-outlined text-4xl">map</span>
+                            Map View: San Francisco
+                        </div>
+</div>
+</div>
+<!-- Inquiry Form -->
+<div class="bg-surface-card rounded-xl border border-border-subtle p-8 shadow-[0_4px_12px_rgba(15,23,42,0.02)]">
+<h3 class="font-headline-md text-headline-md text-on-background mb-6">Send an Inquiry</h3>
+<form class="flex flex-col gap-5" onsubmit="event.preventDefault();">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-background" for="firstName">First Name</label>
+<input class="w-full bg-surface-bg border border-border-subtle rounded-lg px-4 py-2 font-body-md text-body-md text-on-background focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors outline-none" id="firstName" placeholder="Jane" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-background" for="lastName">Last Name</label>
+<input class="w-full bg-surface-bg border border-border-subtle rounded-lg px-4 py-2 font-body-md text-body-md text-on-background focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors outline-none" id="lastName" placeholder="Doe" type="text">
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-background" for="email">Work Email</label>
+<input class="w-full bg-surface-bg border border-border-subtle rounded-lg px-4 py-2 font-body-md text-body-md text-on-background focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors outline-none" id="email" placeholder="jane@company.com" type="email">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-background" for="interest">Area of Interest</label>
+<select class="w-full bg-surface-bg border border-border-subtle rounded-lg px-4 py-2 font-body-md text-body-md text-on-background focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors outline-none appearance-none" id="interest">
+<option>Individual Courses</option>
+<option>Enterprise Team Training</option>
+<option>Degree Programs</option>
+<option>Other</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-background" for="message">Message</label>
+<textarea class="w-full bg-surface-bg border border-border-subtle rounded-lg px-4 py-2 font-body-md text-body-md text-on-background focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors outline-none resize-none" id="message" placeholder="How can we help you?" rows="4"></textarea>
+</div>
+<button class="bg-secondary text-on-secondary w-full py-3 rounded-lg font-body-md text-body-md font-medium hover:bg-secondary-container transition-colors duration-200 mt-2" type="submit">
+                            Submit Inquiry
+                        </button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Shared Footer -->
+<footer class="bg-surface-container-low border-t border-border-subtle w-full py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
+<div class="flex flex-col gap-4">
+<span class="text-headline-sm font-headline-md font-bold text-on-background">Lumina Learning</span>
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 Lumina Learning. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Cookie Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Careers</a>
+</div>
+</footer>
+</body></html>

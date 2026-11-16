@@ -1,0 +1,433 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>EduStudio - Coding Challenge Builder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-card": "#FFFFFF",
+                        "xp-gold": "#F59E0B",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed-variant": "#004395",
+                        "editor-bg": "#1E1E1E",
+                        "inverse-primary": "#bec6e0",
+                        "primary": "#000000",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#009668",
+                        "surface-bg": "#F8FAFC",
+                        "on-surface": "#0b1c30",
+                        "primary-fixed-dim": "#bec6e0",
+                        "tertiary": "#000000",
+                        "surface-container-high": "#dce9ff",
+                        "streak-orange": "#EF4444",
+                        "outline": "#76777d",
+                        "surface-container": "#e5eeff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-background": "#0b1c30",
+                        "inverse-surface": "#213145",
+                        "tertiary-container": "#002113",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed": "#002113",
+                        "outline-variant": "#c6c6cd",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-low": "#eff4ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-secondary-container": "#fefcff",
+                        "on-secondary-fixed": "#001a42",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "secondary": "#0058be",
+                        "surface-tint": "#565e74",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#131b2e",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface": "#f8f9ff",
+                        "secondary-container": "#2170e4",
+                        "surface-variant": "#d3e4fe",
+                        "border-subtle": "#E2E8F0",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-primary-container": "#7c839b",
+                        "primary-fixed": "#dae2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "section-gap": "64px",
+                        "container-max": "1440px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "code-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "code-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom scrollbar for editors */
+        .editor-scroll::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .editor-scroll::-webkit-scrollbar-track {
+            background: #1E1E1E;
+        }
+        .editor-scroll::-webkit-scrollbar-thumb {
+            background: #45464d;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-surface-bg font-body-md text-on-surface antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="bg-surface-card h-16 fixed top-0 right-0 left-0 md:left-[280px] z-40 border-b border-border-subtle flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full transition-all duration-300">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Toggle (hidden on desktop) -->
+<button class="md:hidden text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-md text-headline-md text-primary">EduStudio - Instructor Portal</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Header Actions -->
+<div class="hidden sm:flex items-center gap-3 mr-4">
+<button class="px-4 py-2 rounded-lg border border-border-subtle text-on-surface-variant hover:border-secondary hover:text-secondary font-label-md text-label-md transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                    Preview Challenge
+                </button>
+<button class="px-4 py-2 rounded-lg font-label-md text-label-md transition-colors shadow-sm flex items-center gap-2 bg-tertiary-container text-on-tertiary-container border-none"><span class="material-symbols-outlined text-[18px]">check_circle</span>Challenge Saved</button>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:opacity-80 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-streak-orange rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="bg-surface-bg w-[280px] h-screen fixed left-0 top-0 border-r border-border-subtle hidden md:flex flex-col py-6 px-4 z-50">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center text-on-secondary font-bold text-lg">E</div>
+<div>
+<div class="font-headline-md text-headline-md text-primary leading-tight">EduStudio</div>
+<div class="text-label-md font-label-md text-on-surface-variant">Instructor Portal</div>
+</div>
+</div>
+<button class="w-full mb-8 py-3 px-4 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md shadow-sm hover:bg-secondary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            Create New Course
+        </button>
+<div class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container font-body-md text-body-md transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary font-bold border-l-4 border-secondary bg-surface-container-low font-body-md text-body-md transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined icon-fill">edit_note</span>
+                Course Builder
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container font-body-md text-body-md transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Student Analytics
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container font-body-md text-body-md transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-auto pt-4 border-t border-border-subtle">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container font-body-md text-body-md transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help Center
+            </a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-[280px] pt-16 min-h-screen">
+<div class="max-w-container-max mx-auto p-margin-mobile md:p-margin-desktop">
+<!-- Page Header -->
+<div class="mb-section-gap">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md mb-2">
+<a class="hover:text-secondary" href="#">Courses</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-secondary" href="#">Data Structures 101</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary">New Challenge</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary">Coding Challenge Builder</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Design, configure, and validate coding exercises for your students.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Core Setup -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- 1. Challenge Header -->
+<section class="bg-surface-card rounded-xl border border-border-subtle p-6 hover:shadow-[0_4px_12px_rgba(15,23,42,0.05)] transition-shadow">
+<h2 class="font-headline-md text-headline-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">title</span>
+                            Challenge Basics
+                        </h2>
+<div class="space-y-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Challenge Title</label>
+<input class="w-full px-4 py-2.5 rounded-lg border border-border-subtle bg-surface-card focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-body-md text-body-md text-on-surface placeholder:text-outline-variant transition-colors" placeholder="e.g., Array Manipulation" type="text">
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Difficulty Level</label>
+<select class="w-full px-4 py-2.5 rounded-lg border border-border-subtle bg-surface-card focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-body-md text-body-md text-on-surface appearance-none">
+<option>Beginner</option>
+<option selected="">Intermediate</option>
+<option>Advanced</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Reward Points (XP)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-xp-gold text-[18px]">stars</span>
+<input class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border-subtle bg-surface-card focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-body-md text-body-md text-on-surface transition-colors" type="number" value="150">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Problem Statement -->
+<section class="bg-surface-card rounded-xl border border-border-subtle p-6 hover:shadow-[0_4px_12px_rgba(15,23,42,0.05)] transition-shadow">
+<div class="flex justify-between items-center mb-4">
+<h2 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">description</span>
+                                Problem Statement
+                            </h2>
+<div class="flex gap-2">
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">code</span></button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+</div>
+</div>
+<div class="border border-border-subtle rounded-lg overflow-hidden focus-within:border-secondary focus-within:ring-1 focus-within:ring-secondary transition-colors">
+<textarea class="w-full p-4 bg-surface-card border-none focus:ring-0 font-body-md text-body-md text-on-surface resize-y" placeholder="Describe the problem clearly...
+
+Constraints:
+- 1 &lt;= N &lt;= 10^5
+
+Example:
+Input: [1, 2, 3]
+Output: 6" rows="8"></textarea>
+</div>
+</section>
+<!-- 4. Code Editors (Starter & Solution) -->
+<section class="bg-surface-card rounded-xl border border-border-subtle overflow-hidden hover:shadow-[0_4px_12px_rgba(15,23,42,0.05)] transition-shadow">
+<div class="border-b border-border-subtle bg-surface-bg px-6 py-4 flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">terminal</span>
+                                Workspace
+                            </h2>
+<div class="flex gap-2 bg-surface-card p-1 rounded-lg border border-border-subtle">
+<button class="px-3 py-1 rounded bg-secondary text-on-secondary font-label-md text-label-md shadow-sm">Solution Code</button>
+<button class="px-3 py-1 rounded hover:bg-surface-container text-on-surface-variant font-label-md text-label-md">Starter Code</button>
+</div>
+</div>
+<div class="bg-editor-bg h-[400px] flex flex-col font-code-sm text-code-sm text-surface-dim">
+<div class="flex px-4 py-2 bg-[#252526] border-b border-[#333] text-[#9CDCFE]">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-xp-gold">javascript</span> solution.js</span>
+</div>
+<div class="p-4 overflow-y-auto editor-scroll flex-1">
+<pre><code><span class="text-[#569CD6]">function</span> <span class="text-[#DCDCAA]">arrayManipulation</span>(<span class="text-[#9CDCFE]">n</span>, <span class="text-[#9CDCFE]">queries</span>) {
+    <span class="text-[#6A9955]">// Initialize array with zeros</span>
+    <span class="text-[#569CD6]">const</span> <span class="text-[#4FC1FF]">arr</span> = <span class="text-[#569CD6]">new</span> <span class="text-[#4EC9B0]">Array</span>(n + <span class="text-[#B5CEA8]">1</span>).fill(<span class="text-[#B5CEA8]">0</span>);
+    
+    <span class="text-[#6A9955]">// Add values at boundaries</span>
+    <span class="text-[#C586C0]">for</span> (<span class="text-[#569CD6]">let</span> <span class="text-[#9CDCFE]">i</span> = <span class="text-[#B5CEA8]">0</span>; i &lt; queries.length; i++) {
+        <span class="text-[#569CD6]">const</span> [a, b, k] = queries[i];
+        arr[a - <span class="text-[#B5CEA8]">1</span>] += k;
+        <span class="text-[#C586C0]">if</span> (b &lt; n) {
+            arr[b] -= k;
+        }
+    }
+    
+    <span class="text-[#569CD6]">let</span> <span class="text-[#9CDCFE]">max</span> = <span class="text-[#B5CEA8]">0</span>;
+    <span class="text-[#569CD6]">let</span> <span class="text-[#9CDCFE]">current</span> = <span class="text-[#B5CEA8]">0</span>;
+    
+    <span class="text-[#C586C0]">for</span> (<span class="text-[#569CD6]">let</span> <span class="text-[#9CDCFE]">i</span> = <span class="text-[#B5CEA8]">0</span>; i &lt; n; i++) {
+        current += arr[i];
+        <span class="text-[#C586C0]">if</span> (current &gt; max) max = current;
+    }
+    
+    <span class="text-[#C586C0]">return</span> max;
+}</code></pre>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Settings & Test Cases -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- 3. Configuration & Selection -->
+<section class="bg-surface-card rounded-xl border border-border-subtle p-6 hover:shadow-[0_4px_12px_rgba(15,23,42,0.05)] transition-shadow">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-4 border-b border-border-subtle pb-2">Environment Config</h3>
+<div class="space-y-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Primary Language</label>
+<select class="w-full px-4 py-2 rounded-lg border border-border-subtle bg-surface-card focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-body-sm text-body-sm text-on-surface">
+<option selected="">JavaScript (Node.js)</option>
+<option>Python 3</option>
+<option>Java 17</option>
+<option>C++</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Time Limit</label>
+<div class="flex items-center">
+<input class="w-full px-3 py-2 rounded-l-lg border border-r-0 border-border-subtle bg-surface-card focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-body-sm text-body-sm text-on-surface" type="number" value="2000">
+<span class="bg-surface-bg border border-border-subtle px-3 py-2 rounded-r-lg font-label-md text-label-md text-on-surface-variant">ms</span>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1">Memory Limit</label>
+<div class="flex items-center">
+<input class="w-full px-3 py-2 rounded-l-lg border border-r-0 border-border-subtle bg-surface-card focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-body-sm text-body-sm text-on-surface" type="number" value="256">
+<span class="bg-surface-bg border border-border-subtle px-3 py-2 rounded-r-lg font-label-md text-label-md text-on-surface-variant">MB</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Test Case Management -->
+<section class="bg-surface-card rounded-xl border border-border-subtle p-6 hover:shadow-[0_4px_12px_rgba(15,23,42,0.05)] transition-shadow flex-1 flex flex-col">
+<div class="flex justify-between items-center mb-4 border-b border-border-subtle pb-2">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Test Cases</h3>
+<span class="bg-surface-container text-secondary px-2 py-0.5 rounded text-xs font-bold">3 Added</span>
+</div>
+<div class="space-y-3 mb-4 overflow-y-auto max-h-[400px] pr-2">
+<!-- Test Case 1 -->
+<div class="border border-border-subtle rounded-lg p-3 bg-surface-bg relative group">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-primary">Test Case #1</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" title="Validated">check_circle</span>
+<button class="text-on-surface-variant hover:text-error opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 font-code-sm text-code-sm text-xs">
+<div class="bg-surface-card p-2 rounded border border-border-subtle">
+<div class="text-outline text-[10px] mb-1 uppercase">Input</div>
+<div class="text-on-surface truncate">5 3\n1 2 100\n2 5 100\n3 4 100</div>
+</div>
+<div class="bg-surface-card p-2 rounded border border-border-subtle">
+<div class="text-outline text-[10px] mb-1 uppercase">Output</div>
+<div class="text-on-surface truncate">200</div>
+</div>
+</div>
+</div>
+<!-- Test Case 2 -->
+<div class="border border-border-subtle rounded-lg p-3 bg-surface-bg relative group">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-primary flex items-center gap-1">
+                                        Test Case #2
+                                        <span class="material-symbols-outlined text-[14px] text-on-surface-variant" title="Hidden Test">visibility_off</span>
+</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" title="Validated">check_circle</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 font-code-sm text-code-sm text-xs">
+<div class="bg-surface-card p-2 rounded border border-border-subtle">
+<div class="text-outline text-[10px] mb-1 uppercase">Input</div>
+<div class="text-on-surface truncate">10 4\n...</div>
+</div>
+<div class="bg-surface-card p-2 rounded border border-border-subtle">
+<div class="text-outline text-[10px] mb-1 uppercase">Output</div>
+<div class="text-on-surface truncate">350</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Add New Test Case Form -->
+<div class="mt-auto pt-4 border-t border-border-subtle border-dashed">
+<h4 class="font-label-md text-label-md text-primary mb-2">Add New Test Case</h4>
+<div class="space-y-2 mb-3">
+<textarea class="w-full px-3 py-2 rounded-lg border border-border-subtle bg-surface-card focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-code-sm text-code-sm text-on-surface resize-none" placeholder="Standard Input" rows="2"></textarea>
+<textarea class="w-full px-3 py-2 rounded-lg border border-border-subtle bg-surface-card focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary font-code-sm text-code-sm text-on-surface resize-none" placeholder="Expected Output" rows="2"></textarea>
+</div>
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant cursor-pointer">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox">
+                                    Hidden from students
+                                </label>
+<button class="px-3 py-1.5 rounded-lg border border-secondary text-secondary hover:bg-surface-container font-label-md text-label-md transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                                    Add
+                                </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Bottom Action Bar (Mobile mostly, visible on desktop as secondary) -->
+<div class="mt-8 flex justify-end gap-4 pb-12 md:hidden">
+<button class="px-6 py-3 rounded-lg border border-border-subtle text-on-surface font-label-md text-label-md w-full">Cancel</button>
+<button class="px-6 py-3 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md shadow-sm w-full">Save Draft</button>
+</div>
+</div>
+</main>
+
+
+</body></html>

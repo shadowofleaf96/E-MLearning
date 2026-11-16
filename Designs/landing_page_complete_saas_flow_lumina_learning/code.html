@@ -1,0 +1,581 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Lumina Learning | Master Your Future</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#565e74",
+                    "on-surface-variant": "#45464d",
+                    "tertiary": "#000000",
+                    "surface-container-high": "#dce9ff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-tertiary-fixed": "#002113",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#0b1c30",
+                    "outline": "#76777d",
+                    "on-tertiary-container": "#009668",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#bec6e0",
+                    "border-subtle": "#E2E8F0",
+                    "surface-container-highest": "#d3e4fe",
+                    "error": "#ba1a1a",
+                    "xp-gold": "#F59E0B",
+                    "on-secondary-fixed": "#001a42",
+                    "on-secondary-container": "#fefcff",
+                    "tertiary-container": "#002113",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary-fixed-variant": "#004395",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#2170e4",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "secondary-fixed": "#d8e2ff",
+                    "background": "#f8f9ff",
+                    "on-primary-fixed": "#131b2e",
+                    "inverse-surface": "#213145",
+                    "primary-container": "#131b2e",
+                    "editor-bg": "#1E1E1E",
+                    "surface-container": "#e5eeff",
+                    "surface-bg": "#F8FAFC",
+                    "secondary": "#0058be",
+                    "on-primary-container": "#7c839b",
+                    "primary": "#000000",
+                    "surface": "#f8f9ff",
+                    "surface-container-low": "#eff4ff",
+                    "streak-orange": "#EF4444",
+                    "tertiary-fixed": "#6ffbbe",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "inverse-primary": "#bec6e0",
+                    "primary-fixed": "#dae2fd",
+                    "surface-dim": "#cbdbf5",
+                    "surface-variant": "#d3e4fe",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c6c6cd",
+                    "on-background": "#0b1c30",
+                    "surface-card": "#FFFFFF"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "12px",
+                    "xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "margin-desktop": "40px",
+                    "section-gap": "64px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "code-sm": ["JetBrains Mono"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .hero-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #E2E8F0 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body class="bg-surface-bg font-body-md text-on-background selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<nav class="sticky top-0 z-50 flex justify-between items-center px-margin-desktop py-4 w-full bg-surface-bright/80 backdrop-blur-md border-b border-border-subtle dark:border-outline-variant">
+<div class="flex items-center gap-8">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">Lumina Learning</span>
+<div class="hidden md:flex gap-6">
+<a class="text-secondary font-bold border-b-2 border-secondary pb-1 font-body-md text-body-md" href="#">Explore</a>
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:text-secondary transition-colors duration-200 font-body-md text-body-md" href="#">Pricing</a>
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:text-secondary transition-colors duration-200 font-body-md text-body-md" href="#">Enterprise</a>
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:text-secondary transition-colors duration-200 font-body-md text-body-md" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant font-semibold hover:text-primary transition-colors">Sign In</button>
+<button class="bg-secondary text-on-secondary px-6 py-2.5 rounded-lg font-semibold hover:opacity-90 transition-opacity">Get Started</button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-20 pb-32 px-margin-desktop hero-pattern">
+<div class="max-w-container-max mx-auto flex flex-col lg:flex-row items-center gap-16">
+<div class="flex-1 space-y-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-label-md font-label-md text-secondary uppercase tracking-wider">Enterprise-Grade Learning</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight leading-[1.1]">
+                        Master Your Future with <span class="text-secondary">Professional</span> Learning
+                    </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-xl">
+                        Access world-class curricula from top institutions. Our enterprise-grade courses feature live mentorship, real-world projects, and recognized certifications.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-xl font-semibold text-body-md shadow-lg shadow-secondary/20 hover:scale-[1.02] transition-transform">Get Started</button>
+<button class="bg-white text-secondary border border-border-subtle px-8 py-4 rounded-xl font-semibold text-body-md hover:bg-surface-bright transition-colors">Browse Courses</button>
+</div>
+</div>
+<div class="flex-1 relative">
+<div class="w-full aspect-square rounded-3xl overflow-hidden shadow-2xl border border-border-subtle">
+<img alt="Learning Network Visual" class="w-full h-full object-cover" data-alt="A high-fidelity digital rendering of a complex neural network interface glowing with soft blue and white light. The aesthetic is clean and corporate, featuring semi-transparent glass panels and minimalist UI elements. The lighting is bright and professional, suggesting a high-tech academic environment. The background is a soft, neutral off-white that complements the primary blue accents of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7lDoO1P_y5YZ7MDhe4DlfTw7_JeLqCSxlRoYPZuOE4PIoAT1PQvty4CcYySyVCKPrxRu_XVmy52hmh6DSizBKkQ90lZTo97VX1WVn7bxd2i3pgcdLofBwgpAIVbi9_NjSfMET6mwl2fCgbyniRAaBvA-mJ0nFRZ8cKDtiv-6qGEzUQp5OnLPxVI_Bk6Vifxv_YjI1qkNBIsYzjGABY1tSSigrc9icI9k9r5NyuEQBgzg_xnd6zK5Ts8oANe-Qeu6Wy_OYILRtyLI">
+</div>
+<!-- Floating Stat Cards -->
+<div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-border-subtle max-w-[200px] animate-bounce-slow">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-xp-gold" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-bold text-headline-md">4.9/5</span>
+</div>
+<p class="text-body-sm text-on-surface-variant">Average student satisfaction across 500+ courses.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof -->
+<section class="py-16 border-y border-border-subtle bg-white">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center">
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-[0.2em] mb-10">Trusted by innovative teams worldwide</p>
+<div class="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<img alt="Stripe" class="h-8 md:h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNlSZGuEbEdR7xinCK34kbwHg9SmRYnQeles5_eJ98axfOiUSmK0u-QFvbuO7uynpTNzjJNM3MsKzlrcPJVHbVaa5hDOgcMBRmOXoJEC_6LlQNMCWxOSZT77d0h1nHV_Xs9vEiu4Rl1H-dCK3R4UZegG4KgO9h1cOv4AUsOPiNTothrGRCxHDhgnunRxgQXnGn-sM7glO0bAoMYlNkA2tDNJef5D_h5BsRMlnmGBEsaSeDHzp05k3FONh3z-DmHbHP54OqSb0aAbc">
+<img alt="Figma" class="h-8 md:h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsjeHKTaGTOvIBQkqcLSsBRYu_6ogdJNmYQofxlnawcWBShngeGY2Z0jGGJaexGBc06EefO1ahnL22a5mOX5VeDjGUDtR3l9eft7PD1Kq7sJCcdng067TH7OFtGdx5JvYoyRIKNNMZ_ZxYzJ1SI7mNdIzcjfAQMChFskCiPTOrFwKvhrmsMbxUv1RnONGjADd6-hqcO4JtgtZyTvIRMjnP7uFeWVEs-saM1mA5saA4T6ZBb9duXlvf2S2Pi8jhJkW5VQZH870difc">
+<img alt="Google" class="h-8 md:h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcXBhmBHf3zXAwlzMJmYe6CnKI-wB-ntOL0R7NAwYslUInL9riynGi8XKECE5AmHC46TR8f0-cRK7p2eDmtj9e5PAvE81_euAdNBollT8IeN0s_-insh61L5fUdq48u6wQRKR4ndX4wEmUYg6LvUeT7bH5u0XTf4bWbnfR5cGGI4NC_qArVp3zJ6WNALc4tsyKC-LXISK47-sM9QuGu9wvjrpSOXCWuQLEhRF4Q4J_17dt4Y7HuMYBzveBseFjejPkJEBC4Ej-jmY">
+<img alt="Microsoft" class="h-8 md:h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiGwPGzqegG1g6dIrFCdj42ckKzWBbckmq3EHVKe2febzIlaT45Y-cH3ux04WAKZiBWAIz_jlwOIsiDCoXvWTAJD5Ui2Bau5GZcWhrXub90NeYtctOLFl4nw-r0khw1v1Mpx_e4mVNEstRAFsBQiAKkUrhxViotcnt_7yh52-M2rC-7fWl--m6tcAyQsiI9Wkz4hs3uGVvMUWJZHcJWm4uAX-Dp4yG4cVLcYNkpSrsl27W3HYGc5VKQnKrf-iDsXhZcd35McdrMRo">
+<img alt="Airbnb" class="h-8 md:h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGoTEB1cD6btQCZ3NoSoALRVRWCzyUwA8wuhLp3thS-AKXYsIbDMqZjqJb6wJQZtdvQ6Glq_0QjXPeOIj381DImQDBguKOUWYlxGpeZRJ7M1f8cPONu3unKUm3-tvh4zdZ4KQ6DA_HN6MgXua4px2oAzCDx9c4xYS-kjf5heDSRbsw-RnuCcuD6rJItNxPhi5lhmTJ9kJPlgnkyrtnEU4hjCpl7u-CkycHk7L-_ZVCpzpFrlZ7icnHasXUObulG0cjC-JME7HwbZU">
+</div>
+</div>
+</section>
+<!-- Popular Courses -->
+<section class="py-section-gap px-margin-desktop bg-surface-bg">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Popular Courses</h2>
+<p class="text-body-md text-on-surface-variant">Join thousands of learners in our most in-demand programs.</p>
+</div>
+<a class="text-secondary font-semibold flex items-center gap-2 group" href="#">
+                        View All Courses <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Course Card 1 -->
+<div class="bg-white rounded-xl overflow-hidden border border-border-subtle hover:shadow-xl transition-all duration-300 group">
+<div class="h-48 overflow-hidden relative">
+<img alt="Full Stack Dev" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A clean, professional workspace with a sleek laptop displaying complex source code. The environment is brightly lit with natural morning light, emphasizing a productive and modern atmosphere. The color palette consists of soft greys and whites with professional blue highlights. The composition is angled to suggest forward-thinking and technological advancement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Aom85PcG_Vb3TuPsGn6ydYhoSbEh9RgdlF623FuAKe92a4JPr_iR88GT7avTydsP15vB1RILndM_v5lhYBXXCn-cbAuBxbIP552V-EmWwxLSwVNFLa0H7uMXY2mKnt8Slz9k1EQkFPRe9nMKx8bOM99bj-IZ3lDH3toNN3UoQX6yMHYEaCaBBeHr_MOFuJd6ugO149yb9Tpgovvvb5KM35ZDaRYHV6dHD6a9iB62QqErF8z6HBQJ-C_XDgnZZBPZyigd0QtITrE">
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-label-md font-label-md text-secondary">Advanced</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="text-label-md font-label-md text-secondary uppercase">Code Academy Pro</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xp-gold text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-md font-bold">4.8</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4 leading-tight">Mastering Full-Stack Web Architecture</h3>
+<div class="flex justify-between items-center border-t border-border-subtle pt-4">
+<span class="font-headline-md text-headline-md text-secondary">$199</span>
+<button class="bg-surface-container hover:bg-surface-container-high px-4 py-2 rounded-lg font-semibold transition-colors">Details</button>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="bg-white rounded-xl overflow-hidden border border-border-subtle hover:shadow-xl transition-all duration-300 group">
+<div class="h-48 overflow-hidden relative">
+<img alt="Data Science" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A sophisticated data visualization dashboard displayed on a high-resolution screen within a modern office setting. The interface features elegant charts, clean typography, and a refined color palette of deep blues and vibrant teals. The overall mood is analytical and professional, highlighting the power of data-driven insights in a contemporary business context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-y_2uLc8Mbahf_WrgZzUMlPIj6YwjMMmgnSFAmmejhmeFMuUtgWznSjexT4q_xLx-xu-ZMcOoSp4dOe5yKYFsQ9Np5wY3HBmyMsbzCzq2A45aCX2RPCOp4p0XHk_veHU_FaHGoZSgOF5wuJtXU4NiR896giufIqVPacPkNFmHH8Qt-DfsYEJlYWHtfkUJWaxmIHMzfBVZI-r9sq1xjzXa-MCq4yjWSobZQbWnZnUX8hUlhJ2r9LLIMUJPOfwAFTwbotG0dNHx67I">
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-label-md font-label-md text-secondary">Bestseller</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="text-label-md font-label-md text-secondary uppercase">Data Insights Institute</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xp-gold text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-md font-bold">4.9</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4 leading-tight">Applied Machine Learning for Business</h3>
+<div class="flex justify-between items-center border-t border-border-subtle pt-4">
+<span class="font-headline-md text-headline-md text-secondary">$249</span>
+<button class="bg-surface-container hover:bg-surface-container-high px-4 py-2 rounded-lg font-semibold transition-colors">Details</button>
+</div>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="bg-white rounded-xl overflow-hidden border border-border-subtle hover:shadow-xl transition-all duration-300 group">
+<div class="h-48 overflow-hidden relative">
+<img alt="UX Design" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close-up of a designer's desk with a high-end drawing tablet and stylus, surrounded by minimalist design sketches and color swatches. The aesthetic is extremely clean and organized, using a palette of soft whites, neutrals, and deep blacks. The lighting is soft and diffused, creating a serene and creative atmosphere that emphasizes professional design craft." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg4P4hpyadW22-R0rB163xbx6ygzPr3vcP0vlwpGJP8nHdWmtH7kSPwCXAUJGueGUqgOZeefTLK-0w36RKOku25cOJx1WJoNy51-eJxwNTocVggH9lY8RRzWvH2YaJQvwAOvV1768ChGbJNFvNJfVj9FE_tg7DHhxRu2FlgsfhhkmzDM4CwdbAXeEGY49dGMbiKQjFQ2PYVzGfFjL64SPOP5LMRSeA37BvAJp5EvWhMf_vyEjlSAQZ5k1I3MG98xtD7i3qC1o4x8I">
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-label-md font-label-md text-secondary">New</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="text-label-md font-label-md text-secondary uppercase">Creative Design Lab</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xp-gold text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-md font-bold">4.7</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4 leading-tight">Executive UI/UX Design Leadership</h3>
+<div class="flex justify-between items-center border-t border-border-subtle pt-4">
+<span class="font-headline-md text-headline-md text-secondary">$179</span>
+<button class="bg-surface-container hover:bg-surface-container-high px-4 py-2 rounded-lg font-semibold transition-colors">Details</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features (Bento Grid) -->
+<section class="py-section-gap px-margin-desktop bg-white">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Built for Serious Learners</h2>
+<p class="text-body-md text-on-surface-variant max-w-2xl mx-auto">Our platform combines enterprise-grade stability with modern learning science to help you achieve your career goals faster.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Column 1: Feature 1 (Large) -->
+<div class="md:col-span-2 bg-surface-bg rounded-xl border border-border-subtle p-8 flex flex-col justify-between overflow-hidden relative min-h-[320px]">
+<div class="z-10 max-w-sm">
+<span class="material-symbols-outlined text-secondary bg-secondary-fixed p-3 rounded-lg mb-4" data-icon="code">code</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Interactive Coding Challenges</h3>
+<p class="text-body-md text-on-surface-variant">Master syntax and logic with our built-in browser IDE supporting over 20 programming languages.</p>
+</div>
+<!-- Mock Code Snippet Visual -->
+<div class="absolute -right-12 -bottom-4 w-2/3 bg-editor-bg rounded-xl p-4 shadow-2xl transform rotate-[-2deg] hidden lg:block border border-outline/30">
+<div class="flex gap-1.5 mb-3">
+<div class="w-3 h-3 rounded-full bg-red-500"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+<div class="w-3 h-3 rounded-full bg-green-500"></div>
+</div>
+<pre class="font-code-sm text-code-sm text-white/80"><code><span class="text-tertiary-fixed">function</span> <span class="text-secondary-fixed">calculateProgress</span>(streak) {
+  <span class="text-tertiary-fixed">const</span> multiplier = streak &gt; 10 ? 1.5 : 1.0;
+  <span class="text-tertiary-fixed">return</span> baseXP * multiplier;
+}</code></pre>
+</div>
+</div>
+<!-- Column 2: Feature 2 (Small) -->
+<div class="bg-surface-container-low rounded-xl border border-border-subtle p-8 flex flex-col">
+<span class="material-symbols-outlined text-secondary bg-secondary-fixed p-3 rounded-lg w-fit mb-4" data-icon="groups">groups</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Live Mentorship</h3>
+<p class="text-body-md text-on-surface-variant">Connect with industry experts for weekly 1:1 sessions and group workshops to accelerate your path.</p>
+</div>
+<!-- Column 2: Feature 3 (Small) -->
+<div class="bg-surface-container-low rounded-xl border border-border-subtle p-8 flex flex-col">
+<span class="material-symbols-outlined text-streak-orange bg-error-container p-3 rounded-lg w-fit mb-4" data-icon="local_fire_department">local_fire_department</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Gamified Paths</h3>
+<p class="text-body-md text-on-surface-variant">Stay motivated with streaks, XP rewards, and global leaderboards designed for consistent progress.</p>
+</div>
+<!-- Column 3: Feature 4 (Large) -->
+<div class="md:col-span-2 bg-surface-bg rounded-xl border border-border-subtle p-8 flex flex-col md:flex-row items-center gap-8 min-h-[320px]">
+<div class="flex-1">
+<span class="material-symbols-outlined text-secondary bg-secondary-fixed p-3 rounded-lg mb-4" data-icon="insights">insights</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Enterprise Analytics</h3>
+<p class="text-body-md text-on-surface-variant">For institutions: track student performance, engagement trends, and ROI with our comprehensive data engine.</p>
+</div>
+<div class="flex-1 w-full bg-white rounded-xl p-4 shadow-sm border border-border-subtle">
+<div class="space-y-4">
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[85%] rounded-full"></div>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed-dim w-[65%] rounded-full"></div>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-streak-orange w-[45%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-section-gap px-margin-desktop bg-surface-bg">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Student Success Stories</h2>
+<p class="text-body-md text-on-surface-variant">Hear from thousands of professionals who advanced their careers with Lumina.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-white p-8 rounded-xl border border-border-subtle shadow-sm flex flex-col">
+<div class="flex gap-1 mb-4 text-xp-gold">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-md italic text-on-surface-variant mb-8">"The structured curriculum and 1:1 mentorship sessions were game-changers. I transitioned from a marketing role to a Junior Developer in just 6 months."</p>
+<div class="flex items-center gap-4 mt-auto">
+<img alt="Sarah Chen" class="w-12 h-12 rounded-full object-cover" data-alt="A professional studio portrait of a woman in her late 20s with a confident and friendly expression. She is wearing a modern, professional neutral-colored blazer. The background is a soft, out-of-focus office setting with warm, clean lighting. The portrait emphasizes success and professional growth in a corporate environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfwEQiDLHVupvEi4tSkkijoXGYaJihzfw--kvO98GYGimkiSe5LnxWImyGoktDbl9C3XqJUgBSpYVj5gKFxQ97mefYlxp2RTGI4xa36XGewkHLrp5JZVAEzr6c_ZfzrF3UmBXrrL6-C99f2rSHoLy-mmCaFEDkrrQitZC4slkJO-ooUxA-ePcb21waR1vy2gNs7wU6cuJEEh8ckcsEoAtPs0gPg0bsAp_qeE_kDC3m_rNUXoFVXeiKpldLf-jEJc3hOT38U2berlM">
+<div>
+<p class="font-semibold text-primary">Sarah Chen</p>
+<p class="text-body-sm text-on-surface-variant">Full-Stack Developer</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-white p-8 rounded-xl border border-border-subtle shadow-sm flex flex-col">
+<div class="flex gap-1 mb-4 text-xp-gold">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-md italic text-on-surface-variant mb-8">"As a tenant admin, the analytics tools provided by Lumina helped us identify exactly where our employees were struggling, leading to a 40% increase in course completion."</p>
+<div class="flex items-center gap-4 mt-auto">
+<img alt="Marcus Thompson" class="w-12 h-12 rounded-full object-cover" data-alt="A professional headshot of a middle-aged man with a warm, authoritative smile. He is wearing a crisp white shirt and a navy blazer. The lighting is bright and clean, typical of a high-end corporate photoshoot. The aesthetic is professional, suggesting leadership and institutional credibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn1s_zZsf1eqp7RNDDEWh0_qeuHSjH_XtE2HWqWTR-ZWySp9ZaQoPWvmBaFlN2ri3tzXYO2CljMiZyQPjU3vK6Tv28_ol2PvWUKOri0_aLXiSBwNPNyhIHkM7jPoMM4sfH21S-HVC1WlPqqduYHmjdPUFT2ZVF23eMOhaoDjVdioYr5-zW-o71_5d16DZ58cF6oaVTmtwjiigZZYlMZAT5gRbqjeAKDx28ScdxWxvCjxvQHi2IXMMdi5YCPHlr7yq4k2Egp3xpiKg">
+<div>
+<p class="font-semibold text-primary">Marcus Thompson</p>
+<p class="text-body-sm text-on-surface-variant">HR Director, TechFlow</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-white p-8 rounded-xl border border-border-subtle shadow-sm flex flex-col">
+<div class="flex gap-1 mb-4 text-xp-gold">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-md italic text-on-surface-variant mb-8">"The UI/UX course was incredibly deep. I finally feel like I have the portfolio and the confidence to apply for senior-level positions at top agencies."</p>
+<div class="flex items-center gap-4 mt-auto">
+<img alt="Leo Rodriguez" class="w-12 h-12 rounded-full object-cover" data-alt="A headshot of a young professional man with creative flair. He has a focused and thoughtful expression, wearing a stylish minimalist black sweater. The lighting is modern and artistic, with soft shadows that give depth. The style is sophisticated and clean, representing the modern creative industry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE6glVxgm8lR6NdFYFHVN7JxLAQbWEON-MXvlk1IaVtCVnwpWAo4pk9hG_-A-Rc3Z2lyCBYTT0oyctO0bAm8TtzgoDA2SooJd784oB5Wd1ziUJTWEriM_tjoey8Q2UVtrnJDcEOhT5ApbTA3jxWpcSNKMln4nNF0NYkw7DyllY4y1UGO6qEF66hANXq2cNZDJ9ACjr7roNiEvKdoFm5Q9C13lyVOaIxUs39-auUEwuURp8WmUelBi6ivF9yW7bQqSRwLrOtKOrssM">
+<div>
+<p class="font-semibold text-primary">Leo Rodriguez</p>
+<p class="text-body-sm text-on-surface-variant">Senior Product Designer</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="py-section-gap px-margin-desktop bg-white">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Invest in Your Growth</h2>
+<p class="text-body-md text-on-surface-variant">Flexible plans for individuals and scaling organizations.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Starter -->
+<div class="p-8 rounded-xl border border-border-subtle flex flex-col bg-surface-bg/50">
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Starter</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="text-display-lg font-display-lg text-primary">$0</span>
+<span class="text-on-surface-variant">/free forever</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-8">Essential tools to start your learning journey.</p>
+<ul class="space-y-4 mb-12 flex-1">
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Access to free workshops
+                            </li>
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Community access
+                            </li>
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Basic coding IDE
+                            </li>
+</ul>
+<button class="w-full py-3 rounded-lg border-2 border-secondary text-secondary font-semibold hover:bg-secondary-fixed transition-colors">Start Free</button>
+</div>
+<!-- Professional -->
+<div class="p-8 rounded-xl border-2 border-secondary flex flex-col bg-white relative shadow-xl shadow-secondary/5">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-on-secondary px-4 py-1 rounded-full text-label-md font-label-md">Most Popular</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Professional</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="text-display-lg font-display-lg text-primary">$29</span>
+<span class="text-on-surface-variant">/mo</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-8">Everything you need to master new skills.</p>
+<ul class="space-y-4 mb-12 flex-1">
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Unlimited course access
+                            </li>
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Live weekly mentorship
+                            </li>
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Industry certifications
+                            </li>
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Advanced project reviews
+                            </li>
+</ul>
+<button class="w-full py-3 rounded-lg bg-secondary text-on-secondary font-semibold hover:opacity-90 transition-opacity">Get Started</button>
+</div>
+<!-- Enterprise -->
+<div class="p-8 rounded-xl border border-border-subtle flex flex-col bg-surface-bg/50">
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Enterprise</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="text-display-lg font-display-lg text-primary">Custom</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-8">Scale your team's skills with Lumina.</p>
+<ul class="space-y-4 mb-12 flex-1">
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Advanced team analytics
+                            </li>
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Custom learning paths
+                            </li>
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Dedicated account manager
+                            </li>
+<li class="flex items-center gap-3 text-body-md">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                LMS integration support
+                            </li>
+</ul>
+<button class="w-full py-3 rounded-lg border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all">Contact Sales</button>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-section-gap px-margin-desktop bg-surface-bg">
+<div class="max-w-3xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Frequently Asked Questions</h2>
+<p class="text-body-md text-on-surface-variant">Everything you need to know about starting your learning journey.</p>
+</div>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="bg-white rounded-xl border border-border-subtle overflow-hidden">
+<button class="w-full px-6 py-5 text-left flex justify-between items-center group" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+<span class="font-semibold text-primary">How do I access my certificates?</span>
+<span class="material-symbols-outlined chevron transition-transform duration-300 text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</button>
+<div class="px-6 pb-5 text-body-md text-on-surface-variant hidden">
+                            Once you successfully complete all modules and assessments in a course, your verified certificate will be automatically generated. You can view, download, or share it directly to LinkedIn from your student dashboard under the 'Achievements' tab.
+                        </div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="bg-white rounded-xl border border-border-subtle overflow-hidden">
+<button class="w-full px-6 py-5 text-left flex justify-between items-center group" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+<span class="font-semibold text-primary">Can I cancel my subscription anytime?</span>
+<span class="material-symbols-outlined chevron transition-transform duration-300 text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</button>
+<div class="px-6 pb-5 text-body-md text-on-surface-variant hidden">
+                            Yes, Lumina Learning is a monthly subscription service with no long-term contracts. You can cancel your Professional plan at any time through your account settings. You will maintain access to your courses until the end of your current billing cycle.
+                        </div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="bg-white rounded-xl border border-border-subtle overflow-hidden">
+<button class="w-full px-6 py-5 text-left flex justify-between items-center group" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')">
+<span class="font-semibold text-primary">Do you offer group discounts for teams?</span>
+<span class="material-symbols-outlined chevron transition-transform duration-300 text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</button>
+<div class="px-6 pb-5 text-body-md text-on-surface-variant hidden">
+                            Absolutely. Our Enterprise plan is specifically designed for teams of 10 or more. We offer tiered volume discounts and specialized onboarding for organizations. Please contact our sales team for a custom quote tailored to your institution's needs.
+                        </div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-base bg-surface-bright border-t border-border-subtle dark:border-outline-variant">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">Lumina Learning</span>
+<p class="font-body-sm text-body-sm text-on-surface dark:text-on-background opacity-70">© 2024 Lumina Learning. All rights reserved.</p>
+</div>
+<div class="flex gap-8 mt-8 md:mt-0">
+<a class="text-on-surface-variant hover:text-primary font-body-sm text-body-sm hover:underline transition-all" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-primary font-body-sm text-body-sm hover:underline transition-all" href="#">Privacy</a>
+<a class="text-primary font-semibold font-body-sm text-body-sm hover:underline transition-all" href="#">Tenant Portal</a>
+</div>
+<div class="flex gap-4 mt-8 md:mt-0">
+<a class="w-10 h-10 rounded-full border border-border-subtle flex items-center justify-center hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-border-subtle flex items-center justify-center hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="mail">mail</span>
+</a>
+</div>
+</footer>
+<script>
+        // Smooth reveal on scroll interaction
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+
+        // Sticky Nav logic
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-sm');
+            } else {
+                nav.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+</body></html>

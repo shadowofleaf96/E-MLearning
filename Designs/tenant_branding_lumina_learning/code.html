@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tenant Branding | LMS Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#009668",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "surface-container-lowest": "#ffffff",
+                      "xp-gold": "#F59E0B",
+                      "surface-bg": "#F8FAFC",
+                      "primary": "#000000",
+                      "surface-container-high": "#dce9ff",
+                      "surface-variant": "#d3e4fe",
+                      "on-secondary-container": "#fefcff",
+                      "outline": "#76777d",
+                      "on-background": "#0b1c30",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#002113",
+                      "on-tertiary-fixed": "#002113",
+                      "editor-bg": "#1E1E1E",
+                      "surface-bright": "#f8f9ff",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "on-secondary-fixed-variant": "#004395",
+                      "on-primary-fixed": "#131b2e",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#131b2e",
+                      "surface-container-low": "#eff4ff",
+                      "surface-card": "#FFFFFF",
+                      "on-surface": "#0b1c30",
+                      "surface-dim": "#cbdbf5",
+                      "streak-orange": "#EF4444",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#bec6e0",
+                      "inverse-surface": "#213145",
+                      "tertiary": "#000000",
+                      "surface-container": "#e5eeff",
+                      "primary-fixed": "#dae2fd",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "border-subtle": "#E2E8F0",
+                      "background": "#f8f9ff",
+                      "on-surface-variant": "#45464d",
+                      "outline-variant": "#c6c6cd",
+                      "secondary": "#0058be",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-error": "#ffffff",
+                      "secondary-container": "#2170e4",
+                      "on-primary-container": "#7c839b",
+                      "tertiary-fixed": "#6ffbbe",
+                      "surface-container-highest": "#d3e4fe",
+                      "surface": "#f8f9ff",
+                      "inverse-primary": "#bec6e0",
+                      "error": "#ba1a1a",
+                      "surface-tint": "#565e74",
+                      "on-secondary-fixed": "#001a42",
+                      "inverse-on-surface": "#eaf1ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "base": "4px",
+                      "section-gap": "64px",
+                      "container-max": "1440px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Hanken Grotesk"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "body-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "code-sm": ["JetBrains Mono"]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-surface-bg font-body-md text-on-surface">
+<!-- Sidebar Shell -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface-card border-r border-border-subtle flex flex-col py-6 px-4 z-50">
+<div class="mb-10 px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Institution Admin</h1>
+<p class="text-on-primary-container text-body-sm">Modern Scholastic</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-lowest transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-lowest transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-body-md">Courses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-lowest transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">User Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-lowest transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary font-bold border-l-4 border-secondary bg-surface-container-low" href="#">
+<span class="material-symbols-outlined">palette</span>
+<span class="font-body-md">Branding</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-lowest transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-border-subtle pt-6 px-2 space-y-4">
+<button class="w-full flex items-center justify-center gap-2 bg-secondary text-white py-2.5 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Course
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-2 py-2 text-body-sm text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[18px]">help</span>
+                    Help Center
+                </a>
+<a class="flex items-center gap-3 px-2 py-2 text-body-sm text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[18px]">contact_support</span>
+                    Support
+                </a>
+</div>
+</div>
+</aside>
+<!-- Top Navigation -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface border-b border-border-subtle flex justify-between items-center px-gutter z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-sm focus:ring-2 focus:ring-secondary transition-all" placeholder="Search settings..." type="text"/>
+</div>
+<nav class="hidden md:flex gap-6 ml-6">
+<a class="text-on-surface-variant hover:text-primary text-body-sm transition-all" href="#">Resource Hub</a>
+<a class="text-on-surface-variant hover:text-primary text-body-sm transition-all" href="#">API Docs</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">dark_mode</span>
+</button>
+<div class="h-8 w-[1px] bg-border-subtle mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-body-sm font-semibold group-hover:text-secondary transition-colors">Admin User</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold">LMS Console</p>
+</div>
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full border-2 border-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRSP-gGVcv24HRZJ6jff01x4caLK_qLky37nw_bg1KmvtLyXoT7i-C9twdY06RCbpd9bcwOsYlnKMVZEauvDkDgQiXC5l8fPaK60SvGqYEXpfXaDR8rdI3j7Q3L6j1GO9zDyI8ug5AWRVkC2-K_xLt_5Evr1px9pZw-fmw432FEVFpW-4iZ3SKma-O_FZYs_KUIH7YvySX4ELZ-FlazdoGttWFM9CpR12giHTFpMEa09Woyy7T_c0fjNk2i0JOb6pO6bLkJn9QEb0"/>
+</div>
+</div>
+</header>
+<!-- Main Workspace Canvas -->
+<main class="ml-[280px] pt-16 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-gutter">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Branding Workspace</h2>
+<p class="text-on-surface-variant mt-1">Configure your institution's visual identity across the platform.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-lg border border-border-subtle bg-white font-semibold text-on-surface-variant hover:bg-surface-bg transition-all">Discard Changes</button>
+<button class="px-6 py-2.5 rounded-lg bg-secondary text-white font-semibold hover:opacity-90 shadow-sm transition-all">Save Changes</button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- Configuration Columns -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<!-- Assets Section (Bento Style) -->
+<section class="bg-surface-card rounded-xl border border-border-subtle p-6">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary">image</span>
+<h3 class="font-headline-md text-headline-md">Visual Assets</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Primary Logo -->
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant uppercase tracking-widest">Primary Logo</label>
+<div class="relative group border-2 border-dashed border-border-subtle rounded-xl p-8 flex flex-col items-center justify-center hover:border-secondary transition-colors bg-surface-container-lowest h-48 cursor-pointer overflow-hidden">
+<img alt="Primary Logo Placeholder" class="max-w-full h-auto object-contain" data-alt="A clean, professional minimalist company logo displayed on a crisp white digital background. The logo features sharp geometric lines and a corporate blue color palette, representing a high-trust educational institution. The setting is bright and spacious, emphasizing clarity and modern design principles typical of a premium software interface." id="primary-logo-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7L3Oo6TXBPrCslQ7Gf11_dkLjhtjAF0vifOKPjigbpOxVPTw--gGsdwLn-xr3yMh5SDgHpxwPorkfLwHUqWx4Lmx6YKcQ0CAyTmnQV9cp5v7tWMoimvDE1bBRFsBcwRfOH0pVzx4XzsPvodf_kLS4zyZ6nRgUiPTedC_dVafzmpumSw25mxzRRPdfsdJAeCB0pX2T1cujbUCCf9JxrsKDDcthZG_AJCuGGyC4CAM0y0BN0ZVEiDPVNiMpnseTCVqcqNDuHe51lrs"/>
+<div class="absolute inset-0 bg-secondary/10 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity backdrop-blur-[2px]">
+<span class="material-symbols-outlined text-secondary text-3xl">upload</span>
+</div>
+</div>
+<p class="text-[11px] text-on-surface-variant">Recommended: 400x120px, PNG or SVG</p>
+</div>
+<!-- Dark Logo -->
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant uppercase tracking-widest">Dark Mode Logo</label>
+<div class="relative group border-2 border-dashed border-border-subtle rounded-xl p-8 flex flex-col items-center justify-center hover:border-secondary transition-colors bg-primary-container h-48 cursor-pointer overflow-hidden">
+<img alt="Dark Mode Logo Placeholder" class="max-w-full h-auto object-contain" data-alt="A specialized dark-mode version of a corporate logo with vibrant white and soft blue elements against a deep navy blue background. The aesthetic is sophisticated and high-tech, designed for low-light digital environments. The lighting is moody yet clear, with subtle glow effects on the logo edges to enhance visibility and premium feel." id="dark-logo-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeUVVv-hBlQHNfECaQ3xWcCUP_q-wYy634BI0UXBVb6td9wvxbhEzbfrtaSAcphPTvYwjWUkO87V5JQSsM3NoMKq531WJ_kv0smFxCzbxady4Rc0n9yRNBC3sKGevZPi7bRojMc8XyzkA_X0xLbWn5i53tjjkLq28lkekh2lNeljTOBD9Anqx7pONUt7uUNLwmcOrTiQmVh3lgKawu2fSTmnO_N9mGJmfXgcTj6-oU8b7k5XMrKxv3-N14TBEFtFEiWHe98LluUjs"/>
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity backdrop-blur-[2px]">
+<span class="material-symbols-outlined text-white text-3xl">upload</span>
+</div>
+</div>
+<p class="text-[11px] text-on-surface-variant">For headers with dark backgrounds</p>
+</div>
+<!-- Favicon -->
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant uppercase tracking-widest">Favicon</label>
+<div class="relative group border-2 border-dashed border-border-subtle rounded-xl p-8 flex flex-col items-center justify-center hover:border-secondary transition-colors bg-surface-container-lowest h-48 cursor-pointer overflow-hidden">
+<div class="w-16 h-16 bg-surface-container-high rounded-lg flex items-center justify-center border border-border-subtle">
+<span class="material-symbols-outlined text-secondary text-4xl">school</span>
+</div>
+<div class="absolute inset-0 bg-secondary/10 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity backdrop-blur-[2px]">
+<span class="material-symbols-outlined text-secondary text-3xl">upload</span>
+</div>
+</div>
+<p class="text-[11px] text-on-surface-variant">Recommended: 32x32px, ICO or PNG</p>
+</div>
+</div>
+</section>
+<!-- Identity & Colors -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Color Palette -->
+<section class="bg-surface-card rounded-xl border border-border-subtle p-6 h-full">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary">colorize</span>
+<h3 class="font-headline-md text-headline-md">Color Palette</h3>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg border border-border-subtle">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary shadow-sm"></div>
+<div>
+<p class="text-body-sm font-semibold">Primary Brand</p>
+<p class="text-[12px] font-code-sm text-on-surface-variant">#0058BE</p>
+</div>
+</div>
+<button class="text-secondary text-body-sm font-semibold hover:underline">Edit</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg border border-border-subtle">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-on-tertiary-container shadow-sm"></div>
+<div>
+<p class="text-body-sm font-semibold">Success Accent</p>
+<p class="text-[12px] font-code-sm text-on-surface-variant">#009668</p>
+</div>
+</div>
+<button class="text-secondary text-body-sm font-semibold hover:underline">Edit</button>
+</div>
+<div class="space-y-2 pt-2">
+<label class="text-label-md text-on-surface-variant uppercase tracking-widest">Brand Tone</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="py-2 border-2 border-secondary bg-surface-container-low text-secondary rounded-lg text-body-sm font-semibold">Modern</button>
+<button class="py-2 border border-border-subtle text-on-surface-variant rounded-lg text-body-sm font-semibold hover:bg-surface-bg">Corporate</button>
+<button class="py-2 border border-border-subtle text-on-surface-variant rounded-lg text-body-sm font-semibold hover:bg-surface-bg">Energetic</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Typography -->
+<section class="bg-surface-card rounded-xl border border-border-subtle p-6 h-full">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary">text_fields</span>
+<h3 class="font-headline-md text-headline-md">Typography</h3>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant uppercase tracking-widest">Heading Font</label>
+<select class="w-full bg-surface-container-low border-border-subtle rounded-lg py-2.5 text-body-sm focus:ring-secondary">
+<option>Hanken Grotesk (Default)</option>
+<option>Inter</option>
+<option>Plus Jakarta Sans</option>
+<option>Merriweather</option>
+</select>
+<div class="p-4 bg-surface-container-lowest border border-border-subtle rounded-lg mt-2">
+<p class="font-headline-md text-headline-md leading-tight">Sphinx of black quartz, judge my vow.</p>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant uppercase tracking-widest">Body Font</label>
+<select class="w-full bg-surface-container-low border-border-subtle rounded-lg py-2.5 text-body-sm focus:ring-secondary">
+<option>Inter (Default)</option>
+<option>Open Sans</option>
+<option>Roboto</option>
+<option>JetBrains Mono</option>
+</select>
+</div>
+</div>
+</section>
+</div>
+<!-- Page Editor -->
+<section class="bg-surface-card rounded-xl border border-border-subtle p-6">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary">web</span>
+<h3 class="font-headline-md text-headline-md">Landing Page Content</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant uppercase tracking-widest">Hero Headline</label>
+<input class="w-full bg-surface-container-low border-border-subtle rounded-lg py-2.5 px-4 text-body-sm focus:ring-secondary" type="text" value="Master the Art of Modern Development"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant uppercase tracking-widest">Hero Subheadline</label>
+<textarea class="w-full bg-surface-container-low border-border-subtle rounded-lg py-2.5 px-4 text-body-sm focus:ring-secondary resize-none" rows="3">An industry-leading platform for institutional grade online learning and professional certification.</textarea>
+</div>
+</div>
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-label-md text-on-surface-variant uppercase tracking-widest">Footer Text</label>
+<input class="w-full bg-surface-container-low border-border-subtle rounded-lg py-2.5 px-4 text-body-sm focus:ring-secondary" type="text" value="© 2024 Modern Scholastic Academy. All rights reserved."/>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl flex items-center justify-center gap-4">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant/40">auto_awesome</span>
+<p class="text-body-sm text-on-surface-variant mt-2">AI-Powered Content Suggestions</p>
+<button class="mt-3 text-secondary text-body-sm font-semibold border-b border-secondary/30 hover:border-secondary">Generate Now</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Live Preview Sidebar (Sticky) -->
+<div class="col-span-12 lg:col-span-4 sticky top-[88px]">
+<div class="bg-primary-container rounded-xl shadow-xl overflow-hidden border border-outline-variant">
+<!-- Preview Header -->
+<div class="px-6 py-4 border-b border-on-primary-fixed-variant flex items-center justify-between bg-on-primary-fixed">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<div class="w-2 h-2 rounded-full bg-xp-gold"></div>
+<div class="w-2 h-2 rounded-full bg-on-tertiary-container"></div>
+<span class="text-[11px] text-on-primary-container font-code-sm ml-2 uppercase tracking-widest">Live Preview</span>
+</div>
+<button class="text-on-primary-container hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">fullscreen</span>
+</button>
+</div>
+<!-- Preview Body -->
+<div class="bg-surface p-6 space-y-8 min-h-[500px] flex flex-col justify-center">
+<!-- Mini Hero Preview -->
+<div class="text-center space-y-4">
+<div class="flex justify-center mb-6">
+<img alt="Live Preview Logo" class="h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHTOm6fLe-TofwrFrYD28Tx7Eaz_cDJKDPv-3WfexwhzT98TbNQq8x-a8EO3Lsja6XV7RjWWCHH4mFfXWyO3oHecnGHgo2SulJZGJk0MSyNpw4HilGP-gj62ATVAYQdpJjFOd2aJcXsGRofADBV5Xgr3q5B7768rTyqsdZTOwohAFwhdCkoWjLl3fRGrSyykZ2SSuXtrxdTnolL3uxCBw_ubHgGVKTOk8neobOZQoKUZDTFMOHKQadn7pGIkRvUAgIf8yZ4lU3Qlk"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-primary leading-tight" id="preview-headline">Master the Art of Modern Development</h4>
+<p class="text-on-surface-variant text-body-sm max-w-xs mx-auto" id="preview-subheadline">An industry-leading platform for institutional grade online learning.</p>
+<div class="flex gap-3 justify-center pt-2">
+<button class="px-6 py-2 bg-secondary text-white rounded-lg text-body-sm font-semibold shadow-md">Get Started</button>
+<button class="px-6 py-2 border border-border-subtle bg-white text-on-surface-variant rounded-lg text-body-sm font-semibold">Learn More</button>
+</div>
+</div>
+<!-- Component Previews -->
+<div class="space-y-4 pt-8 border-t border-border-subtle">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest text-center">Interactive UI States</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-white rounded-lg border border-border-subtle shadow-sm flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-2xl mb-1">check_circle</span>
+<p class="text-[12px] font-semibold">Active State</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border-2 border-secondary shadow-sm flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-2xl mb-1">edit</span>
+<p class="text-[12px] font-semibold text-secondary">Hover State</p>
+</div>
+</div>
+<!-- Progress/XP Widget Preview -->
+<div class="p-4 bg-white rounded-xl border border-border-subtle flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-lg">bolt</span>
+</div>
+<div>
+<p class="text-[12px] font-bold">Current Streak</p>
+<p class="text-[10px] text-on-surface-variant">12 Days</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-code-sm text-[12px] text-xp-gold">2,450 XP</p>
+<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden mt-1">
+<div class="w-3/4 h-full bg-on-tertiary-container"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Preview -->
+<div class="px-6 py-4 bg-white border-t border-border-subtle text-center">
+<p class="text-[10px] text-on-surface-variant opacity-70 italic" id="preview-footer">© 2024 Modern Scholastic Academy. All rights reserved.</p>
+</div>
+</div>
+<!-- Tips / Info -->
+<div class="mt-6 p-4 bg-surface-container border border-border-subtle rounded-xl flex gap-3">
+<span class="material-symbols-outlined text-secondary">info</span>
+<p class="text-body-sm text-on-surface-variant leading-snug">
+<strong>Note:</strong> Changes are cached locally until you hit "Save Changes". This allows you to experiment with colors and fonts safely.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions for live preview simulation
+        const headlineInput = document.querySelector('input[value="Master the Art of Modern Development"]');
+        const previewHeadline = document.getElementById('preview-headline');
+        
+        headlineInput.addEventListener('input', (e) => {
+            previewHeadline.textContent = e.target.value;
+        });
+
+        const subheadlineInput = document.querySelector('textarea');
+        const previewSubheadline = document.getElementById('preview-subheadline');
+        
+        subheadlineInput.addEventListener('input', (e) => {
+            previewSubheadline.textContent = e.target.value;
+        });
+
+        const footerInput = document.querySelector('input[value="© 2024 Modern Scholastic Academy. All rights reserved."]');
+        const previewFooter = document.getElementById('preview-footer');
+        
+        footerInput.addEventListener('input', (e) => {
+            previewFooter.textContent = e.target.value;
+        });
+
+        // Theme Toggle Micro-interaction
+        const darkModeBtn = document.querySelector('button .material-symbols-outlined:contains("dark_mode")');
+        // Note: material-symbols selector is simplified for demonstration
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.innerText.includes('dark_mode')) {
+                btn.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                    btn.querySelector('span').innerText = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+                });
+            }
+        });
+    </script>
+</body></html>

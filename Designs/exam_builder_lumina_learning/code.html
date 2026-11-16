@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduStudio - Exam Builder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface": "#f8f9ff",
+                "on-tertiary-fixed-variant": "#005236",
+                "background": "#f8f9ff",
+                "streak-orange": "#EF4444",
+                "surface-container-lowest": "#ffffff",
+                "inverse-on-surface": "#eaf1ff",
+                "tertiary-fixed-dim": "#4edea3",
+                "primary-container": "#131b2e",
+                "outline-variant": "#c6c6cd",
+                "primary-fixed": "#dae2fd",
+                "on-primary-fixed": "#131b2e",
+                "surface-variant": "#d3e4fe",
+                "secondary": "#0058be",
+                "primary-fixed-dim": "#bec6e0",
+                "on-tertiary": "#ffffff",
+                "surface-bright": "#f8f9ff",
+                "on-tertiary-container": "#009668",
+                "on-secondary": "#ffffff",
+                "xp-gold": "#F59E0B",
+                "on-error": "#ffffff",
+                "inverse-primary": "#bec6e0",
+                "error": "#ba1a1a",
+                "tertiary-container": "#002113",
+                "on-primary-container": "#7c839b",
+                "on-primary": "#ffffff",
+                "surface-bg": "#F8FAFC",
+                "primary": "#000000",
+                "on-surface": "#0b1c30",
+                "tertiary-fixed": "#6ffbbe",
+                "on-background": "#0b1c30",
+                "on-tertiary-fixed": "#002113",
+                "surface-card": "#FFFFFF",
+                "editor-bg": "#1E1E1E",
+                "secondary-container": "#2170e4",
+                "surface-container-highest": "#d3e4fe",
+                "outline": "#76777d",
+                "surface-container": "#e5eeff",
+                "on-secondary-fixed": "#001a42",
+                "on-primary-fixed-variant": "#3f465c",
+                "on-secondary-fixed-variant": "#004395",
+                "secondary-fixed": "#d8e2ff",
+                "inverse-surface": "#213145",
+                "tertiary": "#000000",
+                "surface-tint": "#565e74",
+                "on-error-container": "#93000a",
+                "border-subtle": "#E2E8F0",
+                "surface-container-high": "#dce9ff",
+                "error-container": "#ffdad6",
+                "surface-container-low": "#eff4ff",
+                "on-secondary-container": "#fefcff",
+                "surface-dim": "#cbdbf5",
+                "secondary-fixed-dim": "#adc6ff",
+                "on-surface-variant": "#45464d"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter": "24px",
+                "container-max": "1440px",
+                "margin-desktop": "40px",
+                "margin-mobile": "16px",
+                "section-gap": "64px",
+                "base": "4px"
+        },
+        "fontFamily": {
+                "headline-lg-mobile": [
+                        "Hanken Grotesk"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "body-sm": [
+                        "Inter"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Hanken Grotesk"
+                ],
+                "code-sm": [
+                        "JetBrains Mono"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "display-lg": [
+                        "Hanken Grotesk"
+                ],
+                "headline-lg": [
+                        "Hanken Grotesk"
+                ]
+        },
+        "fontSize": {
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-md": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "code-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Scrollbar styling for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-surface-container-low border-r border-border-subtle fixed left-0 top-0 h-full w-[280px] flex-col py-base z-20">
+<div class="px-gutter mb-8 mt-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-secondary flex items-center justify-center text-on-secondary font-headline-md">E</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">EduStudio</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Instructor Portal</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-secondary hover:bg-secondary-container text-on-secondary font-label-md text-label-md py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">add</span>
+                Create New Course
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm text-body-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary font-bold border-l-4 border-secondary bg-surface-container-high transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined fill">architecture</span>
+<span class="font-body-sm text-body-sm">Course Builder</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-sm text-body-sm">Student Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">video_call</span>
+<span class="font-body-sm text-body-sm">Live Sessions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-sm text-body-sm">Earnings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="hidden md:flex bg-surface border-b border-border-subtle fixed top-0 right-0 left-[280px] h-16 items-center justify-between px-margin-desktop z-10">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-border-subtle rounded-lg text-body-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary w-64 transition-all" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-secondary transition-colors scale-95 active:scale-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors scale-95 active:scale-100">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="border border-secondary text-secondary hover:bg-surface-container px-4 py-2 rounded-lg font-label-md text-label-md transition-colors scale-95 active:scale-100">
+                Go Live
+            </button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-border-subtle overflow-hidden">
+<img alt="Instructor Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGoJIbsBzUn58TUmi5tjUho1pcy6TyqyNwpadJAJlFDwf69pnKGto8zEztbNLAe7Pdp0fS_6pXubL99aBqgHn87yU6iXT26vbf-4giUObtrmYO_sK9HOVz__EWCD3u-TlJqDC2ti3WzFDYpHB01c7RP3aMV-rN_GatsbOGMb9X_6ljmP8XWx8GvP0KTYYLyJA0rR1SKITZb12npU718F6Qk-nJQsxqZIpaQ3zDGArhWoNqOuHiaanTJbFOpsw3yxyH0yqcIv8H0Lg"/>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 md:ml-[280px] pt-16 h-screen flex flex-col bg-surface-bg">
+<!-- Workspace Header -->
+<div class="px-margin-desktop py-6 border-b border-border-subtle bg-surface flex flex-col gap-4 shrink-0">
+<div class="flex items-center text-body-sm text-on-surface-variant gap-2">
+<a class="hover:text-secondary transition-colors" href="#">My Courses</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<a class="hover:text-secondary transition-colors" href="#">Advanced Web Development</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-on-background font-medium">Exam Builder</span>
+</div>
+<div class="flex items-center justify-between">
+<h2 class="font-headline-lg text-headline-lg text-primary">Final Assessment: React Fundamentals</h2>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-border-subtle text-on-surface-variant hover:bg-surface-container hover:text-secondary transition-colors font-label-md text-label-md bg-surface-card">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                        Preview Exam
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-border-subtle text-on-surface-variant hover:bg-surface-container hover:text-secondary transition-colors font-label-md text-label-md bg-surface-card">
+                        Save Draft
+                    </button>
+<button class="flex items-center gap-2 px-6 py-2 rounded-lg bg-secondary text-on-secondary hover:bg-secondary-container transition-colors font-label-md text-label-md shadow-sm">
+                        Update Exam
+                    </button>
+</div>
+</div>
+</div>
+<!-- Builder Area -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Left Column: Questions List -->
+<div class="w-[360px] border-r border-border-subtle bg-surface-card flex flex-col shrink-0 z-0">
+<div class="p-4 border-b border-border-subtle flex items-center justify-between bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Exam Questions (4)</span>
+<span class="text-body-sm font-medium bg-surface-variant text-on-secondary-fixed px-2 py-0.5 rounded">Total: 40 pts</span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<!-- Question Item 1 (Active) -->
+<div class="group relative bg-surface-container-lowest border border-secondary rounded-lg p-3 shadow-[0_4px_12px_rgba(15,23,42,0.05)] cursor-pointer transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary rounded-l-lg"></div>
+<div class="flex items-start gap-3 pl-2">
+<span class="material-symbols-outlined text-outline cursor-grab mt-0.5">drag_indicator</span>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold bg-surface-container-high text-secondary px-1.5 py-0.5 rounded">MCQ</span>
+<span class="text-xs text-on-surface-variant">10 pts</span>
+</div>
+<p class="text-body-sm text-on-background truncate">What is the primary purpose of useEffect in React?</p>
+</div>
+<button class="text-outline hover:text-error transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Question Item 2 -->
+<div class="group bg-surface-container-lowest border border-border-subtle rounded-lg p-3 hover:border-outline-variant cursor-pointer transition-all">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline cursor-grab mt-0.5 opacity-50 group-hover:opacity-100">drag_indicator</span>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold bg-surface-container text-on-secondary-fixed px-1.5 py-0.5 rounded">Code</span>
+<span class="text-xs text-on-surface-variant">15 pts</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">Implement a custom useDebounce hook.</p>
+</div>
+<button class="text-outline hover:text-error transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Question Item 3 -->
+<div class="group bg-surface-container-lowest border border-border-subtle rounded-lg p-3 hover:border-outline-variant cursor-pointer transition-all">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline cursor-grab mt-0.5 opacity-50 group-hover:opacity-100">drag_indicator</span>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold bg-surface-container-high text-secondary px-1.5 py-0.5 rounded">MCQ</span>
+<span class="text-xs text-on-surface-variant">5 pts</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">Which hook is best for accessing DOM nodes directly?</p>
+</div>
+<button class="text-outline hover:text-error transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-border-subtle bg-surface">
+<button class="w-full flex items-center justify-center gap-2 py-2.5 border border-dashed border-outline text-on-surface-variant rounded-lg hover:border-secondary hover:text-secondary hover:bg-surface-container transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                        Add New Question
+                    </button>
+</div>
+</div>
+<!-- Right Column: Editor Area -->
+<div class="flex-1 overflow-y-auto p-gutter relative">
+<div class="max-w-3xl mx-auto space-y-6 pb-24">
+<!-- Editor Header -->
+<div class="flex items-center justify-between border-b border-border-subtle pb-4">
+<h3 class="font-headline-md text-headline-md text-on-background">Edit Question 1</h3>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Points</label>
+<input class="w-20 px-3 py-1.5 border border-border-subtle rounded-lg text-body-sm focus:ring-1 focus:ring-secondary focus:border-secondary transition-all text-center" type="number" value="10"/>
+</div>
+<div class="h-6 w-px bg-border-subtle"></div>
+<select class="px-3 py-1.5 border border-border-subtle rounded-lg text-body-sm text-on-background focus:ring-1 focus:ring-secondary focus:border-secondary transition-all bg-surface-card">
+<option selected="" value="mcq">Multiple Choice</option>
+<option value="code">Coding Challenge</option>
+<option value="text">Free Text</option>
+</select>
+</div>
+</div>
+<!-- MCQ View -->
+<div class="space-y-6">
+<!-- Rich Text Question Input -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Question Text</label>
+<div class="border border-border-subtle rounded-lg bg-surface-card overflow-hidden focus-within:ring-1 focus-within:ring-secondary focus-within:border-secondary transition-all shadow-sm">
+<div class="flex items-center gap-1 border-b border-border-subtle p-2 bg-surface-container-low">
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">code</span></button>
+<div class="w-px h-4 bg-border-subtle mx-1"></div>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">image</span></button>
+</div>
+<textarea class="w-full min-h-[120px] p-4 text-body-md border-none focus:ring-0 resize-y" placeholder="Enter your question here...">What is the primary purpose of useEffect in React?</textarea>
+</div>
+</div>
+<!-- Options List -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface-variant">Answer Options</label>
+<span class="text-xs text-on-surface-variant">Select the correct answer</span>
+</div>
+<div class="space-y-3">
+<!-- Option A -->
+<div class="flex items-center gap-3 p-3 border border-border-subtle rounded-lg bg-surface-card group hover:border-outline-variant transition-colors">
+<input class="w-5 h-5 text-secondary border-outline focus:ring-secondary focus:ring-offset-0" name="correct_answer" type="radio"/>
+<div class="flex-1">
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md p-0" type="text" value="To manage local component state."/>
+</div>
+<button class="text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Option B (Correct) -->
+<div class="flex items-center gap-3 p-3 border border-secondary bg-surface-container-low rounded-lg group shadow-sm">
+<input checked="" class="w-5 h-5 text-secondary border-secondary focus:ring-secondary focus:ring-offset-0" name="correct_answer" type="radio"/>
+<div class="flex-1">
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md p-0 text-primary font-medium" type="text" value="To perform side effects in functional components."/>
+</div>
+<button class="text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Option C -->
+<div class="flex items-center gap-3 p-3 border border-border-subtle rounded-lg bg-surface-card group hover:border-outline-variant transition-colors">
+<input class="w-5 h-5 text-secondary border-outline focus:ring-secondary focus:ring-offset-0" name="correct_answer" type="radio"/>
+<div class="flex-1">
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md p-0" type="text" value="To access the DOM elements directly."/>
+</div>
+<button class="text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Option D -->
+<div class="flex items-center gap-3 p-3 border border-border-subtle rounded-lg bg-surface-card group hover:border-outline-variant transition-colors">
+<input class="w-5 h-5 text-secondary border-outline focus:ring-secondary focus:ring-offset-0" name="correct_answer" type="radio"/>
+<div class="flex-1">
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md p-0" placeholder="Enter option text..." type="text"/>
+</div>
+<button class="text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<button class="mt-2 flex items-center gap-2 text-secondary hover:text-secondary-container font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                Add Option
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

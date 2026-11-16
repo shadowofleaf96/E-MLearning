@@ -1,0 +1,288 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Register - Quantum Systems Research</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bg": "#F8FAFC",
+                    "background": "#f8f9ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#7c839b",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-surface": "#0b1c30",
+                    "surface-card": "#FFFFFF",
+                    "on-secondary-fixed": "#001a42",
+                    "streak-orange": "#EF4444",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-surface-variant": "#45464d",
+                    "on-primary-fixed": "#131b2e",
+                    "tertiary": "#000000",
+                    "border-subtle": "#E2E8F0",
+                    "editor-bg": "#1E1E1E",
+                    "xp-gold": "#F59E0B",
+                    "on-tertiary-container": "#009668",
+                    "on-background": "#0b1c30",
+                    "surface-container-low": "#eff4ff",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#c6c6cd",
+                    "surface": "#f8f9ff",
+                    "outline": "#76777d",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container": "#e5eeff",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#131b2e",
+                    "on-secondary-container": "#fefcff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-high": "#dce9ff",
+                    "primary-fixed": "#dae2fd",
+                    "primary": "#000000",
+                    "secondary": "#0058be",
+                    "on-tertiary-fixed": "#002113",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#565e74",
+                    "on-secondary-fixed-variant": "#004395",
+                    "inverse-primary": "#bec6e0",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#2170e4",
+                    "primary-fixed-dim": "#bec6e0",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "inverse-surface": "#213145",
+                    "tertiary-container": "#002113",
+                    "secondary-fixed": "#d8e2ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "container-max": "1440px",
+                    "section-gap": "64px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Hanken Grotesk"],
+                    "code-sm": ["JetBrains Mono"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Scrollbar for form area if needed */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #E2E8F0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface-bg text-on-surface font-body-md min-h-screen flex antialiased">
+<!-- Note: TopNavBar and Footer are suppressed to prioritize the linear registration flow canvas. -->
+<!-- Left Panel: Brand & Visual Anchor -->
+<div class="hidden lg:flex lg:w-5/12 bg-primary-container relative flex-col justify-between p-12 overflow-hidden text-on-primary">
+<!-- Abstract Background Element -->
+<div class="absolute inset-0 z-0 opacity-20" style="background-image: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.4) 0%, transparent 40%), radial-gradient(circle at 80% 20%, rgba(0,88,190,0.8) 0%, transparent 50%); mix-blend-mode: overlay;">
+</div>
+<!-- Background Image with prompt -->
+<div class="absolute inset-0 z-0 opacity-40 mix-blend-multiply bg-cover bg-center" data-alt="A sophisticated, high-end server room or data center bathed in cool, moody blue and crisp white LED lighting. The image should convey advanced technology, precision, and modern scholastic research. The composition is clean, architectural, and slightly abstracted, fitting seamlessly behind a dark overlay without distracting from foreground UI elements." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrhxBfgwJPKUD41OQKw1eYK5MGsT58itim2pmSSF0c9Sxm8OHXFG4Gkr5W_McPFLTLUrYhr7iiH8O_AO8H5BDogV2zOqsWtpIkz3DJTKIreYI5qQqDQ1Bxxz_rm75Vtjfd3bD7S0ZTksi6ASardEoS7pM8zQVz755N5HH7kztogZ4xyAsLJweM1Vrd5fS5j9r8zsjmOk4eDuP5PeCrOs0eFrq4zvTiXM5CQuNP3M3OOb506H474sUdZh4Oilr3_jLPQy-GlCNWz1Q');">
+</div>
+<div class="relative z-10 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-secondary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[20px]" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<span class="font-headline-md text-headline-md tracking-tight text-white">Quantum Systems Research</span>
+</div>
+<div class="relative z-10 max-w-md">
+<h2 class="font-display-lg text-display-lg text-white mb-6 leading-tight">Advance your structural knowledge.</h2>
+<p class="font-body-lg text-body-lg text-inverse-primary mb-8 leading-relaxed">
+                Join our premium ecosystem of researchers and engineers. Access specialized modules, track your progress with precision analytics, and elevate your technical expertise.
+            </p>
+<!-- Aesthetic Data Points -->
+<div class="flex gap-6 border-t border-white/10 pt-6">
+<div>
+<div class="font-code-sm text-code-sm text-tertiary-fixed mb-1">MODULES</div>
+<div class="font-headline-md text-headline-md text-white">124+</div>
+</div>
+<div>
+<div class="font-code-sm text-code-sm text-tertiary-fixed mb-1">UPTIME</div>
+<div class="font-headline-md text-headline-md text-white">99.9%</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Registration Form Canvas -->
+<div class="w-full lg:w-7/12 flex items-center justify-center p-margin-mobile md:p-margin-desktop overflow-y-auto bg-surface-bg relative">
+<!-- Mobile Brand Header (Visible only on small screens) -->
+<div class="lg:hidden absolute top-0 left-0 w-full p-6 flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px]" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">Quantum Systems Research</span>
+</div>
+<div class="w-full max-w-[480px] mt-12 lg:mt-0">
+<!-- Form Container Card -->
+<div class="bg-surface-container-lowest p-8 md:p-10 rounded-xl border border-border-subtle shadow-[0_4px_24px_rgba(15,23,42,0.04)] relative">
+<div class="mb-8">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Create Account</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enter your details to provision your learning workspace.</p>
+</div>
+<form action="#" class="flex flex-col gap-5" method="POST">
+<!-- Name Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant" for="firstName">First Name</label>
+<input class="w-full bg-surface-bg border border-border-subtle rounded-lg px-3.5 py-2.5 font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" id="firstName" name="firstName" placeholder="Jane" required="" type="text">
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant" for="lastName">Last Name</label>
+<input class="w-full bg-surface-bg border border-border-subtle rounded-lg px-3.5 py-2.5 font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" id="lastName" name="lastName" placeholder="Doe" required="" type="text">
+</div>
+</div>
+<!-- Email -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant" for="email">Work Email Address</label>
+<div class="relative">
+<span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined text-[20px] pointer-events-none">mail</span>
+<input class="w-full bg-surface-bg border border-border-subtle rounded-lg pl-10 pr-3.5 py-2.5 font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" id="email" name="email" placeholder="jane.doe@organization.com" required="" type="email">
+</div>
+</div>
+<!-- Password -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<div class="relative">
+<span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined text-[20px] pointer-events-none">lock</span>
+<input class="w-full bg-surface-bg border border-border-subtle rounded-lg pl-10 pr-10 py-2.5 font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" id="password" name="password" placeholder="••••••••" required="" type="password">
+<button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors focus:outline-none" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="toggleIcon">visibility</span>
+</button>
+</div>
+<!-- Validation Hint -->
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-[14px] text-outline">info</span>
+<span class="font-label-md text-label-md text-outline font-normal">Must be at least 12 characters with symbols.</span>
+</div>
+</div>
+<!-- Institution / Tenant -->
+<div class="flex flex-col gap-1.5 mt-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="institution">Host Institution</label>
+<div class="relative">
+<select class="w-full bg-surface-variant border border-border-subtle rounded-lg px-3.5 py-2.5 font-body-sm text-body-sm text-on-surface-variant appearance-none opacity-80 cursor-not-allowed" disabled="" id="institution" name="institution">
+<option selected="" value="quantum">Quantum Systems Research (Current)</option>
+<option value="other">Other Institution...</option>
+</select>
+<span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined text-[20px] pointer-events-none">expand_more</span>
+</div>
+<span class="font-label-md text-label-md text-outline font-normal mt-1">Locked to current invite link.</span>
+</div>
+<!-- Terms -->
+<div class="flex items-start gap-3 mt-4">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 rounded border-outline text-secondary focus:ring-secondary/50 focus:ring-offset-0 bg-surface-container-lowest cursor-pointer transition-all" id="terms" name="terms" required="" type="checkbox">
+</div>
+<div class="text-sm leading-5">
+<label class="font-body-sm text-body-sm text-on-surface-variant cursor-pointer" for="terms">
+                                I agree to the <a class="text-secondary hover:underline font-medium" href="#">Terms of Service</a> and <a class="text-secondary hover:underline font-medium" href="#">Privacy Policy</a>.
+                            </label>
+</div>
+</div>
+<!-- Submit Action -->
+<button class="w-full bg-secondary text-on-secondary font-label-md text-label-md py-3 px-4 rounded-lg hover:bg-secondary-container transition-colors shadow-sm mt-2 flex items-center justify-center gap-2 group" type="submit">
+                        Create Account
+                        <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Login Link -->
+<p class="text-center mt-8 font-body-sm text-body-sm text-on-surface-variant">
+                Already hold an active clearance? 
+                <a class="text-secondary font-semibold hover:underline ml-1" href="#">Log in here</a>
+</p>
+<!-- Minimal Footer Info -->
+<div class="text-center mt-12 font-label-md text-label-md text-outline font-normal">
+                © 2024 Quantum Systems Research. All rights reserved.
+            </div>
+</div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = 'visibility';
+            }
+        }
+        
+        // Simple ambient shadow effect on form input focus
+        const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+        const formCard = document.querySelector('.bg-surface-container-lowest');
+        
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                formCard.style.boxShadow = '0 8px 32px rgba(15, 23, 42, 0.08)';
+            });
+            input.addEventListener('blur', () => {
+                formCard.style.boxShadow = '0 4px 24px rgba(15, 23, 42, 0.04)';
+            });
+        });
+    </script>
+</body></html>

@@ -1,13 +1,14 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Info, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'next-i18next';
 
 function NotFound() {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <section className="bg-background">
@@ -25,14 +26,12 @@ function NotFound() {
 
           <div className="flex items-center w-full mt-6 gap-x-3 shrink-0 sm:w-auto">
             <Button
-              asChild
               variant="outline"
               className="w-full sm:w-auto gap-x-2"
+              onClick={() => router.back()}
             >
-              <Link href="/">
-                <ArrowLeft className="w-4 h-4 rtl:rotate-180" />
-                <span>{t('notfound.goBack')}</span>
-              </Link>
+              <ArrowLeft className="w-4 h-4 rtl:rotate-180" />
+              <span>{t('notfound.goBack')}</span>
             </Button>
           </div>
         </div>

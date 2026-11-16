@@ -1,0 +1,213 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reset Password - Lumina Learning</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#dce9ff",
+                        "primary": "#000000",
+                        "tertiary-fixed": "#6ffbbe",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-tint": "#565e74",
+                        "on-surface-variant": "#45464d",
+                        "primary-fixed-dim": "#bec6e0",
+                        "inverse-primary": "#bec6e0",
+                        "primary-fixed": "#dae2fd",
+                        "background": "#f8f9ff",
+                        "tertiary": "#000000",
+                        "surface-container-highest": "#d3e4fe",
+                        "editor-bg": "#1E1E1E",
+                        "on-error": "#ffffff",
+                        "surface-bg": "#F8FAFC",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-fixed": "#002113",
+                        "on-primary-container": "#7c839b",
+                        "primary-container": "#131b2e",
+                        "tertiary-container": "#002113",
+                        "border-subtle": "#E2E8F0",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "streak-orange": "#EF4444",
+                        "on-secondary-fixed-variant": "#004395",
+                        "secondary-container": "#2170e4",
+                        "on-primary-fixed": "#131b2e",
+                        "on-surface": "#0b1c30",
+                        "xp-gold": "#F59E0B",
+                        "secondary": "#0058be",
+                        "error": "#ba1a1a",
+                        "surface-card": "#FFFFFF",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed": "#001a42",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "inverse-surface": "#213145",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#009668",
+                        "on-primary": "#ffffff",
+                        "outline": "#76777d",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c6c6cd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "section-gap": "64px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "code-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface-bg text-on-surface font-body-md flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface-bg dark:bg-surface-bg flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 border-b border-border-subtle dark:border-outline-variant docked full-width top-0 z-50">
+<div class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+            Lumina Learning
+        </div>
+<nav class="hidden md:flex gap-6 items-center">
+<!-- Intent: Transactional/Recovery. Suppressing main nav links -->
+<a class="text-secondary dark:text-secondary-fixed font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors font-bold" href="#">Contact Support</a>
+</nav>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex items-center justify-center p-margin-mobile md:p-margin-desktop w-full relative overflow-hidden">
+<!-- Abstract Background Elements -->
+<div class="absolute top-[-10%] left-[-5%] w-[40vw] h-[40vw] rounded-full bg-surface-container-high opacity-20 blur-3xl -z-10"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[30vw] h-[30vw] rounded-full bg-secondary-fixed-dim opacity-10 blur-3xl -z-10"></div>
+<!-- Reset Password Card -->
+<div class="bg-surface-card w-full max-w-md rounded-xl border border-border-subtle shadow-[0_4px_12px_rgba(15,23,42,0.05)] p-8 relative z-10">
+<div class="mb-8 text-center">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-surface-container-low mb-4">
+<span class="material-symbols-outlined text-secondary text-2xl" style="font-variation-settings: 'FILL' 0;">lock_reset</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Reset Password</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Please enter a new password below to secure your Lumina Learning account.</p>
+</div>
+<form class="space-y-6">
+<!-- New Password -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="new_password">New Password</label>
+<div class="relative">
+<input class="w-full bg-surface text-on-surface font-body-md text-body-md border border-border-subtle rounded-lg px-4 py-3 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" id="new_password" placeholder="Enter new password" type="password">
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-secondary transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+<!-- Password Strength Meter -->
+<div class="mt-3">
+<div class="flex gap-1 h-1.5 mb-2">
+<div class="flex-1 bg-border-subtle rounded-full overflow-hidden">
+<div class="w-1/3 h-full bg-error transition-all duration-300"></div>
+</div>
+<div class="flex-1 bg-border-subtle rounded-full"></div>
+<div class="flex-1 bg-border-subtle rounded-full"></div>
+<div class="flex-1 bg-border-subtle rounded-full"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs flex justify-between">
+<span>Password strength: <span class="text-error font-medium">Weak</span></span>
+</p>
+</div>
+<!-- Requirements -->
+<div class="mt-3 space-y-1">
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-border-subtle">check_circle</span>
+<span>At least 8 characters</span>
+</div>
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-border-subtle">check_circle</span>
+<span>One uppercase letter</span>
+</div>
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-border-subtle">check_circle</span>
+<span>One number or special character</span>
+</div>
+</div>
+</div>
+<!-- Confirm Password -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1" for="confirm_password">Confirm New Password</label>
+<div class="relative">
+<input class="w-full bg-surface text-on-surface font-body-md text-body-md border border-border-subtle rounded-lg px-4 py-3 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" id="confirm_password" placeholder="Confirm your password" type="password">
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-secondary text-on-secondary font-label-md text-label-md py-3 px-4 rounded-lg hover:bg-secondary-container transition-colors shadow-sm flex items-center justify-center gap-2 group" type="button">
+                    Update Password
+                    <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+<div class="mt-8 text-center border-t border-border-subtle pt-6">
+<a class="inline-flex items-center gap-2 font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    Back to Sign In
+                </a>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-bg dark:bg-surface-bg border-t border-border-subtle dark:border-outline-variant w-full py-8 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<span class="text-sm font-semibold">Lumina Learning</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex gap-6 flex-wrap justify-center">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed underline transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed underline transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed underline transition-all" href="#">Help Center</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed underline transition-all" href="#">Cookie Settings</a>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+            © 2024 Lumina Learning. All rights reserved.
+        </div>
+</footer>
+</body></html>

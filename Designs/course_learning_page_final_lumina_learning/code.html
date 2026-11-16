@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumina Learning - Course Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#4edea3",
+                        "error": "#ba1a1a",
+                        "primary-container": "#131b2e",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-fixed": "#d8e2ff",
+                        "primary-fixed": "#dae2fd",
+                        "on-surface": "#0b1c30",
+                        "surface-container": "#e5eeff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface": "#f8f9ff",
+                        "on-secondary-container": "#fefcff",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary": "#000000",
+                        "inverse-primary": "#bec6e0",
+                        "secondary": "#0058be",
+                        "outline": "#76777d",
+                        "background": "#f8f9ff",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "tertiary-container": "#002113",
+                        "inverse-surface": "#213145",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#001a42",
+                        "surface-tint": "#565e74",
+                        "outline-variant": "#c6c6cd",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-container": "#2170e4",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-background": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#45464d",
+                        "surface-variant": "#d3e4fe",
+                        "surface-card": "#FFFFFF",
+                        "on-tertiary-fixed": "#002113",
+                        "on-primary-container": "#7c839b",
+                        "primary-fixed-dim": "#bec6e0",
+                        "streak-orange": "#EF4444",
+                        "xp-gold": "#F59E0B",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-bg": "#F8FAFC",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "editor-bg": "#1E1E1E",
+                        "on-tertiary": "#ffffff",
+                        "border-subtle": "#E2E8F0",
+                        "on-tertiary-container": "#009668",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "xxl": "16px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "64px",
+                        "base": "4px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .video-overlay-gradient {
+            background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%);
+        }
+    </style>
+</head>
+<body class="bg-surface-bg font-body-md text-on-surface">
+<!-- Top Navigation Anchor -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-margin-desktop w-full h-16 bg-surface border-b border-border-subtle">
+<div class="flex items-center gap-8">
+<span class="text-headline-md font-headline-lg text-secondary font-bold tracking-tight">Lumina Learning</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-medium font-label-md hover:text-secondary transition-colors" href="#">Dashboard</a>
+<a class="text-secondary font-bold border-b-2 border-secondary pb-1 font-label-md" href="#">My Learning</a>
+<a class="text-on-surface-variant font-medium font-label-md hover:text-secondary transition-colors" href="#">Course Catalog</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-xp-gold text-[20px] mr-1" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-code-sm text-on-surface font-bold">1,240 XP</span>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-secondary-container border border-outline-variant overflow-hidden">
+<img alt="Avatar" data-alt="A professional studio portrait of a young male student with a kind and focused expression. The lighting is soft and cinematic, following a modern light-mode aesthetic with a clean, blurred academic library background. The image uses a high-trust color palette of soft blues and crisp whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKDGGPoBsgyvudNIIUdJe9fuVsdb_olymVMSIftjwMdL0JgrorAA8A1xEdrWD515cyUVSYdIkjJ4HrbDVIVkEXob3E-gFSQyIDS6n_xWGDHtOhPgG-JxB8xWGg0EuAQwLH0I1unfuEVzu2gquB_CGlhCrN1PIiCj-E56fvQGUvvBylcTcE2N8D1PRm46yIoPOIqtTopSfNEG5TzzqyCCqFUSjObHbvA_eXSbhMkjLb_kjfg6DWs32hSkznpTzMcqaYQKBVqquPjZs"/>
+</div>
+</div>
+</header>
+<div class="flex min-h-[calc(100vh-64px)]">
+<!-- Left SideNavBar (Platform Nav) -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] flex flex-col p-4 w-72 bg-surface-container-low border-r border-border-subtle z-40 hidden xl:flex">
+<div class="mb-8 p-2">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface font-bold">Lumina Student</p>
+<p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Pro Plan Member</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Home
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container font-semibold border-l-4 border-secondary rounded-r-lg transition-transform scale-[0.98] font-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+                    My Courses
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-label-md" href="#">
+<span class="material-symbols-outlined">assignment</span>
+                    Assignments
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-label-md" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+                    Achievements
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 xl:ml-72 xl:mr-80 bg-surface-bg p-8">
+<div class="max-w-4xl mx-auto">
+<!-- Breadcrumbs & Header -->
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-md mb-4">
+<span class="">Courses</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="">Systems Architecture</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-secondary font-semibold">Principles of Structural Design</span>
+</nav>
+<div class="flex justify-between items-end mb-6">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Principles of Structural Design</h1>
+<p class="text-on-surface-variant font-body-md">Module 1 • Lesson 2 of 15</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant font-semibold border border-outline-variant rounded-lg hover:bg-surface-container transition-all font-label-md">
+<span class="material-symbols-outlined text-[18px]">bookmark</span> Save
+                        </button>
+<button class="flex items-center gap-2 px-5 py-2 bg-secondary text-white font-bold rounded-lg hover:shadow-lg transition-all transform active:scale-95 font-label-md">
+                            Next Lesson <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Progress Tracker -->
+<div class="mb-8">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-on-surface-variant font-bold">COURSE PROGRESS</span>
+<span class="font-code-sm text-secondary font-bold">28% COMPLETE</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 28%"></div>
+</div>
+</div>
+<!-- Video Player Section -->
+<div class="relative w-full aspect-video rounded-xxl overflow-hidden bg-black shadow-xl group border border-outline-variant/20 mb-8">
+<img alt="Video Player" class="w-full h-full object-cover opacity-80" data-alt="A high-resolution cinematic shot of a clean, modern architecture office with 3D structural models on large high-resolution monitors. The lighting is focused and professional, highlighting technological precision and scholastic rigor. The color palette is dominated by corporate blues, clean whites, and professional grays, perfectly matching a premium learning dashboard aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxP0bhiwBBk3kD-QPT9t_13yFdinx82YPNssKksTejCfJbCbTk13bb4ylbqkGVPnioC66RgMncJbnvoRc6j_RTI2hIZ7AZOK8qC80VhpbOxEQcGigrRQkuiSIElrXkp8WSNBTUuR5CDPPMS7PvCIxTZIOTgxouUI4jBLmGdavQEtwf_Qdd49Vj42IPtiHkW6770wY2QxzIAtaDlvtEZDY2TUejCLHCqBb5eKKcm0U5aHJ3YQ30FT-aT4ZUZZna536aQM0Ce6A2_14"/>
+<!-- Play Overlay -->
+<div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all cursor-pointer">
+<div class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40 transform group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<!-- Custom Player Controls -->
+<div class="absolute bottom-0 left-0 right-0 p-6 video-overlay-gradient translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+<div class="w-full h-1 bg-white/30 rounded-full mb-4 relative cursor-pointer">
+<div class="absolute top-0 left-0 h-full bg-secondary w-1/3 rounded-full"></div>
+<div class="absolute top-1/2 left-1/3 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-lg"></div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-4 text-white">
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed transition-colors">play_arrow</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed transition-colors">skip_next</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed transition-colors">volume_up</span>
+<span class="font-code-sm">12:45 / 45:00</span>
+</div>
+<div class="flex items-center gap-4 text-white">
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed transition-colors">closed_caption</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed transition-colors">settings</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed transition-colors">fullscreen</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tabs Section -->
+<div class="bg-surface-container-lowest rounded-xxl border border-border-subtle p-1 mb-10">
+<div class="flex border-b border-border-subtle mb-6">
+<button class="px-8 py-4 font-label-md font-bold text-secondary border-b-2 border-secondary transition-all" id="tab-overview" onclick="switchTab('overview')">Overview</button>
+<button class="px-8 py-4 font-label-md font-medium text-on-surface-variant hover:text-on-surface transition-all" id="tab-resources" onclick="switchTab('resources')">Resources</button>
+<button class="px-8 py-4 font-label-md font-medium text-on-surface-variant hover:text-on-surface transition-all" id="tab-notes" onclick="switchTab('notes')">Notes</button>
+</div>
+<div class="p-6" id="content-overview">
+<h3 class="font-headline-md text-on-surface mb-4">About this lesson</h3>
+<p class="text-on-surface-variant font-body-md leading-relaxed mb-6">
+                            In this session, we dive deep into the fundamental principles that govern modern structural design. We will analyze the relationship between load-bearing capacities and material efficiency, focusing on how these concepts transition from traditional skyscrapers to decentralized edge computing nodes.
+                        </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-low rounded-xl border border-border-subtle">
+<span class="material-symbols-outlined text-secondary mb-2">lightbulb</span>
+<p class="font-label-md font-bold text-on-surface">Key Concepts</p>
+<p class="text-[13px] text-on-surface-variant">Stress, Strain, and Material Resilience.</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-xl border border-border-subtle">
+<span class="material-symbols-outlined text-secondary mb-2">timer</span>
+<p class="font-label-md font-bold text-on-surface">Duration</p>
+<p class="text-[13px] text-on-surface-variant">45 Minutes of high-intensity content.</p>
+</div>
+</div>
+</div>
+<div class="hidden p-6 space-y-3" id="content-resources">
+<div class="flex items-center justify-between p-4 bg-surface-container-low border border-border-subtle rounded-xl hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error">picture_as_pdf</span>
+<div>
+<p class="font-label-md font-bold text-on-surface">Structural_Diagrams_V2.pdf</p>
+<p class="text-[12px] text-on-surface-variant">2.4 MB • PDF Document</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">download</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low border border-border-subtle rounded-xl hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">description</span>
+<div>
+<p class="font-label-md font-bold text-on-surface">Reading_Material_Week1.docx</p>
+<p class="text-[12px] text-on-surface-variant">1.1 MB • Word Document</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">download</span>
+</div>
+</div>
+<div class="hidden p-6" id="content-notes">
+<div class="border border-border-subtle rounded-xl overflow-hidden">
+<div class="bg-surface-container-low px-4 py-2 border-b border-border-subtle flex gap-4">
+<button class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-on-surface">format_bold</button>
+<button class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-on-surface">format_italic</button>
+<button class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-on-surface">format_list_bulleted</button>
+<div class="w-px h-4 bg-outline-variant/40 self-center"></div>
+<button class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-on-surface">link</button>
+</div>
+<textarea class="w-full h-40 p-4 font-body-md focus:ring-0 border-none resize-none placeholder:text-on-surface-variant/40" placeholder="Type your personal lesson notes here..."></textarea>
+</div>
+<div class="mt-4 flex justify-end">
+<button class="px-6 py-2 bg-secondary text-white font-bold rounded-lg font-label-md">Save Note</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right SideNavBar (Curriculum) -->
+<aside class="fixed right-0 top-16 h-[calc(100vh-64px)] flex flex-col p-6 w-80 bg-surface-container-lowest border-l border-border-subtle z-30 hidden lg:flex">
+<div class="mb-6">
+<h2 class="font-headline-md text-[18px] text-on-surface font-bold mb-1">UI Design Mastery</h2>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">history_edu</span>
+<p class="font-body-sm text-[12px]">12 of 45 lessons complete</p>
+</div>
+</div>
+<div class="mb-8">
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-4">Module 1: Advanced Systems Architecture</p>
+<div class="space-y-2">
+<!-- Completed Item -->
+<div class="group flex items-start gap-3 p-3 rounded-lg hover:bg-surface-container transition-all cursor-pointer">
+<div class="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-tertiary-fixed-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-on-tertiary-fixed font-bold">check</span>
+</div>
+<div class="flex-1">
+<p class="text-[13px] font-medium text-on-surface-variant">Principles of Structural Design</p>
+<p class="text-[11px] text-on-surface-variant/60">Video • 12m</p>
+</div>
+</div>
+<!-- Active Item -->
+<div class="flex items-start gap-3 p-3 bg-surface-container-high rounded-lg translate-x-1 transition-transform border-l-4 border-secondary">
+<div class="mt-1 flex-shrink-0 w-5 h-5 rounded-full border-2 border-secondary flex items-center justify-center">
+<div class="w-2 h-2 bg-secondary rounded-full"></div>
+</div>
+<div class="flex-1">
+<p class="text-[13px] font-bold text-secondary">Introduction to Neural Nets</p>
+<p class="text-[11px] text-secondary/70">Video • 45m • Now Playing</p>
+</div>
+</div>
+<!-- Locked Item -->
+<div class="flex items-start gap-3 p-3 rounded-lg opacity-50 grayscale transition-all">
+<div class="mt-1 flex-shrink-0 w-5 h-5 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+<div class="flex-1">
+<p class="text-[13px] font-medium text-on-surface-variant">Edge Computing Basics</p>
+<p class="text-[11px] text-on-surface-variant/60">Quiz • 10 Questions</p>
+</div>
+</div>
+<!-- Locked Item -->
+<div class="flex items-start gap-3 p-3 rounded-lg opacity-50 grayscale transition-all">
+<div class="mt-1 flex-shrink-0 w-5 h-5 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+<div class="flex-1">
+<p class="text-[13px] font-medium text-on-surface-variant">Scalability and Growth</p>
+<p class="text-[11px] text-on-surface-variant/60">Reading • 15m</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto">
+<div class="p-4 bg-surface-container-low rounded-xl border border-border-subtle">
+<p class="font-label-md font-bold text-on-surface mb-2">Next Module Unlock</p>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-secondary text-[16px]">info</span>
+<p class="text-[11px] text-on-surface-variant">Finish all quizzes to unlock Module 2.</p>
+</div>
+<button class="w-full py-2 bg-surface-container-highest text-on-surface font-bold rounded-lg text-[12px] opacity-50 cursor-not-allowed">Locked Content</button>
+</div>
+</div>
+</aside>
+</div>
+<script>
+        function switchTab(tabId) {
+            const tabs = ['overview', 'resources', 'notes'];
+            tabs.forEach(t => {
+                const content = document.getElementById('content-' + t);
+                const button = document.getElementById('tab-' + t);
+                
+                if (t === tabId) {
+                    content.classList.remove('hidden');
+                    button.classList.add('text-secondary', 'border-b-2', 'border-secondary', 'font-bold');
+                    button.classList.remove('text-on-surface-variant', 'font-medium');
+                } else {
+                    content.classList.add('hidden');
+                    button.classList.remove('text-secondary', 'border-b-2', 'border-secondary', 'font-bold');
+                    button.classList.add('text-on-surface-variant', 'font-medium');
+                }
+            });
+        }
+
+        // Simple interaction for video player play button
+        document.querySelector('.relative.w-full.aspect-video').addEventListener('click', function() {
+            const icon = this.querySelector('.material-symbols-outlined');
+            if (icon.innerText === 'play_arrow') {
+                icon.innerText = 'pause';
+            } else {
+                icon.innerText = 'play_arrow';
+            }
+        });
+    </script>
+</body></html>

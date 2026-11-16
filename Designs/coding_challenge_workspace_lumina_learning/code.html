@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Exam Console - Valid Anagram</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#131b2e",
+                    "on-surface": "#0b1c30",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-container": "#2170e4",
+                    "inverse-primary": "#bec6e0",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "on-primary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "border-subtle": "#E2E8F0",
+                    "error": "#ba1a1a",
+                    "editor-bg": "#1E1E1E",
+                    "secondary": "#0058be",
+                    "surface-bg": "#F8FAFC",
+                    "inverse-on-surface": "#eaf1ff",
+                    "inverse-surface": "#213145",
+                    "outline": "#76777d",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-primary-container": "#7c839b",
+                    "streak-orange": "#EF4444",
+                    "on-tertiary-fixed": "#002113",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#001a42",
+                    "primary-fixed-dim": "#bec6e0",
+                    "surface-card": "#FFFFFF",
+                    "on-surface-variant": "#45464d",
+                    "primary-fixed": "#dae2fd",
+                    "on-secondary-fixed-variant": "#004395",
+                    "primary": "#000000",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#000000",
+                    "tertiary-container": "#002113",
+                    "surface-tint": "#565e74",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-fixed": "#131b2e",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#cbdbf5",
+                    "surface": "#f8f9ff",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "surface-container": "#e5eeff",
+                    "surface-container-highest": "#d3e4fe",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-tertiary-container": "#009668",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-secondary-container": "#fefcff",
+                    "outline-variant": "#c6c6cd",
+                    "xp-gold": "#F59E0B"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "64px",
+                    "margin-desktop": "40px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "container-max": "1440px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "code-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Custom scrollbar for editor */
+        .custom-scrollbar::-webkit-scrollbar { width: 10px; height: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #3f465c; border-radius: 5px; border: 2px solid #1E1E1E; }
+        .custom-scrollbar::-webkit-scrollbar-corner { background: transparent; }
+        
+        .code-keyword { color: #569cd6; }
+        .code-function { color: #dcdcaa; }
+        .code-string { color: #ce9178; }
+        .code-comment { color: #6a9955; }
+        .code-variable { color: #9cdcfe; }
+        .code-bracket { color: #ffd700; }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-hidden selection:bg-secondary-container selection:text-on-secondary">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-container-lowest text-primary dark:text-on-primary-fixed font-headline-md text-headline-md font-label-md text-label-md docked full-width top-0 border-b border-border-subtle dark:border-outline-variant flat no shadows flex justify-between items-center w-full px-margin-desktop h-16 fixed z-50">
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">Exam Console</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-md border border-border-subtle">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold tracking-wider">01:45:22</span>
+</div>
+<div class="flex items-center gap-4 border-l border-border-subtle pl-6">
+<button aria-label="Help" class="text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="px-4 py-2 border border-border-subtle rounded text-on-surface font-label-md text-label-md hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors">
+                    Review All
+                </button>
+<button class="px-5 py-2 bg-secondary text-on-primary rounded font-label-md text-label-md hover:bg-secondary-container hover:shadow-lg transition-all">
+                    Finish Exam
+                </button>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low dark:bg-surface-container-highest text-secondary dark:text-secondary-fixed font-label-md text-label-md font-body-sm text-body-sm fixed left-0 top-16 h-[calc(100vh-64px)] w-72 border-r border-border-subtle dark:border-outline-variant flat no shadows flex flex-col py-6 px-4 z-40">
+<div class="mb-8 px-2">
+<h2 class="font-headline-md text-headline-md text-primary mb-1">Section 1: Core Logic</h2>
+<div class="flex items-center gap-2">
+<div class="w-full bg-border-subtle h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 60%"></div>
+</div>
+<span class="text-on-surface-variant font-body-sm text-body-sm whitespace-nowrap">60% Complete</span>
+</div>
+</div>
+<ul class="flex flex-col gap-1 flex-grow overflow-y-auto custom-scrollbar pr-2">
+<li class="text-secondary dark:text-secondary-fixed border-l-4 border-secondary bg-surface-container-high dark:bg-surface-container flex items-center gap-3 px-4 py-3 rounded-r-lg cursor-pointer hover:bg-surface-container dark:hover:bg-surface-container-highest transition-all Active: scale-[0.99] transition-transform font-label-md text-label-md">
+<span class="material-symbols-outlined">quiz</span>
+                Problem 1
+            </li>
+<li class="text-on-surface-variant dark:text-on-surface-variant border-l-4 border-transparent flex items-center gap-3 px-4 py-3 rounded-r-lg cursor-pointer hover:bg-surface-container dark:hover:bg-surface-container-highest transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined">code</span>
+                Problem 2
+            </li>
+<li class="text-on-surface-variant dark:text-on-surface-variant border-l-4 border-transparent flex items-center gap-3 px-4 py-3 rounded-r-lg cursor-pointer hover:bg-surface-container dark:hover:bg-surface-container-highest transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined">quiz</span>
+                Problem 3
+            </li>
+<li class="text-on-surface-variant dark:text-on-surface-variant border-l-4 border-transparent flex items-center gap-3 px-4 py-3 rounded-r-lg cursor-pointer hover:bg-surface-container dark:hover:bg-surface-container-highest transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined">code</span>
+                Problem 4
+            </li>
+<li class="text-on-surface-variant dark:text-on-surface-variant border-l-4 border-transparent flex items-center gap-3 px-4 py-3 rounded-r-lg cursor-pointer hover:bg-surface-container dark:hover:bg-surface-container-highest transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined">task_alt</span>
+                Problem 5
+            </li>
+</ul>
+<div class="mt-auto pt-6 border-t border-border-subtle flex flex-col gap-4">
+<button class="w-full py-2 border border-border-subtle rounded text-on-surface font-label-md text-label-md flex justify-center items-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">flag</span> Flag for Review
+            </button>
+<button class="text-on-surface-variant flex items-center gap-3 px-2 py-2 hover:bg-surface-container rounded transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined">contact_support</span> Support
+            </button>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="ml-72 mt-16 h-[calc(100vh-64px)] flex p-gutter gap-gutter">
+<!-- Left Panel: Problem Context -->
+<div class="flex-1 flex flex-col bg-surface-card rounded-xl border border-border-subtle overflow-hidden relative shadow-[0_4px_12px_rgba(15,23,42,0.02)]">
+<div class="overflow-y-auto custom-scrollbar p-8 pb-20 h-full">
+<div class="flex items-center justify-between mb-6">
+<h1 class="font-display-lg text-display-lg text-primary">Valid Anagram</h1>
+<span class="px-3 py-1 bg-[#E6F4EA] text-[#009668] rounded-full font-label-md text-label-md">Easy</span>
+</div>
+<div class="prose max-w-none text-on-surface font-body-lg text-body-lg mb-10">
+<p>Given two strings <code class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant border border-border-subtle">s</code> and <code class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant border border-border-subtle">t</code>, return <code class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant border border-border-subtle">true</code> if <code class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant border border-border-subtle">t</code> is an anagram of <code class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant border border-border-subtle">s</code>, and <code class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant border border-border-subtle">false</code> otherwise.</p>
+</div>
+<div class="mb-8">
+<h3 class="font-headline-md text-headline-md text-primary mb-4 border-b border-border-subtle pb-2">Examples</h3>
+<div class="bg-surface-bright border border-border-subtle rounded-lg p-5 mb-4">
+<p class="font-label-md text-label-md text-on-surface-variant mb-2">Example 1:</p>
+<div class="font-code-sm text-code-sm text-on-surface bg-surface-card border border-border-subtle rounded p-3 mb-2 shadow-sm">
+<span class="text-on-surface-variant select-none">Input: </span> s = "anagram", t = "nagaram"
+                        </div>
+<div class="font-code-sm text-code-sm text-on-surface bg-surface-card border border-border-subtle rounded p-3 shadow-sm">
+<span class="text-on-surface-variant select-none">Output: </span> <span class="text-[#009668]">true</span>
+</div>
+</div>
+<div class="bg-surface-bright border border-border-subtle rounded-lg p-5">
+<p class="font-label-md text-label-md text-on-surface-variant mb-2">Example 2:</p>
+<div class="font-code-sm text-code-sm text-on-surface bg-surface-card border border-border-subtle rounded p-3 mb-2 shadow-sm">
+<span class="text-on-surface-variant select-none">Input: </span> s = "rat", t = "car"
+                        </div>
+<div class="font-code-sm text-code-sm text-on-surface bg-surface-card border border-border-subtle rounded p-3 shadow-sm">
+<span class="text-on-surface-variant select-none">Output: </span> <span class="text-error">false</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4 border-b border-border-subtle pb-2">Constraints</h3>
+<ul class="list-disc pl-6 space-y-2 text-on-surface font-body-md text-body-md">
+<li><code class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant border border-border-subtle">1 &lt;= s.length, t.length &lt;= 5 * 10<sup>4</sup></code></li>
+<li><code class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant border border-border-subtle">s</code> and <code class="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant border border-border-subtle">t</code> consist of lowercase English letters.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right Panel: Integrated Editor -->
+<div class="flex-[1.2] flex flex-col bg-editor-bg rounded-xl border border-outline shadow-[0_4px_12px_rgba(15,23,42,0.1)] overflow-hidden">
+<!-- Editor Header -->
+<div class="bg-[#2D2D2D] border-b border-[#3f465c] px-4 py-2 flex justify-between items-center z-10">
+<div class="flex items-center gap-2">
+<div class="bg-[#1E1E1E] text-on-primary font-label-md text-label-md border border-[#3f465c] rounded px-3 py-1.5 flex items-center gap-2 cursor-pointer hover:bg-[#3f465c] transition-colors">
+<img alt="JavaScript" class="w-4 h-4 rounded-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApyzQha-3W9gYFnkdi2ZojZwkCJpIEynSx7S6Mj-P3zOM9NNN8allHF5Cbk83wpA8V2SdGRdptAmRQ_rP5ZddDjfzrcFJt5SDucOcJkSETzI506e8olkM_q3sG8JldwnpMotMxdv0gum64U4hXu1_UcPl6Idq0k71GA-ctfbrk2ZUoiAeDc_J0mxEur7IAkPdltEwMx57q2BLKjMKH-WyT2iUKQfNmL1taOzoR9GP0vRYbs_gX5-j4geqEUjpii-tNPEgiSENHGrg"/>
+                        JavaScript
+                        <span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<button aria-label="Reset Code" class="text-on-surface-variant hover:text-on-primary transition-colors flex items-center gap-1 font-label-md text-label-md px-2 py-1 rounded hover:bg-[#3f465c]">
+<span class="material-symbols-outlined text-[18px]">refresh</span> Reset
+                </button>
+</div>
+<!-- Code Editor Area -->
+<div class="flex-grow flex relative font-code-sm text-code-sm">
+<!-- Line Numbers -->
+<div class="w-12 bg-[#1E1E1E] border-r border-[#3f465c] text-on-surface-variant flex flex-col items-end pr-3 py-4 select-none opacity-50">
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+</div>
+<!-- Code Content -->
+<div class="flex-grow p-4 text-on-primary outline-none whitespace-pre overflow-auto custom-scrollbar" contenteditable="true" spellcheck="false">
+<span class="code-comment">/**</span>
+<span class="code-comment"> * @param {string} s</span>
+<span class="code-comment"> * @param {string} t</span>
+<span class="code-comment"> * @return {boolean}</span>
+<span class="code-comment"> */</span>
+<span class="code-keyword">var</span> <span class="code-function">isAnagram</span> = <span class="code-keyword">function</span>(<span class="code-variable">s</span>, <span class="code-variable">t</span>) <span class="code-bracket">{</span>
+<span class="code-comment">// Write your solution here</span>
+<span class="code-bracket">}</span>;</div>
+</div>
+<!-- Action Bar -->
+<div class="bg-[#2D2D2D] border-t border-[#3f465c] px-6 py-3 flex justify-between items-center z-10">
+<button class="text-on-surface-variant hover:text-on-primary flex items-center gap-2 font-label-md text-label-md transition-colors px-2 py-1 rounded hover:bg-[#3f465c]" id="consoleToggle">
+<span class="material-symbols-outlined text-[20px]">terminal</span> Console
+                    <span class="material-symbols-outlined text-[16px] transition-transform duration-200" id="consoleIcon">expand_less</span>
+</button>
+<div class="flex gap-3">
+<button class="px-5 py-2 border border-[#3f465c] text-on-primary rounded font-label-md text-label-md hover:bg-[#3f465c] transition-colors">
+                        Debug
+                    </button>
+<button class="px-6 py-2 bg-secondary-container text-on-primary rounded font-label-md text-label-md hover:bg-secondary hover:shadow-lg transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span> Run Tests
+                    </button>
+</div>
+</div>
+<!-- Console Drawer (Toggleable) -->
+<div class="bg-[#1E1E1E] border-t border-[#3f465c] h-48 flex flex-col hidden" id="consoleDrawer">
+<div class="px-4 py-2 bg-[#252526] border-b border-[#3f465c] font-label-md text-label-md text-on-surface-variant">
+                    Console Output
+                </div>
+<div class="flex-grow p-4 font-code-sm text-code-sm text-on-surface-variant overflow-y-auto custom-scrollbar">
+<p class="text-[#4edea3] mb-1">&gt; Ready.</p>
+<p>&gt; Click "Run Tests" to execute your code against sample cases.</p>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple console toggle script
+        const consoleToggleBtn = document.getElementById('consoleToggle');
+        const consoleDrawer = document.getElementById('consoleDrawer');
+        const consoleIcon = document.getElementById('consoleIcon');
+
+        consoleToggleBtn.addEventListener('click', () => {
+            consoleDrawer.classList.toggle('hidden');
+            if(consoleDrawer.classList.contains('hidden')) {
+                consoleIcon.style.transform = 'rotate(0deg)';
+            } else {
+                consoleIcon.style.transform = 'rotate(180deg)';
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course Learning Page - Lumina Learning</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#0058be",
+                        "primary": "#000000",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bec6e0",
+                        "background": "#f8f9ff",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-variant": "#d3e4fe",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "streak-orange": "#EF4444",
+                        "tertiary-container": "#002113",
+                        "border-subtle": "#E2E8F0",
+                        "editor-bg": "#1E1E1E",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface-variant": "#45464d",
+                        "on-secondary-container": "#fefcff",
+                        "surface-card": "#FFFFFF",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#009668",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-secondary-fixed": "#001a42",
+                        "outline-variant": "#c6c6cd",
+                        "inverse-surface": "#213145",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-bg": "#F8FAFC",
+                        "on-primary-container": "#7c839b",
+                        "error": "#ba1a1a",
+                        "tertiary": "#000000",
+                        "outline": "#76777d",
+                        "on-surface": "#0b1c30",
+                        "inverse-on-surface": "#eaf1ff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-tint": "#565e74",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-container": "#e5eeff",
+                        "surface-container-high": "#dce9ff",
+                        "primary-fixed": "#dae2fd",
+                        "primary-container": "#131b2e",
+                        "on-background": "#0b1c30",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "secondary-container": "#2170e4",
+                        "xp-gold": "#F59E0B",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#004395"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "section-gap": "64px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin-mobile": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "code-sm": ["JetBrains Mono"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "code-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-display, .font-headline { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Custom scrollbar for sidebars */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+    </style>
+</head>
+<body class="bg-surface-bg text-on-surface h-screen overflow-hidden flex font-body-md text-body-md">
+<!-- Global Side Navigation (Left) -->
+<nav class="hidden md:flex flex-col bg-surface border-r border-border-subtle h-full w-[280px] fixed left-0 top-0 z-40 py-8">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-secondary flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined text-lg">school</span>
+</div>
+<div>
+<h1 class="font-headline-md text-[20px] leading-tight font-bold text-secondary">Lumina Learning</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Premium Scholar</p>
+</div>
+</div>
+<ul class="flex-1 flex flex-col gap-1 w-full">
+<li>
+<a class="text-on-surface-variant flex items-center px-6 py-3 hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<!-- Active State -->
+<a class="text-secondary font-bold border-l-4 border-secondary pl-[20px] flex items-center py-3 bg-surface-container-low" href="#">
+<span class="material-symbols-outlined fill-icon mr-3">menu_book</span>
+<span class="font-body-md text-body-md">My Courses</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant flex items-center px-6 py-3 hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined mr-3">military_tech</span>
+<span class="font-body-md text-body-md">Achievements</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant flex items-center px-6 py-3 hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</li>
+</ul>
+<div class="px-6 mt-auto">
+<div class="bg-surface-container p-4 rounded-2xl border border-border-subtle">
+<p class="font-label-md text-label-md text-on-surface-variant mb-3">Upgrade to Pro for unlimited access.</p>
+<button class="w-full bg-secondary text-on-secondary font-label-md text-label-md py-2 rounded-lg hover:bg-secondary-container transition-colors">
+                    Upgrade Pro
+                </button>
+</div>
+<div class="mt-6 flex items-center gap-3">
+<img alt="User avatar" class="w-10 h-10 rounded-full border border-border-subtle object-cover" data-alt="A close-up portrait of a young professional woman with natural makeup, looking directly at the camera with a subtle smile. The lighting is soft and studio-quality, creating a clean and modern corporate aesthetic suitable for a premium dashboard avatar. She is wearing a simple, elegant dark top against a neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5R2qqJjWoY6SLep6R5Y9EhIBtTA32h-3unsVYODIcVBtJ2BQ5XLs9-qoN9KtXFnF9KSpxzMFxN0QyCKOHebXFqL2gjUaZOrL-r61UVvoLUaaWwirsR_IpvDdCl3956iDTirUvfQeTdlamR55xQCbClQMnjv6BQwv_S6uNdW0VVum-keEI9sgDGkDHktNG2ogYvvGCkOXkJa9qHOnue5Y3pqIy1Q9jjpKAhHSrZ_v6V70e618IGnCP8kdHbAY0LzOW-VjRZ0IdHBs"/>
+<div>
+<p class="font-label-md text-label-md font-semibold">Sarah Jenkins</p>
+<p class="font-label-md text-label-md text-on-surface-variant font-normal">Student</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-[280px] mr-[320px] h-full overflow-y-auto bg-surface-bg relative flex flex-col">
+<!-- Top App Bar (Workspace Header) -->
+<header class="bg-surface-container-lowest border-b border-border-subtle sticky top-0 z-30 px-margin-desktop h-16 flex items-center justify-between">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<a class="hover:text-secondary transition-colors" href="#">Courses</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-secondary transition-colors" href="#">UI Design Mastery</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Principles of Structural Design</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-low flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Workspace Content -->
+<div class="p-margin-desktop max-w-container-max mx-auto w-full flex-1 pb-24">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Principles of Structural Design</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Module 1, Lesson 2</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-lg border border-border-subtle text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors flex items-center gap-2 bg-surface-card">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+                        Save
+                    </button>
+<button class="px-6 py-2 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-container transition-colors flex items-center gap-2 shadow-sm">
+                        Next Lesson
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Video Player Area -->
+<div class="w-full bg-primary rounded-2xl aspect-video relative overflow-hidden mb-8 border border-border-subtle shadow-sm group">
+<img alt="Video placeholder" class="w-full h-full object-cover opacity-80" data-alt="A clean, modern workspace setup featuring a sleek monitor displaying structural design wireframes and grid systems. The desk is minimalist with a keyboard, mouse, and a notebook. The scene is illuminated by soft, natural light coming from a nearby window, creating a focused, professional, and premium educational aesthetic suitable for a UI design masterclass video thumbnail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzurQ1tpCD7yxnSwvd0B1XkZGOQkmHdNjLsx2VLCKHxqxucD1UCLzdKL5J0WfFTruWLBqosfWRIUzUnGxxoxHpKcFN3wCm7fYu5hX5KgRzPT6uxIIODWgBf4kBmm4L6xfTJfhfRbgSy2mHx05AAG2YMb_TURbRuM3kz2_p8WikciA4RkBjrRQDGvXUQxSgCV4DyJRQzb9HglaHvLI9KAlNYVr6Xz9cfRHm6zhPkSOYoUAMgSnsB0odT1wJ3BzRHi7e0-AN5dXYssg"/>
+<!-- Play Button Overlay -->
+<div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors cursor-pointer">
+<div class="w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-secondary text-4xl ml-1">play_arrow</span>
+</div>
+</div>
+<!-- Video Controls (Mockup) -->
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-full h-1.5 bg-white/30 rounded-full overflow-hidden cursor-pointer">
+<div class="h-full bg-secondary w-[45%]"></div>
+</div>
+<div class="flex justify-between items-center text-white font-body-sm text-body-sm">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed">pause</span>
+<span>12:45 / 45:00</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed">volume_up</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed">closed_caption</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed">settings</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed">fullscreen</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Tabs -->
+<div class="bg-surface-card rounded-2xl border border-border-subtle overflow-hidden">
+<div class="flex border-b border-border-subtle px-2">
+<button class="px-6 py-4 font-label-md text-label-md text-secondary border-b-2 border-secondary font-bold">
+                        Overview
+                    </button>
+<button class="px-6 py-4 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">
+                        Resources (3)
+                    </button>
+<button class="px-6 py-4 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">
+                        Notes
+                    </button>
+</div>
+<div class="p-8">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">About this lesson</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 leading-relaxed max-w-3xl">
+                        In this comprehensive session, we dive deep into the fundamental principles of structural design for user interfaces. You will learn how to leverage 12-column grids, baseline rhythms, and spatial hierarchies to create layouts that are not only aesthetically pleasing but also highly functional and scalable across different viewport sizes.
+                    </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-3">Key Concepts</h4>
+<ul class="space-y-3 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+                                    The 12-Column Fixed Grid System
+                                </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+                                    Establishing Baseline Rhythm (4px/8px)
+                                </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+                                    Modular vs. Hierarchical Scale
+                                </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+                                    Responsive Breakpoints &amp; Behaviors
+                                </li>
+</ul>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-border-subtle">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Lesson Details</h4>
+<div class="space-y-4 font-body-sm text-body-sm">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">schedule</span> Duration</span>
+<span class="font-semibold text-on-surface">45 Minutes</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">bar_chart</span> Difficulty</span>
+<span class="font-semibold text-on-surface">Intermediate</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">person</span> Instructor</span>
+<span class="font-semibold text-on-surface">Dr. Alex Chen</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Curriculum Sidebar (Right) -->
+<aside class="fixed right-0 top-0 h-full w-[320px] bg-surface-container-low border-l border-border-subtle flex flex-col z-40">
+<!-- Sidebar Header & Progress -->
+<div class="p-6 border-b border-border-subtle bg-surface-card">
+<h2 class="font-headline-md text-[20px] leading-tight font-bold text-on-surface mb-1">UI Design Mastery</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Course Progress</p>
+<div class="flex items-center justify-between font-label-md text-label-md mb-2">
+<span class="text-on-surface">28% Completed</span>
+<span class="text-on-surface-variant">12 of 45 Lessons</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 28%"></div>
+</div>
+</div>
+<!-- Curriculum List -->
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Module 1 Accordion (Open) -->
+<div class="bg-surface-card rounded-xl border border-border-subtle overflow-hidden">
+<button class="w-full px-4 py-3 flex items-center justify-between hover:bg-surface-container-lowest transition-colors">
+<div class="flex flex-col items-start">
+<span class="font-label-md text-[10px] uppercase text-on-surface-variant tracking-wider">Module 1</span>
+<span class="font-body-sm font-semibold text-on-surface">Foundations</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_less</span>
+</button>
+<ul class="flex flex-col pb-2">
+<!-- Completed Lesson -->
+<li>
+<a class="flex items-center gap-3 px-4 py-2 hover:bg-surface-container-lowest transition-colors group" href="#">
+<div class="w-6 flex justify-center">
+<span class="material-symbols-outlined text-on-tertiary-container text-[20px] fill-icon">check_circle</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors line-clamp-1">Introduction to Systems</span>
+</a>
+</li>
+<!-- Active Lesson -->
+<li>
+<a class="flex items-center gap-3 px-4 py-2 bg-secondary-fixed-dim/20 border-l-2 border-secondary relative group" href="#">
+<div class="w-6 flex justify-center">
+<span class="material-symbols-outlined text-secondary text-[20px] fill-icon">play_circle</span>
+</div>
+<span class="font-body-sm text-body-sm font-semibold text-secondary line-clamp-1">Principles of Structural Design</span>
+</a>
+</li>
+<!-- Locked Lesson -->
+<li>
+<div class="flex items-center gap-3 px-4 py-2 opacity-60 cursor-not-allowed">
+<div class="w-6 flex justify-center">
+<span class="material-symbols-outlined text-outline text-[20px]">lock</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline line-clamp-1">Scalability &amp; Components</span>
+</div>
+</li>
+</ul>
+</div>
+<!-- Module 2 Accordion (Closed) -->
+<div class="bg-surface-card rounded-xl border border-border-subtle overflow-hidden opacity-80">
+<button class="w-full px-4 py-3 flex items-center justify-between hover:bg-surface-container-lowest transition-colors">
+<div class="flex flex-col items-start">
+<span class="font-label-md text-[10px] uppercase text-on-surface-variant tracking-wider">Module 2</span>
+<span class="font-body-sm font-semibold text-on-surface">Color &amp; Typography</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+</div>
+<!-- Exam Prep (Locked) -->
+<div class="mt-8">
+<h4 class="font-label-md text-[11px] uppercase tracking-wider text-on-surface-variant mb-2 px-2">Assessments</h4>
+<div class="bg-surface-card rounded-xl border border-border-subtle border-dashed p-4 flex items-center gap-3 opacity-60">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">quiz</span>
+</div>
+<div>
+<p class="font-body-sm font-semibold text-outline">Exam Prep</p>
+<p class="font-label-md text-[11px] text-outline">Requires Module 1-3</p>
+</div>
+<span class="material-symbols-outlined text-outline ml-auto text-[18px]">lock</span>
+</div>
+</div>
+</div>
+</aside>
+</body></html>

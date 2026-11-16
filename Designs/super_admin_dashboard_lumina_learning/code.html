@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumina Learning | Global Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f8f9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-container": "#2170e4",
+                        "primary-container": "#131b2e",
+                        "background": "#f8f9ff",
+                        "editor-bg": "#1E1E1E",
+                        "surface-container": "#e5eeff",
+                        "outline": "#76777d",
+                        "on-tertiary-container": "#009668",
+                        "xp-gold": "#F59E0B",
+                        "surface-bg": "#F8FAFC",
+                        "on-surface-variant": "#45464d",
+                        "primary": "#000000",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-surface": "#0b1c30",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container-high": "#dce9ff",
+                        "streak-orange": "#EF4444",
+                        "on-primary-fixed": "#131b2e",
+                        "on-secondary-fixed-variant": "#004395",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "surface-card": "#FFFFFF",
+                        "on-secondary-container": "#fefcff",
+                        "border-subtle": "#E2E8F0",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-container-highest": "#d3e4fe",
+                        "outline-variant": "#c6c6cd",
+                        "inverse-surface": "#213145",
+                        "secondary": "#0058be",
+                        "on-secondary-fixed": "#001a42",
+                        "on-primary-container": "#7c839b",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "tertiary-container": "#002113",
+                        "secondary-fixed": "#d8e2ff",
+                        "error": "#ba1a1a",
+                        "tertiary": "#000000",
+                        "on-background": "#0b1c30",
+                        "surface-tint": "#565e74",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#002113",
+                        "tertiary-fixed-dim": "#4edea3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "64px",
+                        "margin-desktop": "40px",
+                        "container-max": "1440px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "code-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .tonal-layer {
+            background-color: #F8FAFC;
+        }
+        .chart-bar {
+            transition: height 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-surface-bg font-body-md text-on-surface">
+<!-- SideNavBar -->
+<aside class="w-[280px] h-screen fixed left-0 top-0 bg-surface-container border-r border-border-subtle flex flex-col h-full py-6 z-40">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">SuperAdmin</h1>
+<p class="text-on-surface-variant font-label-md text-label-md">SaaS Management</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-6 py-3 text-secondary border-l-4 border-secondary bg-surface-container-high font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+                Global Dashboard
+            </a>
+<a class="flex items-center px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="domain">domain</span>
+                Tenant Management
+            </a>
+<a class="flex items-center px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="payments">payments</span>
+                Subscription Plans
+            </a>
+<a class="flex items-center px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="analytics">analytics</span>
+                Platform Analytics
+            </a>
+<a class="flex items-center px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="health_and_safety">health_and_safety</span>
+                System Health
+            </a>
+<a class="flex items-center px-6 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="settings">settings</span>
+                Global Settings
+            </a>
+</nav>
+<div class="px-6 pt-6 mt-auto border-t border-border-subtle">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold">Admin Panel</p>
+<p class="text-[10px] text-on-surface-variant">v2.4.0 Stable</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="h-16 fixed top-0 right-0 left-[280px] z-50 bg-surface-container-lowest shadow-sm flex justify-between items-center px-margin-desktop w-full border-b border-border-subtle">
+<div class="flex items-center gap-6">
+<h2 class="font-headline-md text-headline-md font-extrabold text-on-surface">Platform Control</h2>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-md" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 py-2 focus:ring-2 focus:ring-secondary text-body-sm transition-all" placeholder="Search institutions, logs, or metrics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="text-on-surface-variant hover:text-secondary transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-streak-orange rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-border-subtle"></div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-on-surface-variant cursor-pointer hover:text-secondary">Support</span>
+<div class="flex items-center gap-2 bg-secondary text-on-primary px-3 py-1.5 rounded-lg cursor-pointer hover:opacity-90 active:scale-[0.98] transition-all">
+<img alt="Admin Avatar" class="w-6 h-6 rounded-full object-cover border border-white/20" data-alt="Close up portrait of a professional technology administrator with a friendly expression. The scene is a high-tech control room with soft ambient blue lighting and out-of-focus server monitors in the background, signaling a modern and secure environment. The overall aesthetic is professional and trusted." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFSd_oWgWTKFHrKUHwESdfMDqKHQQ2-KUkyivAnxhAyRasSEFxvsmqqCzMiMv3o1ifp1l_Dz1ZwqfmDtWF1s66HB4AeVJKMQPqNokB0JYqUC91iDUDDYrw5MiuiGXiXKcQ_493hDo-5XNR2FTgchVYe80cHiPUVavsxiHEH1U90OLAF4lA0FwLkx-iYBvJO__1UiI5V3ImVjGodq7OI-FcEFNwCZl1Mo_QNk0cj6EKNsrA_H_ejrTyRc7FlJOgC0iEYY0ZRRzP8ys"/>
+<span class="font-label-md text-label-md">Profile</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] pt-24 px-margin-desktop pb-12 min-h-screen">
+<!-- Global KPIs (4 Grid Layout) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-section-gap">
+<!-- Total Tenants -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-container rounded-lg group-hover:bg-secondary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="corporate_fare">corporate_fare</span>
+</div>
+<span class="flex items-center text-on-tertiary-container font-label-md text-label-md bg-on-tertiary-container/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="trending_up">trending_up</span>
+                        +8%
+                    </span>
+</div>
+<h3 class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Total Tenants</h3>
+<p class="font-headline-lg text-headline-lg mt-1">124</p>
+<div class="w-full bg-surface-container h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[72%]"></div>
+</div>
+</div>
+<!-- Total Revenue -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-container rounded-lg group-hover:bg-secondary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<span class="text-on-surface-variant font-label-md text-label-md">vs last mo.</span>
+</div>
+<h3 class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Platform Revenue</h3>
+<p class="font-headline-lg text-headline-lg mt-1">$1.2M</p>
+<p class="text-body-sm text-on-tertiary-container mt-2">+$142k since Dec</p>
+</div>
+<!-- Total Active Users -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-container rounded-lg group-hover:bg-secondary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+</div>
+</div>
+<h3 class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Active Users</h3>
+<p class="font-headline-lg text-headline-lg mt-1">450k</p>
+<p class="text-body-sm text-on-surface-variant mt-2">Distributed globally</p>
+</div>
+<!-- Infrastructure Health -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-container rounded-lg group-hover:bg-secondary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="dns">dns</span>
+</div>
+<span class="flex items-center text-on-tertiary-container font-label-md text-label-md bg-on-tertiary-container/20 px-3 py-1 rounded-full animate-pulse">
+                        ONLINE
+                    </span>
+</div>
+<h3 class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Infra Health</h3>
+<p class="font-headline-lg text-headline-lg mt-1">99.98%</p>
+<p class="text-body-sm text-on-surface-variant mt-2">Active Node: AWS-US-EAST</p>
+</div>
+</section>
+<!-- Middle Section: Growth & Health -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-section-gap">
+<!-- New Tenant Onboarding Chart -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-xl border border-border-subtle">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Tenant Growth</h3>
+<p class="text-on-surface-variant text-body-sm">New institution registrations over the last 6 months</p>
+</div>
+<select class="bg-surface-container-low border-none rounded-lg text-body-sm focus:ring-secondary">
+<option>Last 6 Months</option>
+<option>Last Year</option>
+</select>
+</div>
+<div class="relative h-64 w-full flex items-end justify-between gap-4 px-4">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-b border-border-subtle w-full h-0"></div>
+<div class="border-b border-border-subtle w-full h-0"></div>
+<div class="border-b border-border-subtle w-full h-0"></div>
+<div class="border-b border-border-subtle w-full h-0"></div>
+</div>
+<!-- Chart Bars -->
+<div class="flex flex-col items-center gap-2 z-10 w-full group">
+<div class="w-full bg-secondary-fixed rounded-t-lg transition-all group-hover:bg-secondary" style="height: 40%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Aug</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-full group">
+<div class="w-full bg-secondary-fixed rounded-t-lg transition-all group-hover:bg-secondary" style="height: 55%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Sep</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-full group">
+<div class="w-full bg-secondary-fixed rounded-t-lg transition-all group-hover:bg-secondary" style="height: 48%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Oct</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-full group">
+<div class="w-full bg-secondary-fixed rounded-t-lg transition-all group-hover:bg-secondary" style="height: 75%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Nov</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-full group">
+<div class="w-full bg-secondary-fixed rounded-t-lg transition-all group-hover:bg-secondary" style="height: 62%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Dec</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-10 w-full group">
+<div class="w-full bg-secondary rounded-t-lg shadow-lg" style="height: 90%;"></div>
+<span class="font-label-md text-label-md font-bold text-secondary">Jan</span>
+</div>
+</div>
+</div>
+<!-- Revenue by Tier -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-border-subtle flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Subscription Tiers</h3>
+<p class="text-on-surface-variant text-body-sm mb-8">Revenue distribution by institutional tier</p>
+<div class="flex-1 flex flex-col justify-center space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between items-center text-body-sm font-bold">
+<span>Enterprise</span>
+<span>65%</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[65%] rounded-full"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-body-sm font-bold">
+<span>Pro</span>
+<span>25%</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[25%] rounded-full"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-body-sm font-bold">
+<span>Starter</span>
+<span>10%</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed-dim w-[10%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-border-subtle flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Total Tiers: 3</span>
+<button class="text-secondary font-label-md text-label-md hover:underline">View Breakdown</button>
+</div>
+</div>
+</section>
+<!-- Bottom Section: Infrastructure & Sessions -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Global Server Load -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="monitoring">monitoring</span>
+<h3 class="font-headline-md text-headline-md">Server Load</h3>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-code-sm text-code-sm uppercase">CPU Utilization</span>
+<span class="font-code-sm text-code-sm font-bold">42%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-tertiary-container w-[42%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-code-sm text-code-sm uppercase">RAM Usage</span>
+<span class="font-code-sm text-code-sm font-bold">65%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-xp-gold w-[65%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-code-sm text-code-sm uppercase">Storage</span>
+<span class="font-code-sm text-code-sm font-bold">12 / 50 TB</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[24%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Live Sessions -->
+<div class="bg-primary-container text-on-primary p-6 rounded-xl relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-10 -top-10 opacity-10">
+<span class="material-symbols-outlined text-[160px]" data-icon="videocam">videocam</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 bg-on-tertiary-container rounded-full animate-ping"></span>
+<span class="font-label-md text-label-md uppercase tracking-widest text-on-primary-container">Live Sessions</span>
+</div>
+<p class="font-display-lg text-display-lg">1.2k</p>
+</div>
+<div>
+<p class="text-body-sm text-on-primary-container mb-4">Simultaneous classes in progress across all nodes.</p>
+<button class="w-full py-3 bg-secondary rounded-lg font-bold hover:bg-secondary/90 transition-all active:scale-[0.98]">
+                            Monitor Traffic
+                        </button>
+</div>
+</div>
+</div>
+<!-- Recent Critical Events / System Logs -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-subtle flex flex-col overflow-hidden">
+<div class="px-6 py-4 border-b border-border-subtle flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-md text-headline-md text-on-surface">Critical Events</h3>
+<button class="p-1 hover:bg-surface-container rounded-md transition-colors">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+<div class="divide-y divide-border-subtle">
+<!-- Log Item -->
+<div class="px-6 py-4 flex gap-4 hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="domain_add">domain_add</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-body-md font-bold text-on-surface group-hover:text-secondary transition-colors">New Enterprise Tenant: Stanford Global</p>
+<span class="text-on-surface-variant font-label-md text-label-md">2m ago</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mt-1">Institutional profile created; initializing database shard...</p>
+</div>
+</div>
+<!-- Log Item -->
+<div class="px-6 py-4 flex gap-4 hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-on-tertiary-container/10 text-on-tertiary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="system_update">system_update</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-body-md font-bold text-on-surface group-hover:text-secondary transition-colors">Platform Update v2.4.0 Deployed</p>
+<span class="text-on-surface-variant font-label-md text-label-md">45m ago</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mt-1">Global rollout completed across all regions without downtime.</p>
+</div>
+</div>
+<!-- Log Item -->
+<div class="px-6 py-4 flex gap-4 hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-streak-orange/10 text-streak-orange flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-body-md font-bold text-on-surface group-hover:text-secondary transition-colors">Storage Limit Alert: Institute of Arts</p>
+<span class="text-on-surface-variant font-label-md text-label-md">1h ago</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mt-1">Tenant reached 95% of allocated media storage (2.4 TB).</p>
+</div>
+</div>
+</div>
+<a class="block w-full text-center py-4 text-secondary font-label-md text-label-md hover:bg-surface-container-low transition-colors border-t border-border-subtle" href="#">
+                    View Full Audit Logs
+                </a>
+</div>
+</section>
+</main>
+<script>
+        // Micro-interaction for log items and hover states
+        document.querySelectorAll('.group').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('translate-x-1');
+            });
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('translate-x-1');
+            });
+        });
+    </script>
+</body></html>

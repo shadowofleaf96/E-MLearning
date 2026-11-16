@@ -1,135 +1,190 @@
-# 🚀 JSNxt-Boilerplate - Next.js + Express.js Full-Stack Boilerplate
+# 🎓 E-MLearning (Lumina Learning) — Enterprise Multi-Tenant SaaS LMS
 
-This project is a modern full-stack web application starter built with **Next.js** for the frontend and **Express.js** for the backend. It provides a clean, scalable architecture for building production-ready applications with API routes, authentication, and database integration.
+> **A modern, scalable, multi-tenant Software-as-a-Service (SaaS) Learning Management System (LMS) built for educational institutions, corporate academies, and independent educators.**
 
-[![CI](https://github.com/shadowofleaf96/jsnxt-boilerplate/actions/workflows/main.yaml/badge.svg?branch=dev)](https://github.com/shadowofleaf96/jsnxt-boilerplate/actions/workflows/main.yaml)
-
-## 📦 Tech Stack
-
-- **Frontend**: Next.js 15 (App Router), React, TypeScript
-- **Backend**: Express.js, Node.js
-- **Database**: MongoDB with Mongoose or MySQL with Sequelize
-- **Authentication**: JWT-based login and registration, Google OAuth
-- **API**: RESTful endpoints with Express
-- **State Management**: Redux Toolkit
-- **Styling**: Tailwind CSS with custom configuration
-- **Internationalization**: I18n (English, French, Arabic) with dynamic locale routing
-- **Form Validation**:
-  - **Frontend**: Zod + React Hook Form
-  - **Backend**: Joi
-- **Security Middleware**: Helmet, hpp, express-useragent, express-rate-limit
-- **Testing**: Jest + React Testing Library (optional setup)
-- **Linting/Formatting**: ESLint + Prettier
+[![Next.js](https://img.shields.io/badge/Frontend-Next.js%2015-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![Node.js](https://img.shields.io/badge/Backend-Express%20%2B%20TypeScript-green?style=flat&logo=node.js)](https://nodejs.org/)
+[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL%20%2B%20Prisma-blue?style=flat&logo=postgresql)](https://www.prisma.io/)
+[![Gemini AI](https://img.shields.io/badge/AI-Google%20Gemini%20Flash-orange?style=flat&logo=google)](https://deepmind.google/technologies/gemini/)
+[![Stripe](https://img.shields.io/badge/Payments-Stripe%20Subscriptions-purple?style=flat&logo=stripe)](https://stripe.com/)
 
 ---
 
-## 🔧 Features
+## 🌟 Overview
 
-- ✅ Clean modular folder structure
-  - `client/`: Next.js frontend
-  - `server/`: Express.js backend
-  - Well-defined separation of concerns and scalable architecture
-- ✅ Next.js App Router with dynamic routing and layout support
-- ✅ Full user authentication flow
-  - JWT (register, login, reset password)
-  - Google OAuth with secure callback and token handling
-- ✅ Role-Based Access Control (RBAC)
-  - Admin, User roles
-  - Middleware protection on both frontend and backend
-- ✅ MongoDB integration using Mongoose (default)
-- ✅ MySQL integration using Sequelize (`mysql` branch)
-- ✅ Protected admin dashboard and pages
-- ✅ Internationalization (i18n)
-  - `en`, `fr`, `ar`
-  - Dynamic locale middleware that auto-redirects
-  - Locale-specific content and translations stored in JSON
-  - RTL support for Arabic
-  - Flag icon language switcher
-- ✅ Responsive UI built with Tailwind CSS
-  - Mobile-first design
-  - Reusable components with animation
-- ✅ Environment variables managed with `.env`
-- ✅ Static file handling (`public/` and `uploads/`)
-- ✅ Image optimization using Next.js `<Image />` component
-- ✅ Middleware handling for routing and locale detection
-- ✅ ESLint and Prettier for code quality and consistency
-- ✅ TypeScript types and interfaces for both frontend and backend
-- ✅ Form validation
-  - Frontend: Strong type-safe validation using `Zod` integrated with `React Hook Form`
-  - Backend: Schema validation using `Joi` for request bodies
-- ✅ Security enhancements:
-  - `Helmet` for HTTP headers
-  - `hpp` for HTTP parameter pollution
-  - `express-useragent` for device detection
-  - `express-rate-limit` for rate limiting
-- ✅ Ready for deployment on:
-  - **Vercel** (frontend)
-  - **Railway / Render / Heroku** (backend)
-  - Includes basic Dockerfile (multi-stage)
+**E-MLearning (Lumina Learning)** is a full-featured, enterprise-grade cloud LMS engineered with a multi-tenant architecture. Every tenant (institution, university, or company) enjoys dedicated tenant branding, domain/subdomain isolation, customizable themes, and independent user directories.
 
-## 📁 Client Folder Structure
+The platform provides dedicated, tailored workspaces for:
+1. **Super Admins** — Global platform management, tenant provisioning, security auditing, and plan subscriptions.
+2. **Tenant Admins** — White-label branding, domain mapping, tenant-wide user management, and analytics.
+3. **Instructors** — Rich curriculum builder, AI course generator, assignment rubric grading, direct student messaging, and drip scheduling.
+4. **Students** — Interactive video/doc player, note-taking, peer discussions, assignment submissions, exams, gamification (XP/badges/streaks), and certificates.
 
-```bash
-├── public/                 # Static assets (e.g., images, icons, fonts)
-├── src/
-│   ├── app/                # Application routes and layouts using Next.js App Router
-│   │   ├── [locale]/       # Dynamic locale directories (e.g., en, fr, ar) containing localized pages and components
-│   │   └── utils/          # Utility functions and helpers specific to routing or middleware
-│   ├── components/         # Reusable UI components (e.g., buttons, forms, modals)
-│   ├── redux/              # Redux store configuration, slices, and related logic
-│   ├── styles/             # Global and modular styles (e.g., Tailwind CSS configurations, custom CSS files)
-│   └── types/              # TypeScript type definitions and interfaces
-├── .env                    # Environment variables (e.g., API keys, database URIs)
-├── .gitignore              # Specifies files and directories to be ignored by Git
-├── .prettierignore         # Specifies files and directories to be ignored by Prettier
-├── .prettierrc.json        # Configuration file for Prettier code formatter
-├── eslint.config.mjs       # ESLint configuration for linting and code quality
-├── jest.config.ts          # Jest configuration for testing
-├── next-env.d.ts           # TypeScript declarations for Next.js
-├── next.config.ts          # Next.js configuration file
-├── package-lock.json       # Automatically generated for package versions consistency
-├── package.json            # Project metadata and dependencies
-├── postcss.config.mjs      # Configuration for PostCSS (e.g., Tailwind CSS processing)
-├── README.md               # Project overview and documentation
-├── tailwind.config.js      # Tailwind CSS configuration file
-└── tsconfig.json           # TypeScript compiler configuration
+---
+
+## 🚀 Key Feature Matrix
+
+### 1. 🏢 Multi-Tenancy & White-Labeling
+- **Domain & Subdomain Isolation**: Automatic tenant context resolution via HTTP Host header (`tenant.domain.com` or custom CNAME).
+- **Custom Branding**: Tenant-specific primary/secondary colors, logos (light & dark), favicons, and mission statements.
+- **Tenant Subscription Plans**: Self-serve or admin-assigned plans (`free`, `starter`, `pro`, `enterprise`) integrated with Stripe billing.
+
+### 2. 🤖 AI-Powered Course Creator
+- **Gemini AI Integration**: Powered by `@google/generative-ai` with prompt fallback resilience.
+- **Instant Curriculum Generation**: Enter a topic, level, and lesson count to automatically generate complete modules, structured lessons, and lesson outlines.
+- **AI Lesson Content Drafter**: Drafts rich Markdown explanations, learning objectives, and key takeaways for any lesson title with one click.
+
+### 3. 👨‍🏫 Instructor Suite & Productivity
+- **Curriculum Drag-and-Drop Builder**: Sortable modules and lessons powered by `@dnd-kit`.
+- **Course Content Drip Scheduling**: Set future release dates (`publishAt`) on modules or lessons to release content sequentially or on a schedule.
+- **Assignment & Rubric Grading System**:
+  - Create project milestones and assignments with customizable multi-criteria rubrics.
+  - Review student submissions with file/link attachments.
+  - Assign numeric grades with qualitative instructor feedback.
+- **1:1 In-Platform Direct Messaging**:
+  - Live threaded direct conversations between students and instructors.
+  - Unread message counters in the navbar and sidebar.
+  - Real-time conversation history and automatic read-receipts.
+
+### 4. 🎓 Immersive Student Learning Experience
+- **Interactive Player**: Supports YouTube embeds, direct video links, PDF documents, and rich text lessons.
+- **Time-Spent Verification**: Configurable minimum time requirement before unlocking completion to ensure authentic learning.
+- **Sequential Module Locking**: Automatic unlocking of sequential modules upon completing prerequisite lessons.
+- **Synchronized Personal Notes**: Database-persisted student notes with auto-save and local fallback.
+- **Course & Lesson Discussions (Q&A)**: Ask questions per course/lesson, upvote insightful responses, and mark official solutions.
+- **5-Star Course Reviews & Ratings**: Submit verified reviews and view interactive 5-star distribution breakdowns.
+- **Wishlist & Bookmarks**: Save courses for later with quick-access tabs in student learning hub.
+- **Global Search (Cmd + K)**: Universal keyboard-accessible omnisearch across courses, lessons, discussions, and instructors.
+
+### 5. 🎮 Gamification & Engagement
+- **Experience Points (XP)**: Earn XP for completing lessons, passing exams, and completing courses.
+- **Dynamic Levels & Streaks**: Daily login bonus streak calculation and real-time level progression.
+- **Badge Awards**: Milestone achievements (e.g., *Fast Learner*, *Quiz Master*, *Consistent Scholar*).
+
+---
+
+## 🏗️ Architecture & Tech Stack
+
+### Frontend (`/client`)
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router, React 19)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with Material Design 3 design tokens
+- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/) + React Hooks
+- **Drag & Drop**: `@dnd-kit/core` & `@dnd-kit/sortable`
+- **Icons**: `lucide-react` & Google Material Symbols
+- **Notifications**: `react-toastify`
+- **Internationalization**: Multi-locale routing (`en`, `fr`, `ar`) with RTL support
+
+### Backend (`/server`)
+- **Runtime**: Node.js (v20+) with TypeScript
+- **Framework**: Express.js with modular feature architecture (`/src/modules/`)
+- **ORM**: [Prisma ORM](https://www.prisma.io/)
+- **Database**: PostgreSQL (Cloud-hosted on Aiven)
+- **Validation**: [Zod](https://zod.dev/) schemas on request bodies, queries, and params
+- **Security**: JWT authentication, bcrypt password hashing, CORS, rate limiting, and helmet
+
+---
+
+## 📂 Project Structure
+
+```
+E-MLearning/
+├── client/                               # Next.js 15 Frontend
+│   ├── src/
+│   │   ├── app/[locale]/                 # Localized Next.js App Router
+│   │   │   ├── (public)/                 # Landing, catalog, course details
+│   │   │   ├── student/                  # Student dashboard, learn player, messages
+│   │   │   ├── instructor/               # Course builder, assignments, analytics
+│   │   │   ├── admin/                    # Tenant admin settings, branding, users
+│   │   │   └── super-admin/              # Multi-tenant directory, global analytics
+│   │   ├── components/                   # Shared UI, layout, modals, navigation
+│   │   ├── modules/                      # Modular domain features
+│   │   │   ├── ai/                       # AI generator modals and services
+│   │   │   ├── assignments/              # Student submission & instructor grading UI
+│   │   │   ├── courses/                  # Course builder, curriculum, progress
+│   │   │   ├── discussions/              # Q&A forum components
+│   │   │   ├── gamification/             # Badges, levels, XP counters
+│   │   │   ├── messaging/                # Direct messaging dual-pane chat
+│   │   │   └── reviews/                  # 5-star review components
+│   │   ├── services/                     # Axios API clients & endpoints
+│   │   └── store/                        # Redux Toolkit slices
+├── server/                               # Express.js + Prisma Backend
+│   ├── prisma/
+│   │   └── schema.prisma                 # Multi-tenant PostgreSQL Prisma schema
+│   ├── src/
+│   │   ├── modules/                      # Backend domain modules
+│   │   │   ├── ai/                       # Gemini AI course & lesson generation
+│   │   │   ├── assignments/              # Assignment creation, submission, grading
+│   │   │   ├── bookmarks/                # Student wishlist & bookmarks
+│   │   │   ├── courses/                  # Course CRUD & catalog
+│   │   │   ├── discussions/              # Q&A forum & reply threads
+│   │   │   ├── exams/                    # Quizzes & grading engine
+│   │   │   ├── gamification/             # XP & badge awards
+│   │   │   ├── messaging/                # 1:1 Direct messaging service
+│   │   │   ├── modules/                  # Course modules & drip scheduling
+│   │   │   ├── progress/                 # Sequential locking & note persistence
+│   │   │   └── reviews/                  # Review submissions & moderation
+│   │   ├── shared/                       # Prisma client, AppError, middleware
+│   │   ├── tests/                        # Automated backend test suites
+│   │   │   ├── sprint1_verify.ts         # Phase 1 & 6.5 verification
+│   │   │   └── phase2_verify.ts          # Phase 2 messaging & assignment verification
+│   │   └── app.ts                        # Express server entrypoint
+└── README.md
 ```
 
-## 📁 Server Folder Structure
+---
 
+## 🛠️ Getting Started
+
+### Prerequisites
+- **Node.js**: `v20.x` or later
+- **npm** / **bun** / **yarn**
+- **PostgreSQL**: Local or cloud database (e.g. Aiven, Supabase, Neon)
+
+### 1. Database Setup
 ```bash
-
-├── config/                 # Configuration files (e.g., database connections, environment variables)
-├── controllers/            # Route handlers containing business logic for each endpoint
-├── middleware/             # Custom middleware functions (e.g., authentication, error handling)
-├── models/                 # Database models and schemas (e.g., Mongoose models)
-├── public/                 # Publicly accessible static assets (e.g., images, CSS, JavaScript files)
-├── routes/                 # API route definitions, mapping URLs to controllers
-├── types/                  # TypeScript type definitions and interfaces
-├── uploads/                # Directory for storing uploaded files (e.g., user uploads)
-├── utils/                  # Utility functions and helper modules
-├── .env                    # Environment variables (e.g., API keys, database URIs)
-├── .gitignore              # Specifies files and directories to be ignored by Git
-├── .prettierignore         # Specifies files and directories to be ignored by Prettier
-├── .prettierrc.json        # Configuration file for Prettier code formatter
-├── eslint.config.mjs       # ESLint configuration for linting and code quality
-├── index.ts                # Entry point of the application, initializes and starts the Express server
-├── package-lock.json       # Automatically generated for locking dependencies versions
-├── package.json            # Project metadata, scripts, and dependencies
-└── tsconfig.json           # TypeScript compiler configuration
+cd server
+cp .env.example .env
+# Set DATABASE_URL in server/.env
+npx prisma db push
+npx prisma generate
 ```
 
-## Quick Start
-
-1. **Clone repository**
-
+### 2. Backend Startup
 ```bash
-git clone https://github.com/shadowofleaf96/JSNxt-Boilerplate.git
-cd next-express-boilerplate
-cd client && npm install && npm run dev
-cd server && npm install && npm run dev
-**Don't forget about env for Frontend and Backend**
+cd server
+npm install
+npm run dev
+# Server runs on http://localhost:5000
 ```
 
-Feel free to fork and contribute!
-Made with ❤️ by Shadow Of Leaf
+### 3. Frontend Startup
+```bash
+cd client
+npm install
+npm run dev
+# Client runs on http://localhost:3000
+```
+
+### 4. Running Automated Verification
+```bash
+cd server
+npx tsx src/tests/sprint1_verify.ts    # Tests Phase 1 (Reviews, Discussions, Search, Notes)
+npx tsx src/tests/phase2_verify.ts     # Tests Phase 2 (Messaging, Assignments, Drip Schedule)
+```
+
+---
+
+## 🗺️ Roadmap & Phase Completion
+
+| Phase | Description | Status |
+|:---|:---|:---:|
+| **Phase 1: Student Engagement** | Reviews, Course Discussions, Notes persistence, Wishlist, Global Cmd+K Search | ✅ Completed |
+| **Phase 2: Instructor Productivity** | Direct 1:1 Messaging, Assignment & Rubric Grading, Drip Content Scheduling | ✅ Completed |
+| **Phase 3: Admin Operations** | Moderation workflows, Course-wide broadcast announcements, Revenue reports | ⏳ Next Up |
+| **Phase 4: Advanced Learning** | Learning paths, Course prerequisites, Live video integrations | 📋 Planned |
+| **Phase 5: Platform Completeness** | WebSockets notifications, Student learning analytics, Public webhook API | 📋 Planned |
+
+---
+
+## 📄 License
+MIT © E-Tactiques LMS

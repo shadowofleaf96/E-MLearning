@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import * as controller from './certificates.controller';
+import { authenticate } from '../../middlewares/authenticate';
+const router = Router();
+router.get('/student', authenticate, controller.getStudentCertificates);
+router.get('/:id', authenticate, controller.getCertificateById);
+router.get('/:id/download', authenticate, controller.downloadCertificate);
+router.get('/verify/:code', controller.verifyCertificate);
+router.post('/generate', authenticate, controller.generateCertificate);
+export default router;

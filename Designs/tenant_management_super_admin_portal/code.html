@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tenant Management | Platform Control</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#bec6e0",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-surface-variant": "#45464d",
+                    "on-error-container": "#93000a",
+                    "background": "#f8f9ff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "error": "#ba1a1a",
+                    "on-surface": "#0b1c30",
+                    "primary-fixed": "#dae2fd",
+                    "on-secondary-fixed": "#001a42",
+                    "surface-container-high": "#dce9ff",
+                    "surface-tint": "#565e74",
+                    "xp-gold": "#F59E0B",
+                    "inverse-surface": "#213145",
+                    "on-primary-container": "#7c839b",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "border-subtle": "#E2E8F0",
+                    "on-primary-fixed": "#131b2e",
+                    "tertiary-container": "#002113",
+                    "primary": "#000000",
+                    "on-background": "#0b1c30",
+                    "surface-variant": "#d3e4fe",
+                    "on-tertiary-fixed": "#002113",
+                    "streak-orange": "#EF4444",
+                    "outline-variant": "#c6c6cd",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#131b2e",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface": "#f8f9ff",
+                    "on-secondary-fixed-variant": "#004395",
+                    "on-primary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#0058be",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-primary": "#bec6e0",
+                    "editor-bg": "#1E1E1E",
+                    "surface-card": "#FFFFFF",
+                    "on-tertiary-container": "#009668",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container": "#e5eeff",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#76777d",
+                    "surface-dim": "#cbdbf5",
+                    "secondary-container": "#2170e4",
+                    "on-error": "#ffffff",
+                    "tertiary": "#000000",
+                    "on-secondary-container": "#fefcff",
+                    "surface-bg": "#F8FAFC"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "base": "4px",
+                    "section-gap": "64px",
+                    "container-max": "1440px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Hanken Grotesk"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "code-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #CBD5E1; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-fixed-dim selection:text-on-secondary-fixed">
+<!-- Sidebar Navigation -->
+<aside class="w-[280px] h-screen fixed left-0 top-0 border-r border-border-subtle bg-surface-container flex flex-col py-6 z-50">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">domain</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">SuperAdmin</h2>
+<p class="text-on-primary-container font-label-md text-label-md">SaaS Management</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1 overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Global Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary border-l-4 border-secondary bg-surface-container-high font-bold" href="#">
+<span class="material-symbols-outlined">domain</span>
+<span>Tenant Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Subscription Plans</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Platform Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">health_and_safety</span>
+<span>System Health</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Global Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant/30">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">System Load</p>
+<div class="h-1.5 w-full bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-1/3 rounded-full"></div>
+</div>
+<p class="font-label-md text-[10px] mt-2 text-on-surface-variant uppercase tracking-wider">Optimal Performance</p>
+</div>
+</div>
+</aside>
+<!-- Top AppBar -->
+<header class="h-16 fixed top-0 right-0 left-[280px] z-40 bg-surface-container-lowest border-b border-border-subtle shadow-sm flex justify-between items-center px-margin-desktop">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-headline-md font-extrabold text-on-surface">Platform Control</h1>
+<div class="relative w-96 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 font-body-sm focus:ring-2 focus:ring-secondary/20 transition-all outline-none" placeholder="Search tenants, users, or domains..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 border-r border-outline-variant pr-6">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-all text-on-surface-variant relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-all text-on-surface-variant">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="font-label-md text-label-md text-on-surface">Alex Mercer</p>
+<p class="font-label-md text-[10px] text-on-surface-variant uppercase tracking-widest">Master Admin</p>
+</div>
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full border-2 border-secondary/20 object-cover" data-alt="A professional headshot of a modern software administrator in a minimalist office setting with soft, natural lighting. The subject has a confident expression, wearing a dark grey tailored suit against a blurred background of a clean glass and steel workspace. The overall mood is professional, focused, and high-trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA2byiOFelcrQ8dFHngN_yC1Yf4GSlHD75Qgvcc3Yj8jCopbPJ1mVOyE4tH7SoVZJTwyxWn-VkD8PBaTy1853jduLjeAS0qMz39gnmLbAmbc8V0VqlGsdF53bcsKCebL77flFKRtlVNrz80vDdNtsg0AORakTdApBOLsOo3dz0rKS2Nw6ozFk3x49KaVFsdJNaiJGIHQ-AC4wSF97ecDOnTU9r4LF7-bUetukqU_wiXnblSyS-1CuKvJS4jfKIoQ7FKhjgnPnDthk"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] pt-24 pb-12 px-margin-desktop min-h-screen">
+<!-- Header Actions -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Tenant Management</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Manage and monitor institution access, billing, and system usage.</p>
+</div>
+<button class="bg-secondary text-on-secondary px-6 py-3 rounded-lg font-label-md flex items-center gap-2 hover:bg-secondary-container transition-all active:scale-[0.98] shadow-md shadow-secondary/10" onclick="toggleModal('createTenantModal')">
+<span class="material-symbols-outlined">add_business</span>
+                Create New Tenant
+            </button>
+</div>
+<!-- Metric Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-margin-desktop">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle flex flex-col gap-4 group hover:border-secondary/30 transition-all cursor-default">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<span class="text-tertiary-fixed-dim text-label-md flex items-center gap-1 font-bold">+12%</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Total Active Tenants</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface mt-1">1,284</h3>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle flex flex-col gap-4 group hover:border-secondary/30 transition-all cursor-default">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-xp-gold/10 flex items-center justify-center text-xp-gold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+</div>
+<span class="text-xp-gold text-label-md font-bold">14 New</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Pending Approvals</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface mt-1">42</h3>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle flex flex-col gap-4 group hover:border-secondary/30 transition-all cursor-default">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-streak-orange/10 flex items-center justify-center text-streak-orange">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">block</span>
+</div>
+<span class="text-streak-orange text-label-md font-bold">-2%</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Suspended Accounts</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface mt-1">18</h3>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-border-subtle flex flex-col gap-4 group hover:border-secondary/30 transition-all cursor-default">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed-dim/10 flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<span class="text-on-tertiary-container text-label-md font-bold">+8.4k</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Revenue by Tenant</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface mt-1">$412.5k</h3>
+</div>
+</div>
+</div>
+<!-- Tenant Directory Canvas -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden">
+<!-- Table Controls -->
+<div class="p-6 border-b border-border-subtle flex flex-wrap gap-4 justify-between items-center bg-surface-container-low/30">
+<div class="flex gap-3">
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant/30 rounded-lg pl-4 pr-10 py-2 font-label-md focus:ring-2 focus:ring-secondary/10 outline-none cursor-pointer">
+<option>All Plans</option>
+<option>Enterprise</option>
+<option>Pro</option>
+<option>Starter</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant/30 rounded-lg pl-4 pr-10 py-2 font-label-md focus:ring-2 focus:ring-secondary/10 outline-none cursor-pointer">
+<option>All Status</option>
+<option>Active</option>
+<option>Suspended</option>
+<option>Pending</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<p class="font-label-md text-label-md text-on-surface-variant">Showing 1-10 of 1,284 tenants</p>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Main Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-subtle">
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Institution Name</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Plan Type</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Users</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Joined Date</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle/50">
+<!-- Tenant Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/20">
+<img alt="Inst logo" class="w-full h-full object-cover" data-alt="A clean, minimalist logo of a modern educational institute featuring an abstract crest in professional blue and white. The background is a crisp, off-white surface with soft studio lighting, conveying a sense of academic tradition blended with modern technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrNSWk3FOOjXeT0ZqWnKnlyMaR5aWmVbfzgNwNFbw_enLc8RPkKRVVYuDacZMGvp7qE2ha8AVfFvQQVHkWQH6BaUCdNx0u5m0maUI65MMiYasN1BkUHCnqiYGsaUqJb0Is135EkfpZR7bCdTHpVyeR_NOEUN2Hfqamq_x6tUMlFjZiAec-FQOwmk20syTM-L2x5PYtrLpRM7NohC1BoN2fxwaHNlzcDQHOtgQkk0uPK6fQqJtrCzfQMMwOeO9HzoA2Kznl_W0QlxA"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Stellar University of Arts</p>
+<p class="text-[12px] text-on-surface-variant font-code-sm">stellar-edu.lumina.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-md text-[11px] uppercase font-bold tracking-tight border border-secondary/20">Enterprise</span>
+</td>
+<td class="px-6 py-4">
+<p class="font-body-md text-on-surface">12,402</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container animate-pulse"></span>
+<span class="text-on-tertiary-container font-label-md">Active</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-on-surface-variant font-body-sm">Oct 12, 2023</p>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant" title="Edit"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-secondary" title="Manage Plan"><span class="material-symbols-outlined text-[20px]">loyalty</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant" title="View Dashboard"><span class="material-symbols-outlined text-[20px]">open_in_new</span></button>
+</div>
+</td>
+</tr>
+<!-- Tenant Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/20">
+<img alt="Inst logo" class="w-full h-full object-cover" data-alt="A sophisticated emblem for a technical institute, showcasing clean geometric lines and a subtle circuit board pattern in deep forest green and silver. The lighting is focused and direct, creating a sense of precision, engineering excellence, and corporate trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0Yoq4MUruP-a9ET_q3YRodH8SJelmoDUz4z7POygNd0hIre1V3xOzeE0euWic7kpK9hsqVGSRaH9aB-0u6u5YBxTiKBhogDxIqhpfiyQCQwlVTVm9MqeTIIxkolpkghZ2A0iR4GMCKLkU7PLJQgSzt7IXwfO_JcoxYkpHUoHn2-0_qX6NcXUObdPma3CaarFa3wIoy4KT1rjOcYgBv3VXKhC8kufoQi6A1A2jheAj8HzOkm0TXg_49xmVijWxO13RxKGlX00sUVw"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Global Tech Academy</p>
+<p class="text-[12px] text-on-surface-variant font-code-sm">gta-training.io</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full font-label-md text-[11px] uppercase font-bold tracking-tight border border-outline-variant/30">Pro</span>
+</td>
+<td class="px-6 py-4">
+<p class="font-body-md text-on-surface">4,120</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-streak-orange">
+<span class="w-2 h-2 rounded-full bg-streak-orange"></span>
+<span class="font-label-md">Suspended</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-on-surface-variant font-body-sm">Jan 04, 2024</p>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant" title="Edit"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-secondary" title="Manage Plan"><span class="material-symbols-outlined text-[20px]">loyalty</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant" title="View Dashboard"><span class="material-symbols-outlined text-[20px]">open_in_new</span></button>
+</div>
+</td>
+</tr>
+<!-- Tenant Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/20">
+<img alt="Inst logo" class="w-full h-full object-cover" data-alt="A warm and inviting logo for a community learning center, featuring a stylized open book and a rising sun in golden yellow and terracotta tones. The aesthetic is organic and approachable, with soft, diffused lighting that suggests a welcoming environment for personal growth and education." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0SvWBTJA2K-XMtLWLeViKEWUlrk04SpQgIjhk97GKeQiIfuGKq2copehVsli_BsZHxTSVEDV32qSJjjH3NrgUJvDX3sbiZLGK9rwNCPOYT4kYUpii2ZjKGEcOHnGihs6l6JM-qpeMTYl84AS0EvhlGkwspa0-nsZRVijKk57OlgBWIcrKhMUGN9AnlYoviN9_Pp47_tQR1EoHqs6F_umuLKqoCAWHcVwpMyW1WPx-nZ4hzUaQ7QsPDnH3lCXOSZTlNvfqHmhMnY4"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Nova Science Hub</p>
+<p class="text-[12px] text-on-surface-variant font-code-sm">nova.research.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="bg-surface-container-low text-on-primary-container px-3 py-1 rounded-full font-label-md text-[11px] uppercase font-bold tracking-tight border border-outline-variant/20">Starter</span>
+</td>
+<td class="px-6 py-4">
+<p class="font-body-md text-on-surface">850</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-xp-gold">
+<span class="w-2 h-2 rounded-full bg-xp-gold"></span>
+<span class="font-label-md">Pending Approval</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-on-surface-variant font-body-sm">Mar 22, 2024</p>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant" title="Edit"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-secondary" title="Manage Plan"><span class="material-symbols-outlined text-[20px]">loyalty</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant" title="View Dashboard"><span class="material-symbols-outlined text-[20px]">open_in_new</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer -->
+<div class="px-6 py-4 border-t border-border-subtle flex justify-between items-center">
+<button class="flex items-center gap-2 text-on-surface-variant font-label-md hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Export CSV
+                </button>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded border border-outline-variant/30 text-secondary bg-surface-container-high font-bold">1</button>
+<button class="px-3 py-1 rounded border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container">2</button>
+<button class="px-3 py-1 rounded border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container">3</button>
+<span class="px-1">...</span>
+<button class="px-3 py-1 rounded border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container">128</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Create Tenant Modal (Hidden by default) -->
+<div class="fixed inset-0 z-[100] hidden overflow-y-auto" id="createTenantModal">
+<div class="min-h-screen flex items-center justify-center p-6 bg-on-surface/40 backdrop-blur-sm">
+<div class="bg-surface-container-lowest w-full max-w-2xl rounded-2xl shadow-2xl border border-outline-variant/30 overflow-hidden transform transition-all">
+<div class="px-8 py-6 border-b border-border-subtle flex justify-between items-center bg-surface-container-low/50">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Onboard New Institution</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Initialize a new secure workspace environment.</p>
+</div>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-highest flex items-center justify-center text-on-surface-variant" onclick="toggleModal('createTenantModal')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="p-8 space-y-6">
+<div class="grid grid-cols-2 gap-6">
+<div class="col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Institution Full Name</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 font-body-md focus:border-secondary focus:ring-1 focus:ring-secondary/20 outline-none transition-all" placeholder="e.g. Stanford University" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Workspace Domain</label>
+<div class="flex items-center">
+<input class="w-full bg-surface-container-low border border-outline-variant/30 border-r-0 rounded-l-lg px-4 py-3 font-code-sm focus:border-secondary focus:ring-0 outline-none transition-all" placeholder="stanford" type="text"/>
+<span class="bg-surface-container-high border border-outline-variant/30 px-4 py-3 font-code-sm text-on-primary-container rounded-r-lg">.lumina.com</span>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Primary Industry</label>
+<select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 font-body-md focus:border-secondary outline-none appearance-none cursor-pointer">
+<option>Higher Education</option>
+<option>Corporate Training</option>
+<option>Government</option>
+<option>K-12 Education</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4">Initial Subscription Tier</label>
+<div class="grid grid-cols-3 gap-4">
+<label class="cursor-pointer">
+<input checked="" class="sr-only peer" name="plan" type="radio"/>
+<div class="p-4 border-2 border-outline-variant/20 rounded-xl peer-checked:border-secondary peer-checked:bg-secondary/5 hover:bg-surface-container-low transition-all">
+<p class="font-label-md text-[10px] uppercase text-on-surface-variant mb-1">Entry Level</p>
+<p class="font-bold text-on-surface">Starter</p>
+<p class="text-[12px] text-on-primary-container mt-2">Up to 500 users</p>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="sr-only peer" name="plan" type="radio"/>
+<div class="p-4 border-2 border-outline-variant/20 rounded-xl peer-checked:border-secondary peer-checked:bg-secondary/5 hover:bg-surface-container-low transition-all">
+<p class="font-label-md text-[10px] uppercase text-secondary mb-1">Most Popular</p>
+<p class="font-bold text-on-surface">Pro</p>
+<p class="text-[12px] text-on-primary-container mt-2">Up to 5,000 users</p>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="sr-only peer" name="plan" type="radio"/>
+<div class="p-4 border-2 border-outline-variant/20 rounded-xl peer-checked:border-secondary peer-checked:bg-secondary/5 hover:bg-surface-container-low transition-all">
+<p class="font-label-md text-[10px] uppercase text-on-surface-variant mb-1">Full Control</p>
+<p class="font-bold text-on-surface">Enterprise</p>
+<p class="text-[12px] text-on-primary-container mt-2">Unlimited users</p>
+</div>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-3 p-4 bg-tertiary-fixed-dim/5 rounded-lg border border-tertiary-fixed-dim/20">
+<span class="material-symbols-outlined text-on-tertiary-container">info</span>
+<p class="text-body-sm font-body-sm text-on-tertiary-fixed-variant leading-relaxed">
+                            A confirmation email with admin credentials will be sent to the primary contact upon activation.
+                        </p>
+</div>
+<div class="flex gap-4 pt-4">
+<button class="flex-1 py-3 border border-outline-variant/50 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-low transition-all" onclick="toggleModal('createTenantModal')" type="button">Cancel</button>
+<button class="flex-1 py-3 bg-secondary text-on-secondary rounded-lg font-label-md hover:bg-secondary-container transition-all shadow-lg shadow-secondary/20" type="submit">Launch Workspace</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<script>
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Add some basic interactivity for metric card highlights
+        document.querySelectorAll('.grid > div').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Course Details | Lumina Learning</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#002113",
+                        "on-secondary-fixed": "#001a42",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bg": "#F8FAFC",
+                        "on-primary-fixed": "#131b2e",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "surface": "#f8f9ff",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-container": "#009668",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#fefcff",
+                        "secondary": "#0058be",
+                        "inverse-surface": "#213145",
+                        "background": "#f8f9ff",
+                        "streak-orange": "#EF4444",
+                        "tertiary": "#000000",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c6c6cd",
+                        "surface-tint": "#565e74",
+                        "surface-container-high": "#dce9ff",
+                        "editor-bg": "#1E1E1E",
+                        "primary-fixed-dim": "#bec6e0",
+                        "xp-gold": "#F59E0B",
+                        "secondary-container": "#2170e4",
+                        "on-primary-container": "#7c839b",
+                        "on-surface-variant": "#45464d",
+                        "surface-dim": "#cbdbf5",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#bec6e0",
+                        "surface-card": "#FFFFFF",
+                        "outline": "#76777d",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary": "#ffffff",
+                        "border-subtle": "#E2E8F0",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-container": "#e5eeff",
+                        "primary-container": "#131b2e",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary": "#000000",
+                        "on-tertiary-fixed": "#002113",
+                        "secondary-fixed-dim": "#adc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "12px",
+                        "xl": "16px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "base": "4px",
+                        "section-gap": "64px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "code-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-elevation {
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-surface-bg text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed font-body-md text-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-surface border-b border-border-subtle docked full-width top-0 sticky z-50 h-20 transition-all duration-300" id="main-header">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-10">
+<a class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight" href="#">Lumina Learning</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-secondary font-bold border-b-2 border-secondary h-20 flex items-center transition-colors font-body-md text-body-md" href="#">Explore</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Pricing</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">Enterprise</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-body-md" href="#">About</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2.5 rounded-lg text-on-surface-variant font-semibold hover:bg-surface-container-low transition-all">Sign In</button>
+<button class="px-6 py-2.5 rounded-lg bg-secondary text-on-secondary font-semibold hover:bg-secondary-container active:scale-95 transition-all">Get Started</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Content -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Hero Section -->
+<section class="space-y-6" id="hero">
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<a class="hover:text-secondary" href="#">Home</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-secondary" href="#">Data Science</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Advanced Neural Architectures</span>
+</nav>
+<div class="space-y-4">
+<h1 class="font-display-lg text-display-lg leading-tight">Advanced Neural Architectures for Enterprise AI</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl">
+                            Master the complexity of deep learning systems. From transformer optimization to distributed training, learn the strategies used by the world's leading technology tenants.
+                        </p>
+</div>
+<div class="flex flex-wrap items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="flex text-xp-gold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<span class="font-bold text-on-surface">4.8</span>
+<span class="text-on-surface-variant">(12,402 reviews)</span>
+</div>
+<div class="h-4 w-[1px] bg-border-subtle hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-secondary-fixed-variant">groups</span>
+<span class="font-semibold">45,920 Students enrolled</span>
+</div>
+</div>
+</section>
+<!-- Overview -->
+<section class="bg-surface-card rounded-xl p-8 border border-border-subtle active-elevation" id="overview">
+<div class="space-y-8">
+<div>
+<h2 class="font-headline-md text-headline-md mb-4">Course Description</h2>
+<p class="text-on-surface-variant leading-relaxed">
+                                This specialized program, delivered by the Quantum Systems Tenant, bridges the gap between academic theory and production-grade implementation. You will explore advanced neural network topologies, delve into the intricacies of attention mechanisms, and master the deployment of large-scale models across heterogeneous compute clusters. 
+                            </p>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<h3 class="font-semibold text-body-lg">What you'll learn</h3>
+<ul class="space-y-3">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+<span class="text-on-surface-variant">Design and optimize custom Transformer blocks</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+<span class="text-on-surface-variant">Implement distributed training with Horovod</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+<span class="text-on-surface-variant">Architect low-latency inference pipelines</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+<span class="text-on-surface-variant">Manage model drift and observability at scale</span>
+</li>
+</ul>
+</div>
+<div class="space-y-4">
+<h3 class="font-semibold text-body-lg">Requirements</h3>
+<ul class="space-y-3">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-on-primary-container">info</span>
+<span class="text-on-surface-variant">Proficiency in Python and PyTorch</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-on-primary-container">info</span>
+<span class="text-on-surface-variant">Solid understanding of Linear Algebra</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Curriculum -->
+<section class="space-y-6" id="curriculum">
+<div class="flex justify-between items-end">
+<h2 class="font-headline-md text-headline-md">Course Curriculum</h2>
+<span class="text-body-sm font-body-sm text-on-surface-variant">12 Modules • 84 Lessons • 24h 15m Total</span>
+</div>
+<div class="space-y-4">
+<!-- Module 1 -->
+<div class="group border border-border-subtle rounded-xl overflow-hidden bg-surface-card transition-all hover:border-secondary">
+<button class="w-full flex items-center justify-between p-6 bg-surface-container-low text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
+<div class="flex items-center gap-4">
+<span class="font-bold text-secondary font-code-sm text-code-sm">01</span>
+<div>
+<h4 class="font-semibold text-on-surface">Foundations of Modern Architectures</h4>
+<p class="text-body-sm text-on-surface-variant">4 Lessons • 1h 45m</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:text-secondary transition-transform">expand_more</span>
+</button>
+<div class="divide-y divide-border-subtle">
+<div class="p-4 px-8 flex items-center justify-between hover:bg-surface-container-lowest transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">play_circle</span>
+<span class="text-on-surface-variant">The Evolution of Attention Mechanisms</span>
+</div>
+<span class="text-body-sm text-on-surface-variant">22:15</span>
+</div>
+<div class="p-4 px-8 flex items-center justify-between hover:bg-surface-container-lowest transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">code</span>
+<span class="text-on-surface-variant">Coding Challenge: Manual Backprop</span>
+</div>
+<span class="text-body-sm text-on-surface-variant">45:00</span>
+</div>
+<div class="p-4 px-8 flex items-center justify-between hover:bg-surface-container-lowest transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">quiz</span>
+<span class="text-on-surface-variant">Self-Assessment: Gradient Flow</span>
+</div>
+<span class="text-body-sm text-on-surface-variant">15:00</span>
+</div>
+</div>
+</div>
+<!-- Module 2 -->
+<div class="group border border-border-subtle rounded-xl overflow-hidden bg-surface-card transition-all hover:border-secondary">
+<button class="w-full flex items-center justify-between p-6 bg-surface-container-low text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
+<div class="flex items-center gap-4">
+<span class="font-bold text-secondary font-code-sm text-code-sm">02</span>
+<div>
+<h4 class="font-semibold text-on-surface">Advanced Scaling Techniques</h4>
+<p class="text-body-sm text-on-surface-variant">6 Lessons • 3h 20m</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:text-secondary">expand_more</span>
+</button>
+<div class="hidden divide-y divide-border-subtle">
+<div class="p-4 px-8 flex items-center justify-between hover:bg-surface-container-lowest transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">play_circle</span>
+<span class="text-on-surface-variant">Data Parallelism vs Model Parallelism</span>
+</div>
+<span class="text-body-sm text-on-surface-variant">35:00</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Tenant / Institution -->
+<section class="bg-primary-container text-on-primary-fixed rounded-xl p-10 overflow-hidden relative" id="tenant">
+<div class="relative z-10 flex flex-col md:flex-row gap-8 items-start">
+<div class="w-24 h-24 rounded-xl bg-white p-3 flex-shrink-0 active-elevation">
+<img alt="Tenant Logo" class="w-full h-full object-contain" data-alt="A clean, minimalist vector-style logo for a technology institution named Quantum Systems. The logo features abstract geometric shapes in a professional blue and white color scheme. The lighting is crisp and the background is a neutral studio setting, conveying authority and modern innovation in the AI space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATBCpNShphbiQ_xjDNpexkA2DZQqhBGBukuV0kbGxvN0kwyro-HidsJrfGgormhLL5PM7gHgNZBglE9se9GH8lXverEtLmq4UYCQboNtPM_ETlMtItyKrdGO_BAoehKQ5ezkbNVavnvRSXmKM_oQeeJn7dqA5iObczcnuaymk7NIenm-iUYRwz71G6KRfWk_hBmcJO07LGpolSO6i4mERw2lH9cCv_OuYKTTlaIX-pqCNNAUzrIkcFgUPwAui4-VmvRnI4TSP3CWo">
+</div>
+<div class="space-y-4">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md uppercase tracking-widest text-on-primary-container">Providing Tenant</span>
+<h3 class="font-headline-md text-headline-md text-white">Quantum Systems Research</h3>
+</div>
+<p class="text-on-primary-container leading-relaxed">
+                                Quantum Systems is a premier research-led learning tenant focused on bridging the divide between theoretical physics and applied computation. With over 15 years of industry partnership, we deliver curricula that define the standard for enterprise AI engineering.
+                            </p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4">
+<div>
+<p class="text-headline-md font-bold text-white">250k+</p>
+<p class="text-body-sm text-on-primary-container">Learners</p>
+</div>
+<div>
+<p class="text-headline-md font-bold text-white">42</p>
+<p class="text-body-sm text-on-primary-container">Institutions</p>
+</div>
+<div>
+<p class="text-headline-md font-bold text-white">4.9</p>
+<p class="text-body-sm text-on-primary-container">Avg Rating</p>
+</div>
+<div>
+<p class="text-headline-md font-bold text-white">12k+</p>
+<p class="text-body-sm text-on-primary-container">Hired</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Aesthetic Gradient Overlay -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary opacity-10 blur-[100px] pointer-events-none"></div>
+</section>
+<!-- Reviews -->
+<section class="space-y-8" id="reviews">
+<h2 class="font-headline-md text-headline-md">Student Success Stories</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Review 1 -->
+<div class="bg-surface-card p-6 rounded-xl border border-border-subtle space-y-4">
+<div class="flex items-center gap-4">
+<img alt="Student Avatar" class="w-12 h-12 rounded-full" data-alt="A professional headshot of a middle-aged male software architect with a kind expression. He is wearing a clean, modern navy blazer against a softly blurred office background. The lighting is warm and natural, creating a high-trust, premium corporate portrait aesthetic consistent with a global learning platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH8Bq35u39sF_FWN9qkH4DsVVQGlwuyT-Z_iYmO84a666RkxJ528IJOOS-gPDKGvDe646IzID7buONtApCAmB8CCg3zBrU6pz_3A5kDVsdS6y1dWP3wNMAi5n6WXaUthul01C-V35AmbeR3OphQ5C0IdfI1YTirtU0hJvipuw3pnBBLU1O0Q_6NF89TT4kAeezNDkMbZHTVnKbNrudWE0gx2sxKUwqKk31vINHfKe_CtNSR-Pe-rHSSya5pa9ENKub8ZvYAxoCqOg">
+<div>
+<p class="font-semibold">Marcus Chen</p>
+<p class="text-body-sm text-on-surface-variant">Lead AI Engineer at TechCore</p>
+</div>
+</div>
+<div class="flex text-xp-gold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface-variant italic">
+                                "The depth of technical detail provided by the Quantum Systems Tenant is unparalleled. This wasn't just another tutorial; it was a masterclass in production-level engineering."
+                            </p>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-card p-6 rounded-xl border border-border-subtle space-y-4">
+<div class="flex items-center gap-4">
+<img alt="Student Avatar" class="w-12 h-12 rounded-full" data-alt="A bright and professional portrait of a young female data scientist with a confident smile. She is in a high-key, modern workspace with subtle glass partitions in the background. The lighting is professional and airy, reflecting a sophisticated and successful adult-learning environment with a premium feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLps4eJ2gEaJIOKhiLU8g-nWHWni3tqZwWizvdcgFkRkRvH6kD5i_W4Ioza2PpP0cwcYM7WCplgL0uuMbRHwaleqtob0xCWQ8fyMjEfyBQZvcWfHr6zJAHBo_hvA1vjyNFthU_lA9vUrm-lQeekYNWMoEFCdFmX9Mi3w6hRyVz2EIKCrmGwsaACuAV7Mhi8E6G5V9ekvIvawCor_SmcnHDJd_yfxaoIZO58agt100tsc9Ag2Q-ZxVDc7F81FxS8LhsfGvdHkPBDQ">
+<div>
+<p class="font-semibold">Sarah Jenkins</p>
+<p class="text-body-sm text-on-surface-variant">Senior Data Scientist</p>
+</div>
+</div>
+<div class="flex text-xp-gold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface-variant italic">
+                                "The coding challenges were particularly rigorous. I appreciated how the tenant prioritized real-world problem-solving over simple syntax memorization."
+                            </p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Pricing & Enrollment CTA -->
+<aside class="lg:col-span-4 sticky top-24">
+<div class="bg-surface-card rounded-xl border border-border-subtle overflow-hidden active-elevation">
+<div class="aspect-video relative overflow-hidden group">
+<img alt="Course Preview" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A high-tech digital visualization of a neural network with glowing nodes and intricate interconnected light filaments. The aesthetic is cinematic and sophisticated, using a palette of deep blues and vibrant electric teals. Soft ambient light illuminates the structure, creating a sense of depth and advanced technology in a professional learning context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwAim68natVEEY_vYQUUAKyn9vTDk8HB04xvuqcf-VC3atInqVCN2hD6dMwu4R_RHZuXo63l3pddcOSselsjHrVxSAKXUeWzM_a6MVSyDBTX5zaxfOoB_IjN1qb0FDpVeBZPiZCRH-QdBwGE-3lSXt2j1HCqalf6YOC_i5vKevsZH0HWRFwMzv32zQNm99IL22NoyDGIiXojy7K_xghxzKMNATKQ1QuijxmPLXveiAiLifqyGqxaYbUX6a_C1QiKXE9mycW6FRdsg">
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+<button class="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-secondary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-white/90 backdrop-blur-sm text-on-surface font-label-md text-label-md px-3 py-1 rounded-full font-bold">Preview This Course</span>
+</div>
+</div>
+<div class="p-8 space-y-6">
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg">$899.00</span>
+<span class="text-on-surface-variant line-through">$1,250.00</span>
+<span class="ml-auto text-on-tertiary-container bg-surface-container-low px-2 py-0.5 rounded font-bold text-label-md">28% OFF</span>
+</div>
+<div class="space-y-3">
+<button class="w-full py-4 bg-secondary text-on-secondary rounded-lg font-bold text-body-lg hover:bg-secondary-container transition-all active:scale-[0.98]">
+                                Enroll Now
+                            </button>
+<button class="w-full py-4 border border-secondary text-secondary rounded-lg font-bold hover:bg-surface-container-low transition-all">
+                                Request Enterprise Demo
+                            </button>
+</div>
+<p class="text-center text-body-sm text-on-surface-variant">30-Day Money-Back Guarantee</p>
+<div class="space-y-4 pt-4 border-t border-border-subtle">
+<h4 class="font-bold">What's included:</h4>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-on-surface-variant text-body-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">all_inclusive</span>
+                                    Lifetime access to curriculum
+                                </li>
+<li class="flex items-center gap-3 text-on-surface-variant text-body-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">workspace_premium</span>
+                                    Official Certificate from Quantum Systems
+                                </li>
+<li class="flex items-center gap-3 text-on-surface-variant text-body-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">terminal</span>
+                                    10 Hands-on Cloud Lab environments
+                                </li>
+<li class="flex items-center gap-3 text-on-surface-variant text-body-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">forum</span>
+                                    Exclusive Tenant-led Q&amp;A forums
+                                </li>
+</ul>
+</div>
+<div class="flex items-center justify-between pt-2">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-secondary transition-colors font-semibold">
+<span class="material-symbols-outlined">share</span> Share
+                            </button>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-secondary transition-colors font-semibold">
+<span class="material-symbols-outlined">favorite</span> Save
+                            </button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-border-subtle mt-24">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="space-y-6">
+<a class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight" href="#">Lumina Learning</a>
+<p class="text-on-surface-variant text-body-sm">
+                    The global standard for professional technical training. Empowering 2M+ learners through world-class tenant partnerships.
+                </p>
+</div>
+<div class="space-y-6">
+<h5 class="font-bold text-on-surface">Platform</h5>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors text-body-sm" href="#">Explore Courses</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors text-body-sm" href="#">For Enterprises</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors text-body-sm" href="#">Instructor Portal</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="font-bold text-on-surface">Support</h5>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors text-body-sm" href="#">Contact Support</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors text-body-sm" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors text-body-sm" href="#">Cookie Settings</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="font-bold text-on-surface">Newsletter</h5>
+<p class="text-on-surface-variant text-body-sm">Get the latest whitepapers from our research tenants.</p>
+<div class="flex gap-2">
+<input class="flex-1 bg-surface border border-border-subtle rounded-lg px-4 py-2 text-body-sm focus:ring-2 focus:ring-secondary outline-none transition-all" placeholder="Email address" type="email">
+<button class="p-2 bg-secondary text-on-secondary rounded-lg px-4 font-bold text-body-sm">Join</button>
+</div>
+</div>
+</div>
+<div class="border-t border-border-subtle py-8 text-center">
+<p class="text-body-sm text-on-surface-variant">© 2024 Lumina Learning Systems. All rights reserved.</p>
+</div>
+</footer>
+<script>
+        // Simple header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 20) {
+                header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+                header.classList.remove('bg-surface');
+            } else {
+                header.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+                header.classList.add('bg-surface');
+            }
+        });
+
+        // Add micro-interactions to buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+    </script>
+</body></html>
