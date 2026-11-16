@@ -25,7 +25,7 @@ export async function getCertificateById(
 ): Promise<void> {
   try {
     const { tenantId } = req.user!;
-    const { id } = req.params;
+    const id = req.params.id as string;
     const certificate = await certificatesService.getCertificateById(
       tenantId,
       id
@@ -64,7 +64,7 @@ export async function verifyCertificate(
   next: NextFunction
 ): Promise<void> {
   try {
-    const { verificationCode } = req.params;
+    const verificationCode = req.params.verificationCode as string;
     // For verify we might not have a logged in user, but assuming tenant is resolved by middleware
     const tenantId = req.tenant?.id || req.user?.tenantId;
 

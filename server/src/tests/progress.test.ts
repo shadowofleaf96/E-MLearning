@@ -205,7 +205,7 @@ async function runTests() {
 
       if (res.status !== 200)
         throw new Error(`Expected 200, got ${res.status}`);
-      const modules = res.data.data;
+      const modules = (res.data as any).data;
 
       const mod1 = modules.find((m: any) => m.id === module1Id);
       const mod2 = modules.find((m: any) => m.id === module2Id);
@@ -252,9 +252,10 @@ async function runTests() {
 
         if (res.status !== 200)
           throw new Error(`Expected 200, got ${res.status}`);
-        if (res.data.data.progressPercentage !== 50)
+        const data = (res.data as any).data;
+        if (data.progressPercentage !== 50)
           throw new Error('Progress percentage not updated');
-        if (res.data.data.completed !== false)
+        if (data.completed !== false)
           throw new Error('Completed status should be false');
       }
     );
@@ -282,7 +283,7 @@ async function runTests() {
           },
         });
 
-        const modules = res.data.data;
+        const modules = (res.data as any).data;
         const mod2 = modules.find((m: any) => m.id === module2Id);
 
         if (!mod2.isUnlocked)
@@ -341,7 +342,7 @@ async function runTests() {
 
       if (res.status !== 200)
         throw new Error(`Expected 200, got ${res.status}`);
-      const stats = res.data.data;
+      const stats = (res.data as any).data;
 
       if (stats.totalEnrolled !== 1)
         throw new Error('Total enrolled should be 1');

@@ -16,7 +16,7 @@ export const codeRunnerService = {
     testCases: TestCase[]
   ) {
     try {
-      const response = await axios.post(
+      const response = await axios.post<any>(
         `${CODE_RUNNER_URL}/execute`,
         {
           language,

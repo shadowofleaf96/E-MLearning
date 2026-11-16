@@ -39,7 +39,7 @@ export async function updateAnnouncement(
 ): Promise<void> {
   try {
     const { tenantId } = req.user!;
-    const { id } = req.params;
+    const id = req.params.id as string;
     await announcementsService.updateAnnouncement(tenantId, id, req.body);
     res
       .status(200)
@@ -56,7 +56,7 @@ export async function deleteAnnouncement(
 ): Promise<void> {
   try {
     const { tenantId } = req.user!;
-    const { id } = req.params;
+    const id = req.params.id as string;
     await announcementsService.deleteAnnouncement(tenantId, id);
     res
       .status(200)

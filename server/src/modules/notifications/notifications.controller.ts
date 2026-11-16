@@ -48,7 +48,7 @@ export async function markAsRead(
 ): Promise<void> {
   try {
     const { id: userId, tenantId } = req.user!;
-    const { id } = req.params;
+    const id = req.params.id as string;
     await notificationsService.markAsRead(tenantId, userId, id);
     res.status(200).json({ status: 'success', message: 'Marked as read' });
   } catch (error) {
@@ -77,7 +77,7 @@ export async function deleteNotification(
 ): Promise<void> {
   try {
     const { id: userId, tenantId } = req.user!;
-    const { id } = req.params;
+    const id = req.params.id as string;
     await notificationsService.deleteNotification(tenantId, userId, id);
     res
       .status(200)

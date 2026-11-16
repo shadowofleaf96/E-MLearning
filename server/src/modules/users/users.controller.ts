@@ -53,7 +53,7 @@ export async function getUserById(
   next: NextFunction
 ): Promise<void> {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const userData = await usersService.getUserById(id);
     res.status(200).json({ status: 'success', user: userData });
   } catch (err) {
@@ -89,7 +89,7 @@ export async function updateUser(
   next: NextFunction
 ): Promise<void> {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const userData = await usersService.updateUser(id, req.body, req.file);
     res.status(200).json({
       status: 'success',
@@ -107,7 +107,7 @@ export async function deleteUser(
   next: NextFunction
 ): Promise<void> {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await usersService.deleteUser(id);
     res.status(200).json({
       status: 'success',

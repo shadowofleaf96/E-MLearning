@@ -9,7 +9,7 @@ export async function getExercise(
 ): Promise<void> {
   try {
     const tenantId = req.tenant?.id || req.user?.tenantId;
-    const { exerciseId } = req.params;
+    const exerciseId = req.params.exerciseId as string;
     if (!tenantId) throw AppError.badRequest('Tenant ID is required');
 
     const exercise = await codingService.getExercise(tenantId, exerciseId);
@@ -78,7 +78,7 @@ export async function getSubmissionResult(
 ): Promise<void> {
   try {
     const tenantId = req.tenant?.id || req.user?.tenantId;
-    const { submissionId } = req.params;
+    const submissionId = req.params.submissionId as string;
     if (!tenantId) throw AppError.badRequest('Tenant ID is required');
 
     const result = await codingService.getSubmissionResult(

@@ -57,7 +57,7 @@ export async function updateCampaign(
 ): Promise<void> {
   try {
     const { tenantId } = req.user!;
-    const { id } = req.params;
+    const id = req.params.id as string;
     await campaignsService.updateCampaign(tenantId, id, req.body);
     res.status(200).json({ status: 'success', message: 'Campaign updated' });
   } catch (error) {
@@ -72,7 +72,7 @@ export async function deleteCampaign(
 ): Promise<void> {
   try {
     const { tenantId } = req.user!;
-    const { id } = req.params;
+    const id = req.params.id as string;
     await campaignsService.deleteCampaign(tenantId, id);
     res.status(200).json({ status: 'success', message: 'Campaign deleted' });
   } catch (error) {

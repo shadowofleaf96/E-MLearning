@@ -61,7 +61,7 @@ export async function getCourseBadges(
   next: NextFunction
 ): Promise<void> {
   try {
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
     const badges = await gamificationService.getCourseBadges(courseId);
     res.status(200).json({ status: 'success', data: badges });
   } catch (error) {
@@ -100,7 +100,7 @@ export async function createBadge(
       throw AppError.badRequest('Tenant ID is required');
     }
 
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
     const { title, description, icon, color, triggerType, triggerValue } =
       req.body;
 
@@ -129,7 +129,7 @@ export async function updateBadge(
   next: NextFunction
 ): Promise<void> {
   try {
-    const { badgeId } = req.params;
+    const badgeId = req.params.badgeId as string;
     const badge = await gamificationService.updateBadge(badgeId, req.body);
     res.status(200).json({ status: 'success', data: badge });
   } catch (error) {
@@ -143,7 +143,7 @@ export async function deleteBadge(
   next: NextFunction
 ): Promise<void> {
   try {
-    const { badgeId } = req.params;
+    const badgeId = req.params.badgeId as string;
     await gamificationService.deleteBadge(badgeId);
     res.status(200).json({ status: 'success', message: 'Badge deleted' });
   } catch (error) {
@@ -159,7 +159,7 @@ export async function getXpConfig(
   next: NextFunction
 ): Promise<void> {
   try {
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
     const config = await gamificationService.getXpConfig(courseId);
     res.status(200).json({ status: 'success', data: config });
   } catch (error) {
@@ -178,7 +178,7 @@ export async function updateXpConfig(
       throw AppError.badRequest('Tenant ID is required');
     }
 
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
     const { moduleCompletionXp, courseCompletionXp, examPassXp, dailyBonusXp } =
       req.body;
 

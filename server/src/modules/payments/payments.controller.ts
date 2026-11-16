@@ -36,7 +36,7 @@ export async function getPaymentById(
 ): Promise<void> {
   try {
     const { tenantId } = req.user!;
-    const { id } = req.params;
+    const id = req.params.id as string;
     const payment = await paymentsService.getPaymentById(tenantId, id);
     if (!payment) {
       res.status(404).json({ status: 'error', message: 'Payment not found' });
