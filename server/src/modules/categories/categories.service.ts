@@ -20,6 +20,12 @@ export const categoriesService = {
     const categories = await (prisma as any).category.findMany({
       where,
       include: {
+        parent: {
+          select: { id: true, name: true, slug: true },
+        },
+        children: {
+          select: { id: true, name: true, slug: true, icon: true },
+        },
         _count: {
           select: {
             courses: {
@@ -35,6 +41,27 @@ export const categoriesService = {
     });
 
     return categories;
+  },
+
+  async getCategoryTree(tenantId?: string) {
+    const where: any = { parentId: null };
+    if (tenantId) {
+      where.OR = [{ tenantId }, { tenantId: null }];
+    }
+
+    return (prisma as any).category.findMany({
+      where,
+      include: {
+        children: {
+          include: {
+            children: true,
+            _count: { select: { courses: true } },
+          },
+        },
+        _count: { select: { courses: true } },
+      },
+      orderBy: { name: 'asc' },
+    });
   },
 
   async getCategoryById(id: string) {
@@ -77,7 +104,13 @@ export const categoriesService = {
   },
 
   async createCategory(
-    data: { name: string; slug?: string; description?: string; icon?: string },
+    data: {
+      name: string;
+      slug?: string;
+      description?: string;
+      icon?: string;
+      parentId?: string;
+    },
     tenantId?: string
   ) {
     const slug = data.slug || generateSlug(data.name);
@@ -99,6 +132,7 @@ export const categoriesService = {
         slug,
         description: data.description,
         icon: data.icon,
+        parentId: data.parentId || null,
         tenantId: tenantId || null,
       },
     });
@@ -106,7 +140,13 @@ export const categoriesService = {
 
   async updateCategory(
     id: string,
-    data: { name?: string; slug?: string; description?: string; icon?: string },
+    data: {
+      name?: string;
+      slug?: string;
+      description?: string;
+      icon?: string;
+      parentId?: string | null;
+    },
     tenantId?: string
   ) {
     const category = await (prisma as any).category.findUnique({
@@ -134,6 +174,7 @@ export const categoriesService = {
           ? { description: data.description }
           : {}),
         ...(data.icon !== undefined ? { icon: data.icon } : {}),
+        ...(data.parentId !== undefined ? { parentId: data.parentId } : {}),
       },
     });
   },

@@ -28,8 +28,12 @@ import {
   Sparkles,
   FileText,
   Calendar,
+  Send,
+  AlertCircle,
   // Check,
 } from 'lucide-react';
+import api from '@/services/api';
+import { ENDPOINTS } from '@/services/endpoints';
 import { InstructorAssignmentsPanel } from '@/modules/assignments/components/InstructorAssignmentsPanel';
 import { aiClientService } from '@/modules/ai/services/ai.service';
 import {
@@ -575,6 +579,18 @@ export default function CourseBuilderPage() {
     }
   };
 
+  const handleSubmitForReview = async () => {
+    try {
+      await api.post(ENDPOINTS.MODERATION.SUBMIT_REVIEW(courseId));
+      toast.success('Course submitted for administrator review!');
+      fetchCourse();
+    } catch (err: any) {
+      toast.error(
+        err.response?.data?.message || 'Failed to submit course for review'
+      );
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center text-primary">
@@ -605,11 +621,23 @@ export default function CourseBuilderPage() {
                     {course.title}
                   </h2>
                   {course.isPublished ? (
-                    <span className="px-2 py-0.5 bg-on-tertiary-container/10 text-on-tertiary-container text-[10px] font-bold rounded uppercase tracking-widest border border-on-tertiary-container/20">
+                    <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold rounded uppercase tracking-widest border border-emerald-500/20">
                       Published
                     </span>
+                  ) : course.moderationStatus === 'pending_review' ? (
+                    <span className="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded uppercase tracking-widest border border-amber-500/20">
+                      Under Review
+                    </span>
+                  ) : course.moderationStatus === 'needs_revision' ? (
+                    <span className="px-2 py-0.5 bg-blue-500/10 text-blue-600 text-[10px] font-bold rounded uppercase tracking-widest border border-blue-500/20">
+                      Revision Requested
+                    </span>
+                  ) : course.moderationStatus === 'rejected' ? (
+                    <span className="px-2 py-0.5 bg-error/10 text-error text-[10px] font-bold rounded uppercase tracking-widest border border-error/20">
+                      Rejected
+                    </span>
                   ) : (
-                    <span className="px-2 py-0.5 bg-surface-container-high text-on-secondary-fixed-variant text-[10px] font-bold rounded uppercase tracking-widest border border-secondary/20">
+                    <span className="px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded uppercase tracking-widest border border-border-subtle">
                       Draft
                     </span>
                   )}
@@ -689,6 +717,16 @@ export default function CourseBuilderPage() {
                 <Eye size={20} />
                 <span className="text-[12px]">Preview Course</span>
               </button>
+              {(course.moderationStatus === 'draft' ||
+                course.moderationStatus === 'needs_revision') && (
+                <button
+                  onClick={handleSubmitForReview}
+                  className="flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 rounded-lg font-bold transition-all active:scale-95 text-[12px]"
+                >
+                  <Send size={16} />
+                  <span>Submit for Review</span>
+                </button>
+              )}
               <button
                 onClick={handlePublishToggle}
                 className="flex items-center gap-2 px-6 py-2 bg-secondary text-white rounded-lg font-bold hover:shadow-lg hover:shadow-secondary/20 transition-all active:scale-95"
@@ -706,6 +744,36 @@ export default function CourseBuilderPage() {
             </div>
           </div>
         </div>
+
+        {/* Moderation Status Banner */}
+        {course.moderationStatus === 'needs_revision' && (
+          <div className="bg-blue-500/10 border-b border-blue-500/20 px-6 py-3 flex items-center justify-between gap-4 text-xs">
+            <div className="flex items-center gap-2 text-blue-700">
+              <AlertCircle size={16} className="shrink-0" />
+              <span>
+                <strong>Action Needed:</strong> The administrator reviewed this
+                course and requested revisions. Please update the necessary
+                content and click <strong>Submit for Review</strong>.
+              </span>
+            </div>
+            <button
+              onClick={handleSubmitForReview}
+              className="px-3 py-1 bg-blue-600 text-white rounded-lg font-bold shrink-0 hover:bg-blue-700 transition-colors"
+            >
+              Submit for Review
+            </button>
+          </div>
+        )}
+        {course.moderationStatus === 'pending_review' && (
+          <div className="bg-amber-500/10 border-b border-amber-500/20 px-6 py-3 flex items-center gap-2 text-xs text-amber-700">
+            <AlertCircle size={16} className="shrink-0" />
+            <span>
+              <strong>Under Admin Review:</strong> Your course has been
+              submitted and is currently being evaluated by the platform
+              administrators.
+            </span>
+          </div>
+        )}
 
         {/* Builder Workspace */}
         <div className="flex-1 p-8 flex gap-8 min-h-0 overflow-hidden bg-surface-bg">

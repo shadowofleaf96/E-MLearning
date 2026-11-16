@@ -191,6 +191,100 @@ export async function publishCourse(
   }
 }
 
+export async function submitForReview(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const tenantId = req.tenant?.id || req.user?.tenantId;
+    if (!tenantId) {
+      throw AppError.badRequest('Tenant ID is required');
+    }
+    const userId = req.user?.id;
+    if (!userId) {
+      throw AppError.unauthorized('User not authenticated');
+    }
+    const id = req.params.id as string;
+    const course = await coursesService.submitForReview(id, tenantId, userId);
+    res.json({
+      status: 'success',
+      message: 'Course submitted for admin review',
+      data: course,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function moderateCourse(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const tenantId = req.tenant?.id || req.user?.tenantId;
+    if (!tenantId) {
+      throw AppError.badRequest('Tenant ID is required');
+    }
+    const reviewerId = req.user?.id;
+    if (!reviewerId) {
+      throw AppError.unauthorized('User not authenticated');
+    }
+    const id = req.params.id as string;
+    const { action, comment } = req.body;
+    const course = await coursesService.moderateCourse(
+      id,
+      tenantId,
+      reviewerId,
+      action,
+      comment
+    );
+    res.json({
+      status: 'success',
+      message: `Course ${action} action recorded`,
+      data: course,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function getModerationLogs(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const tenantId = req.tenant?.id || req.user?.tenantId;
+    if (!tenantId) {
+      throw AppError.badRequest('Tenant ID is required');
+    }
+    const id = req.params.id as string;
+    const logs = await coursesService.getModerationLogs(id, tenantId);
+    res.json({ status: 'success', data: logs });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function getAdminModerationQueue(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const tenantId = req.tenant?.id || req.user?.tenantId;
+    if (!tenantId) {
+      throw AppError.badRequest('Tenant ID is required');
+    }
+    const courses = await coursesService.getAdminModerationQueue(tenantId);
+    res.json({ status: 'success', data: courses });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function deleteCourse(
   req: Request,
   res: Response,

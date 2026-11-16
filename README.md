@@ -180,8 +180,8 @@ npx tsx src/tests/phase2_verify.ts     # Tests Phase 2 (Messaging, Assignments, 
 |:---|:---|:---:|
 | **Phase 1: Student Engagement** | Reviews, Course Discussions, Notes persistence, Wishlist, Global Cmd+K Search | ✅ Completed |
 | **Phase 2: Instructor Productivity** | Direct 1:1 Messaging, Assignment & Rubric Grading, Drip Content Scheduling | ✅ Completed |
-| **Phase 3: Admin Operations** | Moderation workflows, Course-wide broadcast announcements, Revenue reports | ⏳ Next Up |
-| **Phase 4: Advanced Learning** | Learning paths, Course prerequisites, Live video integrations | 📋 Planned |
+| **Phase 3: Admin Operations** | Course Moderation & Revision Workflow, Broadcast Campaigns, Revenue & Payouts, Categories & Tags | ✅ Completed |
+| **Phase 4: Advanced Learning** | Learning paths, Course prerequisites, Live video integrations | ⏳ Next Up |
 | **Phase 5: Platform Completeness** | WebSockets notifications, Student learning analytics, Public webhook API | 📋 Planned |
 
 ---

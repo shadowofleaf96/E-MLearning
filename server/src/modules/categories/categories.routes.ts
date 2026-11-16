@@ -11,6 +11,7 @@ import { categoriesSchemas } from './categories.validator';
 const router = Router();
 
 router.get('/', optionalAuthenticate, controller.getAllCategories);
+router.get('/tree', optionalAuthenticate, controller.getCategoryTree);
 router.get('/:id', optionalAuthenticate, controller.getCategoryById);
 router.post(
   '/',

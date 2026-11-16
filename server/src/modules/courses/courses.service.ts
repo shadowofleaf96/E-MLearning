@@ -1,5 +1,6 @@
 import prisma from '../../shared/database/prisma';
 import { AppError } from '../../shared/errors/AppError';
+import { notificationsService } from '../notifications/notifications.service';
 
 export const coursesService = {
   async getAllCourses(
@@ -441,6 +442,158 @@ export const coursesService = {
     // });
 
     return updatedCourse;
+  },
+
+  async submitForReview(id: string, tenantId: string, userId: string) {
+    const course = await prisma.course.findFirst({
+      where: { id, tenantId },
+    });
+    if (!course) {
+      throw AppError.notFound('Course not found');
+    }
+    if (course.instructorId !== userId) {
+      throw AppError.forbidden('You can only submit your own courses for review');
+    }
+
+    const updated = await prisma.course.update({
+      where: { id },
+      data: {
+        moderationStatus: 'pending_review',
+        isPublished: false,
+      },
+    });
+
+    await prisma.moderationLog.create({
+      data: {
+        tenantId,
+        courseId: id,
+        action: 'submit_review',
+        comment: 'Submitted for admin review',
+        reviewerId: userId,
+      },
+    });
+
+    return updated;
+  },
+
+  async moderateCourse(
+    id: string,
+    tenantId: string,
+    reviewerId: string,
+    action: 'approve' | 'reject' | 'request_revision',
+    comment?: string
+  ) {
+    const course = await prisma.course.findFirst({
+      where: { id, tenantId },
+      include: { instructor: true },
+    });
+    if (!course) {
+      throw AppError.notFound('Course not found');
+    }
+
+    let isPublished = false;
+    let moderationStatus = 'pending_review';
+
+    if (action === 'approve') {
+      isPublished = true;
+      moderationStatus = 'approved';
+    } else if (action === 'request_revision') {
+      isPublished = false;
+      moderationStatus = 'needs_revision';
+    } else if (action === 'reject') {
+      isPublished = false;
+      moderationStatus = 'rejected';
+    } else {
+      throw AppError.badRequest('Invalid moderation action');
+    }
+
+    const updatedCourse = await prisma.course.update({
+      where: { id },
+      data: {
+        isPublished,
+        moderationStatus,
+      },
+    });
+
+    await prisma.moderationLog.create({
+      data: {
+        tenantId,
+        courseId: id,
+        action,
+        comment: comment || null,
+        reviewerId,
+      },
+    });
+
+    // Notify instructor
+    if (course.instructorId) {
+      const actionLabels: Record<string, string> = {
+        approve: 'Approved & Published',
+        request_revision: 'Revision Requested',
+        reject: 'Rejected',
+      };
+      await notificationsService.createNotification(
+        tenantId,
+        course.instructorId,
+        {
+          title: `Course Review: ${actionLabels[action] || action}`,
+          message:
+            action === 'approve'
+              ? `Your course "${course.title}" has been approved and published to the catalog.`
+              : `Your course "${course.title}" status has changed to "${actionLabels[action]}". Feedback: ${comment || 'Please review your course settings.'}`,
+          type: 'moderation',
+        }
+      );
+    }
+
+    return updatedCourse;
+  },
+
+  async getModerationLogs(courseId: string, tenantId: string) {
+    return prisma.moderationLog.findMany({
+      where: { courseId, tenantId },
+      include: {
+        reviewer: {
+          select: { id: true, firstName: true, lastName: true, email: true },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+  },
+
+  async getAdminModerationQueue(tenantId: string) {
+    return prisma.course.findMany({
+      where: {
+        tenantId,
+      },
+      include: {
+        instructor: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            avatar: true,
+          },
+        },
+        category: {
+          select: { id: true, name: true },
+        },
+        moderationLogs: {
+          include: {
+            reviewer: {
+              select: { id: true, firstName: true, lastName: true },
+            },
+          },
+          orderBy: { createdAt: 'desc' },
+          take: 5,
+        },
+        _count: {
+          select: { modules: true, enrollments: true },
+        },
+      },
+      orderBy: { updatedAt: 'desc' },
+    });
   },
 
   async deleteCourse(

@@ -18,6 +18,23 @@ export async function getAllCategories(
   }
 }
 
+export async function getCategoryTree(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const tenantId =
+      req.tenant?.id ||
+      req.user?.tenantId ||
+      (req.query.tenantId as string | undefined);
+    const tree = await categoriesService.getCategoryTree(tenantId);
+    res.json({ status: 'success', data: tree });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function getCategoryById(
   req: Request,
   res: Response,

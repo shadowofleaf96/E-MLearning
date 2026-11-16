@@ -1,8 +1,27 @@
 import { Router } from 'express';
 import * as controller from './payments.controller';
 import { authenticate } from '../../middlewares/authenticate';
+import { authorize } from '../../middlewares/authorize';
 const router = Router();
 router.get('/', authenticate, controller.getPayments);
+router.get(
+  '/admin/payout-requests',
+  authenticate,
+  authorize('admin', 'super_admin'),
+  controller.getAllPayoutRequests
+);
+router.put(
+  '/admin/payout-requests/:id/status',
+  authenticate,
+  authorize('admin', 'super_admin'),
+  controller.updatePayoutStatus
+);
+router.get(
+  '/admin/analytics',
+  authenticate,
+  authorize('admin', 'super_admin'),
+  controller.getPaymentAnalytics
+);
 router.post('/initiate', authenticate, controller.initiatePayment);
 router.post('/webhook', controller.handleWebhook);
 router.post(

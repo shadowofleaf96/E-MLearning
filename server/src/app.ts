@@ -41,6 +41,7 @@ import { bookmarkRoutes } from './modules/bookmarks';
 import { searchRoutes } from './modules/search';
 import { messagingRoutes } from './modules/messaging';
 import { assignmentRoutes } from './modules/assignments';
+import tagsRoutes from './modules/tags/tags.routes';
 
 const app = express();
 
@@ -90,6 +91,7 @@ app.use('/api/bookmarks', bookmarkRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/messaging', messagingRoutes);
 app.use('/api/assignments', assignmentRoutes);
+app.use('/api/tags', tagsRoutes);
 
 app.use(errorHandler);
 

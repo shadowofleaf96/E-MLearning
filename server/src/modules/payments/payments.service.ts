@@ -2,6 +2,7 @@ import prisma from '../../shared/database/prisma';
 import Stripe from 'stripe';
 import { env } from '../../config/env';
 import { AppError } from '../../shared/errors/AppError';
+import { notificationsService } from '../notifications/notifications.service';
 
 // Initialize Stripe with a dummy key if env is missing during dev (though it should fail ideally)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_mock', {
@@ -200,5 +201,107 @@ export const paymentsService = {
       where: { tenantId, instructorId },
       orderBy: { createdAt: 'desc' },
     });
+  },
+
+  async getAllPayoutRequests(tenantId: string, status?: string) {
+    const where: any = { tenantId };
+    if (status) {
+      where.status = status;
+    }
+    return prisma.payoutRequest.findMany({
+      where,
+      include: {
+        instructor: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            payoutMethod: true,
+            payoutDetails: true,
+          },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+  },
+
+  async updatePayoutStatus(
+    tenantId: string,
+    payoutId: string,
+    status: 'paid' | 'rejected',
+    notes?: string
+  ) {
+    const payout = await prisma.payoutRequest.findFirst({
+      where: { id: payoutId, tenantId },
+    });
+    if (!payout) {
+      throw AppError.notFound('Payout request not found');
+    }
+
+    const updated = await prisma.payoutRequest.update({
+      where: { id: payoutId },
+      data: {
+        status,
+        notes: notes ?? payout.notes,
+      },
+    });
+
+    await notificationsService.createNotification(
+      tenantId,
+      payout.instructorId,
+      {
+        title: `Payout Request ${status === 'paid' ? 'Approved & Paid' : 'Rejected'}`,
+        message: `Your payout request for $${Number(payout.amount).toFixed(2)} has been ${status === 'paid' ? 'completed' : 'rejected'}.${notes ? ` Note: ${notes}` : ''}`,
+        type: 'payment',
+      }
+    );
+
+    return updated;
+  },
+
+  async getPaymentAnalytics(tenantId: string) {
+    const payments = await prisma.payment.findMany({
+      where: { tenantId, paymentStatus: 'completed' },
+    });
+
+    const totalRevenue = payments.reduce(
+      (sum, p) => sum + Number(p.amount),
+      0
+    );
+    const completedTransactions = payments.length;
+
+    const payouts = await prisma.payoutRequest.findMany({
+      where: { tenantId },
+    });
+
+    const paidPayouts = payouts
+      .filter((p) => p.status === 'paid')
+      .reduce((sum, p) => sum + Number(p.amount), 0);
+
+    const pendingPayouts = payouts
+      .filter((p) => p.status === 'pending')
+      .reduce((sum, p) => sum + Number(p.amount), 0);
+
+    const pendingPayoutsCount = payouts.filter(
+      (p) => p.status === 'pending'
+    ).length;
+
+    const monthlyBreakdown: Record<string, number> = {};
+    payments.forEach((p) => {
+      const monthKey = p.createdAt.toISOString().slice(0, 7);
+      monthlyBreakdown[monthKey] =
+        (monthlyBreakdown[monthKey] || 0) + Number(p.amount);
+    });
+
+    return {
+      totalRevenue,
+      netRevenue: totalRevenue - paidPayouts,
+      completedTransactions,
+      paidPayouts,
+      pendingPayouts,
+      pendingPayoutsCount,
+      monthlyBreakdown,
+    };
   },
 };

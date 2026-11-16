@@ -79,3 +79,26 @@ export async function deleteCampaign(
     next(error);
   }
 }
+
+export async function sendCampaign(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const { tenantId } = req.user!;
+    const id = req.params.id as string;
+    const { targetAudience, courseId } = req.body;
+    const result = await campaignsService.sendCampaign(tenantId, id, {
+      targetAudience,
+      courseId,
+    });
+    res.status(200).json({
+      status: 'success',
+      message: `Campaign sent successfully to ${result.recipients} recipients`,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+}

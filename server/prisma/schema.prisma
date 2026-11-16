@@ -128,6 +128,8 @@ model Tenant {
   directMessages      DirectMessage[]
   assignments         Assignment[]
   assignmentSubmissions AssignmentSubmission[]
+  moderationLogs      ModerationLog[]
+  tags                Tag[]
 
   @@map("tenants")
 }
@@ -192,6 +194,7 @@ model User {
   conversationsReceived  Conversation[]   @relation("ConversationParticipant2")
   sentDirectMessages     DirectMessage[]  @relation("SentMessages")
   assignmentSubmissions  AssignmentSubmission[]
+  moderationLogs         ModerationLog[]        @relation("ReviewerLogs")
 
   @@unique([email, tenantId])
   @@map("users")
@@ -207,6 +210,9 @@ model Category {
   slug        String
   description String?
   icon        String?
+  parentId    String?
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children    Category[] @relation("CategoryHierarchy")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -230,20 +236,23 @@ model Course {
   description  String?
   price        Decimal   @default(0)
   thumbnail    String?
-  isPublished  Boolean   @default(false)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  isPublished      Boolean   @default(false)
+  moderationStatus String    @default("draft") // draft, pending_review, approved, rejected, needs_revision
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
-  modules      Module[]
-  enrollments  Enrollment[]
-  payments     Payment[]
-  certificates Certificate[]
-  badges       Badge[]
-  xpConfig     CourseXpConfig?
-  studentNotes StudentNote[]
-  reviews      CourseReview[]
-  discussions  CourseDiscussion[]
-  bookmarks    Bookmark[]
+  modules        Module[]
+  enrollments    Enrollment[]
+  payments       Payment[]
+  certificates   Certificate[]
+  badges         Badge[]
+  xpConfig       CourseXpConfig?
+  studentNotes   StudentNote[]
+  reviews        CourseReview[]
+  discussions    CourseDiscussion[]
+  bookmarks      Bookmark[]
+  moderationLogs ModerationLog[]
+  tags           CourseTag[]
 
   @@map("courses")
 }
@@ -875,3 +884,49 @@ model AssignmentSubmission {
   @@unique([assignmentId, studentId])
   @@map("assignment_submissions")
 }
+
+// ─── Course Moderation Logs ─────────────────────────────────
+
+model ModerationLog {
+  id         String   @id @default(uuid())
+  tenantId   String
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  courseId   String
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  action     String   // approve, reject, request_revision, submit_review
+  comment    String?
+  reviewerId String?
+  reviewer   User?    @relation("ReviewerLogs", fields: [reviewerId], references: [id], onDelete: SetNull)
+  createdAt  DateTime @default(now())
+
+  @@map("moderation_logs")
+}
+
+// ─── Tags & Course Tags ─────────────────────────────────────
+
+model Tag {
+  id        String      @id @default(uuid())
+  tenantId  String?
+  tenant    Tenant?     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  name      String
+  slug      String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  courses   CourseTag[]
+
+  @@unique([slug, tenantId])
+  @@map("tags")
+}
+
+model CourseTag {
+  id       String @id @default(uuid())
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  tagId    String
+  tag      Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, tagId])
+  @@map("course_tags")
+}
+

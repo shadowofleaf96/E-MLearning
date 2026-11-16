@@ -84,11 +84,21 @@ export default function Sidebar() {
           icon: 'school',
         },
         {
+          label: 'Categories & Tags',
+          href: `/admin/categories${querySuffix}`,
+          icon: 'category',
+        },
+        {
           label: 'Moderation',
           href: `/admin/moderation${querySuffix}`,
           icon: 'gavel',
         },
         { label: 'Users', href: `/admin/users${querySuffix}`, icon: 'group' },
+        {
+          label: 'Payments & Payouts',
+          href: `/admin/payments${querySuffix}`,
+          icon: 'payments',
+        },
         {
           label: 'Analytics',
           href: `/admin/analytics${querySuffix}`,
@@ -148,8 +158,18 @@ export default function Sidebar() {
             icon: 'dashboard',
           },
           { label: 'Courses', href: `${prefix}/courses`, icon: 'school' },
+          {
+            label: 'Categories & Tags',
+            href: `${prefix}/categories`,
+            icon: 'category',
+          },
           { label: 'Moderation', href: `${prefix}/moderation`, icon: 'gavel' },
           { label: 'Users', href: `${prefix}/users`, icon: 'group' },
+          {
+            label: 'Payments & Payouts',
+            href: `${prefix}/payments`,
+            icon: 'payments',
+          },
           {
             label: 'Analytics',
             href: `${prefix}/analytics`,

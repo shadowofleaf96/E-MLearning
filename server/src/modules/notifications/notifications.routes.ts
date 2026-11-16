@@ -24,6 +24,7 @@ router.delete('/announcements/:id', announcementsController.deleteAnnouncement);
 // Campaigns routes
 router.get('/campaigns', campaignsController.getCampaigns);
 router.post('/campaigns', campaignsController.createCampaign);
+router.post('/campaigns/:id/send', campaignsController.sendCampaign);
 router.put('/campaigns/:id', campaignsController.updateCampaign);
 router.delete('/campaigns/:id', campaignsController.deleteCampaign);
 

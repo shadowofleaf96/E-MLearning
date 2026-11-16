@@ -40,4 +40,43 @@ export const notificationsService = {
       where: { id: notificationId, tenantId, userId },
     });
   },
+
+  async createNotification(
+    tenantId: string,
+    userId: string,
+    data: { title: string; message: string; type?: string }
+  ) {
+    return prisma.notification.create({
+      data: {
+        tenantId,
+        userId,
+        title: data.title,
+        message: data.message,
+        type: data.type || 'info',
+        isRead: false,
+      },
+    });
+  },
+
+  async createBatchNotifications(
+    notifications: Array<{
+      tenantId: string;
+      userId: string;
+      title: string;
+      message: string;
+      type?: string;
+    }>
+  ) {
+    if (notifications.length === 0) return { count: 0 };
+    return prisma.notification.createMany({
+      data: notifications.map((n) => ({
+        tenantId: n.tenantId,
+        userId: n.userId,
+        title: n.title,
+        message: n.message,
+        type: n.type || 'announcement',
+        isRead: false,
+      })),
+    });
+  },
 };

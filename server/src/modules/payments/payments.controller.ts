@@ -211,3 +211,57 @@ export async function getPayoutHistory(
     next(error);
   }
 }
+
+export async function getAllPayoutRequests(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const { tenantId } = req.user!;
+    const status = req.query.status as string | undefined;
+    const payouts = await paymentsService.getAllPayoutRequests(tenantId, status);
+    res.status(200).json({ status: 'success', data: payouts });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function updatePayoutStatus(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const { tenantId } = req.user!;
+    const id = req.params.id as string;
+    const { status, notes } = req.body;
+    const payout = await paymentsService.updatePayoutStatus(
+      tenantId,
+      id,
+      status,
+      notes
+    );
+    res.status(200).json({
+      status: 'success',
+      message: `Payout request marked as ${status}`,
+      data: payout,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function getPaymentAnalytics(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const { tenantId } = req.user!;
+    const analytics = await paymentsService.getPaymentAnalytics(tenantId);
+    res.status(200).json({ status: 'success', data: analytics });
+  } catch (error) {
+    next(error);
+  }
+}

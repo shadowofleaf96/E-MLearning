@@ -165,4 +165,31 @@ export const ENDPOINTS = {
     GRADE: (submissionId: string) =>
       `/assignments/submission/${submissionId}/grade`,
   },
+  MODERATION: {
+    QUEUE: '/courses/admin/pending-review',
+    MODERATE: (courseId: string) => `/courses/${courseId}/moderation`,
+    LOGS: (courseId: string) => `/courses/${courseId}/moderation-logs`,
+    SUBMIT_REVIEW: (courseId: string) =>
+      `/courses/${courseId}/submit-for-review`,
+  },
+  CAMPAIGNS: {
+    LIST: '/notifications/campaigns',
+    CREATE: '/notifications/campaigns',
+    UPDATE: (id: string) => `/notifications/campaigns/${id}`,
+    DELETE: (id: string) => `/notifications/campaigns/${id}`,
+    SEND: (id: string) => `/notifications/campaigns/${id}/send`,
+  },
+  ADMIN_PAYMENTS: {
+    PAYOUTS: '/payments/admin/payout-requests',
+    UPDATE_PAYOUT: (id: string) =>
+      `/payments/admin/payout-requests/${id}/status`,
+    ANALYTICS: '/payments/admin/analytics',
+  },
+  TAGS: {
+    LIST: '/tags',
+    CREATE: '/tags',
+    DELETE: (id: string) => `/tags/${id}`,
+    ASSIGN: '/tags/assign',
+    COURSE_TAGS: (courseId: string) => `/tags/course/${courseId}`,
+  },
 };

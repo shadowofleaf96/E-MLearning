@@ -23,6 +23,12 @@ router.get(
   authorize('instructor', 'admin', 'super_admin'),
   controller.getTenantStudents
 );
+router.get(
+  '/admin/pending-review',
+  authenticate,
+  authorize('admin', 'super_admin'),
+  controller.getAdminModerationQueue
+);
 router.get('/:id', optionalAuthenticate, controller.getCourseById);
 router.post(
   '/',
@@ -43,6 +49,24 @@ router.put(
   authenticate,
   authorize('instructor', 'admin', 'super_admin'),
   controller.publishCourse
+);
+router.post(
+  '/:id/submit-for-review',
+  authenticate,
+  authorize('instructor', 'admin', 'super_admin'),
+  controller.submitForReview
+);
+router.post(
+  '/:id/moderation',
+  authenticate,
+  authorize('admin', 'super_admin'),
+  controller.moderateCourse
+);
+router.get(
+  '/:id/moderation-logs',
+  authenticate,
+  authorize('instructor', 'admin', 'super_admin'),
+  controller.getModerationLogs
 );
 router.delete(
   '/:id',
