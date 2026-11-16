@@ -2,7 +2,11 @@ import prisma from '../../shared/database/prisma';
 import { AppError } from '../../shared/errors/AppError';
 
 export const assignmentsService = {
-  async getModuleAssignments(tenantId: string, moduleId: string, studentId?: string) {
+  async getModuleAssignments(
+    tenantId: string,
+    moduleId: string,
+    studentId?: string
+  ) {
     const assignments = await prisma.assignment.findMany({
       where: { tenantId, moduleId },
       include: {
@@ -33,7 +37,11 @@ export const assignmentsService = {
     }));
   },
 
-  async getCourseAssignments(tenantId: string, courseId: string, studentId?: string) {
+  async getCourseAssignments(
+    tenantId: string,
+    courseId: string,
+    studentId?: string
+  ) {
     const assignments = await prisma.assignment.findMany({
       where: {
         tenantId,
@@ -124,7 +132,9 @@ export const assignmentsService = {
     });
 
     if (!enrollment) {
-      throw AppError.forbidden('Must be enrolled in course to submit assignment');
+      throw AppError.forbidden(
+        'Must be enrolled in course to submit assignment'
+      );
     }
 
     return prisma.assignmentSubmission.upsert({

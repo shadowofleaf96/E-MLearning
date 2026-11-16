@@ -924,7 +924,10 @@ export async function changePassword(
     const { currentPassword, newPassword } = req.body;
 
     if (!currentPassword || !newPassword) {
-      res.status(400).json({ status: 'error', message: 'Both current and new passwords are required' });
+      res.status(400).json({
+        status: 'error',
+        message: 'Both current and new passwords are required',
+      });
       return;
     }
 
@@ -936,7 +939,9 @@ export async function changePassword(
 
     const isMatch = await bcrypt.compare(currentPassword, user.password);
     if (!isMatch) {
-      res.status(400).json({ status: 'error', message: 'Incorrect current password' });
+      res
+        .status(400)
+        .json({ status: 'error', message: 'Incorrect current password' });
       return;
     }
 
@@ -946,7 +951,9 @@ export async function changePassword(
       data: { password: hashedPassword },
     });
 
-    res.status(200).json({ status: 'success', message: 'Password updated successfully' });
+    res
+      .status(200)
+      .json({ status: 'success', message: 'Password updated successfully' });
   } catch (error) {
     next(error);
   }

@@ -5,14 +5,21 @@ const prisma = new PrismaClient();
 
 async function main() {
   const tenants = await prisma.tenant.findMany();
-  console.log('Available tenants:', tenants.map(t => ({ id: t.id, name: t.name, slug: t.slug })));
+  console.log(
+    'Available tenants:',
+    tenants.map((t) => ({ id: t.id, name: t.name, slug: t.slug }))
+  );
 
   let stanfordTenant = tenants.find(
-    t => t.slug.toLowerCase().includes('stanford') || t.name.toLowerCase().includes('stanford')
+    (t) =>
+      t.slug.toLowerCase().includes('stanford') ||
+      t.name.toLowerCase().includes('stanford')
   );
 
   if (!stanfordTenant) {
-    console.log('No tenant with "stanford" in name/slug found. Using first tenant if available...');
+    console.log(
+      'No tenant with "stanford" in name/slug found. Using first tenant if available...'
+    );
     stanfordTenant = tenants[0];
   }
 
@@ -21,7 +28,9 @@ async function main() {
     return;
   }
 
-  console.log(`Using tenant: ${stanfordTenant.name} (${stanfordTenant.id}, slug: ${stanfordTenant.slug})`);
+  console.log(
+    `Using tenant: ${stanfordTenant.name} (${stanfordTenant.id}, slug: ${stanfordTenant.slug})`
+  );
 
   const passwordHash = await bcrypt.hash('Password123!', 10);
 
@@ -68,8 +77,20 @@ async function main() {
   });
 
   console.log('Successfully created/updated students:');
-  console.log('Student 1:', { id: s1.id, email: s1.email, name: `${s1.firstName} ${s1.lastName}`, role: s1.role, tenantId: s1.tenantId });
-  console.log('Student 2:', { id: s2.id, email: s2.email, name: `${s2.firstName} ${s2.lastName}`, role: s2.role, tenantId: s2.tenantId });
+  console.log('Student 1:', {
+    id: s1.id,
+    email: s1.email,
+    name: `${s1.firstName} ${s1.lastName}`,
+    role: s1.role,
+    tenantId: s1.tenantId,
+  });
+  console.log('Student 2:', {
+    id: s2.id,
+    email: s2.email,
+    name: `${s2.firstName} ${s2.lastName}`,
+    role: s2.role,
+    tenantId: s2.tenantId,
+  });
 }
 
 main()

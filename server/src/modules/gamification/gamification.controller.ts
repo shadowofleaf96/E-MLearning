@@ -82,10 +82,7 @@ export async function getEarnedBadges(
       throw AppError.unauthorized('User session not active');
     }
 
-    const badges = await gamificationService.getEarnedBadges(
-      userId,
-      tenantId
-    );
+    const badges = await gamificationService.getEarnedBadges(userId, tenantId);
     res.status(200).json({ status: 'success', data: badges });
   } catch (error) {
     next(error);
@@ -111,18 +108,14 @@ export async function createBadge(
       throw AppError.badRequest('Title and triggerType are required');
     }
 
-    const badge = await gamificationService.createBadge(
-      courseId,
-      tenantId,
-      {
-        title,
-        description,
-        icon: icon || '🏆',
-        color: color || '#FFD700',
-        triggerType,
-        triggerValue: triggerValue || 1,
-      }
-    );
+    const badge = await gamificationService.createBadge(courseId, tenantId, {
+      title,
+      description,
+      icon: icon || '🏆',
+      color: color || '#FFD700',
+      triggerType,
+      triggerValue: triggerValue || 1,
+    });
 
     res.status(201).json({ status: 'success', data: badge });
   } catch (error) {
@@ -137,10 +130,7 @@ export async function updateBadge(
 ): Promise<void> {
   try {
     const { badgeId } = req.params;
-    const badge = await gamificationService.updateBadge(
-      badgeId,
-      req.body
-    );
+    const badge = await gamificationService.updateBadge(badgeId, req.body);
     res.status(200).json({ status: 'success', data: badge });
   } catch (error) {
     next(error);
@@ -189,12 +179,8 @@ export async function updateXpConfig(
     }
 
     const { courseId } = req.params;
-    const {
-      moduleCompletionXp,
-      courseCompletionXp,
-      examPassXp,
-      dailyBonusXp,
-    } = req.body;
+    const { moduleCompletionXp, courseCompletionXp, examPassXp, dailyBonusXp } =
+      req.body;
 
     const config = await gamificationService.upsertXpConfig(
       courseId,

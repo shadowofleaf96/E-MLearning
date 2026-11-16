@@ -118,7 +118,9 @@ export const categoriesService = {
     }
 
     if (tenantId && category.tenantId && category.tenantId !== tenantId) {
-      throw AppError.forbidden('Cannot modify category belonging to another tenant');
+      throw AppError.forbidden(
+        'Cannot modify category belonging to another tenant'
+      );
     }
 
     const slug = data.slug || (data.name ? generateSlug(data.name) : undefined);
@@ -128,7 +130,9 @@ export const categoriesService = {
       data: {
         ...(data.name ? { name: data.name } : {}),
         ...(slug ? { slug } : {}),
-        ...(data.description !== undefined ? { description: data.description } : {}),
+        ...(data.description !== undefined
+          ? { description: data.description }
+          : {}),
         ...(data.icon !== undefined ? { icon: data.icon } : {}),
       },
     });
@@ -144,7 +148,9 @@ export const categoriesService = {
     }
 
     if (tenantId && category.tenantId && category.tenantId !== tenantId) {
-      throw AppError.forbidden('Cannot delete category belonging to another tenant');
+      throw AppError.forbidden(
+        'Cannot delete category belonging to another tenant'
+      );
     }
 
     await (prisma as any).category.delete({

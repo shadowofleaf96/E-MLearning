@@ -95,7 +95,8 @@ export async function deleteReview(
     const userId = req.user!.id;
     const reviewId = req.params.id as string;
     const isAdmin =
-      req.user?.role === UserRole.admin || req.user?.role === UserRole.super_admin;
+      req.user?.role === UserRole.admin ||
+      req.user?.role === UserRole.super_admin;
 
     await reviewsService.deleteReview(tenantId, reviewId, userId, isAdmin);
 

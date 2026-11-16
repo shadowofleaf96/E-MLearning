@@ -1,13 +1,20 @@
 import { Router } from 'express';
 import * as controller from './discussions.controller';
-import { authenticate, optionalAuthenticate } from '../../middlewares/authenticate';
+import {
+  authenticate,
+  optionalAuthenticate,
+} from '../../middlewares/authenticate';
 import { validateRequest } from '../../middlewares/validateRequest';
 import { discussionSchemas } from './discussions.validator';
 
 const router = Router();
 
 // Public/student: list discussions for course
-router.get('/course/:courseId', optionalAuthenticate, controller.getCourseDiscussions);
+router.get(
+  '/course/:courseId',
+  optionalAuthenticate,
+  controller.getCourseDiscussions
+);
 router.get('/:id', optionalAuthenticate, controller.getDiscussionById);
 
 // Protected: create, reply, upvote, solve, pin, delete

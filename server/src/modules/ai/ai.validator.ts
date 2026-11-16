@@ -21,7 +21,10 @@ export const aiSchemas = {
 
   generateLessonContent: z.object({
     lessonTitle: z.string().min(2, 'Lesson title is required'),
-    lessonType: z.enum(['text', 'video', 'pdf', 'link']).optional().default('text'),
+    lessonType: z
+      .enum(['text', 'video', 'pdf', 'link'])
+      .optional()
+      .default('text'),
     moduleTitle: z.string().optional(),
     courseTitle: z.string().optional(),
     language: z.string().optional().default('en'),

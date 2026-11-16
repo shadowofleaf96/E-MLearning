@@ -7,7 +7,10 @@ export async function getAllCategories(
   next: NextFunction
 ): Promise<void> {
   try {
-    const tenantId = req.tenant?.id || req.user?.tenantId || (req.query.tenantId as string | undefined);
+    const tenantId =
+      req.tenant?.id ||
+      req.user?.tenantId ||
+      (req.query.tenantId as string | undefined);
     const categories = await categoriesService.getAllCategories(tenantId);
     res.json({ status: 'success', data: categories });
   } catch (error) {
@@ -51,7 +54,11 @@ export async function updateCategory(
   try {
     const id = req.params.id as string;
     const tenantId = req.tenant?.id || req.user?.tenantId;
-    const category = await categoriesService.updateCategory(id, req.body, tenantId);
+    const category = await categoriesService.updateCategory(
+      id,
+      req.body,
+      tenantId
+    );
     res.json({ status: 'success', data: category });
   } catch (error) {
     next(error);

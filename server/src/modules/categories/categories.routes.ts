@@ -1,6 +1,9 @@
 import { Router } from 'express';
 import * as controller from './categories.controller';
-import { authenticate, optionalAuthenticate } from '../../middlewares/authenticate';
+import {
+  authenticate,
+  optionalAuthenticate,
+} from '../../middlewares/authenticate';
 import { authorize } from '../../middlewares/authorize';
 import { validateRequest } from '../../middlewares/validateRequest';
 import { categoriesSchemas } from './categories.validator';

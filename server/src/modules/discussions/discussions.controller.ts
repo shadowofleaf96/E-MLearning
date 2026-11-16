@@ -43,7 +43,10 @@ export async function getDiscussionById(
     }
     const discussionId = req.params.id as string;
 
-    const data = await discussionsService.getDiscussionById(tenantId, discussionId);
+    const data = await discussionsService.getDiscussionById(
+      tenantId,
+      discussionId
+    );
 
     res.status(200).json({
       status: 'success',
@@ -120,7 +123,10 @@ export async function upvoteDiscussion(
     }
     const discussionId = req.params.id as string;
 
-    const result = await discussionsService.upvoteDiscussion(tenantId, discussionId);
+    const result = await discussionsService.upvoteDiscussion(
+      tenantId,
+      discussionId
+    );
 
     res.status(200).json({
       status: 'success',

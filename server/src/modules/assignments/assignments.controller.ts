@@ -14,7 +14,8 @@ export async function getModuleAssignments(
       throw AppError.unauthorized('Tenant context missing');
     }
     const moduleId = req.params.moduleId as string;
-    const studentId = req.user?.role === UserRole.student ? req.user.id : undefined;
+    const studentId =
+      req.user?.role === UserRole.student ? req.user.id : undefined;
 
     const data = await assignmentsService.getModuleAssignments(
       tenantId,
@@ -42,7 +43,8 @@ export async function getCourseAssignments(
       throw AppError.unauthorized('Tenant context missing');
     }
     const courseId = req.params.courseId as string;
-    const studentId = req.user?.role === UserRole.student ? req.user.id : undefined;
+    const studentId =
+      req.user?.role === UserRole.student ? req.user.id : undefined;
 
     const data = await assignmentsService.getCourseAssignments(
       tenantId,

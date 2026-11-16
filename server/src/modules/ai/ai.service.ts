@@ -65,7 +65,9 @@ interface QuizQuestion {
 /**
  * Intelligent fallback generator if live API key is not yet set up
  */
-function generateFallbackCourse(input: CourseOutlineInput): GeneratedCourseOutline {
+function generateFallbackCourse(
+  input: CourseOutlineInput
+): GeneratedCourseOutline {
   const { topic, targetLevel = 'Beginner', moduleCount = 4 } = input;
   const count = Math.min(Math.max(moduleCount, 1), 6);
 
@@ -74,36 +76,96 @@ function generateFallbackCourse(input: CourseOutlineInput): GeneratedCourseOutli
       titleSuffix: 'Foundations & Core Principles',
       desc: `Master the essential basics, terminology, and foundational mental models of ${topic}.`,
       lessons: [
-        { title: `Welcome & Introduction to ${topic}`, type: 'video' as const, duration: 5, description: 'High-level overview and learning outcomes.' },
-        { title: `Core Concepts and Ecosystem`, type: 'text' as const, duration: 10, content: `# Understanding ${topic}\n\nIn this lesson, we explore the primary architecture and fundamentals of ${topic}.` },
-        { title: `Setting Up Your Development Environment`, type: 'video' as const, duration: 15, description: 'Step-by-step tool installation and configuration.' },
+        {
+          title: `Welcome & Introduction to ${topic}`,
+          type: 'video' as const,
+          duration: 5,
+          description: 'High-level overview and learning outcomes.',
+        },
+        {
+          title: `Core Concepts and Ecosystem`,
+          type: 'text' as const,
+          duration: 10,
+          content: `# Understanding ${topic}\n\nIn this lesson, we explore the primary architecture and fundamentals of ${topic}.`,
+        },
+        {
+          title: `Setting Up Your Development Environment`,
+          type: 'video' as const,
+          duration: 15,
+          description: 'Step-by-step tool installation and configuration.',
+        },
       ],
     },
     {
       titleSuffix: 'Practical Deep-Dive & Core Mechanics',
       desc: `Hands-on guided walkthrough applying essential skills in ${topic}.`,
       lessons: [
-        { title: `Working with Essential Components in ${topic}`, type: 'video' as const, duration: 12, description: 'Understanding real-world workflows and syntax.' },
-        { title: `Common Patterns & Best Practices`, type: 'text' as const, duration: 8, content: `# Best Practices for ${topic}\n\nWriting clean, scalable, and maintainable solutions.` },
-        { title: `Hands-on Mini Project: Building Your First Implementation`, type: 'video' as const, duration: 20, description: 'Practical coding and problem solving.' },
+        {
+          title: `Working with Essential Components in ${topic}`,
+          type: 'video' as const,
+          duration: 12,
+          description: 'Understanding real-world workflows and syntax.',
+        },
+        {
+          title: `Common Patterns & Best Practices`,
+          type: 'text' as const,
+          duration: 8,
+          content: `# Best Practices for ${topic}\n\nWriting clean, scalable, and maintainable solutions.`,
+        },
+        {
+          title: `Hands-on Mini Project: Building Your First Implementation`,
+          type: 'video' as const,
+          duration: 20,
+          description: 'Practical coding and problem solving.',
+        },
       ],
     },
     {
       titleSuffix: 'Advanced Techniques & Optimization',
       desc: `Take your skills further with performance tuning, edge cases, and architecture.`,
       lessons: [
-        { title: `Optimizing and Scaling ${topic}`, type: 'video' as const, duration: 15, description: 'Techniques for speed, reliability, and security.' },
-        { title: `Handling Errors & Edge Cases`, type: 'text' as const, duration: 10, content: `# Resilient Architecture in ${topic}\n\nPreventing regressions and building fault-tolerant features.` },
-        { title: `Testing & Quality Assurance`, type: 'video' as const, duration: 15, description: 'Automated testing and verification.' },
+        {
+          title: `Optimizing and Scaling ${topic}`,
+          type: 'video' as const,
+          duration: 15,
+          description: 'Techniques for speed, reliability, and security.',
+        },
+        {
+          title: `Handling Errors & Edge Cases`,
+          type: 'text' as const,
+          duration: 10,
+          content: `# Resilient Architecture in ${topic}\n\nPreventing regressions and building fault-tolerant features.`,
+        },
+        {
+          title: `Testing & Quality Assurance`,
+          type: 'video' as const,
+          duration: 15,
+          description: 'Automated testing and verification.',
+        },
       ],
     },
     {
       titleSuffix: 'Real-World Production & Deployment',
       desc: `Ship production-ready solutions and master modern industry standards.`,
       lessons: [
-        { title: `Production Deployment Pipeline`, type: 'video' as const, duration: 15, description: 'Continuous integration, containerization, and hosting.' },
-        { title: `Monitoring & Observability`, type: 'text' as const, duration: 10, content: `# Maintaining ${topic} in Production\n\nTelemetry, logs, and health metrics.` },
-        { title: `Capstone Project & Next Steps`, type: 'video' as const, duration: 25, description: 'Reviewing the complete end-to-end implementation.' },
+        {
+          title: `Production Deployment Pipeline`,
+          type: 'video' as const,
+          duration: 15,
+          description: 'Continuous integration, containerization, and hosting.',
+        },
+        {
+          title: `Monitoring & Observability`,
+          type: 'text' as const,
+          duration: 10,
+          content: `# Maintaining ${topic} in Production\n\nTelemetry, logs, and health metrics.`,
+        },
+        {
+          title: `Capstone Project & Next Steps`,
+          type: 'video' as const,
+          duration: 25,
+          description: 'Reviewing the complete end-to-end implementation.',
+        },
       ],
     },
   ];
@@ -139,11 +201,15 @@ export const aiService = {
   /**
    * Generate a complete course outline
    */
-  async generateCourseOutline(input: CourseOutlineInput): Promise<GeneratedCourseOutline> {
+  async generateCourseOutline(
+    input: CourseOutlineInput
+  ): Promise<GeneratedCourseOutline> {
     const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
-      logger.info('No GEMINI_API_KEY found, using intelligent course outline fallback generator.');
+      logger.info(
+        'No GEMINI_API_KEY found, using intelligent course outline fallback generator.'
+      );
       return generateFallbackCourse(input);
     }
 
@@ -187,11 +253,17 @@ Each module must have 3 to 5 realistic lessons. Lesson type must be one of: "vid
 
       const result = await model.generateContent(prompt);
       const rawText = result.response.text();
-      const cleaned = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+      const cleaned = rawText
+        .replace(/```json/g, '')
+        .replace(/```/g, '')
+        .trim();
       const parsed = JSON.parse(cleaned);
       return parsed;
     } catch (err) {
-      logger.error('Gemini API call failed, falling back to smart generator:', err);
+      logger.error(
+        'Gemini API call failed, falling back to smart generator:',
+        err
+      );
       return generateFallbackCourse(input);
     }
   },
@@ -260,7 +332,10 @@ Return ONLY valid JSON matching this schema:
 
       const result = await model.generateContent(prompt);
       const rawText = result.response.text();
-      const cleaned = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+      const cleaned = rawText
+        .replace(/```json/g, '')
+        .replace(/```/g, '')
+        .trim();
       return JSON.parse(cleaned);
     } catch (err) {
       logger.error('Gemini API generateModule failed, using fallback:', err);
@@ -279,7 +354,9 @@ Return ONLY valid JSON matching this schema:
   /**
    * Generate rich markdown lesson content
    */
-  async generateLessonContent(input: LessonContentInput): Promise<{ content: string; keyTakeaways: string[] }> {
+  async generateLessonContent(
+    input: LessonContentInput
+  ): Promise<{ content: string; keyTakeaways: string[] }> {
     const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
@@ -337,7 +414,10 @@ Return ONLY valid JSON:
 
       const result = await model.generateContent(prompt);
       const rawText = result.response.text();
-      const cleaned = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+      const cleaned = rawText
+        .replace(/```json/g, '')
+        .replace(/```/g, '')
+        .trim();
       return JSON.parse(cleaned);
     } catch (err) {
       logger.error('Gemini generateLessonContent failed, using fallback:', err);
@@ -351,7 +431,9 @@ Return ONLY valid JSON:
   /**
    * Generate multiple-choice quiz questions
    */
-  async generateQuiz(input: QuizInput): Promise<{ questions: QuizQuestion[]; passingScore: number }> {
+  async generateQuiz(
+    input: QuizInput
+  ): Promise<{ questions: QuizQuestion[]; passingScore: number }> {
     const apiKey = process.env.GEMINI_API_KEY;
     const count = input.questionCount || 5;
 
@@ -377,7 +459,8 @@ Return ONLY valid JSON:
             'Bypassing validation checks',
           ],
           correctAnswer: 1,
-          explanation: 'Decoupled and modular components ensure testability and extensibility.',
+          explanation:
+            'Decoupled and modular components ensure testability and extensibility.',
         },
         {
           question: `When should performance profiling be applied in ${input.topic}?`,
@@ -388,7 +471,8 @@ Return ONLY valid JSON:
             'Only once every 5 years',
           ],
           correctAnswer: 1,
-          explanation: 'Continuous profiling catches bottlenecks early before reaching production.',
+          explanation:
+            'Continuous profiling catches bottlenecks early before reaching production.',
         },
       ];
 
@@ -425,7 +509,10 @@ Return ONLY valid JSON matching this schema:
 
       const result = await model.generateContent(prompt);
       const rawText = result.response.text();
-      const cleaned = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+      const cleaned = rawText
+        .replace(/```json/g, '')
+        .replace(/```/g, '')
+        .trim();
       return JSON.parse(cleaned);
     } catch (err) {
       logger.error('Gemini generateQuiz failed, using fallback:', err);
@@ -434,7 +521,12 @@ Return ONLY valid JSON matching this schema:
         questions: [
           {
             question: `What is the core purpose of ${input.topic}?`,
-            options: ['Core purpose option A', 'Option B', 'Option C', 'Option D'],
+            options: [
+              'Core purpose option A',
+              'Option B',
+              'Option C',
+              'Option D',
+            ],
             correctAnswer: 0,
             explanation: 'Option A correctly states the core purpose.',
           },

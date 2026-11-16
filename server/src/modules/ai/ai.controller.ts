@@ -78,7 +78,11 @@ export async function saveAiCourse(
     }
 
     const instructorId = req.user!.id;
-    const course = await aiService.saveAiCourse(tenantId, instructorId, req.body);
+    const course = await aiService.saveAiCourse(
+      tenantId,
+      instructorId,
+      req.body
+    );
 
     res.status(201).json({
       status: 'success',

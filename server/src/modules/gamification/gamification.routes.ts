@@ -34,11 +34,7 @@ router.delete(
   authorize('instructor', 'admin', 'super_admin'),
   controller.deleteBadge
 );
-router.get(
-  '/xp-config/:courseId',
-  authenticate,
-  controller.getXpConfig
-);
+router.get('/xp-config/:courseId', authenticate, controller.getXpConfig);
 router.put(
   '/xp-config/:courseId',
   authenticate,

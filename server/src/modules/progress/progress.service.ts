@@ -346,7 +346,10 @@ export const progressService = {
       },
     });
 
-    const percentage = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 100;
+    const percentage =
+      totalLessons > 0
+        ? Math.round((completedLessons / totalLessons) * 100)
+        : 100;
     const moduleCompleted = percentage >= 100;
 
     await this.updateModuleProgress(tenantId, studentId, lesson.moduleId, {
@@ -377,11 +380,7 @@ export const progressService = {
     });
   },
 
-  async getStudentNotes(
-    tenantId: string,
-    studentId: string,
-    courseId: string
-  ) {
+  async getStudentNotes(tenantId: string, studentId: string, courseId: string) {
     return prisma.studentNote.findMany({
       where: { tenantId, studentId, courseId },
       orderBy: { updatedAt: 'desc' },

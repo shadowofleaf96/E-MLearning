@@ -30,7 +30,13 @@ export const reviewsService = {
           )
         : 0;
 
-    const distribution: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+    const distribution: Record<number, number> = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+    };
     reviews.forEach((r) => {
       distribution[r.rating] = (distribution[r.rating] || 0) + 1;
     });
@@ -61,7 +67,9 @@ export const reviewsService = {
     });
 
     if (!enrollment) {
-      throw AppError.forbidden('You must be enrolled in this course to leave a review');
+      throw AppError.forbidden(
+        'You must be enrolled in this course to leave a review'
+      );
     }
 
     // Check if review already exists
@@ -116,7 +124,12 @@ export const reviewsService = {
     });
   },
 
-  async deleteReview(tenantId: string, reviewId: string, userId: string, isAdmin: boolean) {
+  async deleteReview(
+    tenantId: string,
+    reviewId: string,
+    userId: string,
+    isAdmin: boolean
+  ) {
     const review = await prisma.courseReview.findFirst({
       where: { id: reviewId, tenantId },
     });

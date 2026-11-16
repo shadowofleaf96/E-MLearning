@@ -8,7 +8,10 @@ export async function getAllCourses(
   next: NextFunction
 ): Promise<void> {
   try {
-    let tenantId = req.tenant?.id || req.user?.tenantId || (req.query.tenantId as string | undefined);
+    let tenantId =
+      req.tenant?.id ||
+      req.user?.tenantId ||
+      (req.query.tenantId as string | undefined);
     if (req.user?.role === 'super_admin' && req.query.tenantId) {
       tenantId = req.query.tenantId as string;
     }
@@ -80,7 +83,10 @@ export async function getCourseById(
   next: NextFunction
 ): Promise<void> {
   try {
-    const tenantId = req.tenant?.id || req.user?.tenantId || (req.query.tenantId as string | undefined);
+    const tenantId =
+      req.tenant?.id ||
+      req.user?.tenantId ||
+      (req.query.tenantId as string | undefined);
     const id = req.params.id as string;
     const role = req.user?.role || 'student';
     const userId = req.user?.id;
@@ -167,7 +173,7 @@ export async function publishCourse(
     }
     const id = req.params.id as string;
     const { isPublished } = req.body;
-    
+
     if (isPublished === undefined) {
       throw AppError.badRequest('isPublished field is required');
     }
@@ -280,14 +286,14 @@ export async function bulkEnrollStudents(
     }
     const courseId = req.params.id as string;
     const { emails, studentIds } = req.body;
-    
+
     if (
       (!emails || emails.length === 0) &&
       (!studentIds || studentIds.length === 0)
     ) {
       throw AppError.badRequest('At least one email or studentId is required');
     }
-    
+
     const result = await coursesService.bulkEnrollStudents(
       courseId,
       tenantId,

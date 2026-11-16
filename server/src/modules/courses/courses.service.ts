@@ -55,19 +55,31 @@ export const coursesService = {
       whereClause.categoryId = filters.categoryId;
     }
 
-    if (filters?.category && filters.category !== 'All' && filters.category !== 'all') {
+    if (
+      filters?.category &&
+      filters.category !== 'All' &&
+      filters.category !== 'all'
+    ) {
       searchConditions.push(
         { category: { slug: filters.category } },
-        { category: { name: { contains: filters.category, mode: 'insensitive' } } },
+        {
+          category: {
+            name: { contains: filters.category, mode: 'insensitive' },
+          },
+        },
         { title: { contains: filters.category, mode: 'insensitive' } },
         { description: { contains: filters.category, mode: 'insensitive' } }
       );
     }
 
-    if (filters?.difficulty && filters.difficulty !== 'All' && filters.difficulty !== 'all') {
-      searchConditions.push(
-        { description: { contains: filters.difficulty, mode: 'insensitive' } }
-      );
+    if (
+      filters?.difficulty &&
+      filters.difficulty !== 'All' &&
+      filters.difficulty !== 'all'
+    ) {
+      searchConditions.push({
+        description: { contains: filters.difficulty, mode: 'insensitive' },
+      });
     }
 
     if (searchConditions.length > 0) {
@@ -528,7 +540,9 @@ export const coursesService = {
     });
 
     if (existingEnrollment) {
-      throw AppError.badRequest('This student is already enrolled in this course.');
+      throw AppError.badRequest(
+        'This student is already enrolled in this course.'
+      );
     }
 
     const enrollment = await prisma.enrollment.create({
@@ -605,7 +619,7 @@ export const coursesService = {
       const students = await prisma.user.findMany({
         where: { email: { in: emails }, tenantId, role: 'student' },
       });
-      
+
       const foundEmails = students.map((s) => s.email);
       const notFoundEmails = emails.filter((e) => !foundEmails.includes(e));
       for (const email of notFoundEmails) {
@@ -636,7 +650,7 @@ export const coursesService = {
     return {
       success: true,
       added: addedStudents,
-      errors
+      errors,
     };
   },
 
