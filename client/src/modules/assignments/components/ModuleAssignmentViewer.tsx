@@ -14,7 +14,9 @@ interface Props {
 export function ModuleAssignmentViewer({ moduleId }: Props) {
   const [assignments, setAssignments] = useState<AssignmentItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedAssignmentId, setSelectedAssignmentId] = useState<string | null>(null);
+  const [selectedAssignmentId, setSelectedAssignmentId] = useState<
+    string | null
+  >(null);
   const [submissionContent, setSubmissionContent] = useState('');
   const [fileUrl, setFileUrl] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -42,7 +44,9 @@ export function ModuleAssignmentViewer({ moduleId }: Props) {
     }
   }, [moduleId]);
 
-  const activeAssignment = assignments.find((a) => a.id === selectedAssignmentId);
+  const activeAssignment = assignments.find(
+    (a) => a.id === selectedAssignmentId
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,7 +76,9 @@ export function ModuleAssignmentViewer({ moduleId }: Props) {
   if (loading) {
     return (
       <div className="py-8 flex justify-center text-xs text-on-surface-variant">
-        <span className="material-symbols-outlined animate-spin mr-2">progress_activity</span>
+        <span className="material-symbols-outlined animate-spin mr-2">
+          progress_activity
+        </span>
         Loading module assignments...
       </div>
     );
@@ -81,9 +87,15 @@ export function ModuleAssignmentViewer({ moduleId }: Props) {
   if (assignments.length === 0) {
     return (
       <div className="py-10 text-center text-on-surface-variant text-xs">
-        <span className="material-symbols-outlined text-3xl mb-2 opacity-40">assignment_turned_in</span>
-        <p className="font-semibold">No homework assignments for this module.</p>
-        <p className="mt-1 opacity-70">Focus on the video lessons and quizzes!</p>
+        <span className="material-symbols-outlined text-3xl mb-2 opacity-40">
+          assignment_turned_in
+        </span>
+        <p className="font-semibold">
+          No homework assignments for this module.
+        </p>
+        <p className="mt-1 opacity-70">
+          Focus on the video lessons and quizzes!
+        </p>
       </div>
     );
   }
@@ -118,10 +130,15 @@ export function ModuleAssignmentViewer({ moduleId }: Props) {
                 {activeAssignment.title}
               </h3>
               <p className="text-xs text-on-surface-variant mt-0.5">
-                Maximum Score: <strong className="text-on-surface">{activeAssignment.maxScore} points</strong>
+                Maximum Score:{' '}
+                <strong className="text-on-surface">
+                  {activeAssignment.maxScore} points
+                </strong>
                 {activeAssignment.dueDate && (
                   <span>
-                    {' '}• Due: {new Date(activeAssignment.dueDate).toLocaleDateString()}
+                    {' '}
+                    • Due:{' '}
+                    {new Date(activeAssignment.dueDate).toLocaleDateString()}
                   </span>
                 )}
               </p>
@@ -132,12 +149,17 @@ export function ModuleAssignmentViewer({ moduleId }: Props) {
               {activeAssignment.submission?.grade !== null &&
               activeAssignment.submission?.grade !== undefined ? (
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 text-emerald-600 font-bold text-xs rounded-full border border-emerald-500/20">
-                  <span className="material-symbols-outlined text-[16px]">verified</span>
-                  Graded: {activeAssignment.submission.grade} / {activeAssignment.maxScore}
+                  <span className="material-symbols-outlined text-[16px]">
+                    verified
+                  </span>
+                  Graded: {activeAssignment.submission.grade} /{' '}
+                  {activeAssignment.maxScore}
                 </span>
               ) : activeAssignment.submission ? (
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 text-amber-600 font-bold text-xs rounded-full border border-amber-500/20">
-                  <span className="material-symbols-outlined text-[16px]">hourglass_top</span>
+                  <span className="material-symbols-outlined text-[16px]">
+                    hourglass_top
+                  </span>
                   Submitted (Awaiting Grade)
                 </span>
               ) : (
@@ -162,7 +184,9 @@ export function ModuleAssignmentViewer({ moduleId }: Props) {
           {activeAssignment.submission?.feedback && (
             <div className="p-4 bg-secondary/10 rounded-xl border border-secondary/20">
               <h4 className="text-xs font-bold text-secondary flex items-center gap-1.5 mb-1">
-                <span className="material-symbols-outlined text-[16px]">comment</span>
+                <span className="material-symbols-outlined text-[16px]">
+                  comment
+                </span>
                 Instructor Feedback
               </h4>
               <p className="text-xs text-on-surface whitespace-pre-wrap">
@@ -175,7 +199,9 @@ export function ModuleAssignmentViewer({ moduleId }: Props) {
           <form onSubmit={handleSubmit} className="space-y-4 pt-2">
             <div>
               <label className="block text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-wider">
-                {activeAssignment.submission ? 'Resubmit Your Work' : 'Your Answer / Written Response'}
+                {activeAssignment.submission
+                  ? 'Resubmit Your Work'
+                  : 'Your Answer / Written Response'}
               </label>
               <textarea
                 placeholder="Type your answer, analysis, or explanation here..."

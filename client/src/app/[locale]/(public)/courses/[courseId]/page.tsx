@@ -111,7 +111,9 @@ export default function CourseDetailsPage() {
         }, 1200);
       }
     } catch (err: any) {
-      const msg = err.response?.data?.message || 'Please log in to enroll in this course.';
+      const msg =
+        err.response?.data?.message ||
+        'Please log in to enroll in this course.';
       setEnrollMsg(msg);
       if (err.response?.status === 401) {
         setTimeout(() => {
@@ -137,7 +139,9 @@ export default function CourseDetailsPage() {
   if (!course) {
     return (
       <main className="max-w-container-max mx-auto px-4 md:px-10 py-20 text-center space-y-6">
-        <h1 className="font-headline-lg text-3xl font-bold text-on-surface">Course Not Found</h1>
+        <h1 className="font-headline-lg text-3xl font-bold text-on-surface">
+          Course Not Found
+        </h1>
         <p className="text-on-surface-variant max-w-md mx-auto">
           The course you are looking for does not exist or has been unpublished.
         </p>
@@ -163,11 +167,17 @@ export default function CourseDetailsPage() {
       <div className="border-b border-border-subtle bg-surface-container-low/50">
         <div className="max-w-container-max mx-auto px-4 md:px-10 py-4">
           <nav className="flex items-center gap-2 text-on-surface-variant font-label-md text-xs font-bold">
-            <Link href={`/${locale}`} className="hover:text-secondary transition-colors">
+            <Link
+              href={`/${locale}`}
+              className="hover:text-secondary transition-colors"
+            >
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <Link href={`/${locale}/courses`} className="hover:text-secondary transition-colors">
+            <Link
+              href={`/${locale}/courses`}
+              className="hover:text-secondary transition-colors"
+            >
               Courses
             </Link>
             <ChevronRight className="w-3.5 h-3.5" />
@@ -268,7 +278,9 @@ export default function CourseDetailsPage() {
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-3 items-start">
                     <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <span className="text-on-surface-variant text-sm leading-relaxed">{item}</span>
+                    <span className="text-on-surface-variant text-sm leading-relaxed">
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -282,7 +294,8 @@ export default function CourseDetailsPage() {
                     Course Curriculum
                   </h2>
                   <p className="text-xs text-on-surface-variant mt-1">
-                    Structured learning path with interactive lessons and practical exercises
+                    Structured learning path with interactive lessons and
+                    practical exercises
                   </p>
                 </div>
                 <span className="text-xs font-body-sm text-on-surface-variant font-semibold bg-surface-container px-3 py-1.5 rounded-lg">
@@ -323,28 +336,30 @@ export default function CourseDetailsPage() {
                           )}
                         </button>
 
-                        {isOpen && module.lessons && module.lessons.length > 0 && (
-                          <div className="divide-y divide-border-subtle bg-surface-card">
-                            {module.lessons.map((lesson) => (
-                              <div
-                                key={lesson.id}
-                                className="p-4 px-6 flex items-center justify-between hover:bg-surface-container-low/50 transition-colors"
-                              >
-                                <div className="flex items-center gap-3">
-                                  <PlayCircle className="w-4 h-4 text-secondary" />
-                                  <span className="text-on-surface text-sm font-medium">
-                                    {lesson.title}
-                                  </span>
+                        {isOpen &&
+                          module.lessons &&
+                          module.lessons.length > 0 && (
+                            <div className="divide-y divide-border-subtle bg-surface-card">
+                              {module.lessons.map((lesson) => (
+                                <div
+                                  key={lesson.id}
+                                  className="p-4 px-6 flex items-center justify-between hover:bg-surface-container-low/50 transition-colors"
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <PlayCircle className="w-4 h-4 text-secondary" />
+                                    <span className="text-on-surface text-sm font-medium">
+                                      {lesson.title}
+                                    </span>
+                                  </div>
+                                  {lesson.duration && (
+                                    <span className="text-xs text-on-surface-variant font-mono">
+                                      {lesson.duration}:00
+                                    </span>
+                                  )}
                                 </div>
-                                {lesson.duration && (
-                                  <span className="text-xs text-on-surface-variant font-mono">
-                                    {lesson.duration}:00
-                                  </span>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        )}
+                              ))}
+                            </div>
+                          )}
                       </div>
                     );
                   })
@@ -386,7 +401,9 @@ export default function CourseDetailsPage() {
                 <div>
                   <span
                     className={`text-3xl font-headline-lg font-extrabold ${
-                      isFree ? 'text-green-600 dark:text-green-400' : 'text-on-surface'
+                      isFree
+                        ? 'text-green-600 dark:text-green-400'
+                        : 'text-on-surface'
                     }`}
                   >
                     {isFree ? 'Free Enrollment' : `$${priceNum.toFixed(2)}`}
@@ -412,7 +429,9 @@ export default function CourseDetailsPage() {
                       <span>Enrolled! Redirecting...</span>
                     </>
                   ) : (
-                    <span>{isFree ? 'Enroll for Free' : 'Enroll in Course'}</span>
+                    <span>
+                      {isFree ? 'Enroll for Free' : 'Enroll in Course'}
+                    </span>
                   )}
                 </button>
 

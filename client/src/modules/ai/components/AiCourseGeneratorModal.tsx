@@ -47,7 +47,9 @@ export function AiCourseGeneratorModal({
   const router = useRouter();
 
   // Step state: 'prompt' | 'generating' | 'preview'
-  const [step, setStep] = useState<'prompt' | 'generating' | 'preview'>('prompt');
+  const [step, setStep] = useState<'prompt' | 'generating' | 'preview'>(
+    'prompt'
+  );
 
   // Input Form
   const [topic, setTopic] = useState('');
@@ -58,7 +60,9 @@ export function AiCourseGeneratorModal({
 
   // Generated Result
   const [outline, setOutline] = useState<GeneratedCourseOutline | null>(null);
-  const [expandedModules, setExpandedModules] = useState<Record<number, boolean>>({
+  const [expandedModules, setExpandedModules] = useState<
+    Record<number, boolean>
+  >({
     0: true,
   });
 
@@ -132,7 +136,9 @@ export function AiCourseGeneratorModal({
         router.push('/instructor/courses');
       }
     } catch (err: any) {
-      toast.error(err.response?.data?.message || 'Failed to save generated course');
+      toast.error(
+        err.response?.data?.message || 'Failed to save generated course'
+      );
     } finally {
       setIsSaving(false);
     }
@@ -151,7 +157,8 @@ export function AiCourseGeneratorModal({
                 AI Course Generator
               </DialogTitle>
               <p className="text-xs text-on-surface-variant">
-                Craft complete, syllabus-ready courses and module structures with AI
+                Craft complete, syllabus-ready courses and module structures
+                with AI
               </p>
             </div>
           </div>
@@ -162,7 +169,8 @@ export function AiCourseGeneratorModal({
           <form onSubmit={handleGenerate} className="space-y-6 pt-4">
             <div className="space-y-2">
               <Label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">
-                What do you want to teach? <span className="text-secondary">*</span>
+                What do you want to teach?{' '}
+                <span className="text-secondary">*</span>
               </Label>
               <Input
                 value={topic}
@@ -172,7 +180,8 @@ export function AiCourseGeneratorModal({
                 className="p-4 bg-surface-bg border-border-subtle rounded-xl text-on-surface focus:ring-2 focus:ring-secondary/20"
               />
               <p className="text-xs text-on-surface-variant">
-                Be as specific or broad as you like. Mention core technologies or goals.
+                Be as specific or broad as you like. Mention core technologies
+                or goals.
               </p>
             </div>
 
@@ -274,7 +283,8 @@ export function AiCourseGeneratorModal({
                 Designing Your Curriculum...
               </h3>
               <p className="text-xs text-on-surface-variant max-w-sm">
-                Structuring modules, sequencing lesson objectives, and calibrating durations for optimal learner retention.
+                Structuring modules, sequencing lesson objectives, and
+                calibrating durations for optimal learner retention.
               </p>
             </div>
           </div>
@@ -291,7 +301,9 @@ export function AiCourseGeneratorModal({
                 </Label>
                 <Input
                   value={outline.title}
-                  onChange={(e) => setOutline({ ...outline, title: e.target.value })}
+                  onChange={(e) =>
+                    setOutline({ ...outline, title: e.target.value })
+                  }
                   className="font-bold text-lg bg-surface-card border-border-subtle"
                 />
               </div>

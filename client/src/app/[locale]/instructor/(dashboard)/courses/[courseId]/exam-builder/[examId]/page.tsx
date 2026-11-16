@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import NextImage from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
@@ -188,11 +189,14 @@ export default function ExamBuilderPage() {
             <button className="border border-secondary text-secondary hover:bg-surface-container px-4 py-2 rounded-lg font-semibold text-sm transition-colors">
               Go Live
             </button>
-            <div className="w-8 h-8 rounded-full bg-surface-container-high border border-border-subtle overflow-hidden">
-              <img
+            <div className="w-8 h-8 rounded-full bg-surface-container-high border border-border-subtle overflow-hidden relative">
+              <NextImage
                 alt="Instructor"
+                width={32}
+                height={32}
                 className="w-full h-full object-cover"
                 src="https://placehold.co/100x100/10b981/ffffff?text=IN"
+                unoptimized
               />
             </div>
           </div>

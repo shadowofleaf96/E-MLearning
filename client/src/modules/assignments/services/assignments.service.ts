@@ -43,12 +43,16 @@ export interface SubmissionItem {
 }
 
 export const assignmentsService = {
-  async getModuleAssignments(moduleId: string): Promise<ApiResponse<AssignmentItem[]>> {
+  async getModuleAssignments(
+    moduleId: string
+  ): Promise<ApiResponse<AssignmentItem[]>> {
     const response = await api.get(ENDPOINTS.ASSIGNMENTS.MODULE(moduleId));
     return response.data;
   },
 
-  async getCourseAssignments(courseId: string): Promise<ApiResponse<AssignmentItem[]>> {
+  async getCourseAssignments(
+    courseId: string
+  ): Promise<ApiResponse<AssignmentItem[]>> {
     const response = await api.get(ENDPOINTS.ASSIGNMENTS.COURSE(courseId));
     return response.data;
   },
@@ -73,8 +77,12 @@ export const assignmentsService = {
     return response.data;
   },
 
-  async getAssignmentSubmissions(assignmentId: string): Promise<ApiResponse<SubmissionItem[]>> {
-    const response = await api.get(ENDPOINTS.ASSIGNMENTS.SUBMISSIONS(assignmentId));
+  async getAssignmentSubmissions(
+    assignmentId: string
+  ): Promise<ApiResponse<SubmissionItem[]>> {
+    const response = await api.get(
+      ENDPOINTS.ASSIGNMENTS.SUBMISSIONS(assignmentId)
+    );
     return response.data;
   },
 
@@ -82,7 +90,10 @@ export const assignmentsService = {
     submissionId: string,
     data: { grade: number; feedback?: string }
   ): Promise<ApiResponse<any>> {
-    const response = await api.put(ENDPOINTS.ASSIGNMENTS.GRADE(submissionId), data);
+    const response = await api.put(
+      ENDPOINTS.ASSIGNMENTS.GRADE(submissionId),
+      data
+    );
     return response.data;
   },
 };

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import {
   messagingService,
   ConversationItem,
@@ -107,9 +108,7 @@ export function MessagingCenter() {
       // Fetch available contacts (instructors if student, students if instructor)
       const res = await api.get('/courses/tenant-students');
       if (res?.data?.data) {
-        setAvailableUsers(
-          res.data.data.filter((u: any) => u.id !== user?.id)
-        );
+        setAvailableUsers(res.data.data.filter((u: any) => u.id !== user?.id));
       }
     } catch (err) {
       // Fallback: load users list
@@ -157,7 +156,8 @@ export function MessagingCenter() {
   };
 
   const filteredConversations = conversations.filter((c) => {
-    const name = `${c.otherUser.firstName} ${c.otherUser.lastName}`.toLowerCase();
+    const name =
+      `${c.otherUser.firstName} ${c.otherUser.lastName}`.toLowerCase();
     return name.includes(searchFilter.toLowerCase());
   });
 
@@ -168,7 +168,9 @@ export function MessagingCenter() {
       {/* Left Sidebar: Conversations List */}
       <div className="w-full md:w-80 lg:w-96 border-b md:border-b-0 md:border-r border-border-subtle flex flex-col bg-surface-container-low shrink-0">
         <div className="p-4 border-b border-border-subtle flex items-center justify-between gap-3">
-          <h2 className="font-headline-md text-base font-bold text-on-surface">Messages</h2>
+          <h2 className="font-headline-md text-base font-bold text-on-surface">
+            Messages
+          </h2>
           <button
             onClick={handleOpenNewModal}
             className="flex items-center gap-1 px-3 py-1.5 bg-secondary text-white font-bold rounded-lg text-xs hover:shadow-md transition-all active:scale-95"
@@ -198,14 +200,20 @@ export function MessagingCenter() {
         <div className="flex-1 overflow-y-auto divide-y divide-border-subtle">
           {loading ? (
             <div className="py-12 flex justify-center text-xs text-on-surface-variant">
-              <span className="material-symbols-outlined animate-spin mr-2">progress_activity</span>
+              <span className="material-symbols-outlined animate-spin mr-2">
+                progress_activity
+              </span>
               Loading conversations...
             </div>
           ) : filteredConversations.length === 0 ? (
             <div className="py-12 text-center text-on-surface-variant text-xs p-4">
-              <span className="material-symbols-outlined text-3xl mb-1 opacity-30">chat</span>
+              <span className="material-symbols-outlined text-3xl mb-1 opacity-30">
+                chat
+              </span>
               <p className="font-semibold">No conversations yet</p>
-              <p className="mt-1 opacity-70">Start a chat with your instructor or students</p>
+              <p className="mt-1 opacity-70">
+                Start a chat with your instructor or students
+              </p>
             </div>
           ) : (
             filteredConversations.map((c) => {
@@ -220,10 +228,13 @@ export function MessagingCenter() {
                 >
                   <div className="w-10 h-10 rounded-full bg-secondary/15 text-secondary font-bold flex items-center justify-center text-xs shrink-0 overflow-hidden mt-0.5">
                     {c.otherUser.avatar ? (
-                      <img
+                      <Image
                         src={c.otherUser.avatar}
                         alt=""
+                        width={40}
+                        height={40}
                         className="w-full h-full object-cover"
+                        unoptimized
                       />
                     ) : (
                       c.otherUser.firstName[0]
@@ -269,10 +280,13 @@ export function MessagingCenter() {
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-secondary/15 text-secondary font-bold flex items-center justify-center text-xs shrink-0 overflow-hidden">
                   {activeConv.otherUser.avatar ? (
-                    <img
+                    <Image
                       src={activeConv.otherUser.avatar}
                       alt=""
+                      width={36}
+                      height={36}
                       className="w-full h-full object-cover"
+                      unoptimized
                     />
                   ) : (
                     activeConv.otherUser.firstName[0]
@@ -280,7 +294,8 @@ export function MessagingCenter() {
                 </div>
                 <div>
                   <h3 className="font-bold text-sm text-on-surface">
-                    {activeConv.otherUser.firstName} {activeConv.otherUser.lastName}
+                    {activeConv.otherUser.firstName}{' '}
+                    {activeConv.otherUser.lastName}
                   </h3>
                   <span className="text-[10px] text-on-surface-variant capitalize">
                     {activeConv.otherUser.role} • Lumina Learning
@@ -293,7 +308,9 @@ export function MessagingCenter() {
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {loadingMessages ? (
                 <div className="py-12 flex justify-center text-xs text-on-surface-variant">
-                  <span className="material-symbols-outlined animate-spin mr-2">progress_activity</span>
+                  <span className="material-symbols-outlined animate-spin mr-2">
+                    progress_activity
+                  </span>
                   Loading messages...
                 </div>
               ) : messages.length === 0 ? (
@@ -315,7 +332,9 @@ export function MessagingCenter() {
                             : 'bg-surface-container border border-border-subtle text-on-surface rounded-bl-none'
                         }`}
                       >
-                        <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+                        <p className="whitespace-pre-wrap leading-relaxed">
+                          {msg.content}
+                        </p>
                         {msg.fileUrl && (
                           <a
                             href={msg.fileUrl}
@@ -323,7 +342,9 @@ export function MessagingCenter() {
                             rel="noopener noreferrer"
                             className="mt-2 inline-flex items-center gap-1 text-[11px] underline opacity-90"
                           >
-                            <span className="material-symbols-outlined text-[14px]">attachment</span>
+                            <span className="material-symbols-outlined text-[14px]">
+                              attachment
+                            </span>
                             Attachment
                           </a>
                         )}
@@ -342,7 +363,10 @@ export function MessagingCenter() {
             </div>
 
             {/* Chat Input Bar */}
-            <form onSubmit={handleSendMessage} className="p-3 border-t border-border-subtle flex items-center gap-2 bg-surface-container-low shrink-0">
+            <form
+              onSubmit={handleSendMessage}
+              className="p-3 border-t border-border-subtle flex items-center gap-2 bg-surface-container-low shrink-0"
+            >
               <input
                 type="text"
                 placeholder="Type a message..."
@@ -356,16 +380,21 @@ export function MessagingCenter() {
                 className="px-4 py-2 bg-secondary text-white font-bold rounded-xl text-xs flex items-center gap-1 hover:shadow-md transition-all disabled:opacity-50"
               >
                 <span>Send</span>
-                <span className="material-symbols-outlined text-[16px]">send</span>
+                <span className="material-symbols-outlined text-[16px]">
+                  send
+                </span>
               </button>
             </form>
           </>
         ) : (
           <div className="flex-1 flex flex-col items-center justify-center p-8 text-on-surface-variant text-sm">
-            <span className="material-symbols-outlined text-5xl mb-2 opacity-25">forum</span>
+            <span className="material-symbols-outlined text-5xl mb-2 opacity-25">
+              forum
+            </span>
             <p className="font-semibold">Select a conversation</p>
             <p className="text-xs text-center max-w-xs mt-1">
-              Choose an existing chat from the left sidebar or click &quot;New&quot; to message an instructor or student.
+              Choose an existing chat from the left sidebar or click
+              &quot;New&quot; to message an instructor or student.
             </p>
           </div>
         )}
@@ -376,8 +405,13 @@ export function MessagingCenter() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fadeIn">
           <div className="w-full max-w-md bg-surface-container-lowest rounded-2xl shadow-2xl border border-border-subtle p-6 animate-scaleUp">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold text-base text-on-surface">New Message</h3>
-              <button onClick={() => setShowNewModal(false)} className="text-on-surface-variant hover:text-on-surface">
+              <h3 className="font-bold text-base text-on-surface">
+                New Message
+              </h3>
+              <button
+                onClick={() => setShowNewModal(false)}
+                className="text-on-surface-variant hover:text-on-surface"
+              >
                 ✕
               </button>
             </div>
@@ -388,7 +422,9 @@ export function MessagingCenter() {
                   Select Contact
                 </label>
                 {loadingUsers ? (
-                  <div className="text-xs text-on-surface-variant py-2">Loading contacts...</div>
+                  <div className="text-xs text-on-surface-variant py-2">
+                    Loading contacts...
+                  </div>
                 ) : (
                   <select
                     value={selectedRecipientId}

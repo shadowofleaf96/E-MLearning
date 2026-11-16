@@ -12,7 +12,12 @@ import { useGamificationStats } from '@/modules/gamification/hooks/useGamificati
 import { CourseDiscussionsTab } from '@/modules/discussions/components/CourseDiscussionsTab';
 import { ModuleAssignmentViewer } from '@/modules/assignments/components/ModuleAssignmentViewer';
 
-type TabState = 'overview' | 'resources' | 'notes' | 'discussions' | 'assignments';
+type TabState =
+  | 'overview'
+  | 'resources'
+  | 'notes'
+  | 'discussions'
+  | 'assignments';
 
 const getYoutubeVideoId = (url: string) => {
   if (!url) return null;
@@ -200,7 +205,10 @@ export default function StudentLearnPage() {
         });
       }
       setCheckedLessons((prev) => {
-        const merged = new Set([...Array.from(prev), ...Array.from(initialChecked)]);
+        const merged = new Set([
+          ...Array.from(prev),
+          ...Array.from(initialChecked),
+        ]);
         return merged;
       });
 
@@ -405,14 +413,15 @@ export default function StudentLearnPage() {
   }
 
   const isLessonDripLocked = Boolean(
-    (activeModule?.publishAt && new Date(activeModule.publishAt) > new Date()) ||
+    (activeModule?.publishAt &&
+      new Date(activeModule.publishAt) > new Date()) ||
     (activeLesson?.publishAt && new Date(activeLesson.publishAt) > new Date())
   );
   const dripUnlockDate = activeLesson?.publishAt
     ? new Date(activeLesson.publishAt)
     : activeModule?.publishAt
-    ? new Date(activeModule.publishAt)
-    : null;
+      ? new Date(activeModule.publishAt)
+      : null;
 
   return (
     <div className="w-full bg-surface-bg font-body-md text-on-surface h-screen overflow-hidden flex flex-col">
@@ -551,7 +560,9 @@ export default function StudentLearnPage() {
                 </button>
                 <button
                   onClick={handleNextLesson}
-                  disabled={activeLesson && !checkedLessons.has(activeLesson.id)}
+                  disabled={
+                    activeLesson && !checkedLessons.has(activeLesson.id)
+                  }
                   className={`flex items-center gap-2 px-5 py-2 font-bold rounded-lg transition-all transform active:scale-95 font-label-md ${
                     activeLesson && !checkedLessons.has(activeLesson.id)
                       ? 'bg-surface-container-high text-on-surface-variant/40 cursor-not-allowed opacity-60'
@@ -605,7 +616,9 @@ export default function StudentLearnPage() {
                 isLessonDripLocked ? (
                   <div className="w-full aspect-video flex flex-col items-center justify-center bg-surface-container-high rounded-[16px] border border-border-subtle p-8 text-center space-y-4 shadow-sm">
                     <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
-                      <span className="material-symbols-outlined text-4xl">schedule</span>
+                      <span className="material-symbols-outlined text-4xl">
+                        schedule
+                      </span>
                     </div>
                     <div>
                       <h3 className="font-headline-md text-xl font-bold text-on-surface">
@@ -614,85 +627,89 @@ export default function StudentLearnPage() {
                       <p className="text-on-surface-variant max-w-md mt-2 text-sm leading-relaxed">
                         This content is scheduled to unlock on{' '}
                         <span className="font-semibold text-secondary">
-                          {dripUnlockDate ? dripUnlockDate.toLocaleString() : 'a future date'}
+                          {dripUnlockDate
+                            ? dripUnlockDate.toLocaleString()
+                            : 'a future date'}
                         </span>
                         . Please check back then!
                       </p>
                     </div>
                   </div>
                 ) : (
-                <div className="relative w-full aspect-video rounded-[16px] overflow-hidden bg-black shadow-xl group border border-outline-variant/20">
-                  {activeLesson.type === 'video' && activeLesson.contentUrl ? (
-                    (() => {
-                      const ytId = getYoutubeVideoId(activeLesson.contentUrl);
-                      const embedSrc = ytId
-                        ? `https://www.youtube.com/embed/${ytId}`
-                        : activeLesson.contentUrl;
-                      return (
-                        <iframe
-                          src={embedSrc}
-                          className="w-full h-full"
-                          allowFullScreen
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          title={activeLesson.title}
-                        />
-                      );
-                    })()
-                  ) : activeLesson.type === 'pdf' && activeLesson.contentUrl ? (
-                    <iframe
-                      src={activeLesson.contentUrl}
-                      className="w-full h-full bg-white"
-                      title={activeLesson.title}
-                    />
-                  ) : activeLesson.type === 'text' ? (
-                    <div className="w-full h-full bg-white p-8 overflow-y-auto text-on-surface">
-                      <div className="prose max-w-none">
-                        {activeLesson.content || 'No text content provided.'}
+                  <div className="relative w-full aspect-video rounded-[16px] overflow-hidden bg-black shadow-xl group border border-outline-variant/20">
+                    {activeLesson.type === 'video' &&
+                    activeLesson.contentUrl ? (
+                      (() => {
+                        const ytId = getYoutubeVideoId(activeLesson.contentUrl);
+                        const embedSrc = ytId
+                          ? `https://www.youtube.com/embed/${ytId}`
+                          : activeLesson.contentUrl;
+                        return (
+                          <iframe
+                            src={embedSrc}
+                            className="w-full h-full"
+                            allowFullScreen
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            title={activeLesson.title}
+                          />
+                        );
+                      })()
+                    ) : activeLesson.type === 'pdf' &&
+                      activeLesson.contentUrl ? (
+                      <iframe
+                        src={activeLesson.contentUrl}
+                        className="w-full h-full bg-white"
+                        title={activeLesson.title}
+                      />
+                    ) : activeLesson.type === 'text' ? (
+                      <div className="w-full h-full bg-white p-8 overflow-y-auto text-on-surface">
+                        <div className="prose max-w-none">
+                          {activeLesson.content || 'No text content provided.'}
+                        </div>
                       </div>
-                    </div>
-                  ) : activeLesson.type === 'link' ? (
-                    <div className="w-full h-full bg-surface-container flex flex-col items-center justify-center space-y-6">
-                      <div className="p-4 bg-secondary/10 rounded-full">
-                        <span className="material-symbols-outlined text-secondary text-5xl">
-                          link
+                    ) : activeLesson.type === 'link' ? (
+                      <div className="w-full h-full bg-surface-container flex flex-col items-center justify-center space-y-6">
+                        <div className="p-4 bg-secondary/10 rounded-full">
+                          <span className="material-symbols-outlined text-secondary text-5xl">
+                            link
+                          </span>
+                        </div>
+                        <div className="text-center">
+                          <h3 className="text-xl font-bold text-on-surface mb-2">
+                            External Resource
+                          </h3>
+                          <p className="text-on-surface-variant max-w-md">
+                            This lesson contains an external link. Click the
+                            button below to open it securely in a new tab.
+                          </p>
+                        </div>
+                        {activeLesson.contentUrl && (
+                          <button
+                            onClick={() =>
+                              window.open(activeLesson.contentUrl, '_blank')
+                            }
+                            className="px-6 py-3 bg-secondary hover:bg-secondary-container text-white font-bold rounded-lg flex items-center gap-2 transition-colors"
+                          >
+                            Open Link{' '}
+                            <span className="material-symbols-outlined">
+                              open_in_new
+                            </span>
+                          </button>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center">
+                        <span className="material-symbols-outlined text-white/50 text-5xl mb-4">
+                          movie
                         </span>
-                      </div>
-                      <div className="text-center">
-                        <h3 className="text-xl font-bold text-on-surface mb-2">
-                          External Resource
-                        </h3>
-                        <p className="text-on-surface-variant max-w-md">
-                          This lesson contains an external link. Click the
-                          button below to open it securely in a new tab.
+                        <p className="text-white/50 font-medium">
+                          Content loading or unavailable.
                         </p>
                       </div>
-                      {activeLesson.contentUrl && (
-                        <button
-                          onClick={() =>
-                            window.open(activeLesson.contentUrl, '_blank')
-                          }
-                          className="px-6 py-3 bg-secondary hover:bg-secondary-container text-white font-bold rounded-lg flex items-center gap-2 transition-colors"
-                        >
-                          Open Link{' '}
-                          <span className="material-symbols-outlined">
-                            open_in_new
-                          </span>
-                        </button>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center">
-                      <span className="material-symbols-outlined text-white/50 text-5xl mb-4">
-                        movie
-                      </span>
-                      <p className="text-white/50 font-medium">
-                        Content loading or unavailable.
-                      </p>
-                    </div>
-                  )}
+                    )}
 
-                  {/* Complete Button Overlay inside content if text/link type to mirror designs - but typically handled below */}
-                </div>
+                    {/* Complete Button Overlay inside content if text/link type to mirror designs - but typically handled below */}
+                  </div>
                 )
               ) : (
                 <div className="w-full aspect-video flex flex-col items-center justify-center bg-surface-container rounded-[16px] border border-border-subtle">
@@ -729,19 +746,19 @@ export default function StudentLearnPage() {
                       {isLessonDripLocked
                         ? 'Lesson Locked'
                         : checkedLessons.has(activeLesson.id)
-                        ? 'Lesson Completed'
-                        : isTimeCompleted
-                          ? 'Time Requirement Fulfilled'
-                          : 'Lesson in Progress'}
+                          ? 'Lesson Completed'
+                          : isTimeCompleted
+                            ? 'Time Requirement Fulfilled'
+                            : 'Lesson in Progress'}
                     </p>
                     <p className="text-[12px] text-on-surface-variant">
                       {isLessonDripLocked
                         ? `This lesson will unlock on ${dripUnlockDate ? dripUnlockDate.toLocaleString() : 'scheduled date'}.`
                         : checkedLessons.has(activeLesson.id)
-                        ? 'You have finished this lesson. Click continue to advance.'
-                        : isTimeCompleted
-                          ? 'You can now mark this lesson as complete.'
-                          : `Please complete the required time (${formatTime(timeRemaining)} remaining) to unlock completion.`}
+                          ? 'You have finished this lesson. Click continue to advance.'
+                          : isTimeCompleted
+                            ? 'You can now mark this lesson as complete.'
+                            : `Please complete the required time (${formatTime(timeRemaining)} remaining) to unlock completion.`}
                     </p>
                   </div>
                 </div>
@@ -820,14 +837,18 @@ export default function StudentLearnPage() {
                   onClick={() => setActiveTab('discussions')}
                   className={`px-8 py-4 font-label-md whitespace-nowrap transition-all flex items-center gap-2 ${activeTab === 'discussions' ? 'text-secondary border-b-2 border-secondary font-bold' : 'font-medium text-on-surface-variant hover:text-on-surface'}`}
                 >
-                  <span className="material-symbols-outlined text-[18px]">forum</span>
+                  <span className="material-symbols-outlined text-[18px]">
+                    forum
+                  </span>
                   Discussions & Q&A
                 </button>
                 <button
                   onClick={() => setActiveTab('assignments')}
                   className={`px-8 py-4 font-label-md whitespace-nowrap transition-all flex items-center gap-2 ${activeTab === 'assignments' ? 'text-secondary border-b-2 border-secondary font-bold' : 'font-medium text-on-surface-variant hover:text-on-surface'}`}
                 >
-                  <span className="material-symbols-outlined text-[18px]">assignment</span>
+                  <span className="material-symbols-outlined text-[18px]">
+                    assignment
+                  </span>
                   Assignments
                 </button>
               </div>
@@ -1035,7 +1056,8 @@ export default function StudentLearnPage() {
                     const isActive = activeLesson?.id === lesson.id;
                     const isDripScheduled = Boolean(
                       (mod.publishAt && new Date(mod.publishAt) > new Date()) ||
-                      (lesson.publishAt && new Date(lesson.publishAt) > new Date())
+                      (lesson.publishAt &&
+                        new Date(lesson.publishAt) > new Date())
                     );
                     const isLessonLocked =
                       mod.isLocked === true ||
@@ -1047,8 +1069,8 @@ export default function StudentLearnPage() {
                       const dripDate = lesson.publishAt
                         ? new Date(lesson.publishAt)
                         : mod.publishAt
-                        ? new Date(mod.publishAt)
-                        : null;
+                          ? new Date(mod.publishAt)
+                          : null;
                       return (
                         <div
                           key={lesson.id}
@@ -1072,8 +1094,8 @@ export default function StudentLearnPage() {
                             isDripScheduled && dripDate
                               ? `Scheduled: ${dripDate.toLocaleString()}`
                               : mod.isLocked
-                              ? 'Module locked'
-                              : `Complete "${mod.lessons[lIdx - 1]?.title}" to unlock`
+                                ? 'Module locked'
+                                : `Complete "${mod.lessons[lIdx - 1]?.title}" to unlock`
                           }
                         >
                           <div className="mt-1 flex-shrink-0 w-5 h-5 flex items-center justify-center text-on-surface-variant">
@@ -1089,7 +1111,8 @@ export default function StudentLearnPage() {
                               {lesson.title}
                             </p>
                             <p className="text-[11px] text-on-surface-variant/60 capitalize">
-                              {lesson.type} • {isDripScheduled ? 'Scheduled' : 'Locked'}
+                              {lesson.type} •{' '}
+                              {isDripScheduled ? 'Scheduled' : 'Locked'}
                             </p>
                           </div>
                         </div>
@@ -1184,7 +1207,8 @@ export default function StudentLearnPage() {
                     const allLessonsDone =
                       !mod.lessons ||
                       mod.lessons.every((l: any) => checkedLessons.has(l.id));
-                    const isExamLocked = mod.isLocked === true || !allLessonsDone;
+                    const isExamLocked =
+                      mod.isLocked === true || !allLessonsDone;
 
                     if (isExamLocked) {
                       return (

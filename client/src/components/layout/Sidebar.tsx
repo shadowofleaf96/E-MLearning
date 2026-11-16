@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { setSidebarOpen } from '@/store/slices/uiSlice';
@@ -268,7 +269,14 @@ export default function Sidebar() {
       >
         <div className="px-8 mb-10">
           {logo ? (
-            <img src={logo} alt={brandName} className="h-10 object-contain" />
+            <Image
+              src={logo}
+              alt={brandName}
+              width={140}
+              height={40}
+              className="h-10 w-auto object-contain"
+              unoptimized
+            />
           ) : (
             <>
               <h1 className="font-display-lg text-2xl font-extrabold text-on-surface tracking-tight">

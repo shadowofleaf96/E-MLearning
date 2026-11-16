@@ -48,7 +48,8 @@ export const progressService = {
     if (typeof arg2 === 'number') {
       const moduleId = arg1;
       const progressPercentage = arg2;
-      const completed = typeof arg3 === 'boolean' ? arg3 : progressPercentage >= 100;
+      const completed =
+        typeof arg3 === 'boolean' ? arg3 : progressPercentage >= 100;
       const response = await api.put(ENDPOINTS.PROGRESS.UPDATE(moduleId), {
         progressPercentage,
         completed,
@@ -72,16 +73,23 @@ export const progressService = {
     lessonId: string,
     data: { completed?: boolean; timeSpent?: number }
   ): Promise<ApiResponse<any>> {
-    const response = await api.put(ENDPOINTS.PROGRESS.UPDATE_LESSON(lessonId), data);
+    const response = await api.put(
+      ENDPOINTS.PROGRESS.UPDATE_LESSON(lessonId),
+      data
+    );
     return response.data;
   },
 
-  async getCourseLessonProgress(courseId: string): Promise<ApiResponse<LessonProgressItem[]>> {
+  async getCourseLessonProgress(
+    courseId: string
+  ): Promise<ApiResponse<LessonProgressItem[]>> {
     const response = await api.get(ENDPOINTS.PROGRESS.COURSE_LESSONS(courseId));
     return response.data;
   },
 
-  async getStudentNotes(courseId: string): Promise<ApiResponse<StudentNoteItem[]>> {
+  async getStudentNotes(
+    courseId: string
+  ): Promise<ApiResponse<StudentNoteItem[]>> {
     const response = await api.get(ENDPOINTS.PROGRESS.GET_NOTES(courseId));
     return response.data;
   },

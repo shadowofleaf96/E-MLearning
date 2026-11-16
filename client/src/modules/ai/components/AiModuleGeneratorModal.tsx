@@ -37,7 +37,8 @@ export function AiModuleGeneratorModal({
   const [lessonCount, setLessonCount] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [generatedModule, setGeneratedModule] = useState<GeneratedModule | null>(null);
+  const [generatedModule, setGeneratedModule] =
+    useState<GeneratedModule | null>(null);
 
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,7 +117,8 @@ export function AiModuleGeneratorModal({
                 AI Module Generator
               </DialogTitle>
               <p className="text-xs text-on-surface-variant">
-                Generate a structured module with lessons directly into this course
+                Generate a structured module with lessons directly into this
+                course
               </p>
             </div>
           </div>
@@ -126,7 +128,8 @@ export function AiModuleGeneratorModal({
           <form onSubmit={handleGenerate} className="space-y-4 pt-4">
             <div className="space-y-2">
               <Label className="text-xs font-bold uppercase text-on-surface-variant">
-                Module Topic / Objective <span className="text-secondary">*</span>
+                Module Topic / Objective{' '}
+                <span className="text-secondary">*</span>
               </Label>
               <Input
                 value={topic}

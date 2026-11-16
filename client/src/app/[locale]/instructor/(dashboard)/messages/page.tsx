@@ -11,7 +11,8 @@ export default function InstructorMessagesPage() {
           Instructor Communications
         </h1>
         <p className="text-on-surface-variant text-sm">
-          Chat directly with your students, provide mentorship, and answer questions.
+          Chat directly with your students, provide mentorship, and answer
+          questions.
         </p>
       </div>
 

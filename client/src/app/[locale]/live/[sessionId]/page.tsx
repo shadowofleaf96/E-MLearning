@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import {
   Mic,
@@ -260,10 +261,12 @@ export default function LiveSessionWorkspacePage() {
           {/* Main Video Screen Share Stage */}
           <div className="flex-1 relative rounded-2xl overflow-hidden bg-black border border-slate-800 shadow-2xl flex items-center justify-center">
             {screenShareActive ? (
-              <img
+              <Image
                 src="https://placehold.co/1280x720/1e293b/ffffff?text=Sarah+Chen's+Screen+Share+(Figma+Design+Workspace)"
                 alt="Figma screen share content"
+                fill
                 className="w-full h-full object-cover opacity-90"
+                unoptimized
               />
             ) : (
               <div className="flex flex-col items-center text-slate-400">
@@ -278,25 +281,27 @@ export default function LiveSessionWorkspacePage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
 
             {/* Float Camera View for Instructor */}
-            <div className="absolute top-4 right-4 w-44 aspect-video rounded-lg overflow-hidden border border-slate-700 shadow-lg bg-slate-900">
+            <div className="absolute top-4 right-4 w-44 aspect-video rounded-lg overflow-hidden border border-slate-700 shadow-lg bg-slate-900 relative">
               {cameraActive ? (
-                <img
+                <Image
                   src="https://placehold.co/200x120/312e81/ffffff?text=Sarah+Chen+(Host)"
                   alt="Sarah Chen presenter webcam"
+                  fill
                   className="w-full h-full object-cover"
+                  unoptimized
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-slate-950 text-xs text-slate-500">
                   Camera Paused
                 </div>
               )}
-              <div className="absolute bottom-1.5 left-1.5 px-2 py-0.5 bg-black/60 rounded text-[9px] text-white font-medium uppercase tracking-wider">
+              <div className="absolute bottom-1.5 left-1.5 px-2 py-0.5 bg-black/60 rounded text-[9px] text-white font-medium uppercase tracking-wider z-10">
                 Instructor
               </div>
             </div>
 
             {/* Presenter Name Tag */}
-            <div className="absolute bottom-6 left-6 flex items-center gap-3">
+            <div className="absolute bottom-6 left-6 flex items-center gap-3 z-10">
               <div className="bg-secondary text-white px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-lg text-xs font-semibold">
                 <ScreenShare size={14} />
                 <span>Sarah Chen's Screen</span>
@@ -307,34 +312,40 @@ export default function LiveSessionWorkspacePage() {
           {/* Bottom Participant Webcam Strip */}
           <div className="mt-6 flex gap-4 overflow-x-auto pb-2 shrink-0 select-none scrollbar-hide">
             <div className="flex-shrink-0 w-40 aspect-video rounded-xl bg-slate-800 relative overflow-hidden border border-slate-700">
-              <img
+              <Image
                 src="https://placehold.co/200x120/111827/ffffff?text=Alex+Rivera"
                 alt="Alex Rivera webcam feed"
+                fill
                 className="w-full h-full object-cover"
+                unoptimized
               />
-              <div className="absolute bottom-1.5 left-1.5 text-[10px] text-white px-1.5 py-0.5 bg-black/40 rounded">
+              <div className="absolute bottom-1.5 left-1.5 text-[10px] text-white px-1.5 py-0.5 bg-black/40 rounded z-10">
                 Alex Rivera
               </div>
             </div>
 
             <div className="flex-shrink-0 w-40 aspect-video rounded-xl bg-slate-800 relative overflow-hidden border border-slate-700">
-              <img
+              <Image
                 src="https://placehold.co/200x120/111827/ffffff?text=Jamie+L."
                 alt="Jamie L webcam feed"
+                fill
                 className="w-full h-full object-cover"
+                unoptimized
               />
-              <div className="absolute bottom-1.5 left-1.5 text-[10px] text-white px-1.5 py-0.5 bg-black/40 rounded">
+              <div className="absolute bottom-1.5 left-1.5 text-[10px] text-white px-1.5 py-0.5 bg-black/40 rounded z-10">
                 Jamie L.
               </div>
             </div>
 
             <div className="flex-shrink-0 w-40 aspect-video rounded-xl bg-slate-800 relative overflow-hidden border border-slate-700">
-              <img
+              <Image
                 src="https://placehold.co/200x120/111827/ffffff?text=Elena+Sato"
                 alt="Elena Sato webcam feed"
+                fill
                 className="w-full h-full object-cover"
+                unoptimized
               />
-              <div className="absolute bottom-1.5 left-1.5 text-[10px] text-white px-1.5 py-0.5 bg-black/40 rounded">
+              <div className="absolute bottom-1.5 left-1.5 text-[10px] text-white px-1.5 py-0.5 bg-black/40 rounded z-10">
                 Elena Sato
               </div>
             </div>
@@ -466,10 +477,13 @@ export default function LiveSessionWorkspacePage() {
                 {messages.map((msg, index) => (
                   <div key={index} className="flex gap-3 text-sm">
                     {msg.avatar ? (
-                      <img
+                      <Image
                         src={msg.avatar}
                         alt=""
+                        width={32}
+                        height={32}
                         className="w-8 h-8 rounded-full object-cover"
+                        unoptimized
                       />
                     ) : (
                       <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-300 shrink-0">

@@ -150,7 +150,6 @@ export default function ContentBrandingPage() {
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSave = async () => {

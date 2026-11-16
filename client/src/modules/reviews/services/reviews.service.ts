@@ -25,7 +25,9 @@ export interface CourseReviewsData {
 }
 
 export const reviewsService = {
-  async getCourseReviews(courseId: string): Promise<ApiResponse<CourseReviewsData>> {
+  async getCourseReviews(
+    courseId: string
+  ): Promise<ApiResponse<CourseReviewsData>> {
     const response = await api.get(ENDPOINTS.REVIEWS.COURSE(courseId));
     return response.data;
   },

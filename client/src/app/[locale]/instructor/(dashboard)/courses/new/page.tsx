@@ -62,8 +62,8 @@ export default function NewCoursePage() {
             Create New Course
           </h2>
           <p className="text-on-surface-variant text-body-md mt-1">
-            Provide the foundational details to publish a new learning journey on
-            Lumina.
+            Provide the foundational details to publish a new learning journey
+            on Lumina.
           </p>
         </div>
         <Button
@@ -71,8 +71,7 @@ export default function NewCoursePage() {
           onClick={() => setIsAiModalOpen(true)}
           className="bg-secondary text-white hover:bg-secondary/90 flex items-center gap-2 px-5 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all self-start sm:self-auto font-bold"
         >
-          <Sparkles className="w-4 h-4" />
-          ✨ Generate Course with AI
+          <Sparkles className="w-4 h-4" />✨ Generate Course with AI
         </Button>
       </div>
 

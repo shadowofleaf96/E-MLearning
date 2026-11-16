@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTenant } from '@/components/providers/TenantProvider';
 
 interface AuthLayoutProps {
@@ -26,7 +27,14 @@ export default function AuthLayout({
       <header className="bg-surface-bg dark:bg-surface-bg flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 border-b border-border-subtle dark:border-outline-variant z-50 fixed top-0">
         <div className="flex items-center gap-2">
           {logo ? (
-            <img src={logo} alt={brandName} className="h-8 object-contain" />
+            <Image
+              src={logo}
+              alt={brandName}
+              width={120}
+              height={32}
+              className="h-8 w-auto object-contain"
+              unoptimized
+            />
           ) : (
             <>
               <span
@@ -56,10 +64,12 @@ export default function AuthLayout({
         {/* Left Side: Dark Hero / Context (hidden on mobile) */}
         <div className="hidden lg:flex lg:w-1/2 relative bg-primary flex-col justify-between p-12 overflow-hidden">
           {/* Background Image */}
-          <img
+          <Image
             alt="Students studying together"
             className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay pointer-events-none"
             src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
+            fill
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-primary/40 pointer-events-none"></div>
 

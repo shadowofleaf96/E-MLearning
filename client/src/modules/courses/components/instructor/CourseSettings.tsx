@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -128,11 +129,13 @@ export function CourseSettings({ course, onUpdate }: CourseSettingsProps) {
       {thumbnail && (
         <div className="mt-4">
           <p className="text-sm text-zinc-400 mb-2">Thumbnail Preview:</p>
-          <div className="w-full max-w-sm aspect-video rounded-lg border border-white/10 overflow-hidden bg-black">
-            <img
+          <div className="w-full max-w-sm aspect-video rounded-lg border border-white/10 overflow-hidden bg-black relative">
+            <Image
               src={thumbnail}
               alt="Thumbnail preview"
+              fill
               className="w-full h-full object-cover"
+              unoptimized
             />
           </div>
         </div>

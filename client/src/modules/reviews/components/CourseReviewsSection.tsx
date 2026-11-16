@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import {
-  reviewsService,
-  CourseReviewsData,
-} from '../services/reviews.service';
+import Image from 'next/image';
+import { reviewsService, CourseReviewsData } from '../services/reviews.service';
 import { toast } from 'react-toastify';
 import { useAuth } from '@/modules/auth/hooks/useAuth';
 
@@ -62,7 +60,11 @@ export function CourseReviewsSection({ courseId, isEnrolled }: Props) {
     }
   };
 
-  const renderStars = (count: number, interactive = false, onSelect?: (n: number) => void) => {
+  const renderStars = (
+    count: number,
+    interactive = false,
+    onSelect?: (n: number) => void
+  ) => {
     return (
       <div className="flex items-center gap-1">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -72,7 +74,9 @@ export function CourseReviewsSection({ courseId, isEnrolled }: Props) {
             className={`material-symbols-outlined text-[20px] ${
               star <= count ? 'text-amber-400' : 'text-surface-container-high'
             } ${interactive ? 'cursor-pointer hover:scale-110 transition-transform' : ''}`}
-            style={{ fontVariationSettings: star <= count ? "'FILL' 1" : "'FILL' 0" }}
+            style={{
+              fontVariationSettings: star <= count ? "'FILL' 1" : "'FILL' 0",
+            }}
           >
             star
           </span>
@@ -85,7 +89,9 @@ export function CourseReviewsSection({ courseId, isEnrolled }: Props) {
     <div className="mt-8 pt-8 border-t border-border-subtle">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
-          <h3 className="font-headline-md text-on-surface">Student Reviews & Ratings</h3>
+          <h3 className="font-headline-md text-on-surface">
+            Student Reviews & Ratings
+          </h3>
           <p className="text-on-surface-variant text-sm">
             Read authentic feedback from learners who took this course.
           </p>
@@ -95,7 +101,9 @@ export function CourseReviewsSection({ courseId, isEnrolled }: Props) {
             onClick={() => setShowForm(true)}
             className="flex items-center gap-2 px-5 py-2.5 bg-secondary text-white font-bold rounded-xl text-sm hover:shadow-md transition-all active:scale-95"
           >
-            <span className="material-symbols-outlined text-[18px]">rate_review</span>
+            <span className="material-symbols-outlined text-[18px]">
+              rate_review
+            </span>
             Write a Review
           </button>
         )}
@@ -108,7 +116,9 @@ export function CourseReviewsSection({ courseId, isEnrolled }: Props) {
           className="mb-8 p-6 bg-surface-container-low rounded-2xl border border-secondary/30 shadow-sm animate-fadeIn"
         >
           <div className="flex justify-between items-center mb-4">
-            <h4 className="font-bold text-base text-on-surface">Share Your Experience</h4>
+            <h4 className="font-bold text-base text-on-surface">
+              Share Your Experience
+            </h4>
             <button
               type="button"
               onClick={() => setShowForm(false)}
@@ -124,7 +134,9 @@ export function CourseReviewsSection({ courseId, isEnrolled }: Props) {
             </label>
             <div className="flex items-center gap-3">
               {renderStars(rating, true, (n) => setRating(n))}
-              <span className="text-sm font-bold text-on-surface">{rating} out of 5 stars</span>
+              <span className="text-sm font-bold text-on-surface">
+                {rating} out of 5 stars
+              </span>
             </div>
           </div>
 
@@ -164,18 +176,22 @@ export function CourseReviewsSection({ courseId, isEnrolled }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 p-6 bg-surface-container-lowest rounded-2xl border border-border-subtle">
           <div className="flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-border-subtle pb-6 md:pb-0 md:pr-6">
             <div className="text-5xl font-black text-on-surface mb-2">
-              {data.stats.averageRating > 0 ? data.stats.averageRating.toFixed(1) : '—'}
+              {data.stats.averageRating > 0
+                ? data.stats.averageRating.toFixed(1)
+                : '—'}
             </div>
             {renderStars(Math.round(data.stats.averageRating))}
             <span className="text-xs text-on-surface-variant mt-2 font-medium">
-              Based on {data.stats.total} {data.stats.total === 1 ? 'review' : 'reviews'}
+              Based on {data.stats.total}{' '}
+              {data.stats.total === 1 ? 'review' : 'reviews'}
             </span>
           </div>
 
           <div className="md:col-span-2 flex flex-col justify-center space-y-2">
             {[5, 4, 3, 2, 1].map((stars) => {
               const count = data.stats.distribution[stars] || 0;
-              const pct = data.stats.total > 0 ? (count / data.stats.total) * 100 : 0;
+              const pct =
+                data.stats.total > 0 ? (count / data.stats.total) * 100 : 0;
               return (
                 <div key={stars} className="flex items-center gap-3 text-xs">
                   <span className="w-12 text-on-surface-variant font-medium flex items-center gap-1">
@@ -187,7 +203,9 @@ export function CourseReviewsSection({ courseId, isEnrolled }: Props) {
                       style={{ width: `${pct}%` }}
                     />
                   </div>
-                  <span className="w-8 text-right text-on-surface-variant font-medium">{count}</span>
+                  <span className="w-8 text-right text-on-surface-variant font-medium">
+                    {count}
+                  </span>
                 </div>
               );
             })}
@@ -198,12 +216,16 @@ export function CourseReviewsSection({ courseId, isEnrolled }: Props) {
       {/* Review List */}
       {loading ? (
         <div className="py-8 flex justify-center text-on-surface-variant text-sm">
-          <span className="material-symbols-outlined animate-spin mr-2">progress_activity</span>
+          <span className="material-symbols-outlined animate-spin mr-2">
+            progress_activity
+          </span>
           Loading reviews...
         </div>
       ) : !data || data.reviews.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-10 text-on-surface-variant bg-surface-container-low rounded-2xl border border-border-subtle">
-          <span className="material-symbols-outlined text-4xl mb-2 opacity-40">grade</span>
+          <span className="material-symbols-outlined text-4xl mb-2 opacity-40">
+            grade
+          </span>
           <p className="text-sm font-semibold">No reviews yet</p>
           <p className="text-xs text-on-surface-variant mt-1">
             Be the first student to review this course!
@@ -220,10 +242,13 @@ export function CourseReviewsSection({ courseId, isEnrolled }: Props) {
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-secondary/10 text-secondary font-bold flex items-center justify-center text-xs">
                     {rev.student.avatar ? (
-                      <img
+                      <Image
                         src={rev.student.avatar}
                         alt=""
+                        width={36}
+                        height={36}
                         className="w-full h-full rounded-full object-cover"
+                        unoptimized
                       />
                     ) : (
                       rev.student.firstName[0]

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { useParams, useRouter, usePathname } from 'next/navigation';
 import { useAppSelector } from '@/store/hooks';
 import {
@@ -200,7 +201,9 @@ export default function CourseBuilderPage() {
 
   const handleAiDraftContent = async () => {
     if (!lessonTitle) {
-      toast.warning('Please enter a lesson title first so AI knows what to write about.');
+      toast.warning(
+        'Please enter a lesson title first so AI knows what to write about.'
+      );
       return;
     }
     setIsAiDrafting(true);
@@ -851,8 +854,13 @@ export default function CourseBuilderPage() {
                               className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-lg bg-secondary/10 text-secondary hover:bg-secondary/20 transition-all border border-secondary/30 ml-auto"
                               title="Generate comprehensive lesson content using AI"
                             >
-                              <Sparkles size={14} className={isAiDrafting ? 'animate-spin' : ''} />
-                              {isAiDrafting ? 'Drafting...' : '✨ AI Draft Article'}
+                              <Sparkles
+                                size={14}
+                                className={isAiDrafting ? 'animate-spin' : ''}
+                              />
+                              {isAiDrafting
+                                ? 'Drafting...'
+                                : '✨ AI Draft Article'}
                             </button>
                           </div>
                           <textarea
@@ -908,10 +916,13 @@ export default function CourseBuilderPage() {
                           {lessonContentUrl &&
                             getYoutubeVideoId(lessonContentUrl) && (
                               <div className="mt-4 flex items-center gap-4 p-4 border border-border-subtle rounded-xl bg-surface-container-lowest">
-                                <img
+                                <Image
                                   src={`https://img.youtube.com/vi/${getYoutubeVideoId(lessonContentUrl)}/mqdefault.jpg`}
                                   alt="YouTube Thumbnail"
+                                  width={128}
+                                  height={80}
                                   className="w-32 h-20 object-cover rounded-lg border border-border-subtle shadow-sm"
+                                  unoptimized
                                 />
                                 <div className="overflow-hidden">
                                   <p className="font-bold text-primary text-sm line-clamp-2">
@@ -1018,18 +1029,31 @@ export default function CourseBuilderPage() {
 
                       <div className="space-y-2">
                         <label className="font-semibold text-[12px] text-on-surface-variant flex items-center gap-1.5">
-                          <Calendar size={14} /> Release Date & Time (Drip Release)
+                          <Calendar size={14} /> Release Date & Time (Drip
+                          Release)
                         </label>
                         <input
                           className="w-full p-3 bg-surface-bg border border-border-subtle rounded-lg focus:ring-2 focus:ring-secondary/20 outline-none text-primary"
                           type="datetime-local"
-                          value={lessonPublishAt ? new Date(lessonPublishAt).toISOString().slice(0, 16) : ''}
+                          value={
+                            lessonPublishAt
+                              ? new Date(lessonPublishAt)
+                                  .toISOString()
+                                  .slice(0, 16)
+                              : ''
+                          }
                           onChange={(e) =>
-                            setLessonPublishAt(e.target.value ? new Date(e.target.value).toISOString() : null)
+                            setLessonPublishAt(
+                              e.target.value
+                                ? new Date(e.target.value).toISOString()
+                                : null
+                            )
                           }
                         />
                         <p className="text-xs text-on-surface-variant">
-                          Optionally lock this lesson until this date and time. Leave empty to make it immediately available upon sequence unlock.
+                          Optionally lock this lesson until this date and time.
+                          Leave empty to make it immediately available upon
+                          sequence unlock.
                         </p>
                       </div>
                     </div>
@@ -1131,10 +1155,13 @@ export default function CourseBuilderPage() {
               </Label>
               <div className="flex items-center gap-4">
                 {courseThumbnail ? (
-                  <img
+                  <Image
                     src={courseThumbnail}
                     alt="Thumbnail"
+                    width={96}
+                    height={96}
                     className="w-24 h-24 object-cover rounded-lg border border-border-subtle"
+                    unoptimized
                   />
                 ) : (
                   <div className="w-24 h-24 bg-surface-container rounded-lg border border-border-subtle flex items-center justify-center text-outline-variant">
@@ -1226,14 +1253,23 @@ export default function CourseBuilderPage() {
               </Label>
               <Input
                 type="datetime-local"
-                value={modulePublishAt ? new Date(modulePublishAt).toISOString().slice(0, 16) : ''}
+                value={
+                  modulePublishAt
+                    ? new Date(modulePublishAt).toISOString().slice(0, 16)
+                    : ''
+                }
                 onChange={(e) =>
-                  setModulePublishAt(e.target.value ? new Date(e.target.value).toISOString() : null)
+                  setModulePublishAt(
+                    e.target.value
+                      ? new Date(e.target.value).toISOString()
+                      : null
+                  )
                 }
                 className="bg-surface-bg border-border-subtle focus:ring-secondary text-primary"
               />
               <p className="text-xs text-on-surface-variant">
-                Optionally restrict access to all lessons in this module until this date and time. Leave empty for normal progression.
+                Optionally restrict access to all lessons in this module until
+                this date and time. Leave empty for normal progression.
               </p>
             </div>
           </div>

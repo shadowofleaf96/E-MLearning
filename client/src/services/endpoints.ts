@@ -69,7 +69,8 @@ export const ENDPOINTS = {
     GET: (courseId: string) => `/progress/course/${courseId}`,
     UPDATE: (moduleId: string) => `/progress/module/${moduleId}`,
     UPDATE_LESSON: (lessonId: string) => `/progress/lesson/${lessonId}`,
-    COURSE_LESSONS: (courseId: string) => `/progress/course/${courseId}/lessons`,
+    COURSE_LESSONS: (courseId: string) =>
+      `/progress/course/${courseId}/lessons`,
     GET_NOTES: (courseId: string) => `/progress/notes/${courseId}`,
     SAVE_NOTE: '/progress/notes',
   },
@@ -150,7 +151,8 @@ export const ENDPOINTS = {
   MESSAGING: {
     CONVERSATIONS: '/messaging/conversations',
     UNREAD_COUNT: '/messaging/unread-count',
-    MESSAGES: (conversationId: string) => `/messaging/conversation/${conversationId}`,
+    MESSAGES: (conversationId: string) =>
+      `/messaging/conversation/${conversationId}`,
     SEND: '/messaging/send',
   },
   ASSIGNMENTS: {
@@ -158,7 +160,9 @@ export const ENDPOINTS = {
     COURSE: (courseId: string) => `/assignments/course/${courseId}`,
     CREATE: '/assignments',
     SUBMIT: '/assignments/submit',
-    SUBMISSIONS: (assignmentId: string) => `/assignments/${assignmentId}/submissions`,
-    GRADE: (submissionId: string) => `/assignments/submission/${submissionId}/grade`,
+    SUBMISSIONS: (assignmentId: string) =>
+      `/assignments/${assignmentId}/submissions`,
+    GRADE: (submissionId: string) =>
+      `/assignments/submission/${submissionId}/grade`,
   },
 };

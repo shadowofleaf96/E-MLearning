@@ -16,7 +16,8 @@ interface Props {
 export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
   const [assignments, setAssignments] = useState<AssignmentItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedAssignment, setSelectedAssignment] = useState<AssignmentItem | null>(null);
+  const [selectedAssignment, setSelectedAssignment] =
+    useState<AssignmentItem | null>(null);
   const [submissions, setSubmissions] = useState<SubmissionItem[]>([]);
   const [loadingSubmissions, setLoadingSubmissions] = useState(false);
 
@@ -30,7 +31,9 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
   const [creating, setCreating] = useState(false);
 
   // Grading form state
-  const [gradingSubmissionId, setGradingSubmissionId] = useState<string | null>(null);
+  const [gradingSubmissionId, setGradingSubmissionId] = useState<string | null>(
+    null
+  );
   const [gradeInput, setGradeInput] = useState<number>(100);
   const [feedbackInput, setFeedbackInput] = useState('');
   const [savingGrade, setSavingGrade] = useState(false);
@@ -126,14 +129,17 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
             Course Assignments & Grading
           </h3>
           <p className="text-xs text-on-surface-variant">
-            Create homework tasks, review student submissions, and assign grades.
+            Create homework tasks, review student submissions, and assign
+            grades.
           </p>
         </div>
         <button
           onClick={() => setShowCreateModal(true)}
           className="flex items-center gap-2 px-4 py-2 bg-secondary text-white font-bold rounded-xl text-xs hover:shadow-md transition-all active:scale-95"
         >
-          <span className="material-symbols-outlined text-[18px]">add_task</span>
+          <span className="material-symbols-outlined text-[18px]">
+            add_task
+          </span>
           Create Assignment
         </button>
       </div>
@@ -168,20 +174,26 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <h5 className="font-bold text-xs text-on-surface">{a.title}</h5>
+                    <h5 className="font-bold text-xs text-on-surface">
+                      {a.title}
+                    </h5>
                     <span className="text-[10px] font-bold px-1.5 py-0.5 bg-surface-container rounded text-secondary shrink-0">
                       {a._count?.submissions || 0} Submissions
                     </span>
                   </div>
                   <p className="text-[11px] text-on-surface-variant line-clamp-1 mt-1">
-                    {a.module?.title ? `Module: ${a.module.title}` : a.description}
+                    {a.module?.title
+                      ? `Module: ${a.module.title}`
+                      : a.description}
                   </p>
                   <div className="flex items-center gap-2 text-[10px] text-on-surface-variant mt-2">
                     <span>Max: {a.maxScore} pts</span>
                     {a.dueDate && (
                       <>
                         <span>•</span>
-                        <span>Due: {new Date(a.dueDate).toLocaleDateString()}</span>
+                        <span>
+                          Due: {new Date(a.dueDate).toLocaleDateString()}
+                        </span>
                       </>
                     )}
                   </div>
@@ -197,7 +209,9 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
             <>
               <div className="flex items-start justify-between border-b border-border-subtle pb-4">
                 <div>
-                  <h4 className="font-bold text-base text-on-surface">{selectedAssignment.title}</h4>
+                  <h4 className="font-bold text-base text-on-surface">
+                    {selectedAssignment.title}
+                  </h4>
                   <p className="text-xs text-on-surface-variant mt-0.5">
                     {selectedAssignment.description}
                   </p>
@@ -214,9 +228,13 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
                 </div>
               ) : submissions.length === 0 ? (
                 <div className="py-12 text-center text-xs text-on-surface-variant">
-                  <span className="material-symbols-outlined text-4xl mb-2 opacity-30">inbox</span>
+                  <span className="material-symbols-outlined text-4xl mb-2 opacity-30">
+                    inbox
+                  </span>
                   <p className="font-semibold">No submissions received yet</p>
-                  <p className="mt-1 opacity-70">Students who submit will appear here for grading.</p>
+                  <p className="mt-1 opacity-70">
+                    Students who submit will appear here for grading.
+                  </p>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -235,7 +253,8 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
                               {sub.student.firstName} {sub.student.lastName}
                             </p>
                             <span className="text-[10px] text-on-surface-variant">
-                              Submitted {new Date(sub.submittedAt).toLocaleString()}
+                              Submitted{' '}
+                              {new Date(sub.submittedAt).toLocaleString()}
                             </span>
                           </div>
                         </div>
@@ -265,7 +284,9 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 text-xs text-secondary underline font-medium"
                         >
-                          <span className="material-symbols-outlined text-[16px]">attachment</span>
+                          <span className="material-symbols-outlined text-[16px]">
+                            attachment
+                          </span>
                           View Project / Submission Link
                         </a>
                       )}
@@ -283,7 +304,9 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
                                 min={0}
                                 max={selectedAssignment.maxScore}
                                 value={gradeInput}
-                                onChange={(e) => setGradeInput(Number(e.target.value))}
+                                onChange={(e) =>
+                                  setGradeInput(Number(e.target.value))
+                                }
                                 className="w-24 px-2 py-1.5 bg-surface-container-low border border-border-subtle rounded-lg text-xs font-bold"
                               />
                             </div>
@@ -295,7 +318,9 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
                                 type="text"
                                 placeholder="Well done! Clean implementation..."
                                 value={feedbackInput}
-                                onChange={(e) => setFeedbackInput(e.target.value)}
+                                onChange={(e) =>
+                                  setFeedbackInput(e.target.value)
+                                }
                                 className="w-full px-3 py-1.5 bg-surface-container-low border border-border-subtle rounded-lg text-xs"
                               />
                             </div>
@@ -323,13 +348,19 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
                           <button
                             onClick={() => {
                               setGradingSubmissionId(sub.id);
-                              setGradeInput(sub.grade ?? selectedAssignment.maxScore);
+                              setGradeInput(
+                                sub.grade ?? selectedAssignment.maxScore
+                              );
                               setFeedbackInput(sub.feedback || '');
                             }}
                             className="text-xs font-bold text-secondary hover:underline flex items-center gap-1"
                           >
-                            <span className="material-symbols-outlined text-[16px]">grade</span>
-                            {sub.grade !== null ? 'Edit Grade & Feedback' : 'Grade Submission'}
+                            <span className="material-symbols-outlined text-[16px]">
+                              grade
+                            </span>
+                            {sub.grade !== null
+                              ? 'Edit Grade & Feedback'
+                              : 'Grade Submission'}
                           </button>
                         </div>
                       )}
@@ -340,7 +371,8 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
             </>
           ) : (
             <div className="py-20 text-center text-xs text-on-surface-variant">
-              Select an assignment on the left to view and grade student submissions.
+              Select an assignment on the left to view and grade student
+              submissions.
             </div>
           )}
         </div>
@@ -351,8 +383,13 @@ export function InstructorAssignmentsPanel({ courseId, modules = [] }: Props) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fadeIn">
           <div className="w-full max-w-md bg-surface-container-lowest rounded-2xl shadow-2xl border border-border-subtle p-6 animate-scaleUp">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold text-base text-on-surface">Create New Assignment</h3>
-              <button onClick={() => setShowCreateModal(false)} className="text-on-surface-variant hover:text-on-surface">
+              <h3 className="font-bold text-base text-on-surface">
+                Create New Assignment
+              </h3>
+              <button
+                onClick={() => setShowCreateModal(false)}
+                className="text-on-surface-variant hover:text-on-surface"
+              >
                 ✕
               </button>
             </div>

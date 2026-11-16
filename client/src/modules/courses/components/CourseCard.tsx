@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Course } from '@/types/course.types';
 import { Button } from '@/components/ui/button';
 
@@ -15,10 +16,12 @@ export default function CourseCard({ course }: CourseCardProps) {
       {/* Thumbnail placeholder with micro-gradient backdrop */}
       <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-linear-to-br from-zinc-800 to-zinc-900 border border-white/5 flex items-center justify-center text-zinc-600 group-hover:scale-105 transition-transform duration-500">
         {course.thumbnail ? (
-          <img
+          <Image
             src={course.thumbnail}
             alt={course.title}
+            fill
             className="h-full w-full object-cover"
+            unoptimized
           />
         ) : (
           <svg

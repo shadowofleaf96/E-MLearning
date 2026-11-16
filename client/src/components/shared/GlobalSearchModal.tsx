@@ -1,8 +1,12 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { searchService, SearchResults } from '@/modules/search/services/search.service';
+import {
+  searchService,
+  SearchResults,
+} from '@/modules/search/services/search.service';
 
 interface Props {
   isOpen: boolean;
@@ -115,11 +119,19 @@ export function GlobalSearchModal({ isOpen, onClose }: Props) {
               <span className="material-symbols-outlined text-4xl mb-2 opacity-30">
                 manage_search
               </span>
-              <p className="text-sm font-medium">Type at least 2 characters to search</p>
+              <p className="text-sm font-medium">
+                Type at least 2 characters to search
+              </p>
               <div className="flex justify-center gap-2 mt-4 text-xs">
-                <span className="px-2.5 py-1 bg-surface-container rounded-full">Web Development</span>
-                <span className="px-2.5 py-1 bg-surface-container rounded-full">Python</span>
-                <span className="px-2.5 py-1 bg-surface-container rounded-full">Machine Learning</span>
+                <span className="px-2.5 py-1 bg-surface-container rounded-full">
+                  Web Development
+                </span>
+                <span className="px-2.5 py-1 bg-surface-container rounded-full">
+                  Python
+                </span>
+                <span className="px-2.5 py-1 bg-surface-container rounded-full">
+                  Machine Learning
+                </span>
               </div>
             </div>
           ) : loading ? (
@@ -131,8 +143,12 @@ export function GlobalSearchModal({ isOpen, onClose }: Props) {
               <span className="material-symbols-outlined text-4xl mb-2 opacity-30">
                 sentiment_dissatisfied
               </span>
-              <p className="text-sm font-medium">No results found for &quot;{query}&quot;</p>
-              <p className="text-xs opacity-75 mt-1">Try another keyword or course title</p>
+              <p className="text-sm font-medium">
+                No results found for &quot;{query}&quot;
+              </p>
+              <p className="text-xs opacity-75 mt-1">
+                Try another keyword or course title
+              </p>
             </div>
           ) : (
             <>
@@ -146,15 +162,20 @@ export function GlobalSearchModal({ isOpen, onClose }: Props) {
                     {results.courses.map((course) => (
                       <div
                         key={course.id}
-                        onClick={() => navigateTo(`/student/courses/${course.id}`)}
+                        onClick={() =>
+                          navigateTo(`/student/courses/${course.id}`)
+                        }
                         className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-surface-container cursor-pointer transition-colors group"
                       >
                         <div className="w-10 h-10 rounded-lg bg-surface-container-high overflow-hidden shrink-0 flex items-center justify-center">
                           {course.thumbnail ? (
-                            <img
+                            <Image
                               src={course.thumbnail}
                               alt=""
+                              width={40}
+                              height={40}
                               className="w-full h-full object-cover"
+                              unoptimized
                             />
                           ) : (
                             <span className="material-symbols-outlined text-secondary text-[20px]">
@@ -167,7 +188,9 @@ export function GlobalSearchModal({ isOpen, onClose }: Props) {
                             {course.title}
                           </p>
                           <p className="text-xs text-on-surface-variant truncate">
-                            {course.category?.name || 'General'} • Instructor: {course.instructor.firstName} {course.instructor.lastName}
+                            {course.category?.name || 'General'} • Instructor:{' '}
+                            {course.instructor.firstName}{' '}
+                            {course.instructor.lastName}
                           </p>
                         </div>
                         <span className="material-symbols-outlined text-on-surface-variant/40 group-hover:text-secondary group-hover:translate-x-0.5 transition-all text-[18px]">
@@ -190,7 +213,9 @@ export function GlobalSearchModal({ isOpen, onClose }: Props) {
                       <div
                         key={lesson.id}
                         onClick={() =>
-                          navigateTo(`/student/course/${lesson.module.courseId}/learn`)
+                          navigateTo(
+                            `/student/course/${lesson.module.courseId}/learn`
+                          )
                         }
                         className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-surface-container cursor-pointer transition-colors group"
                       >
@@ -208,7 +233,8 @@ export function GlobalSearchModal({ isOpen, onClose }: Props) {
                             {lesson.title}
                           </p>
                           <p className="text-[11px] text-on-surface-variant truncate">
-                            In {lesson.module.course?.title} • {lesson.module.title}
+                            In {lesson.module.course?.title} •{' '}
+                            {lesson.module.title}
                           </p>
                         </div>
                         {lesson.duration && (
@@ -236,10 +262,13 @@ export function GlobalSearchModal({ isOpen, onClose }: Props) {
                       >
                         <div className="w-8 h-8 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center text-xs">
                           {inst.avatar ? (
-                            <img
+                            <Image
                               src={inst.avatar}
                               alt=""
+                              width={32}
+                              height={32}
                               className="w-full h-full rounded-full object-cover"
+                              unoptimized
                             />
                           ) : (
                             inst.firstName[0]
@@ -266,10 +295,16 @@ export function GlobalSearchModal({ isOpen, onClose }: Props) {
         <div className="px-4 py-2.5 bg-surface-container-low border-t border-border-subtle flex items-center justify-between text-[11px] text-on-surface-variant">
           <div className="flex items-center gap-3">
             <span>
-              <kbd className="font-mono bg-surface-container-high px-1 rounded">↵</kbd> to select
+              <kbd className="font-mono bg-surface-container-high px-1 rounded">
+                ↵
+              </kbd>{' '}
+              to select
             </span>
             <span>
-              <kbd className="font-mono bg-surface-container-high px-1 rounded">esc</kbd> to close
+              <kbd className="font-mono bg-surface-container-high px-1 rounded">
+                esc
+              </kbd>{' '}
+              to close
             </span>
           </div>
           <span>Lumina Global Search</span>

@@ -41,8 +41,12 @@ export const messagingService = {
     return response.data;
   },
 
-  async getMessages(conversationId: string): Promise<ApiResponse<DirectMessageItem[]>> {
-    const response = await api.get(ENDPOINTS.MESSAGING.MESSAGES(conversationId));
+  async getMessages(
+    conversationId: string
+  ): Promise<ApiResponse<DirectMessageItem[]>> {
+    const response = await api.get(
+      ENDPOINTS.MESSAGING.MESSAGES(conversationId)
+    );
     return response.data;
   },
 

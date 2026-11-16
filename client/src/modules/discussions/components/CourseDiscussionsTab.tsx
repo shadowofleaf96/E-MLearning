@@ -28,8 +28,11 @@ export function CourseDiscussionsTab({
   const [submitting, setSubmitting] = useState(false);
 
   // Expanded discussion view
-  const [activeDiscussionId, setActiveDiscussionId] = useState<string | null>(null);
-  const [activeDiscussion, setActiveDiscussion] = useState<CourseDiscussionItem | null>(null);
+  const [activeDiscussionId, setActiveDiscussionId] = useState<string | null>(
+    null
+  );
+  const [activeDiscussion, setActiveDiscussion] =
+    useState<CourseDiscussionItem | null>(null);
   const [replyContent, setReplyContent] = useState('');
   const [replying, setReplying] = useState(false);
 
@@ -164,9 +167,12 @@ export function CourseDiscussionsTab({
       {/* Top Header / Action Bar */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b border-border-subtle">
         <div>
-          <h3 className="font-headline-md text-on-surface">Course Q&A & Community</h3>
+          <h3 className="font-headline-md text-on-surface">
+            Course Q&A & Community
+          </h3>
           <p className="text-on-surface-variant text-sm">
-            Ask questions, share insights, and get answers from instructors and peers.
+            Ask questions, share insights, and get answers from instructors and
+            peers.
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -179,14 +185,18 @@ export function CourseDiscussionsTab({
                   : 'bg-surface-container-low text-on-surface-variant border-border-subtle hover:bg-surface-container'
               }`}
             >
-              {filterLessonOnly ? '✓ This Lesson Only' : 'Filter by Current Lesson'}
+              {filterLessonOnly
+                ? '✓ This Lesson Only'
+                : 'Filter by Current Lesson'}
             </button>
           )}
           <button
             onClick={() => setShowNewModal(true)}
             className="flex items-center gap-1.5 px-4 py-2 bg-secondary text-white font-bold rounded-lg text-sm hover:shadow-md transition-all active:scale-95"
           >
-            <span className="material-symbols-outlined text-[18px]">add_comment</span>
+            <span className="material-symbols-outlined text-[18px]">
+              add_comment
+            </span>
             Ask a Question
           </button>
         </div>
@@ -197,7 +207,9 @@ export function CourseDiscussionsTab({
         <div className="mb-6 p-5 bg-surface-container-low rounded-xl border border-secondary/30 shadow-sm animate-fadeIn">
           <div className="flex justify-between items-center mb-4">
             <h4 className="font-bold text-on-surface text-base flex items-center gap-2">
-              <span className="material-symbols-outlined text-secondary">help</span>
+              <span className="material-symbols-outlined text-secondary">
+                help
+              </span>
               Ask a New Question
             </h4>
             <button
@@ -241,7 +253,10 @@ export function CourseDiscussionsTab({
                   onChange={(e) => setLinkToCurrentLesson(e.target.checked)}
                   className="rounded text-secondary focus:ring-secondary"
                 />
-                Tag with current lesson: <strong className="text-on-surface">{currentLessonTitle}</strong>
+                Tag with current lesson:{' '}
+                <strong className="text-on-surface">
+                  {currentLessonTitle}
+                </strong>
               </label>
             )}
             <div className="flex justify-end gap-3 pt-2">
@@ -287,7 +302,8 @@ export function CourseDiscussionsTab({
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-sm text-on-surface">
-                      {activeDiscussion.user.firstName} {activeDiscussion.user.lastName}
+                      {activeDiscussion.user.firstName}{' '}
+                      {activeDiscussion.user.lastName}
                     </span>
                     {activeDiscussion.user.role === 'instructor' && (
                       <span className="px-2 py-0.5 text-[10px] bg-primary/10 text-primary font-bold rounded">
@@ -309,13 +325,17 @@ export function CourseDiscussionsTab({
               </button>
             </div>
 
-            <h4 className="text-base font-bold text-on-surface mb-2">{activeDiscussion.title}</h4>
+            <h4 className="text-base font-bold text-on-surface mb-2">
+              {activeDiscussion.title}
+            </h4>
             <p className="text-sm text-on-surface-variant whitespace-pre-wrap mb-3">
               {activeDiscussion.content}
             </p>
             {activeDiscussion.lesson && (
               <span className="inline-flex items-center gap-1 text-[11px] text-secondary bg-secondary/10 px-2 py-0.5 rounded">
-                <span className="material-symbols-outlined text-[13px]">play_circle</span>
+                <span className="material-symbols-outlined text-[13px]">
+                  play_circle
+                </span>
                 {activeDiscussion.lesson.title}
               </span>
             )}
@@ -423,7 +443,9 @@ export function CourseDiscussionsTab({
         <div>
           {loading ? (
             <div className="py-12 flex justify-center text-on-surface-variant text-sm">
-              <span className="material-symbols-outlined animate-spin mr-2">progress_activity</span>
+              <span className="material-symbols-outlined animate-spin mr-2">
+                progress_activity
+              </span>
               Loading discussions...
             </div>
           ) : discussions.length === 0 ? (
@@ -433,7 +455,8 @@ export function CourseDiscussionsTab({
               </span>
               <p className="text-sm font-semibold mb-1">No questions yet</p>
               <p className="text-xs max-w-sm text-center">
-                Have a question about this course or lesson? Ask the instructor and community!
+                Have a question about this course or lesson? Ask the instructor
+                and community!
               </p>
               <button
                 onClick={() => setShowNewModal(true)}
@@ -474,7 +497,9 @@ export function CourseDiscussionsTab({
                             {item.user.firstName} {item.user.lastName}
                           </span>
                           <span>•</span>
-                          <span>{new Date(item.createdAt).toLocaleDateString()}</span>
+                          <span>
+                            {new Date(item.createdAt).toLocaleDateString()}
+                          </span>
                           {item.lesson && (
                             <>
                               <span>•</span>
@@ -489,7 +514,9 @@ export function CourseDiscussionsTab({
 
                     <div className="flex items-center gap-3 shrink-0">
                       <div className="flex items-center gap-1 text-xs text-on-surface-variant">
-                        <span className="material-symbols-outlined text-[16px]">chat</span>
+                        <span className="material-symbols-outlined text-[16px]">
+                          chat
+                        </span>
                         <span>{item._count?.replies || 0}</span>
                       </div>
                       <button

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import {
   Search,
@@ -205,15 +206,18 @@ export default function InstructorCoursesPage() {
                   >
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-4">
-                        <div className="h-14 w-24 rounded-lg bg-surface-container overflow-hidden border border-border-subtle shrink-0">
-                          <img
+                        <div className="h-14 w-24 rounded-lg bg-surface-container overflow-hidden border border-border-subtle shrink-0 relative">
+                          <Image
                             src={
                               course.thumbnailUrl ||
                               course.thumbnail ||
                               'https://placehold.co/400x225/e2e8f0/475569?text=Course'
                             }
                             alt="Course Thumbnail"
+                            width={96}
+                            height={56}
                             className="h-full w-full object-cover"
+                            unoptimized
                           />
                         </div>
                         <div>

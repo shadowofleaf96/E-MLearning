@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Modal from '@/components/ui/Modal';
 import { toast } from 'react-toastify';
 import api from '@/services/api';
@@ -68,10 +69,13 @@ export default function TwoFactorSetupModal({
 
         {mode === 'enable' && qrCodeUrl && (
           <div className="flex justify-center my-6">
-            <img
+            <Image
               src={qrCodeUrl}
               alt="2FA QR Code"
+              width={192}
+              height={192}
               className="w-48 h-48 border border-border-subtle rounded-lg p-2 bg-white"
+              unoptimized
             />
           </div>
         )}

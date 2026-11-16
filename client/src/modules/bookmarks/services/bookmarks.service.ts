@@ -8,12 +8,16 @@ export const bookmarksService = {
     return response.data;
   },
 
-  async toggleBookmark(courseId: string): Promise<ApiResponse<{ bookmarked: boolean }>> {
+  async toggleBookmark(
+    courseId: string
+  ): Promise<ApiResponse<{ bookmarked: boolean }>> {
     const response = await api.post(ENDPOINTS.BOOKMARKS.TOGGLE(courseId));
     return response.data;
   },
 
-  async checkBookmark(courseId: string): Promise<ApiResponse<{ bookmarked: boolean }>> {
+  async checkBookmark(
+    courseId: string
+  ): Promise<ApiResponse<{ bookmarked: boolean }>> {
     const response = await api.get(ENDPOINTS.BOOKMARKS.CHECK(courseId));
     return response.data;
   },
