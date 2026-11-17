@@ -490,7 +490,10 @@ export async function getCoursePrerequisites(
       throw AppError.badRequest('Tenant ID is required');
     }
     const courseId = req.params.id as string;
-    const prerequisites = await coursesService.getPrerequisites(courseId, tenantId);
+    const prerequisites = await coursesService.getPrerequisites(
+      courseId,
+      tenantId
+    );
     res.json({ status: 'success', data: prerequisites });
   } catch (error) {
     next(error);

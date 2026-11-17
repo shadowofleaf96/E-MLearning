@@ -49,7 +49,10 @@ export async function getInstructorLearningPaths(
     const instructorId = req.user!.id;
     const tenantId = req.tenant?.id || req.user?.tenantId;
 
-    const paths = await learningPathsService.getByInstructor(instructorId, tenantId);
+    const paths = await learningPathsService.getByInstructor(
+      instructorId,
+      tenantId
+    );
     res.json({ status: 'success', data: paths });
   } catch (error) {
     next(error);

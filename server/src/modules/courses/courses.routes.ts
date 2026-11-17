@@ -108,7 +108,11 @@ router.delete(
 );
 
 // Course Prerequisites
-router.get('/:id/prerequisites', optionalAuthenticate, controller.getCoursePrerequisites);
+router.get(
+  '/:id/prerequisites',
+  optionalAuthenticate,
+  controller.getCoursePrerequisites
+);
 router.post(
   '/:id/prerequisites',
   authenticate,

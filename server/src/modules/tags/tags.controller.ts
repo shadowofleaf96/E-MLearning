@@ -46,7 +46,11 @@ export async function deleteTag(
     const tenantId = req.tenant?.id || req.user?.tenantId;
     const id = req.params.id as string;
     const result = await tagsService.deleteTag(id, tenantId);
-    res.json({ status: 'success', message: 'Tag deleted successfully', ...result });
+    res.json({
+      status: 'success',
+      message: 'Tag deleted successfully',
+      ...result,
+    });
   } catch (error) {
     next(error);
   }

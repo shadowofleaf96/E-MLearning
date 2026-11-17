@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/app.ts",
-    "build": "tsc",
+    "prebuild": "prisma generate",
+    "build": "prisma generate && tsc",
+    "postinstall": "prisma generate",
     "start": "tsx src/app.ts",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix",

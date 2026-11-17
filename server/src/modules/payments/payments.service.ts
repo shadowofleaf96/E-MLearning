@@ -265,10 +265,7 @@ export const paymentsService = {
       where: { tenantId, paymentStatus: 'completed' },
     });
 
-    const totalRevenue = payments.reduce(
-      (sum, p) => sum + Number(p.amount),
-      0
-    );
+    const totalRevenue = payments.reduce((sum, p) => sum + Number(p.amount), 0);
     const completedTransactions = payments.length;
 
     const payouts = await prisma.payoutRequest.findMany({

@@ -452,7 +452,9 @@ export const coursesService = {
       throw AppError.notFound('Course not found');
     }
     if (course.instructorId !== userId) {
-      throw AppError.forbidden('You can only submit your own courses for review');
+      throw AppError.forbidden(
+        'You can only submit your own courses for review'
+      );
     }
 
     const updated = await prisma.course.update({
@@ -633,7 +635,11 @@ export const coursesService = {
     }
 
     // Verify course prerequisites
-    const prereqCheck = await this.checkPrerequisites(courseId, studentId, tenantId);
+    const prereqCheck = await this.checkPrerequisites(
+      courseId,
+      studentId,
+      tenantId
+    );
     if (!prereqCheck.arePrerequisitesMet) {
       const missingTitles = prereqCheck.prerequisites
         .filter((p) => !p.isCompleted)
@@ -948,7 +954,9 @@ export const coursesService = {
     }
 
     // Filter out self-prerequisite
-    const validPrereqIds = (prerequisiteIds || []).filter((id) => id !== courseId);
+    const validPrereqIds = (prerequisiteIds || []).filter(
+      (id) => id !== courseId
+    );
 
     // Remove existing prerequisites
     await prisma.coursePrerequisite.deleteMany({
@@ -969,7 +977,11 @@ export const coursesService = {
     return this.getPrerequisites(courseId, tenantId);
   },
 
-  async checkPrerequisites(courseId: string, studentId: string, tenantId: string) {
+  async checkPrerequisites(
+    courseId: string,
+    studentId: string,
+    tenantId: string
+  ) {
     const prerequisites = await prisma.coursePrerequisite.findMany({
       where: { courseId },
       include: {
@@ -1004,9 +1016,7 @@ export const coursesService = {
     });
 
     const completedSet = new Set(
-      enrollments
-        .filter((e) => e.status === 'completed')
-        .map((e) => e.courseId)
+      enrollments.filter((e) => e.status === 'completed').map((e) => e.courseId)
     );
 
     const detailedPrereqs = prerequisites.map((p) => ({

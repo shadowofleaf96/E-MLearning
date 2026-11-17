@@ -41,9 +41,10 @@ export const integrationsService = {
     const rawRandom = crypto.randomBytes(24).toString('hex');
     const fullKey = `lms_live_${rawRandom}`;
 
-    const validScopes = data.scopes && data.scopes.length > 0
-      ? data.scopes.filter((s) => AVAILABLE_SCOPES.includes(s as any))
-      : ['read:courses', 'read:users', 'write:enrollments'];
+    const validScopes =
+      data.scopes && data.scopes.length > 0
+        ? data.scopes.filter((s) => AVAILABLE_SCOPES.includes(s as any))
+        : ['read:courses', 'read:users', 'write:enrollments'];
 
     const apiKey = await prisma.apiKey.create({
       data: {
@@ -84,9 +85,10 @@ export const integrationsService = {
 
   async createWebhook(tenantId: string, data: CreateWebhookDto) {
     const secret = `whsec_${crypto.randomBytes(20).toString('hex')}`;
-    const validEvents = data.events && data.events.length > 0
-      ? data.events.filter((e) => AVAILABLE_WEBHOOK_EVENTS.includes(e as any))
-      : ['course.created', 'enrollment.created'];
+    const validEvents =
+      data.events && data.events.length > 0
+        ? data.events.filter((e) => AVAILABLE_WEBHOOK_EVENTS.includes(e as any))
+        : ['course.created', 'enrollment.created'];
 
     return prisma.webhook.create({
       data: {
@@ -99,13 +101,19 @@ export const integrationsService = {
     });
   },
 
-  async updateWebhook(tenantId: string, webhookId: string, data: UpdateWebhookDto) {
+  async updateWebhook(
+    tenantId: string,
+    webhookId: string,
+    data: UpdateWebhookDto
+  ) {
     return prisma.webhook.updateMany({
       where: { id: webhookId, tenantId },
       data: {
         ...(data.url ? { url: data.url } : {}),
         ...(data.events ? { events: data.events } : {}),
-        ...(typeof data.isActive === 'boolean' ? { isActive: data.isActive } : {}),
+        ...(typeof data.isActive === 'boolean'
+          ? { isActive: data.isActive }
+          : {}),
       },
     });
   },
@@ -169,12 +177,17 @@ export const integrationsService = {
         timeout: 5000,
       });
       statusCode = res.status;
-      responseBody = typeof res.data === 'string' ? res.data.slice(0, 500) : JSON.stringify(res.data).slice(0, 500);
+      responseBody =
+        typeof res.data === 'string'
+          ? res.data.slice(0, 500)
+          : JSON.stringify(res.data).slice(0, 500);
       success = res.status >= 200 && res.status < 300;
     } catch (err: any) {
       statusCode = err.response?.status || 500;
       responseBody = err.response?.data
-        ? (typeof err.response.data === 'string' ? err.response.data.slice(0, 500) : JSON.stringify(err.response.data).slice(0, 500))
+        ? typeof err.response.data === 'string'
+          ? err.response.data.slice(0, 500)
+          : JSON.stringify(err.response.data).slice(0, 500)
         : err.message;
       success = false;
     }

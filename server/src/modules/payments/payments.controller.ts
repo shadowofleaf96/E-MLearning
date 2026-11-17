@@ -220,7 +220,10 @@ export async function getAllPayoutRequests(
   try {
     const { tenantId } = req.user!;
     const status = req.query.status as string | undefined;
-    const payouts = await paymentsService.getAllPayoutRequests(tenantId, status);
+    const payouts = await paymentsService.getAllPayoutRequests(
+      tenantId,
+      status
+    );
     res.status(200).json({ status: 'success', data: payouts });
   } catch (error) {
     next(error);

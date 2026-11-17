@@ -615,7 +615,11 @@ export const analyticsService = {
 
     const totalStudyMinutes = lessonProgresses.reduce((acc, lp) => {
       const minutes =
-        lp.timeSpent > 0 ? Math.round(lp.timeSpent / 60) : lp.completed ? 15 : 5;
+        lp.timeSpent > 0
+          ? Math.round(lp.timeSpent / 60)
+          : lp.completed
+            ? 15
+            : 5;
       return acc + minutes;
     }, 0);
 
@@ -645,7 +649,11 @@ export const analyticsService = {
       const minutes = dayProgresses.reduce((sum, p) => {
         return (
           sum +
-          (p.timeSpent > 0 ? Math.round(p.timeSpent / 60) : p.completed ? 20 : 10)
+          (p.timeSpent > 0
+            ? Math.round(p.timeSpent / 60)
+            : p.completed
+              ? 20
+              : 10)
         );
       }, 0);
 

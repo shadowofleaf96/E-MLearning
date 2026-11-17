@@ -72,12 +72,21 @@ async function runPhase3Verification() {
     },
     tenant.id
   );
-  console.log('✓ Created child category with parentId:', childCat.id, childCat.parentId);
+  console.log(
+    '✓ Created child category with parentId:',
+    childCat.id,
+    childCat.parentId
+  );
 
   const tree = await categoriesService.getCategoryTree(tenant.id);
   const foundInTree = tree.find((c: any) => c.id === parentCat.id);
-  if (!foundInTree || !foundInTree.children.some((sub: any) => sub.id === childCat.id)) {
-    throw new Error('Category hierarchy tree does not contain nested child category');
+  if (
+    !foundInTree ||
+    !foundInTree.children.some((sub: any) => sub.id === childCat.id)
+  ) {
+    throw new Error(
+      'Category hierarchy tree does not contain nested child category'
+    );
   }
   console.log('✓ Category hierarchy verified in tree structure');
 
@@ -122,7 +131,10 @@ async function runPhase3Verification() {
   if (submitted.moderationStatus !== 'pending_review') {
     throw new Error('Expected moderationStatus to be pending_review');
   }
-  console.log('✓ Course submitted for review, status:', submitted.moderationStatus);
+  console.log(
+    '✓ Course submitted for review, status:',
+    submitted.moderationStatus
+  );
 
   // 3b. Admin requests revision with notes
   const revisionCourse = await coursesService.moderateCourse(
@@ -132,10 +144,18 @@ async function runPhase3Verification() {
     'request_revision',
     'Please add more course modules and update video lessons.'
   );
-  if (revisionCourse.moderationStatus !== 'needs_revision' || revisionCourse.isPublished) {
-    throw new Error('Expected moderationStatus to be needs_revision and isPublished false');
+  if (
+    revisionCourse.moderationStatus !== 'needs_revision' ||
+    revisionCourse.isPublished
+  ) {
+    throw new Error(
+      'Expected moderationStatus to be needs_revision and isPublished false'
+    );
   }
-  console.log('✓ Admin requested revision with comment, status:', revisionCourse.moderationStatus);
+  console.log(
+    '✓ Admin requested revision with comment, status:',
+    revisionCourse.moderationStatus
+  );
 
   // 3c. Verify instructor notification was sent
   const instructorNotifs = await notificationsService.getNotifications(
@@ -143,11 +163,18 @@ async function runPhase3Verification() {
     instructor.id,
     5
   );
-  const revNotif = instructorNotifs.find((n) => n.title.includes('Revision Requested'));
+  const revNotif = instructorNotifs.find((n) =>
+    n.title.includes('Revision Requested')
+  );
   if (!revNotif) {
     throw new Error('Instructor did not receive revision notification');
   }
-  console.log('✓ Instructor notification received:', revNotif.title, 'Message:', revNotif.message);
+  console.log(
+    '✓ Instructor notification received:',
+    revNotif.title,
+    'Message:',
+    revNotif.message
+  );
 
   // 3d. Verify moderation logs history
   const logs = await coursesService.getModerationLogs(course.id, tenant.id);
@@ -164,7 +191,10 @@ async function runPhase3Verification() {
     'approve',
     'Great updates! Course approved for public catalog.'
   );
-  if (approvedCourse.moderationStatus !== 'approved' || !approvedCourse.isPublished) {
+  if (
+    approvedCourse.moderationStatus !== 'approved' ||
+    !approvedCourse.isPublished
+  ) {
     throw new Error('Expected course to be approved and published');
   }
   console.log('✓ Course approved & published successfully');
@@ -184,10 +214,17 @@ async function runPhase3Verification() {
     campaign.id,
     { targetAudience: 'All Users' }
   );
-  if (dispatchResult.campaign.status !== 'Sent' || dispatchResult.recipients < 1) {
-    throw new Error('Campaign dispatch did not mark status Sent or dispatch to recipients');
+  if (
+    dispatchResult.campaign.status !== 'Sent' ||
+    dispatchResult.recipients < 1
+  ) {
+    throw new Error(
+      'Campaign dispatch did not mark status Sent or dispatch to recipients'
+    );
   }
-  console.log(`✓ Campaign sent to ${dispatchResult.recipients} recipients, status: ${dispatchResult.campaign.status}`);
+  console.log(
+    `✓ Campaign sent to ${dispatchResult.recipients} recipients, status: ${dispatchResult.campaign.status}`
+  );
 
   // ─── TEST 5: PAYOUT QUEUE & ADMIN APPROVAL ───
   console.log('\n[TEST 5] Instructor Payout Queue & Admin Approval:');
@@ -197,14 +234,25 @@ async function runPhase3Verification() {
     250.0,
     'Monthly course revenue withdrawal via Wise'
   );
-  console.log('✓ Instructor created payout request:', payout.id, 'Amount:', payout.amount);
+  console.log(
+    '✓ Instructor created payout request:',
+    payout.id,
+    'Amount:',
+    payout.amount
+  );
 
-  const queue = await paymentsService.getAllPayoutRequests(tenant.id, 'pending');
+  const queue = await paymentsService.getAllPayoutRequests(
+    tenant.id,
+    'pending'
+  );
   const foundPayout = queue.find((p) => p.id === payout.id);
   if (!foundPayout) {
     throw new Error('Payout not found in admin pending queue');
   }
-  console.log('✓ Found payout in admin pending queue for instructor:', foundPayout.instructor.email);
+  console.log(
+    '✓ Found payout in admin pending queue for instructor:',
+    foundPayout.instructor.email
+  );
 
   const paidPayout = await paymentsService.updatePayoutStatus(
     tenant.id,

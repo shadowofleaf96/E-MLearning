@@ -18,9 +18,14 @@ export const integrationsController = {
       const tenantId = (req.user as any)?.tenantId || (req as any).tenantId;
       const { name, scopes } = req.body;
       if (!name) {
-        return res.status(400).json({ success: false, message: 'Name is required' });
+        return res
+          .status(400)
+          .json({ success: false, message: 'Name is required' });
       }
-      const key = await integrationsService.createApiKey(tenantId, { name, scopes });
+      const key = await integrationsService.createApiKey(tenantId, {
+        name,
+        scopes,
+      });
       res.status(201).json({ success: true, data: key });
     } catch (err: any) {
       res.status(500).json({ success: false, message: err.message });
@@ -55,9 +60,14 @@ export const integrationsController = {
       const tenantId = (req.user as any)?.tenantId || (req as any).tenantId;
       const { url, events } = req.body;
       if (!url) {
-        return res.status(400).json({ success: false, message: 'Webhook URL is required' });
+        return res
+          .status(400)
+          .json({ success: false, message: 'Webhook URL is required' });
       }
-      const webhook = await integrationsService.createWebhook(tenantId, { url, events });
+      const webhook = await integrationsService.createWebhook(tenantId, {
+        url,
+        events,
+      });
       res.status(201).json({ success: true, data: webhook });
     } catch (err: any) {
       res.status(500).json({ success: false, message: err.message });
@@ -93,7 +103,10 @@ export const integrationsController = {
       const tenantId = (req.user as any)?.tenantId || (req as any).tenantId;
       const { id } = req.params;
       const webhookId = Array.isArray(id) ? id[0] : id;
-      const delivery = await integrationsService.testWebhook(tenantId, webhookId);
+      const delivery = await integrationsService.testWebhook(
+        tenantId,
+        webhookId
+      );
       res.status(200).json({ success: true, data: delivery });
     } catch (err: any) {
       res.status(500).json({ success: false, message: err.message });
@@ -105,7 +118,10 @@ export const integrationsController = {
       const tenantId = (req.user as any)?.tenantId || (req as any).tenantId;
       const { id } = req.params;
       const webhookId = Array.isArray(id) ? id[0] : id;
-      const deliveries = await integrationsService.getWebhookDeliveries(tenantId, webhookId);
+      const deliveries = await integrationsService.getWebhookDeliveries(
+        tenantId,
+        webhookId
+      );
       res.status(200).json({ success: true, data: deliveries });
     } catch (err: any) {
       res.status(500).json({ success: false, message: err.message });

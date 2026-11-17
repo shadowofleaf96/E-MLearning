@@ -20,6 +20,9 @@ router.post('/webhooks', integrationsController.createWebhook);
 router.put('/webhooks/:id', integrationsController.updateWebhook);
 router.delete('/webhooks/:id', integrationsController.deleteWebhook);
 router.post('/webhooks/:id/test', integrationsController.testWebhook);
-router.get('/webhooks/:id/deliveries', integrationsController.getWebhookDeliveries);
+router.get(
+  '/webhooks/:id/deliveries',
+  integrationsController.getWebhookDeliveries
+);
 
 export default router;

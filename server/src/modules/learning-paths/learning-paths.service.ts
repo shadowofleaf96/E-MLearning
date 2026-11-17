@@ -1,6 +1,10 @@
 import prisma from '../../shared/database/prisma';
 import { AppError } from '../../shared/errors/AppError';
-import { CreateLearningPathDto, UpdateLearningPathDto, LearningPathProgress } from './learning-paths.types';
+import {
+  CreateLearningPathDto,
+  UpdateLearningPathDto,
+  LearningPathProgress,
+} from './learning-paths.types';
 
 export const learningPathsService = {
   async getAll(tenantId?: string, isPublished?: boolean) {
@@ -47,7 +51,12 @@ export const learningPathsService = {
         learningPath: {
           include: {
             instructor: {
-              select: { id: true, firstName: true, lastName: true, avatar: true },
+              select: {
+                id: true,
+                firstName: true,
+                lastName: true,
+                avatar: true,
+              },
             },
             courses: {
               include: {
@@ -95,7 +104,9 @@ export const learningPathsService = {
         const completedCourses = studentEnrollments.filter(
           (e) => e.status === 'completed'
         ).length;
-        const progressPercentage = Math.round((completedCourses / totalCourses) * 100);
+        const progressPercentage = Math.round(
+          (completedCourses / totalCourses) * 100
+        );
 
         return {
           ...enr,
@@ -218,7 +229,9 @@ export const learningPathsService = {
           };
         });
 
-        const completedCount = courseDetails.filter((c) => c.isCompleted).length;
+        const completedCount = courseDetails.filter(
+          (c) => c.isCompleted
+        ).length;
         const total = courseDetails.length;
         const pct = total > 0 ? Math.round((completedCount / total) * 100) : 0;
 
@@ -241,7 +254,11 @@ export const learningPathsService = {
     };
   },
 
-  async create(instructorId: string, tenantId: string, data: CreateLearningPathDto) {
+  async create(
+    instructorId: string,
+    tenantId: string,
+    data: CreateLearningPathDto
+  ) {
     if (!data.title?.trim()) {
       throw AppError.badRequest('Learning path title is required');
     }
@@ -288,17 +305,26 @@ export const learningPathsService = {
     }
 
     if (role === 'instructor' && existing.instructorId !== instructorId) {
-      throw AppError.forbidden('You do not have permission to update this learning path');
+      throw AppError.forbidden(
+        'You do not have permission to update this learning path'
+      );
     }
 
     await prisma.learningPath.update({
       where: { id },
       data: {
         title: data.title !== undefined ? data.title.trim() : existing.title,
-        description: data.description !== undefined ? data.description : existing.description,
-        thumbnail: data.thumbnail !== undefined ? data.thumbnail : existing.thumbnail,
+        description:
+          data.description !== undefined
+            ? data.description
+            : existing.description,
+        thumbnail:
+          data.thumbnail !== undefined ? data.thumbnail : existing.thumbnail,
         price: data.price !== undefined ? data.price : existing.price,
-        isPublished: data.isPublished !== undefined ? data.isPublished : existing.isPublished,
+        isPublished:
+          data.isPublished !== undefined
+            ? data.isPublished
+            : existing.isPublished,
       },
     });
 
@@ -323,7 +349,12 @@ export const learningPathsService = {
     return this.getById(id, tenantId);
   },
 
-  async delete(id: string, instructorId: string, role: string, tenantId: string) {
+  async delete(
+    id: string,
+    instructorId: string,
+    role: string,
+    tenantId: string
+  ) {
     const existing = await prisma.learningPath.findFirst({
       where: { id, tenantId },
     });
@@ -333,7 +364,9 @@ export const learningPathsService = {
     }
 
     if (role === 'instructor' && existing.instructorId !== instructorId) {
-      throw AppError.forbidden('You do not have permission to delete this learning path');
+      throw AppError.forbidden(
+        'You do not have permission to delete this learning path'
+      );
     }
 
     await prisma.learningPath.delete({
@@ -366,7 +399,10 @@ export const learningPathsService = {
     });
 
     if (existing) {
-      return { message: 'Already enrolled in this learning path', enrollment: existing };
+      return {
+        message: 'Already enrolled in this learning path',
+        enrollment: existing,
+      };
     }
 
     // 1. Create LearningPathEnrollment
