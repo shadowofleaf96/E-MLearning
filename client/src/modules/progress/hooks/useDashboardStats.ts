@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import AxiosConfig from '@/components/utils/AxiosConfig';
+import api from '@/services/api';
 
 export interface DashboardStats {
   totalEnrolled: number;
@@ -17,7 +17,7 @@ export const useDashboardStats = () => {
     const fetchStats = async () => {
       try {
         setIsLoading(true);
-        const response = await AxiosConfig.get('/progress/dashboard');
+        const response = await api.get('/progress/dashboard');
         setData(response.data.data);
       } catch (err: any) {
         setError(err);

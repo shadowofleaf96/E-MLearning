@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import api from '@/services/api';
+import { superAdminService } from '../services/superAdmin.service';
 
 export interface Tenant {
   id: string;
@@ -44,11 +44,9 @@ export function useTenants(initialPage = 1, initialLimit = 10) {
   const fetchTenants = useCallback(async () => {
     setState((prev) => ({ ...prev, loading: true, error: null }));
     try {
-      const response = await api.get('/super-admin/tenants', {
-        params: { page, limit, search },
-      });
+      const data = await superAdminService.getTenants({ page, limit, search });
       setState({
-        data: response.data.data,
+        data,
         loading: false,
         error: null,
       });
@@ -78,12 +76,12 @@ export function useTenants(initialPage = 1, initialLimit = 10) {
       const slug = (data.domain || data.name)
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-');
-      const response = await api.post('/super-admin/tenants', {
+      const res = await superAdminService.createTenant({
         ...data,
         slug,
       });
       await fetchTenants(); // Refresh list
-      return response.data;
+      return res;
     } catch (err: any) {
       throw new Error(
         err.response?.data?.message || err.message || 'Failed to create tenant'
@@ -93,9 +91,7 @@ export function useTenants(initialPage = 1, initialLimit = 10) {
 
   const toggleTenantStatus = async (id: string, currentStatus: boolean) => {
     try {
-      await api.patch(`/super-admin/tenants/${id}/status`, {
-        isActive: !currentStatus,
-      });
+      await superAdminService.toggleTenantStatus(id, !currentStatus);
       await fetchTenants(); // Refresh list
     } catch (err: any) {
       throw new Error(
@@ -109,9 +105,7 @@ export function useTenants(initialPage = 1, initialLimit = 10) {
     subscriptionPlan: string
   ) => {
     try {
-      await api.patch(`/super-admin/tenants/${id}/subscription`, {
-        subscriptionPlan,
-      });
+      await superAdminService.updateTenantSubscription(id, subscriptionPlan);
       await fetchTenants(); // Refresh list
     } catch (err: any) {
       throw new Error(

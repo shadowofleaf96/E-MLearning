@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import api from '@/services/api';
+import { superAdminService } from '../services/superAdmin.service';
 
 export interface SuperAdminStats {
   totalTenants: number;
@@ -63,9 +63,9 @@ export function useSuperAdminStats() {
     const fetchStats = async () => {
       try {
         setLoading(true);
-        const res = await api.get('/super-admin/stats');
-        if (isMounted && res.data?.data) {
-          setStats(res.data.data);
+        const data = await superAdminService.getStats();
+        if (isMounted && data) {
+          setStats(data);
         }
       } catch (err: any) {
         if (isMounted) {

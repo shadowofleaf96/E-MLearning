@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { toast } from 'react-toastify';
-import AxiosConfig from '@/components/utils/AxiosConfig';
+import api from '@/services/api';
 import DOMPurify from 'dompurify';
 import { useReCaptcha } from 'next-recaptcha-v3';
 import { useForm } from 'react-hook-form';
@@ -77,7 +77,7 @@ const Registration: React.FC = () => {
       setError('');
       const recaptchaToken = await executeRecaptcha('form_submit');
 
-      await AxiosConfig.post(`/users/register`, {
+      await api.post(`/users/register`, {
         ...sanitizedData,
         recaptchaToken,
       });

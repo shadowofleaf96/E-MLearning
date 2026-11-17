@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import AxiosConfig from '@/components/utils/AxiosConfig';
+import api from '@/services/api';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { useAppDispatch } from '@/store/hooks';
 import { loginSuccess } from '@/store/slices/authSlice';
@@ -104,7 +104,7 @@ const Login: React.FC = () => {
         console.warn('ReCaptcha execution failed or timed out:', captchaErr);
       }
 
-      const res = await AxiosConfig.post<any>(`/auth/login`, {
+      const res = await api.post<any>(`/auth/login`, {
         identifier: sanitizedEmail,
         password: sanitizedPassword,
         recaptchaToken,
@@ -157,7 +157,7 @@ const Login: React.FC = () => {
     setError('');
 
     try {
-      const res = await AxiosConfig.post<any>(`/auth/verify-2fa-login`, {
+      const res = await api.post<any>(`/auth/verify-2fa-login`, {
         tempToken,
         code: twoFactorCode,
       });
@@ -194,7 +194,7 @@ const Login: React.FC = () => {
   const handleGoogleSuccess = async (credentialResponse: any) => {
     try {
       const recaptchaToken = await executeRecaptcha('google_login');
-      const res = await AxiosConfig.post('/auth/google-login', {
+      const res = await api.post('/auth/google-login', {
         credential: credentialResponse.credential,
         recaptchaToken,
       });

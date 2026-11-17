@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import api from '@/services/api';
+import { superAdminService } from '../services/superAdmin.service';
 
 export interface SecurityIncident {
   id: string;
@@ -49,8 +49,8 @@ export function usePlatformSecurity() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get('/super-admin/security');
-      setData(response.data.data);
+      const data = await superAdminService.getPlatformSecurity();
+      setData(data);
       setLoading(false);
     } catch (err: any) {
       setError(
@@ -65,16 +65,16 @@ export function usePlatformSecurity() {
   const triggerScan = async () => {
     setScanning(true);
     try {
-      const response = await api.post('/super-admin/security/scan');
+      const res = await superAdminService.triggerSecurityScan();
       if (data) {
         setData({
           ...data,
-          lastScanTime: response.data.data.lastScanTime,
-          lastScanHash: response.data.data.lastScanHash,
+          lastScanTime: res.lastScanTime,
+          lastScanHash: res.lastScanHash,
         });
       }
       setScanning(false);
-      return response.data.data;
+      return res;
     } catch (err: any) {
       setScanning(false);
       throw new Error(
@@ -85,17 +85,14 @@ export function usePlatformSecurity() {
 
   const updateSettings = async (settings: Partial<SecuritySettings>) => {
     try {
-      const response = await api.put(
-        '/super-admin/security/settings',
-        settings
-      );
+      const res = await superAdminService.updateSecuritySettings(settings);
       if (data) {
         setData({
           ...data,
           settings: { ...data.settings, ...settings },
         });
       }
-      return response.data;
+      return res;
     } catch (err: any) {
       throw new Error(
         err.response?.data?.message ||
@@ -107,11 +104,9 @@ export function usePlatformSecurity() {
 
   const blacklistIp = async (ip: string) => {
     try {
-      const response = await api.post('/super-admin/security/blacklist', {
-        ip,
-      });
+      const res = await superAdminService.blacklistIp(ip);
       await fetchSecurityData();
-      return response.data;
+      return res;
     } catch (err: any) {
       throw new Error(
         err.response?.data?.message || err.message || 'Failed to blacklist IP'
@@ -121,12 +116,9 @@ export function usePlatformSecurity() {
 
   const resolveIncident = async (incidentId: string) => {
     try {
-      const response = await api.post(
-        '/super-admin/security/resolve-incident',
-        { incidentId }
-      );
+      const res = await superAdminService.resolveSecurityIncident(incidentId);
       await fetchSecurityData();
-      return response.data;
+      return res;
     } catch (err: any) {
       throw new Error(
         err.response?.data?.message ||

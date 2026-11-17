@@ -1,17 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import api from '../../services/api';
-import { ENDPOINTS } from '../../services/endpoints';
+import {
+  certificatesService,
+  CertificateItem,
+} from '@/modules/certificates/services/certificates.service';
 
-export interface Certificate {
-  id: string;
-  courseId: string;
-  verificationCode: string;
-  issuedAt: string;
-  course?: {
-    title: string;
-    thumbnail: string | null;
-  };
-}
+export type Certificate = CertificateItem;
 
 interface CertificateState {
   certificates: Certificate[];
@@ -29,8 +22,7 @@ export const fetchCertificates = createAsyncThunk(
   'certificate/fetchCertificates',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await api.get(ENDPOINTS.CERTIFICATES.STUDENT);
-      return response.data.data;
+      return await certificatesService.getStudentCertificates();
     } catch (error: any) {
       return rejectWithValue(
         error.response?.data?.message || 'Failed to fetch certificates'

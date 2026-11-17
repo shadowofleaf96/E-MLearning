@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import api from '@/services/api';
+import { superAdminService } from '../services/superAdmin.service';
 
 export interface PlanConfig {
   name: string;
@@ -37,8 +37,8 @@ export function useSaaSPlans() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get('/super-admin/plans');
-      setData(response.data.data);
+      const plans = await superAdminService.getSaaSPlans();
+      setData(plans);
       setLoading(false);
     } catch (err: any) {
       setError(
@@ -52,9 +52,9 @@ export function useSaaSPlans() {
 
   const savePlanConfigs = async (updatedConfigs: any) => {
     try {
-      const response = await api.put('/super-admin/plans', updatedConfigs);
+      const res = await superAdminService.updateSaaSPlans(updatedConfigs);
       await fetchPlans();
-      return response.data;
+      return res;
     } catch (err: any) {
       throw new Error(
         err.response?.data?.message ||

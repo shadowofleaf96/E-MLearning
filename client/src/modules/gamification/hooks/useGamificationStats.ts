@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import AxiosConfig from '@/components/utils/AxiosConfig';
+import api from '@/services/api';
 
 export interface GamificationStats {
   xp: number;
@@ -17,7 +17,7 @@ export const useGamificationStats = () => {
     const fetchStats = async () => {
       try {
         setIsLoading(true);
-        const response = await AxiosConfig.get('/gamification/stats');
+        const response = await api.get('/gamification/stats');
         setData(response.data.data);
       } catch (err: any) {
         setError(err);

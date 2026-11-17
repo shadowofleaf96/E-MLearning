@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import AxiosConfig from '@/components/utils/AxiosConfig';
+import api from '@/services/api';
 import { toast } from 'react-toastify';
 import { useReCaptcha } from 'next-recaptcha-v3';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
@@ -39,7 +39,7 @@ const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
     try {
       const recaptchaToken = await executeRecaptcha('form_submit');
 
-      await AxiosConfig.post('/users/forgot-password', {
+      await api.post('/users/forgot-password', {
         email,
         recaptchaToken,
       });

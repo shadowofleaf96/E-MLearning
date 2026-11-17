@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import AxiosConfig from '@/components/utils/AxiosConfig';
+import api from '@/services/api';
 
 export interface Course {
   id: string;
@@ -26,7 +26,7 @@ export const useStudentCourses = () => {
     const fetchCourses = async () => {
       try {
         setIsLoading(true);
-        const response = await AxiosConfig.get('/courses/enrolled');
+        const response = await api.get('/courses/enrolled');
         setData(response.data.data);
       } catch (err: any) {
         setError(err);

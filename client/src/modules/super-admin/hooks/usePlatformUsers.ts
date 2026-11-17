@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import api from '@/services/api';
+import { superAdminService } from '../services/superAdmin.service';
 
 export interface PlatformUser {
   id: string;
@@ -56,11 +56,15 @@ export function usePlatformUsers(initialPage = 1, initialLimit = 10) {
   const fetchUsers = useCallback(async () => {
     setState((prev) => ({ ...prev, loading: true, error: null }));
     try {
-      const response = await api.get('/super-admin/users', {
-        params: { page, limit, search, role: roleFilter, status: statusFilter },
+      const data = await superAdminService.getPlatformUsers({
+        page,
+        limit,
+        search,
+        role: roleFilter,
+        status: statusFilter,
       });
       setState({
-        data: response.data.data,
+        data,
         loading: false,
         error: null,
       });
@@ -82,7 +86,7 @@ export function usePlatformUsers(initialPage = 1, initialLimit = 10) {
 
   const updateUserRole = async (userId: string, role: string) => {
     try {
-      await api.patch(`/super-admin/users/${userId}/role`, { role });
+      await superAdminService.updateUserRole(userId, role);
       await fetchUsers();
     } catch (err: any) {
       throw new Error(
@@ -96,9 +100,7 @@ export function usePlatformUsers(initialPage = 1, initialLimit = 10) {
   const toggleUserStatus = async (userId: string, currentStatus: string) => {
     try {
       const newStatus = currentStatus === 'active' ? 'suspended' : 'active';
-      await api.patch(`/super-admin/users/${userId}/status`, {
-        status: newStatus,
-      });
+      await superAdminService.updateUserStatus(userId, newStatus);
       await fetchUsers();
     } catch (err: any) {
       throw new Error(

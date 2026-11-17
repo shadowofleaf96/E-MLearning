@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import api from '@/services/api';
+import { superAdminService } from '../services/superAdmin.service';
 
 export interface GlobalAnalyticsData {
   totalRevenue: number;
@@ -54,11 +54,9 @@ export function useGlobalAnalytics(initialRange = 'Year to Date') {
   const fetchAnalytics = useCallback(async () => {
     setState((prev) => ({ ...prev, loading: true, error: null }));
     try {
-      const response = await api.get('/super-admin/analytics', {
-        params: { range },
-      });
+      const data = await superAdminService.getGlobalAnalytics(range);
       setState({
-        data: response.data.data,
+        data,
         loading: false,
         error: null,
       });
