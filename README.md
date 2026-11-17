@@ -61,6 +61,18 @@ The platform provides dedicated, tailored workspaces for:
 - **Dynamic Levels & Streaks**: Daily login bonus streak calculation and real-time level progression.
 - **Badge Awards**: Milestone achievements (e.g., *Fast Learner*, *Quiz Master*, *Consistent Scholar*).
 
+### 6. 🛡️ Admin & Operational Tools
+- **Course Moderation & Governance**: Multi-stage review workflow (Draft -> Pending Review -> Approved / Revision Required / Rejected) with audit logs and feedback comments.
+- **Targeted Broadcast Campaigns**: Compose and dispatch announcement campaigns targeted to All Users, Students, Instructors, or specific Course Cohorts.
+- **Revenue & Payout Queue**: Track platform net revenue and instructor payout requests with review modal and automated notifications.
+- **Nested Category Hierarchy & Tags**: Unlimited multi-level category trees with parent-child relationships and keyword tag assignments.
+
+### 7. 🛤️ Learning Paths, Prerequisites & Live Classrooms
+- **Learning Paths & Bundles**: Group multiple related courses into structured career tracks with auto-enrollment into bundled courses and sequence progress visualization.
+- **Course Prerequisites**: Cross-course dependencies blocking student enrollments until foundational prerequisite courses are completed.
+- **Live Video Classrooms (`/live/[sessionId]`)**: High-performance interactive video classroom supporting WebRTC live streaming (Jitsi Meet engine) and interactive Studio Stage, camera/mic/screen-share controls, real-time live chat drawer, and attendance tracking.
+- **Mobile Responsive Workspaces**: Responsive slide-over curriculum drawer on mobile viewports for student learn workspace, touch targets, and responsive layouts across all portals.
+
 ---
 
 ## 🏗️ Architecture & Tech Stack

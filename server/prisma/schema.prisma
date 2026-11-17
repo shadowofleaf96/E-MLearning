@@ -130,6 +130,8 @@ model Tenant {
   assignmentSubmissions AssignmentSubmission[]
   moderationLogs      ModerationLog[]
   tags                Tag[]
+  learningPaths       LearningPath[]
+  learningPathEnrollments LearningPathEnrollment[]
 
   @@map("tenants")
 }
@@ -195,6 +197,8 @@ model User {
   sentDirectMessages     DirectMessage[]  @relation("SentMessages")
   assignmentSubmissions  AssignmentSubmission[]
   moderationLogs         ModerationLog[]        @relation("ReviewerLogs")
+  createdLearningPaths   LearningPath[]         @relation("InstructorLearningPaths")
+  learningPathEnrollments LearningPathEnrollment[]
 
   @@unique([email, tenantId])
   @@map("users")
@@ -253,6 +257,9 @@ model Course {
   bookmarks      Bookmark[]
   moderationLogs ModerationLog[]
   tags           CourseTag[]
+  learningPathCourses LearningPathCourse[]
+  prerequisites       CoursePrerequisite[] @relation("CoursePrerequisites")
+  prerequisiteFor     CoursePrerequisite[] @relation("PrerequisiteForCourses")
 
   @@map("courses")
 }
@@ -929,4 +936,68 @@ model CourseTag {
   @@unique([courseId, tagId])
   @@map("course_tags")
 }
+
+// ─── Learning Paths & Bundles ──────────────────────────────
+
+model LearningPath {
+  id           String    @id @default(uuid())
+  tenantId     String
+  tenant       Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  instructorId String
+  instructor   User      @relation("InstructorLearningPaths", fields: [instructorId], references: [id], onDelete: Cascade)
+  title        String
+  description  String?
+  thumbnail    String?
+  price        Decimal   @default(0)
+  isPublished  Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  courses      LearningPathCourse[]
+  enrollments  LearningPathEnrollment[]
+
+  @@map("learning_paths")
+}
+
+model LearningPathCourse {
+  id             String       @id @default(uuid())
+  learningPathId String
+  learningPath   LearningPath @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  courseId       String
+  course         Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  orderIndex     Int          @default(0)
+
+  @@unique([learningPathId, courseId])
+  @@map("learning_path_courses")
+}
+
+model LearningPathEnrollment {
+  id             String       @id @default(uuid())
+  tenantId       String
+  tenant         Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  studentId      String
+  student        User         @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  learningPathId String
+  learningPath   LearningPath @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  status         String       @default("active") // active, completed
+  enrolledAt     DateTime     @default(now())
+  completedAt    DateTime?
+
+  @@unique([studentId, learningPathId])
+  @@map("learning_path_enrollments")
+}
+
+// ─── Course Prerequisites ──────────────────────────────────
+
+model CoursePrerequisite {
+  id             String @id @default(uuid())
+  courseId       String
+  course         Course @relation("CoursePrerequisites", fields: [courseId], references: [id], onDelete: Cascade)
+  prerequisiteId String
+  prerequisite   Course @relation("PrerequisiteForCourses", fields: [prerequisiteId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, prerequisiteId])
+  @@map("course_prerequisites")
+}
+
 

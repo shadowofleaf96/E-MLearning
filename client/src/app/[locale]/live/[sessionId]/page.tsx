@@ -43,6 +43,7 @@ export default function LiveSessionWorkspacePage() {
   // States
   const [session, setSession] = useState<LiveSession | null>(null);
   const [loading, setLoading] = useState(true);
+  const [videoMode, setVideoMode] = useState<'webrtc' | 'studio'>('webrtc');
   const [activeTab, setActiveTab] = useState<'chat' | 'people' | 'files'>(
     'chat'
   );
@@ -240,6 +241,29 @@ export default function LiveSessionWorkspacePage() {
         </div>
 
         <div className="flex items-center gap-4">
+          <div className="flex items-center bg-slate-800 p-0.5 rounded-lg border border-slate-700 text-xs">
+            <button
+              onClick={() => setVideoMode('webrtc')}
+              className={`px-2.5 py-1 rounded-md font-medium transition-all ${
+                videoMode === 'webrtc'
+                  ? 'bg-secondary text-white shadow-sm'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              WebRTC Room
+            </button>
+            <button
+              onClick={() => setVideoMode('studio')}
+              className={`px-2.5 py-1 rounded-md font-medium transition-all ${
+                videoMode === 'studio'
+                  ? 'bg-secondary text-white shadow-sm'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              Studio Stage
+            </button>
+          </div>
+
           <div className="flex items-center gap-1.5 bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-0.5 rounded-full text-xs font-semibold">
             <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
             <span>Live • Recording</span>
@@ -260,7 +284,14 @@ export default function LiveSessionWorkspacePage() {
         <section className="flex-1 flex flex-col p-6 min-w-0 overflow-hidden relative">
           {/* Main Video Screen Share Stage */}
           <div className="flex-1 relative rounded-2xl overflow-hidden bg-black border border-slate-800 shadow-2xl flex items-center justify-center">
-            {screenShareActive ? (
+            {videoMode === 'webrtc' && session.roomId ? (
+              <iframe
+                src={`https://meet.jit.si/${session.roomId}#config.prejoinPageEnabled=false&config.startWithAudioMuted=false`}
+                allow="camera; microphone; fullscreen; display-capture; autoplay"
+                className="w-full h-full border-0 rounded-2xl"
+                title="Live Classroom Stream"
+              />
+            ) : screenShareActive ? (
               <Image
                 src="https://placehold.co/1280x720/1e293b/ffffff?text=Sarah+Chen's+Screen+Share+(Figma+Design+Workspace)"
                 alt="Figma screen share content"
@@ -278,35 +309,39 @@ export default function LiveSessionWorkspacePage() {
               </div>
             )}
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+            {videoMode !== 'webrtc' && (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
 
-            {/* Float Camera View for Instructor */}
-            <div className="absolute top-4 right-4 w-44 aspect-video rounded-lg overflow-hidden border border-slate-700 shadow-lg bg-slate-900 relative">
-              {cameraActive ? (
-                <Image
-                  src="https://placehold.co/200x120/312e81/ffffff?text=Sarah+Chen+(Host)"
-                  alt="Sarah Chen presenter webcam"
-                  fill
-                  className="w-full h-full object-cover"
-                  unoptimized
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-slate-950 text-xs text-slate-500">
-                  Camera Paused
+                {/* Float Camera View for Instructor */}
+                <div className="absolute top-4 right-4 w-44 aspect-video rounded-lg overflow-hidden border border-slate-700 shadow-lg bg-slate-900 relative">
+                  {cameraActive ? (
+                    <Image
+                      src="https://placehold.co/200x120/312e81/ffffff?text=Sarah+Chen+(Host)"
+                      alt="Sarah Chen presenter webcam"
+                      fill
+                      className="w-full h-full object-cover"
+                      unoptimized
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-slate-950 text-xs text-slate-500">
+                      Camera Paused
+                    </div>
+                  )}
+                  <div className="absolute bottom-1.5 left-1.5 px-2 py-0.5 bg-black/60 rounded text-[9px] text-white font-medium uppercase tracking-wider z-10">
+                    Instructor
+                  </div>
                 </div>
-              )}
-              <div className="absolute bottom-1.5 left-1.5 px-2 py-0.5 bg-black/60 rounded text-[9px] text-white font-medium uppercase tracking-wider z-10">
-                Instructor
-              </div>
-            </div>
 
-            {/* Presenter Name Tag */}
-            <div className="absolute bottom-6 left-6 flex items-center gap-3 z-10">
-              <div className="bg-secondary text-white px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-lg text-xs font-semibold">
-                <ScreenShare size={14} />
-                <span>Sarah Chen's Screen</span>
-              </div>
-            </div>
+                {/* Presenter Name Tag */}
+                <div className="absolute bottom-6 left-6 flex items-center gap-3 z-10">
+                  <div className="bg-secondary text-white px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-lg text-xs font-semibold">
+                    <ScreenShare size={14} />
+                    <span>Sarah Chen's Screen</span>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Bottom Participant Webcam Strip */}

@@ -26,6 +26,7 @@ import {
   Lock,
   Info,
   Pause,
+  X,
 } from 'lucide-react';
 
 export default function CourseLearningPage() {
@@ -33,6 +34,7 @@ export default function CourseLearningPage() {
     'overview' | 'resources' | 'notes'
   >('overview');
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMobileCurriculumOpen, setIsMobileCurriculumOpen] = useState(false);
 
   return (
     <div className="flex min-h-[calc(100vh-64px)] selection:bg-secondary-fixed selection:text-on-secondary-fixed">
@@ -67,6 +69,22 @@ export default function CourseLearningPage() {
                 Next Lesson <ArrowRight className="w-4 h-4" />
               </button>
             </div>
+          </div>
+
+          {/* Mobile Curriculum Trigger */}
+          <div className="xl:hidden flex items-center justify-between p-3.5 mb-6 rounded-xl bg-surface-container/70 border border-border-subtle">
+            <div className="flex items-center gap-2 text-xs">
+              <GraduationCap className="w-4 h-4 text-secondary" />
+              <span className="font-semibold text-on-surface">
+                12 of 45 lessons complete
+              </span>
+            </div>
+            <button
+              onClick={() => setIsMobileCurriculumOpen(true)}
+              className="px-3 py-1.5 bg-secondary text-white text-xs font-bold rounded-lg hover:bg-secondary/90 shadow-sm"
+            >
+              Curriculum Roadmap
+            </button>
           </div>
 
           {/* Progress Tracker */}
@@ -363,6 +381,87 @@ export default function CourseLearningPage() {
           </div>
         </div>
       </aside>
+
+      {/* Mobile Curriculum Slide-Over Drawer */}
+      {isMobileCurriculumOpen && (
+        <div className="fixed inset-0 z-50 xl:hidden">
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsMobileCurriculumOpen(false)}
+          />
+          <div className="fixed inset-y-0 right-0 w-80 max-w-full bg-surface-bg border-l border-border-subtle p-6 flex flex-col z-50 shadow-2xl">
+            <div className="flex items-center justify-between pb-4 border-b border-border-subtle mb-4">
+              <div>
+                <h3 className="font-bold text-sm text-on-surface">
+                  Course Curriculum
+                </h3>
+                <p className="text-xs text-on-surface-variant">
+                  12 of 45 lessons complete
+                </p>
+              </div>
+              <button
+                onClick={() => setIsMobileCurriculumOpen(false)}
+                className="p-1 rounded-lg text-on-surface-variant hover:text-on-surface"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="space-y-2 overflow-y-auto flex-1 pr-1">
+              <div className="group flex items-start gap-3 p-3 rounded-lg bg-surface-container/50">
+                <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-tertiary-fixed-dim flex items-center justify-center">
+                  <Check className="w-3 h-3 text-on-tertiary-fixed font-bold" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-on-surface">
+                    Principles of Structural Design
+                  </p>
+                  <p className="text-xs text-on-surface-variant/70 mt-0.5">
+                    Video • 12m • Completed
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 p-3 bg-secondary/10 rounded-lg border-l-4 border-secondary">
+                <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full border-2 border-secondary flex items-center justify-center bg-white">
+                  <div className="w-2 h-2 bg-secondary rounded-full"></div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-bold text-secondary">
+                    Introduction to Neural Nets
+                  </p>
+                  <p className="text-xs text-secondary/80 mt-0.5 font-medium">
+                    Now Playing • 45m
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 p-3 rounded-lg opacity-60">
+                <div className="mt-1 flex-shrink-0 w-5 h-5 flex items-center justify-center text-on-surface-variant">
+                  <Lock className="w-4 h-4" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-on-surface-variant">
+                    Edge Computing Basics
+                  </p>
+                  <p className="text-xs text-on-surface-variant/60 mt-0.5">
+                    Quiz • 10 Questions
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-border-subtle mt-4">
+              <button
+                onClick={() => setIsMobileCurriculumOpen(false)}
+                className="w-full py-2.5 bg-primary text-white text-xs font-bold rounded-xl"
+              >
+                Resume Current Lesson
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -202,6 +202,11 @@ export default function Sidebar() {
             href: `${prefix}/courses`,
             icon: 'architecture',
           },
+          {
+            label: 'Learning Paths',
+            href: `${prefix}/learning-paths`,
+            icon: 'alt_route',
+          },
           { label: 'Exams', href: `${prefix}/exams`, icon: 'quiz' },
           {
             label: 'Student Analytics',
@@ -230,6 +235,11 @@ export default function Sidebar() {
             icon: 'dashboard',
           },
           { label: 'My Courses', href: `${prefix}/my-courses`, icon: 'school' },
+          {
+            label: 'Learning Paths',
+            href: `${prefix}/learning-paths`,
+            icon: 'alt_route',
+          },
           {
             label: 'Achievements',
             href: `${prefix}/achievements`,

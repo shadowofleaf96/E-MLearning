@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,6 +6,8 @@ import { Label } from '@/components/ui/label';
 import { coursesService } from '@/modules/courses/services/courses.service';
 import { uploadService } from '@/services/upload.service';
 import { toast } from 'react-toastify';
+import { Course } from '@/types/course.types';
+import { Lock, BookOpen, Check } from 'lucide-react';
 
 interface CourseSettingsProps {
   course: any;
@@ -20,6 +22,45 @@ export function CourseSettings({ course, onUpdate }: CourseSettingsProps) {
   const [isSaving, setIsSaving] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
 
+  // Prerequisites state
+  const [allCourses, setAllCourses] = useState<Course[]>([]);
+  const [selectedPrereqIds, setSelectedPrereqIds] = useState<string[]>([]);
+  const [loadingPrereqs, setLoadingPrereqs] = useState(false);
+
+  useEffect(() => {
+    const loadPrerequisitesData = async () => {
+      if (!course?.id) return;
+      setLoadingPrereqs(true);
+      try {
+        const [allRes, currentRes] = await Promise.all([
+          coursesService.getCourses({ limit: 100 }),
+          coursesService.getPrerequisites(course.id),
+        ]);
+        // Filter out current course
+        const otherCourses = (allRes.data || []).filter(
+          (c: any) => c.id !== course.id
+        );
+        setAllCourses(otherCourses);
+        const currentPrereqIds = (currentRes.data || []).map((p: any) => p.id);
+        setSelectedPrereqIds(currentPrereqIds);
+      } catch {
+        // ignore
+      } finally {
+        setLoadingPrereqs(false);
+      }
+    };
+
+    loadPrerequisitesData();
+  }, [course?.id]);
+
+  const togglePrerequisite = (courseId: string) => {
+    setSelectedPrereqIds((prev) =>
+      prev.includes(courseId)
+        ? prev.filter((id) => id !== courseId)
+        : [...prev, courseId]
+    );
+  };
+
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -29,7 +70,7 @@ export function CourseSettings({ course, onUpdate }: CourseSettingsProps) {
       const url = await uploadService.uploadFile(file);
       setThumbnail(url);
       toast.success('Thumbnail uploaded successfully');
-    } catch (error) {
+    } catch {
       toast.error('Failed to upload thumbnail');
     } finally {
       setIsUploading(false);
@@ -40,15 +81,18 @@ export function CourseSettings({ course, onUpdate }: CourseSettingsProps) {
     e.preventDefault();
     setIsSaving(true);
     try {
-      await coursesService.updateCourse(course.id, {
-        title,
-        description,
-        price: parseFloat(price.toString()),
-        thumbnail,
-      });
-      toast.success('Course settings updated');
+      await Promise.all([
+        coursesService.updateCourse(course.id, {
+          title,
+          description,
+          price: parseFloat(price.toString()),
+          thumbnail,
+        }),
+        coursesService.setPrerequisites(course.id, selectedPrereqIds),
+      ]);
+      toast.success('Course settings & prerequisites saved');
       onUpdate();
-    } catch (error) {
+    } catch {
       toast.error('Failed to update settings');
     } finally {
       setIsSaving(false);
@@ -141,7 +185,63 @@ export function CourseSettings({ course, onUpdate }: CourseSettingsProps) {
         </div>
       )}
 
-      <div className="flex justify-end pt-4">
+      {/* Course Prerequisites Section */}
+      <div className="border-t border-white/10 pt-6 space-y-3">
+        <div className="flex items-center gap-2 text-white">
+          <Lock className="w-4 h-4 text-amber-400" />
+          <Label className="text-base font-semibold text-zinc-200">
+            Course Prerequisites
+          </Label>
+        </div>
+        <p className="text-xs text-zinc-400">
+          Select courses that students must successfully complete before they
+          can enroll in this course.
+        </p>
+
+        {loadingPrereqs ? (
+          <div className="py-4 text-xs text-zinc-500">
+            Loading prerequisites...
+          </div>
+        ) : allCourses.length === 0 ? (
+          <p className="text-xs text-zinc-500 italic">
+            No other courses available to set as prerequisites.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-56 overflow-y-auto p-3 bg-zinc-950/60 rounded-xl border border-white/5">
+            {allCourses.map((c) => {
+              const isChecked = selectedPrereqIds.includes(c.id);
+              return (
+                <button
+                  type="button"
+                  key={c.id}
+                  onClick={() => togglePrerequisite(c.id)}
+                  className={`flex items-center justify-between p-2.5 rounded-lg text-xs text-left border transition-all ${
+                    isChecked
+                      ? 'bg-amber-500/15 border-amber-500/50 text-amber-300'
+                      : 'bg-zinc-900/60 border-white/5 text-zinc-300 hover:border-white/20'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 truncate">
+                    <BookOpen className="w-3.5 h-3.5 shrink-0 opacity-60" />
+                    <span className="truncate font-medium">{c.title}</span>
+                  </div>
+                  <div
+                    className={`w-4 h-4 rounded flex items-center justify-center shrink-0 border ${
+                      isChecked
+                        ? 'bg-amber-500 border-amber-500 text-black'
+                        : 'border-white/30'
+                    }`}
+                  >
+                    {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      <div className="flex justify-end pt-4 border-t border-white/10">
         <Button
           type="submit"
           disabled={isSaving}

@@ -632,6 +632,18 @@ export const coursesService = {
       throw AppError.badRequest('Cannot enroll in an unpublished course.');
     }
 
+    // Verify course prerequisites
+    const prereqCheck = await this.checkPrerequisites(courseId, studentId, tenantId);
+    if (!prereqCheck.arePrerequisitesMet) {
+      const missingTitles = prereqCheck.prerequisites
+        .filter((p) => !p.isCompleted)
+        .map((p) => `"${p.title}"`)
+        .join(', ');
+      throw AppError.badRequest(
+        `Prerequisites not met. You must first complete: ${missingTitles}`
+      );
+    }
+
     const existingEnrollment = await prisma.enrollment.findUnique({
       where: {
         studentId_courseId: {
@@ -888,5 +900,126 @@ export const coursesService = {
       },
       orderBy: { firstName: 'asc' },
     });
+  },
+
+  async getPrerequisites(courseId: string, tenantId: string) {
+    const course = await prisma.course.findFirst({
+      where: { id: courseId, tenantId },
+    });
+
+    if (!course) {
+      throw AppError.notFound('Course not found');
+    }
+
+    const items = await prisma.coursePrerequisite.findMany({
+      where: { courseId },
+      include: {
+        prerequisite: {
+          select: {
+            id: true,
+            title: true,
+            thumbnail: true,
+            isPublished: true,
+          },
+        },
+      },
+    });
+
+    return items.map((i) => i.prerequisite);
+  },
+
+  async setPrerequisites(
+    courseId: string,
+    prerequisiteIds: string[],
+    instructorId: string,
+    role: string,
+    tenantId: string
+  ) {
+    const course = await prisma.course.findFirst({
+      where: { id: courseId, tenantId },
+    });
+
+    if (!course) {
+      throw AppError.notFound('Course not found');
+    }
+
+    if (role === 'instructor' && course.instructorId !== instructorId) {
+      throw AppError.forbidden('Access denied. You do not own this course.');
+    }
+
+    // Filter out self-prerequisite
+    const validPrereqIds = (prerequisiteIds || []).filter((id) => id !== courseId);
+
+    // Remove existing prerequisites
+    await prisma.coursePrerequisite.deleteMany({
+      where: { courseId },
+    });
+
+    // Create new prerequisites
+    if (validPrereqIds.length > 0) {
+      await prisma.coursePrerequisite.createMany({
+        data: validPrereqIds.map((prerequisiteId) => ({
+          courseId,
+          prerequisiteId,
+        })),
+        skipDuplicates: true,
+      });
+    }
+
+    return this.getPrerequisites(courseId, tenantId);
+  },
+
+  async checkPrerequisites(courseId: string, studentId: string, tenantId: string) {
+    const prerequisites = await prisma.coursePrerequisite.findMany({
+      where: { courseId },
+      include: {
+        prerequisite: {
+          select: {
+            id: true,
+            title: true,
+          },
+        },
+      },
+    });
+
+    if (prerequisites.length === 0) {
+      return {
+        arePrerequisitesMet: true,
+        prerequisites: [],
+      };
+    }
+
+    const prereqCourseIds = prerequisites.map((p) => p.prerequisiteId);
+
+    // Check student's completed enrollments
+    const enrollments = await prisma.enrollment.findMany({
+      where: {
+        studentId,
+        courseId: { in: prereqCourseIds },
+      },
+      select: {
+        courseId: true,
+        status: true,
+      },
+    });
+
+    const completedSet = new Set(
+      enrollments
+        .filter((e) => e.status === 'completed')
+        .map((e) => e.courseId)
+    );
+
+    const detailedPrereqs = prerequisites.map((p) => ({
+      courseId: p.prerequisiteId,
+      title: p.prerequisite.title,
+      isCompleted: completedSet.has(p.prerequisiteId),
+    }));
+
+    const arePrerequisitesMet = detailedPrereqs.every((p) => p.isCompleted);
+
+    return {
+      arePrerequisitesMet,
+      prerequisites: detailedPrereqs,
+    };
   },
 };

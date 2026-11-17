@@ -108,4 +108,35 @@ export const coursesService = {
     const response = await api.get(ENDPOINTS.COURSES.TENANT_STUDENTS);
     return response.data;
   },
+
+  async getPrerequisites(courseId: string): Promise<ApiResponse<Course[]>> {
+    const response = await api.get(ENDPOINTS.COURSES.PREREQUISITES(courseId));
+    return response.data;
+  },
+
+  async setPrerequisites(
+    courseId: string,
+    prerequisiteIds: string[]
+  ): Promise<ApiResponse<Course[]>> {
+    const response = await api.post(ENDPOINTS.COURSES.PREREQUISITES(courseId), {
+      prerequisiteIds,
+    });
+    return response.data;
+  },
+
+  async getPrerequisiteStatus(courseId: string): Promise<
+    ApiResponse<{
+      arePrerequisitesMet: boolean;
+      prerequisites: {
+        courseId: string;
+        title: string;
+        isCompleted: boolean;
+      }[];
+    }>
+  > {
+    const response = await api.get(
+      ENDPOINTS.COURSES.PREREQUISITE_STATUS(courseId)
+    );
+    return response.data;
+  },
 };

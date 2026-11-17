@@ -107,4 +107,19 @@ router.delete(
   controller.unenrollStudent
 );
 
+// Course Prerequisites
+router.get('/:id/prerequisites', optionalAuthenticate, controller.getCoursePrerequisites);
+router.post(
+  '/:id/prerequisites',
+  authenticate,
+  authorize('instructor', 'admin', 'super_admin'),
+  controller.setCoursePrerequisites
+);
+router.get(
+  '/:id/prerequisite-status',
+  authenticate,
+  authorize('student', 'instructor', 'admin', 'super_admin'),
+  controller.getPrerequisiteStatus
+);
+
 export default router;

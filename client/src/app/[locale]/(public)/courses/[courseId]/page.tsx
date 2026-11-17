@@ -20,6 +20,7 @@ import {
   ShieldCheck,
   Bookmark,
   BookmarkCheck,
+  Lock,
 } from 'lucide-react';
 import { coursesService } from '@/modules/courses/services/courses.service';
 import { Course, CourseModule } from '@/types/course.types';
@@ -41,6 +42,22 @@ export default function CourseDetailsPage() {
   const [enrollMsg, setEnrollMsg] = useState<string | null>(null);
   const [bookmarked, setBookmarked] = useState(false);
   const [bookmarking, setBookmarking] = useState(false);
+  const [prerequisites, setPrerequisites] = useState<any[]>([]);
+  const [prereqStatus, setPrereqStatus] = useState<any>(null);
+
+  useEffect(() => {
+    if (courseId) {
+      coursesService
+        .getPrerequisites(courseId)
+        .then((res) => setPrerequisites(res.data || []))
+        .catch(() => {});
+
+      coursesService
+        .getPrerequisiteStatus(courseId)
+        .then((res) => setPrereqStatus(res.data))
+        .catch(() => {});
+    }
+  }, [courseId]);
 
   useEffect(() => {
     if (courseId) {
@@ -286,6 +303,61 @@ export default function CourseDetailsPage() {
               </div>
             </section>
 
+            {/* Course Prerequisites Section */}
+            {prerequisites.length > 0 && (
+              <section className="bg-surface-card rounded-2xl p-6 border border-border-subtle shadow-sm space-y-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-500 flex items-center justify-center">
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h2 className="font-headline-md text-lg font-bold text-on-surface">
+                      Required Prerequisites
+                    </h2>
+                    <p className="text-xs text-on-surface-variant">
+                      The instructor requires completion of these foundational
+                      courses before enrolling.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-3 pt-1">
+                  {prerequisites.map((prereq: any) => {
+                    const statusItem = prereqStatus?.prerequisites?.find(
+                      (p: any) => p.courseId === prereq.id
+                    );
+                    const isDone = statusItem?.isCompleted ?? false;
+
+                    return (
+                      <div
+                        key={prereq.id}
+                        className="flex items-center justify-between p-3 rounded-xl bg-surface-container/60 border border-border-subtle"
+                      >
+                        <div className="flex items-center gap-2.5 truncate mr-2">
+                          <BookOpen className="w-4 h-4 text-primary shrink-0" />
+                          <span className="text-xs font-semibold text-on-surface truncate">
+                            {prereq.title}
+                          </span>
+                        </div>
+                        {isDone ? (
+                          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full shrink-0">
+                            <CheckCircle className="w-3 h-3" /> Done
+                          </span>
+                        ) : (
+                          <Link
+                            href={`/${locale}/courses/${prereq.id}`}
+                            className="text-[11px] font-semibold text-primary hover:underline shrink-0"
+                          >
+                            View Course →
+                          </Link>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+
             {/* Curriculum */}
             <section className="space-y-6" id="curriculum">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
@@ -413,9 +485,25 @@ export default function CourseDetailsPage() {
 
               {/* Enroll button */}
               <div className="space-y-3">
+                {prereqStatus &&
+                  !prereqStatus.arePrerequisitesMet &&
+                  !enrolled && (
+                    <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-700 dark:text-amber-300 flex items-start gap-2">
+                      <Lock className="w-4 h-4 shrink-0 mt-0.5" />
+                      <span>
+                        Prerequisites required. Please complete all listed
+                        foundational courses before enrolling.
+                      </span>
+                    </div>
+                  )}
+
                 <button
                   onClick={handleEnroll}
-                  disabled={enrolling || enrolled}
+                  disabled={
+                    enrolling ||
+                    enrolled ||
+                    Boolean(prereqStatus && !prereqStatus.arePrerequisitesMet)
+                  }
                   className="w-full py-4 bg-secondary text-white rounded-xl font-bold text-base hover:bg-secondary/90 active:scale-[0.98] transition-all shadow-md hover:shadow-lg disabled:opacity-75 disabled:pointer-events-none cursor-pointer flex items-center justify-center gap-2"
                 >
                   {enrolling ? (
@@ -428,6 +516,10 @@ export default function CourseDetailsPage() {
                       <CheckCircle className="w-5 h-5" />
                       <span>Enrolled! Redirecting...</span>
                     </>
+                  ) : prereqStatus && !prereqStatus.arePrerequisitesMet ? (
+                    <span className="flex items-center gap-2">
+                      <Lock className="w-4 h-4" /> Prerequisites Required
+                    </span>
                   ) : (
                     <span>
                       {isFree ? 'Enroll for Free' : 'Enroll in Course'}

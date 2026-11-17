@@ -475,3 +475,84 @@ export async function getTenantStudents(
     next(error);
   }
 }
+
+export async function getCoursePrerequisites(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const tenantId =
+      req.tenant?.id ||
+      req.user?.tenantId ||
+      (req.query.tenantId as string | undefined);
+    if (!tenantId) {
+      throw AppError.badRequest('Tenant ID is required');
+    }
+    const courseId = req.params.id as string;
+    const prerequisites = await coursesService.getPrerequisites(courseId, tenantId);
+    res.json({ status: 'success', data: prerequisites });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function setCoursePrerequisites(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const tenantId = req.tenant?.id || req.user?.tenantId;
+    if (!tenantId) {
+      throw AppError.badRequest('Tenant ID is required');
+    }
+    const userId = req.user?.id;
+    const role = req.user?.role;
+    if (!userId || !role) {
+      throw AppError.unauthorized('User not authenticated');
+    }
+    const courseId = req.params.id as string;
+    const { prerequisiteIds } = req.body;
+    const prerequisites = await coursesService.setPrerequisites(
+      courseId,
+      prerequisiteIds,
+      userId,
+      role,
+      tenantId
+    );
+    res.json({
+      status: 'success',
+      message: 'Prerequisites updated successfully',
+      data: prerequisites,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function getPrerequisiteStatus(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const tenantId = req.tenant?.id || req.user?.tenantId;
+    if (!tenantId) {
+      throw AppError.badRequest('Tenant ID is required');
+    }
+    const studentId = req.user?.id;
+    if (!studentId) {
+      throw AppError.unauthorized('User not authenticated');
+    }
+    const courseId = req.params.id as string;
+    const status = await coursesService.checkPrerequisites(
+      courseId,
+      studentId,
+      tenantId
+    );
+    res.json({ status: 'success', data: status });
+  } catch (error) {
+    next(error);
+  }
+}

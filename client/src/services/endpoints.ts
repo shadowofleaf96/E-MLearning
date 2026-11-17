@@ -44,6 +44,9 @@ export const ENDPOINTS = {
       `/courses/${courseId}/enrolled-students/${studentId}`,
     TENANT_STUDENTS: '/courses/tenant-students',
     MODULES: (courseId: string) => `/courses/${courseId}/modules`,
+    PREREQUISITES: (courseId: string) => `/courses/${courseId}/prerequisites`,
+    PREREQUISITE_STATUS: (courseId: string) =>
+      `/courses/${courseId}/prerequisite-status`,
   },
   MODULES: {
     CREATE: '/modules',
@@ -191,5 +194,15 @@ export const ENDPOINTS = {
     DELETE: (id: string) => `/tags/${id}`,
     ASSIGN: '/tags/assign',
     COURSE_TAGS: (courseId: string) => `/tags/course/${courseId}`,
+  },
+  LEARNING_PATHS: {
+    LIST: '/learning-paths',
+    ENROLLED: '/learning-paths/enrolled',
+    INSTRUCTOR: '/learning-paths/instructor',
+    DETAIL: (id: string) => `/learning-paths/${id}`,
+    CREATE: '/learning-paths',
+    UPDATE: (id: string) => `/learning-paths/${id}`,
+    DELETE: (id: string) => `/learning-paths/${id}`,
+    ENROLL: (id: string) => `/learning-paths/${id}/enroll`,
   },
 };
