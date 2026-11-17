@@ -21,7 +21,7 @@
       "permanent": false
     },
     {
-      "source": "/((?!en|fr|ar|api|_next|favicon\\.ico).*)",
+      "source": "/((?!en|fr|ar|api|_next|images|locales|favicon\\.ico).*)",
       "destination": "/en/$1",
       "permanent": false
     }

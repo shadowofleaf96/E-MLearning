@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: '/:path((?!en|fr|ar|api|_next|images|favicon\\.ico).*)',
+        source: '/:path((?!en|fr|ar|api|_next|images|locales|favicon\\.ico).*)',
         destination: '/en/:path*',
         permanent: false,
       },
@@ -29,6 +29,7 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
