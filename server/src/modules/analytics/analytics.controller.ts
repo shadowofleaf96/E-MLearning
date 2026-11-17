@@ -78,3 +78,30 @@ export async function getInstructorStudents(
     next(error);
   }
 }
+
+export async function getStudentAnalytics(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const tenantId = req.tenant?.id || req.user?.tenantId;
+    const userId = req.user?.id;
+
+    if (!tenantId || !userId) {
+      throw AppError.unauthorized('User session not active');
+    }
+
+    const analytics = await analyticsService.getStudentAnalytics(
+      userId,
+      tenantId
+    );
+
+    res.status(200).json({
+      status: 'success',
+      data: analytics,
+    });
+  } catch (error) {
+    next(error);
+  }
+}

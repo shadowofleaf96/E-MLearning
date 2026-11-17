@@ -142,8 +142,10 @@ export const ENDPOINTS = {
     XP_CONFIG: (courseId: string) => `/gamification/xp-config/${courseId}`,
   },
   ANALYTICS: {
+    STUDENT: '/analytics/student',
     INSTRUCTOR: '/analytics/instructor',
     INSTRUCTOR_STUDENTS: '/analytics/instructor/students',
+    ADMIN: '/analytics/admin',
   },
   CERTIFICATES: {
     STUDENT: '/certificates/student',
@@ -204,5 +206,17 @@ export const ENDPOINTS = {
     UPDATE: (id: string) => `/learning-paths/${id}`,
     DELETE: (id: string) => `/learning-paths/${id}`,
     ENROLL: (id: string) => `/learning-paths/${id}/enroll`,
+  },
+  INTEGRATIONS: {
+    API_KEYS: '/integrations/api-keys',
+    CREATE_API_KEY: '/integrations/api-keys',
+    REVOKE_API_KEY: (id: string) => `/integrations/api-keys/${id}`,
+    WEBHOOKS: '/integrations/webhooks',
+    CREATE_WEBHOOK: '/integrations/webhooks',
+    UPDATE_WEBHOOK: (id: string) => `/integrations/webhooks/${id}`,
+    DELETE_WEBHOOK: (id: string) => `/integrations/webhooks/${id}`,
+    TEST_WEBHOOK: (id: string) => `/integrations/webhooks/${id}/test`,
+    WEBHOOK_DELIVERIES: (id: string) =>
+      `/integrations/webhooks/${id}/deliveries`,
   },
 };

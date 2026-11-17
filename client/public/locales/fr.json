@@ -421,5 +421,40 @@
       "terms": "conditions d’utilisation",
       "apply": "s’appliquent."
     }
+  },
+  "learningPaths": {
+    "title": "Parcours d'Apprentissage & Filières",
+    "description": "Des parcours multi-cours guidés conçus pour vous amener des bases fondamentales à la maîtrise professionnelle.",
+    "myPaths": "Mes Parcours",
+    "browseCatalog": "Explorer les Filières",
+    "enroll": "S'inscrire au Parcours",
+    "enrolled": "Inscrit",
+    "bundledCourses": "Cours Inclus",
+    "milestoneRoadmap": "Feuille de Route des Étapes"
+  },
+  "liveClassroom": {
+    "title": "Classe Interactive en Direct",
+    "liveStage": "Scène Studio",
+    "chat": "Discussion en Direct",
+    "participants": "Participants",
+    "joinSession": "Rejoindre la Session",
+    "leaveSession": "Quitter la Session"
+  },
+  "developer": {
+    "apiKeys": "Clés API",
+    "webhooks": "Webhooks",
+    "generateKey": "Générer une Nouvelle Clé",
+    "registerWebhook": "Enregistrer un Webhook",
+    "testPing": "Tester le Ping",
+    "deliveries": "Journaux de Livraison"
+  },
+  "studentAnalytics": {
+    "title": "Progression & Analyses d'Apprentissage",
+    "studyHours": "Heures d'Étude",
+    "avgScore": "Score Moyen",
+    "streak": "Série Quotidienne",
+    "weeklyActivity": "Activité d'Étude Hebdomadaire",
+    "skillMastery": "Maîtrise des Compétences",
+    "recentExams": "Historique des Évaluations"
   }
 }

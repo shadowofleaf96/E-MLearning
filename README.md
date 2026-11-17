@@ -73,6 +73,13 @@ The platform provides dedicated, tailored workspaces for:
 - **Live Video Classrooms (`/live/[sessionId]`)**: High-performance interactive video classroom supporting WebRTC live streaming (Jitsi Meet engine) and interactive Studio Stage, camera/mic/screen-share controls, real-time live chat drawer, and attendance tracking.
 - **Mobile Responsive Workspaces**: Responsive slide-over curriculum drawer on mobile viewports for student learn workspace, touch targets, and responsive layouts across all portals.
 
+### 8. 🔌 Integrations, Real-Time Alerts & Student Analytics
+- **Developer API Keys & Scopes**: Generate and manage cryptographic API keys (`lms_live_...`) with granular permission scopes (`read:courses`, `write:enrollments`, `read:analytics`, etc.) for seamless external integrations.
+- **Webhooks & HMAC Signatures**: Subscribe external services to LMS events (`course.created`, `enrollment.created`, `exam.submitted`, etc.) signed with SHA-256 HMAC tokens, with live ping testing and delivery audit history.
+- **Real-Time Notification Stream**: Server-Sent Events (SSE) push stream (`/api/notifications/stream`) pushing immediate updates to the navbar unread badge and instant toast notifications without resource-heavy polling.
+- **Self-Serve Student Learning Analytics (`/student/progress`)**: Data-driven progress dashboard featuring weekly 7-day study time bars, category skill mastery meters, and complete assessment history with pass/fail accreditation status.
+- **Trilingual i18n & a11y Compliance**: Complete synchronized translations across English, French, and Arabic (`en`, `fr`, `ar`) with screen-reader friendly ARIA accessibility.
+
 ---
 
 ## 🏗️ Architecture & Tech Stack

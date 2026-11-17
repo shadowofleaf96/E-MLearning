@@ -27,4 +27,6 @@ router.get(
   controller.getAdminAnalytics
 );
 
+router.get('/student', authenticate, controller.getStudentAnalytics);
+
 export default router;

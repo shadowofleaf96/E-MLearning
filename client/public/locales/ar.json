@@ -421,5 +421,40 @@
     "title": "الصفحة غير موجودة",
     "description": "الصفحة التي تبحث عنها غير موجودة. إليك بعض الروابط المفيدة:",
     "goBack": "العودة"
+  },
+  "learningPaths": {
+    "title": "مسارات التعلم والتخصصات",
+    "description": "مسارات متعددة الدورات مصممة لإرشادك من المفاهيم الأساسية إلى الاحتراف.",
+    "myPaths": "مساراتي التعليمية",
+    "browseCatalog": "استكشاف التخصصات",
+    "enroll": "التسجيل في المسار",
+    "enrolled": "مسجل",
+    "bundledCourses": "الدورات المشمولة",
+    "milestoneRoadmap": "خارطة المراحل"
+  },
+  "liveClassroom": {
+    "title": "الفصل التفاعلي المباشر",
+    "liveStage": "منصة البث",
+    "chat": "المحادثة المباشرة",
+    "participants": "الحاضرون",
+    "joinSession": "الانضمام للجلسة",
+    "leaveSession": "مغادرة الجلسة"
+  },
+  "developer": {
+    "apiKeys": "مفاتيح API",
+    "webhooks": "خطافات الويب (Webhooks)",
+    "generateKey": "إنشاء مفتاح جديد",
+    "registerWebhook": "تسجيل خطاف ويب",
+    "testPing": "إرسال اختبار",
+    "deliveries": "سجل التسليم"
+  },
+  "studentAnalytics": {
+    "title": "التقدم التعليمي والتحليلات",
+    "studyHours": "ساعات الدراسة",
+    "avgScore": "متوسط الدرجات",
+    "streak": "التتابع اليومي",
+    "weeklyActivity": "النشاط الأسبوعي",
+    "skillMastery": "إتقان المهارات",
+    "recentExams": "سجل الاختبارات والتقييمات"
   }
 }

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { notificationsService } from './notifications.service';
+import { notificationEvents, NOTIFICATION_EVENT } from './notifications.events';
 
 export async function getNotifications(
   req: Request,
@@ -82,6 +83,51 @@ export async function deleteNotification(
     res
       .status(200)
       .json({ status: 'success', message: 'Notification deleted' });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function streamNotifications(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const { id: userId, tenantId } = req.user!;
+
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache, no-transform');
+    res.setHeader('Connection', 'keep-alive');
+    if (typeof (res as any).flushHeaders === 'function') {
+      (res as any).flushHeaders();
+    }
+
+    res.write(
+      `data: ${JSON.stringify({ type: 'connected', timestamp: new Date().toISOString() })}\n\n`
+    );
+
+    const onNotification = (notification: any) => {
+      if (
+        notification.tenantId === tenantId &&
+        notification.userId === userId
+      ) {
+        res.write(
+          `data: ${JSON.stringify({ type: 'notification', data: notification })}\n\n`
+        );
+      }
+    };
+
+    notificationEvents.on(NOTIFICATION_EVENT, onNotification);
+
+    const keepAlive = setInterval(() => {
+      res.write(': keepalive\n\n');
+    }, 25000);
+
+    req.on('close', () => {
+      clearInterval(keepAlive);
+      notificationEvents.removeListener(NOTIFICATION_EVENT, onNotification);
+    });
   } catch (error) {
     next(error);
   }

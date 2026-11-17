@@ -1,4 +1,6 @@
 import prisma from '../../shared/database/prisma';
+import { notificationEvents, NOTIFICATION_EVENT } from './notifications.events';
+import { integrationsService } from '../integrations/integrations.service';
 
 export const notificationsService = {
   async getNotifications(
@@ -46,7 +48,7 @@ export const notificationsService = {
     userId: string,
     data: { title: string; message: string; type?: string }
   ) {
-    return prisma.notification.create({
+    const notification = await prisma.notification.create({
       data: {
         tenantId,
         userId,
@@ -56,6 +58,20 @@ export const notificationsService = {
         isRead: false,
       },
     });
+
+    // Real-time local SSE push
+    notificationEvents.emit(NOTIFICATION_EVENT, notification);
+
+    // Webhook dispatch
+    integrationsService.dispatchWebhookEvent(tenantId, 'notification.created', {
+      id: notification.id,
+      userId: notification.userId,
+      title: notification.title,
+      type: notification.type,
+      createdAt: notification.createdAt,
+    });
+
+    return notification;
   },
 
   async createBatchNotifications(
@@ -68,7 +84,7 @@ export const notificationsService = {
     }>
   ) {
     if (notifications.length === 0) return { count: 0 };
-    return prisma.notification.createMany({
+    const created = await prisma.notification.createMany({
       data: notifications.map((n) => ({
         tenantId: n.tenantId,
         userId: n.userId,
@@ -78,5 +94,19 @@ export const notificationsService = {
         isRead: false,
       })),
     });
+
+    // Emit event for each recipient
+    for (const n of notifications) {
+      notificationEvents.emit(NOTIFICATION_EVENT, {
+        tenantId: n.tenantId,
+        userId: n.userId,
+        title: n.title,
+        message: n.message,
+        type: n.type || 'announcement',
+        createdAt: new Date(),
+      });
+    }
+
+    return created;
   },
 };

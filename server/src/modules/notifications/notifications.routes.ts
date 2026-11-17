@@ -10,6 +10,7 @@ router.use(authenticate);
 
 // Base notifications routes
 router.get('/', notificationsController.getNotifications);
+router.get('/stream', notificationsController.streamNotifications);
 router.get('/unread-count', notificationsController.getUnreadCount);
 router.put('/mark-all-read', notificationsController.markAllAsRead);
 router.put('/:id/read', notificationsController.markAsRead);

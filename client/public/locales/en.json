@@ -421,5 +421,40 @@
       "terms": "Terms of Service",
       "apply": "apply."
     }
+  },
+  "learningPaths": {
+    "title": "Learning Paths & Curriculums",
+    "description": "Guided multi-course tracks designed to take you from foundational basics to industry mastery.",
+    "myPaths": "My Learning Paths",
+    "browseCatalog": "Explore Career Tracks",
+    "enroll": "Enroll in Path",
+    "enrolled": "Enrolled",
+    "bundledCourses": "Bundled Courses",
+    "milestoneRoadmap": "Milestone Roadmap"
+  },
+  "liveClassroom": {
+    "title": "Live Interactive Classroom",
+    "liveStage": "Studio Stage",
+    "chat": "Live Discussion",
+    "participants": "Attendees",
+    "joinSession": "Join Session",
+    "leaveSession": "Leave Session"
+  },
+  "developer": {
+    "apiKeys": "API Keys",
+    "webhooks": "Webhooks",
+    "generateKey": "Generate New Key",
+    "registerWebhook": "Register Webhook",
+    "testPing": "Send Test Ping",
+    "deliveries": "Delivery Logs"
+  },
+  "studentAnalytics": {
+    "title": "Learning Progress & Analytics",
+    "studyHours": "Study Hours",
+    "avgScore": "Average Score",
+    "streak": "Daily Streak",
+    "weeklyActivity": "Weekly Study Activity",
+    "skillMastery": "Skill Mastery",
+    "recentExams": "Exam & Quiz Performance History"
   }
 }

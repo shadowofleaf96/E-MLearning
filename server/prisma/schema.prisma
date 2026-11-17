@@ -132,6 +132,8 @@ model Tenant {
   tags                Tag[]
   learningPaths       LearningPath[]
   learningPathEnrollments LearningPathEnrollment[]
+  apiKeys             ApiKey[]
+  webhooks            Webhook[]
 
   @@map("tenants")
 }
@@ -999,5 +1001,55 @@ model CoursePrerequisite {
   @@unique([courseId, prerequisiteId])
   @@map("course_prerequisites")
 }
+
+// ─── Developer Integrations (API Keys & Webhooks) ──────────
+
+model ApiKey {
+  id         String    @id @default(uuid())
+  tenantId   String
+  tenant     Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  name       String
+  key        String    @unique
+  scopes     String[]  @default(["read:courses", "read:users", "write:enrollments"])
+  isActive   Boolean   @default(true)
+  lastUsedAt DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@map("api_keys")
+}
+
+model Webhook {
+  id              String            @id @default(uuid())
+  tenantId        String
+  tenant          Tenant            @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  url             String
+  events          String[]          @default(["course.created", "enrollment.created"])
+  secret          String
+  isActive        Boolean           @default(true)
+  lastTriggeredAt DateTime?
+  failureCount    Int               @default(0)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  deliveries      WebhookDelivery[]
+
+  @@map("webhooks")
+}
+
+model WebhookDelivery {
+  id           String    @id @default(uuid())
+  webhookId    String
+  webhook      Webhook   @relation(fields: [webhookId], references: [id], onDelete: Cascade)
+  event        String
+  payload      Json
+  statusCode   Int?
+  responseBody String?
+  success      Boolean   @default(false)
+  deliveredAt  DateTime  @default(now())
+
+  @@map("webhook_deliveries")
+}
+
 
 

@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { useAuth } from '@/modules/auth/hooks/useAuth';
 import { setSidebarOpen } from '@/store/slices/uiSlice';
 import { usePathname } from 'next/navigation';
+import { toast } from 'react-toastify';
+import api from '@/services/api';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { GlobalSearchModal } from '../shared/GlobalSearchModal';
 import {
@@ -38,6 +40,50 @@ export default function Navbar({ role = 'guest' }: { role?: Role }) {
 
   const inferredRole: Role = (user?.role as Role) || role;
   const currentRole = inferredRole;
+  const [unreadCount, setUnreadCount] = useState<number>(0);
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
+    api
+      .get('/notifications/unread-count')
+      .then((res) => {
+        setUnreadCount(res.data?.data?.count || 0);
+      })
+      .catch(() => {});
+
+    let eventSource: EventSource | null = null;
+    try {
+      const baseUrl =
+        process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+      eventSource = new EventSource(`${baseUrl}/notifications/stream`, {
+        withCredentials: true,
+      });
+
+      eventSource.onmessage = (event) => {
+        try {
+          const payload = JSON.parse(event.data);
+          if (payload.type === 'notification') {
+            setUnreadCount((prev) => prev + 1);
+            toast.info(payload.data?.title || 'New notification');
+          }
+        } catch {
+          // ignore
+        }
+      };
+
+      eventSource.onerror = () => {
+        eventSource?.close();
+      };
+    } catch {
+      // fallback
+    }
+
+    return () => {
+      eventSource?.close();
+    };
+  }, [isAuthenticated]);
+
   const handleLogout = () => {
     logout();
   };
@@ -121,10 +167,22 @@ export default function Navbar({ role = 'guest' }: { role?: Role }) {
           )}
 
           {isAuthenticated && (
-            <button className="text-on-surface-variant hover:text-secondary transition-colors relative hidden sm:block">
+            <Link
+              href={
+                currentRole === 'admin' || currentRole === 'super_admin'
+                  ? `/${locale}/admin/notifications-management`
+                  : `/${locale}/notifications`
+              }
+              className="text-on-surface-variant hover:text-secondary transition-colors relative hidden sm:flex items-center justify-center p-2 rounded-full hover:bg-surface-container-low"
+              aria-label="Notifications"
+            >
               <span className="material-symbols-outlined">notifications</span>
-              <span className="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
-            </button>
+              {unreadCount > 0 && (
+                <span className="absolute 1 top-0 right-0 min-w-4 h-4 px-1 bg-error text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-surface">
+                  {unreadCount > 9 ? '9+' : unreadCount}
+                </span>
+              )}
+            </Link>
           )}
 
           {isAuthenticated ? (

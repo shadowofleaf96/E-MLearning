@@ -560,4 +560,178 @@ export const analyticsService = {
       insights: [],
     };
   },
+
+  async getStudentAnalytics(studentId: string, tenantId: string) {
+    const enrollments = await prisma.enrollment.findMany({
+      where: { studentId, tenantId },
+      include: {
+        course: {
+          include: {
+            category: true,
+            modules: {
+              include: {
+                lessons: {
+                  select: { id: true, duration: true },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    const lessonProgresses = await prisma.lessonProgress.findMany({
+      where: { studentId, tenantId },
+      include: {
+        lesson: {
+          select: { id: true, title: true, duration: true },
+        },
+      },
+    });
+
+    const examAttempts = await prisma.examAttempt.findMany({
+      where: { studentId, tenantId },
+      orderBy: { startedAt: 'desc' },
+      include: {
+        exam: {
+          select: { title: true, passingScore: true },
+        },
+      },
+    });
+
+    const user = await prisma.user.findFirst({
+      where: { id: studentId, tenantId },
+      select: { xp: true, level: true, streak: true },
+    });
+
+    const totalEnrolled = enrollments.length;
+    const completedCourses = enrollments.filter(
+      (e) => e.status === 'completed'
+    ).length;
+    const inProgressCourses = totalEnrolled - completedCourses;
+
+    const completedLessons = lessonProgresses.filter((lp) => lp.completed);
+    const totalLessonsCompleted = completedLessons.length;
+
+    const totalStudyMinutes = lessonProgresses.reduce((acc, lp) => {
+      const minutes =
+        lp.timeSpent > 0 ? Math.round(lp.timeSpent / 60) : lp.completed ? 15 : 5;
+      return acc + minutes;
+    }, 0);
+
+    const gradedAttempts = examAttempts.filter((a) => a.score !== null);
+    const avgExamScore =
+      gradedAttempts.length > 0
+        ? Math.round(
+            gradedAttempts.reduce((acc, a) => acc + (a.score || 0), 0) /
+              gradedAttempts.length
+          )
+        : 0;
+    const examsPassedCount = examAttempts.filter((a) => a.passed).length;
+
+    const now = new Date();
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const past7Days = Array.from({ length: 7 }).map((_, i) => {
+      const d = new Date(now);
+      d.setDate(d.getDate() - (6 - i));
+      const dayStr = d.toISOString().split('T')[0];
+      const dayLabel = dayNames[d.getDay()];
+
+      const dayProgresses = lessonProgresses.filter((lp) => {
+        const pDate = new Date(lp.updatedAt).toISOString().split('T')[0];
+        return pDate === dayStr;
+      });
+
+      const minutes = dayProgresses.reduce((sum, p) => {
+        return (
+          sum +
+          (p.timeSpent > 0 ? Math.round(p.timeSpent / 60) : p.completed ? 20 : 10)
+        );
+      }, 0);
+
+      return {
+        date: dayStr,
+        day: dayLabel,
+        minutes: minutes,
+        lessons: dayProgresses.filter((p) => p.completed).length,
+      };
+    });
+
+    const categoryMap = new Map<
+      string,
+      {
+        name: string;
+        courses: number;
+        completedLessons: number;
+        totalLessons: number;
+      }
+    >();
+
+    for (const enr of enrollments) {
+      const catName = enr.course.category?.name || 'General Skills';
+      if (!categoryMap.has(catName)) {
+        categoryMap.set(catName, {
+          name: catName,
+          courses: 0,
+          completedLessons: 0,
+          totalLessons: 0,
+        });
+      }
+      const item = categoryMap.get(catName)!;
+      item.courses += 1;
+
+      let courseTotalLessons = 0;
+      let courseCompletedLessons = 0;
+      for (const mod of enr.course.modules) {
+        courseTotalLessons += mod.lessons.length;
+        for (const les of mod.lessons) {
+          const isDone = lessonProgresses.some(
+            (lp) => lp.lessonId === les.id && lp.completed
+          );
+          if (isDone) courseCompletedLessons += 1;
+        }
+      }
+      item.totalLessons += courseTotalLessons;
+      item.completedLessons += courseCompletedLessons;
+    }
+
+    const categoryMastery = Array.from(categoryMap.values()).map((cat) => ({
+      category: cat.name,
+      courseCount: cat.courses,
+      completedLessons: cat.completedLessons,
+      totalLessons: cat.totalLessons,
+      percentage:
+        cat.totalLessons > 0
+          ? Math.round((cat.completedLessons / cat.totalLessons) * 100)
+          : 0,
+    }));
+
+    const recentExams = examAttempts.slice(0, 5).map((att) => ({
+      id: att.id,
+      examTitle: att.exam.title,
+      score: att.score || 0,
+      passingScore: att.exam.passingScore,
+      passed: att.passed,
+      date: att.submittedAt || att.startedAt,
+    }));
+
+    return {
+      kpis: {
+        totalEnrolled,
+        completedCourses,
+        inProgressCourses,
+        totalLessonsCompleted,
+        totalStudyHours: Number((totalStudyMinutes / 60).toFixed(1)),
+        totalStudyMinutes,
+        avgExamScore,
+        examsPassedCount,
+        streak: user?.streak || 0,
+        xp: user?.xp || 0,
+        level: user?.level || 1,
+      },
+      weeklyActivity: past7Days,
+      categoryMastery,
+      recentExams,
+    };
+  },
 };
