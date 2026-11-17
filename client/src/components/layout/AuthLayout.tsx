@@ -1,9 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTenant } from '@/components/providers/TenantProvider';
+import { useAuth } from '@/modules/auth/hooks/useAuth';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -17,6 +19,29 @@ export default function AuthLayout({
   subtitle = 'Sign in to access your premium modules, pick up where you left off, and track your progress.',
 }: AuthLayoutProps) {
   const { tenant } = useTenant();
+  const { user } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const token =
+      typeof window !== 'undefined'
+        ? localStorage.getItem('token') || sessionStorage.getItem('token')
+        : null;
+
+    if (token && user) {
+      const localePrefix = pathname?.match(/^\/(en|fr|ar)/)?.[0] || '/en';
+      const roleDashboards: Record<string, string> = {
+        student: '/student/dashboard',
+        instructor: '/instructor/dashboard',
+        admin: '/admin/dashboard',
+        super_admin: '/super-admin/dashboard',
+      };
+      const defaultDashboard =
+        roleDashboards[user.role] || '/student/dashboard';
+      router.replace(`${localePrefix}${defaultDashboard}`);
+    }
+  }, [user, pathname, router]);
 
   const brandName = tenant?.name || 'Lumina Learning';
   const logo = tenant?.logoUrl || null;

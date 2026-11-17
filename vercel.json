@@ -14,6 +14,18 @@
       "framework": "express"
     }
   },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/en",
+      "permanent": false
+    },
+    {
+      "source": "/((?!en|fr|ar|api|_next|favicon\\.ico).*)",
+      "destination": "/en/$1",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",

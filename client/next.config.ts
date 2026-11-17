@@ -1,6 +1,20 @@
 import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   outputFileTracingRoot: __dirname,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/en',
+        permanent: false,
+      },
+      {
+        source: '/:path((?!en|fr|ar|api|_next|images|favicon\\.ico).*)',
+        destination: '/en/:path*',
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [
       {
